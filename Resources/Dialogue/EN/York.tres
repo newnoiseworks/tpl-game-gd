@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[hello]
+whom = "York"
+text = "Oi boy, I'm York. Baph's training me to be the best Carta Cop around!"
+next = "baphIsBest"
+
+[baphIsBest]
+whom = "Baph"
+text = "... second best."
+next = "yorkCorrects"
+
+[yorkCorrects]
+whom = "York"
+text = "Oh! Right!"

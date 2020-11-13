@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Shaders/ColorSwap.shader" type="Shader" id=1]
+[ext_resource path="res://RootScenes/AvatarSelect/AvatarController.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Fonts/VT323-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/Character/Farmer/Farmer.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/skinColor = Vector3( -1, -1, -1 )
+shader_param/skinChangeColor = Vector3( -1, -1, -1 )
+shader_param/hairColor = Vector3( -1, -1, -1 )
+shader_param/hairChangeColor = Vector3( -1, -1, -1 )
+shader_param/primaryColor = Vector3( -1, -1, -1 )
+shader_param/primaryChangeColor = Vector3( -1, -1, -1 )
+shader_param/secondaryColor = Vector3( -1, -1, -1 )
+shader_param/secondaryChangeColor = Vector3( -1, -1, -1 )
+shader_param/tertiaryColor = Vector3( -1, -1, -1 )
+shader_param/tertiaryChangeColor = Vector3( -1, -1, -1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+font_data = ExtResource( 3 )
+
+[node name="Avatar" type="TextureButton"]
+material = SubResource( 1 )
+margin_right = 270.0
+margin_bottom = 530.0
+rect_min_size = Vector2( 270, 440 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="."]
+margin_top = 20.0
+margin_right = 270.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 2 )
+text = "Avatar Name"
+align = 1
+
+[node name="Farmer" parent="." instance=ExtResource( 4 )]
+position = Vector2( 134.228, 262.932 )
+scale = Vector2( 12, 12 )
+[connection signal="pressed" from="." to="." method="on_pressed"]

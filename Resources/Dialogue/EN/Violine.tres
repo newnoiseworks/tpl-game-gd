@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[hello]
+whom = "Violine"
+text = "Yeah, I'm Violine. You need some crafts, maybe blueprints? That'd be me!"
+options = "storeScript"
+
+[storeScript]
+optionText = "So whatchu got"
+script = "violineStore"

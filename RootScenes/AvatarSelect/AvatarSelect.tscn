@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://RootScenes/AvatarSelect/AvatarSelectController.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/UI/MessageDialog.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Fonts/VT323-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://RootScenes/AvatarSelect/CreateAvatar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://RootScenes/AvatarSelect/CreateAvatarModal.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 65
+font_data = ExtResource( 3 )
+
+[node name="Avatar Select" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.152941, 0.701961, 0.941176, 1 )
+
+[node name="MessageDialog" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 120.0
+margin_right = 83.0
+margin_bottom = 178.0
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 40.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 1 )
+text = "Choose Your Farmer"
+align = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 120.0
+
+[node name="AvatarContainer" type="HBoxContainer" parent="ScrollContainer"]
+margin_right = 270.0
+margin_bottom = 440.0
+
+[node name="Create Avatar" parent="ScrollContainer/AvatarContainer" instance=ExtResource( 4 )]
+
+[node name="CreateAvatarModal" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_left = -272.0
+margin_top = -225.0
+margin_right = 272.0
+margin_bottom = 225.0
+[connection signal="pressed" from="ScrollContainer/AvatarContainer/Create Avatar" to="CreateAvatarModal" method="popup_centered"]

@@ -1,0 +1,136 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[CabbageSeeds]
+label = "Cabbage Seeds"
+description = "5 days to harvest"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Cabbage/Cabbage Seed Packet.png"
+
+[Cabbage]
+label = "Cabbage"
+description = "A familiar kitchen-garden vegetable about as large and wise as a man's head."
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Cabbage/Cabbage Item.png"
+
+[BeetSeeds]
+label = "Beet Seeds"
+description = "5 days to harvest"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Beet/Beat Seed Packet.png"
+
+[Beet]
+label = "Beet"
+description = "Beets are a popular root vegetable and are super good!"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Beet/Beet Item.png"
+
+[DragonFruitSeeds]
+label = "Dragon Fruit Seeds"
+description = "6 days to harvest"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Dragon Fruit/Dragon Fruit Seed Packet.png"
+
+[DragonFruit]
+label = "Dragon Fruit"
+description = "Fruit of the dragon"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Dragon Fruit/Dragon Fruit Item.png"
+
+[EggplantSeeds]
+label = "Eggplant Seeds"
+description = "6 days to harvest"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Eggplant/Eggplant Seed Packet.png"
+
+[Eggplant]
+label = "Eggplant"
+description = "Eggs that come out of the ground"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Eggplant/Eggplant Item.png"
+
+[PotatoSeeds]
+label = "Potato Seeds"
+description = "6 days to harvest"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Potato/Potato Seed Packet.png"
+
+[Potato]
+label = "Potato"
+description = "Possibly alien, controversially best if sliced and fried."
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Potato/Potato Item.png"
+
+[OddFruitSeeds]
+label = "Odd Fruit Seeds"
+description = "6 days to harvest"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/StrangeFruit/Strange Fruit Seed Packet.png"
+
+[OddFruit]
+label = "Odd Fruit"
+description = "What... is... that...? ...! MMmmm!"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/StangeFruit/Strange Fruit Item.png"
+
+[TomatoSeeds]
+label = "Tomato Seeds"
+description = "5 days to harvest"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Tomato/Tomato Seed Packet.png"
+
+[Tomato]
+label = "Tomato"
+description = "When rotten, it's important to earnestly denounce stupidity, at one's own risk."
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Tomato/Tomato Item.png"
+
+[TurnipSeeds]
+label = "Turnip Seeds"
+description = "5 days to harvest"
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Turnip/Turnip Seed Packet.png"
+
+[Turnip]
+label = "Turnip"
+description = "The only really sane person in there is Igor, and possibly the turnip."
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Turnip/Turnip Item.png"
+
+[CorpusCoin]
+label = "Corpus Coin"
+description = "Corpus Coins buy you non essential goods and services, are capped to 1000, and are taken out of circulation once the owner dies."
+image = "Resources/Images/Finished_Tiles/Coins/silver_small.png"
+
+[CommunityCoin]
+label = "Community Coin"
+description = "Community Coins buy you essential goods and services, like food and medicines, and are printed freely."
+image = "Resources/Images/Finished_Tiles/Coins/gold_small.png"
+
+[Blueprint_WoodPath]
+label = "Wood Path Blueprint"
+description = "Tired of the mud on your boots? Looking to give your farm some structure? Wood - it's good!"
+image = "Resources/Images/Finished_Tiles/Environment/Farm/Wood Path.png"
+
+[Blueprint_StonePath]
+label = "Stone Path Blueprint"
+description = "Nothing says home sweet home like rocks and stones on dirt or grass."
+image = "Resources/Images/Finished_Tiles/Environment/Farm/Stone Path.png"
+
+[Blueprint_Lamp]
+label = "Lamp Blueprint"
+description = "Farm lighting? With RGB? We say, sure, Y not!"
+image = "Resources/Images/Finished_Tiles/Environment/Objects/Street Lamp.png"
+
+[Wood]
+label = "Wood"
+description = "Wood, it's good for building things."
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Wood/Wood.png"
+
+[Stone]
+label = "Stone"
+description = "Stone, it's a core part of any walled home."
+image = "Resources/Images/Finished_Tiles/Environment/Crops/Stones/Stone.png"
+
+[Fern]
+label = "Fern"
+description = "Ferns, used for lots of things."
+image = "Resources/Images/Finished_Tiles/Environment/Crops/WeedsBushes/Plant Fiber.png"
+
+[Crafted_WoodPath]
+label = "Wood Path"
+description = "Tired of the mud on your boots? Looking to give your farm some structure? Wood - it's good!"
+image = "Resources/Images/Finished_Tiles/Environment/Farm/Wood Path.png"
+
+[Crafted_StonePath]
+label = "Stone Path"
+description = "Nothing says home sweet home like rocks and stones on dirt or grass."
+image = "Resources/Images/Finished_Tiles/Environment/Farm/Stone Path.png"
+
+[Crafted_Lamp]
+label = "Lamp"
+description = "Farm lighting? With RGB? We say, sure, Y not!"
+image = "Resources/Images/Finished_Tiles/Environment/Objects/Street Lamp.png"

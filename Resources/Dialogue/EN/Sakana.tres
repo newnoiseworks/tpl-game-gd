@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[hello]
+whom = "Sakana"
+text = "Hello, I'm Sakana, I sell the clothes around here."
+#options = "amazing, thanks"
+
+[amazing]
+whom = "Sakana"
+optionText = "I'm ready to look amazing!"
+text = "We're opening soon! Give the developers some money IRL, it'll help!"
+next = "faqReroute"
+
+[faqReroute]
+whom = "Sakana"
+text = "What else can I help you with?"
+options = "amazing, thanks"
+
+[thanks]
+whom = "Sakana"
+optionText = "Thanks!"
+text = "Bye!"

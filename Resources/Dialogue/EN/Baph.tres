@@ -1,0 +1,39 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[hello]
+whom = "Baph"
+text = "Hey there! I'm training York on the ways of the Carta Police."
+options = "whatsCartaPolice, whosYork, pigsOrNo, exit"
+
+[whatsCartaPolice]
+optionText = "The Carta Police?"
+whom = "Baph"
+text = "The Carta Police are the Promised Land's last line of defense against bad faith shenaniganry. We sort out the messes before they get messy!"
+next = "faqReroute"
+
+[whosYork]
+optionText = "Who's York?"
+whom = "Baph"
+text = "York's my trainee!"
+next = "yorkHi"
+
+[yorkHi]
+whom = "York"
+text = "Oi!"
+next = "faqReroute"
+
+[faqReroute]
+whom = "Baph"
+text = "Anything else I can answer for you?"
+options = "whatsCartaPolice, whosYork, pigsOrNo, exit"
+
+[pigsOrNo]
+whom = "Baph"
+optionText = "Wait, do you arrest people etc?"
+text = "Oh, god no. We interrogate and disrupt bad faith dialogue before others blindly follow along. That way society doesn't get schnookered by legal charlatans."
+next = "faqReroute"
+
+[exit]
+whom = "Baph"
+optionText = "Thanks!"
+text = "See you around!"

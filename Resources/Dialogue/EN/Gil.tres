@@ -1,0 +1,5 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[hello]
+whom = "Gil"
+text = "Gil's the name, taking other people's work and selling it under my name's my game."

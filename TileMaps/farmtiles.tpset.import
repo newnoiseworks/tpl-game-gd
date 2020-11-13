@@ -1,0 +1,15 @@
+[remap]
+
+importer="codeandweb.texturepacker_import_tileset"
+type="Resource"
+path="res://.import/farmtiles.tpset-acdcc617ca38c5d01bd995ce61bfae65.res"
+
+[deps]
+
+files=[ "farmtiles.png", "res://TileMaps/farmtiles.res" ]
+
+source_file="res://TileMaps/farmtiles.tpset"
+dest_files=[ "res://.import/farmtiles.tpset-acdcc617ca38c5d01bd995ce61bfae65.res", "farmtiles.png", "res://TileMaps/farmtiles.res" ]
+
+[params]
+
