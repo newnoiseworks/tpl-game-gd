@@ -6,7 +6,9 @@ onready var avatar_scene: PackedScene = ResourceLoader.load(
 
 
 func _ready():
-	yield(SessionManager.login("wow@wow.com", "password"), "completed")
+	if SessionManager.session == null:
+		yield(SessionManager.login("wow@wow.com", "password"), "completed")
+
 	yield(SessionManager.get_profile_data(), "completed")
 	draw_from_data(SessionManager.profile_data)
 
