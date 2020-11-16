@@ -17,7 +17,6 @@ onready var back_tool_tile_map: TileMap = find_node("BackToolTile")
 
 
 func _ready():
-	._ready()
 	character_base = "Avatars/base/#"
 
 	stop_all_animations()

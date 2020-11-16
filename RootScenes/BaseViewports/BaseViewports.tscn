@@ -41,7 +41,7 @@ __meta__ = {
 }
 
 [node name="GameViewport" type="Viewport" parent="GameViewportContainer"]
-size = Vector2( 1024, 600 )
+size = Vector2( 1920, 1080 )
 transparent_bg = true
 handle_input_locally = false
 usage = 0
@@ -63,7 +63,7 @@ __meta__ = {
 }
 
 [node name="UIViewport" type="Viewport" parent="UIViewportContainer"]
-size = Vector2( 1024, 600 )
+size = Vector2( 1920, 1080 )
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3

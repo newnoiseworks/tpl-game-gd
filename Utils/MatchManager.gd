@@ -12,6 +12,7 @@ func connect_socket():
 	socket = Nakama.create_socket_from(SessionManager.client)
 	yield(socket.connect_async(SessionManager.session), "completed")
 	socket.connect("received_match_state", self, "_on_match_state")
+	socket.connect("closed", self, "_on_socket_disconnect")
 
 
 func find_or_create_match(label: String, starting_position: Vector2):
@@ -29,7 +30,7 @@ func find_or_create_match(label: String, starting_position: Vector2):
 	return _match
 
 
-func leave_realm():
+func leave_match():
 	if game_match != null:
 		yield(socket.leave_match_async(game_match.match_id), "completed")
 
@@ -70,3 +71,8 @@ func _join_match(match_id: String, label: String, starting_position: Vector2) ->
 
 func _on_match_state(state: NakamaRTAPI.MatchData):
 	MatchEvent.handle_match_state_update(state)
+
+
+func _on_socket_disconnect():
+	TPLG.show_message("Connection to server lost. Could indicate an update in progress.")
+	TPLG.base_change_scene("res://RootScenes/Authentication/Authentication.tscn")

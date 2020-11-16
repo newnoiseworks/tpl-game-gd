@@ -48,7 +48,7 @@ func handle_match_state_update(state: NakamaRTAPI.MatchData):
 func emit(op_code: int, payload: String):
 	var event: String = signal_map[op_code]
 	emit_signal(event, {"data": payload, "presence": {"user_id": SessionManager.session.user_id}})
-	MatchManager.socket.send_match_state_async(MatchManager.game_match.id, op_code, payload)
+	MatchManager.socket.send_match_state_async(MatchManager.game_match.match_id, op_code, payload)
 
 
 func movement(payload):

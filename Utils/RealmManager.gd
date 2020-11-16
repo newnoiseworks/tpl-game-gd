@@ -15,6 +15,7 @@ func connect_socket():
 	yield(socket.connect_async(SessionManager.session), "completed")
 	socket.connect("received_match_state", self, "_on_match_state")
 	socket.connect("received_match_presence", self, "_on_match_presence")
+	socket.connect("closed", self, "_on_socket_disconnect")
 	RealmEvent.connect("realm_join", self, "_realm_join_event_response")
 	RealmEvent.connect("change_dungeon", self, "_change_dungeon_event_response")
 
@@ -23,9 +24,9 @@ func find_or_create_realm(label: String):
 	var response = yield(SessionManager.rpc("find_or_create_realm", label), "completed")
 	var realm_id = response.payload.replace('"', "")
 
-	var _realm_match = yield(_join_realm(realm_id), "completed")
+	realm_match = yield(_join_realm(realm_id), "completed")
 
-	return _realm_match
+	return realm_match
 
 
 func leave_realm():
@@ -57,6 +58,7 @@ func _join_realm(realm_id: String) -> NakamaRTAPI.Match:
 func _destroy_realm_session():
 	socket.disconnect("received_match_state", self, "_on_match_state")
 	socket.disconnect("received_match_presence", self, "_on_match_presence")
+	socket.disconnect("disconnect", self, "_on_socket_disconnect")
 	RealmEvent.disconnect("realm_join", self, "_realm_join_event_response")
 	RealmEvent.disconnect("change_dungeon", self, "_change_dungeon_event_response")
 	# FarmController.userIdToJoin = null;
@@ -90,5 +92,13 @@ func _realm_join_event_response(state: NakamaRTAPI.MatchData):
 
 
 func _change_dungeon_event_response(state: NakamaRTAPI.MatchData):
+	if state == null:
+		return
+
 	var args = JSON.parse(state.data)
 	user_id_to_dungeon_map[state.presence.user_id] = args.dungeon
+
+
+func _on_socket_disconnect():
+	TPLG.show_message("Connection to server lost. Could indicate an update in progress.")
+	TPLG.base_change_scene("res://RootScenes/Authentication/Authentication.tscn")

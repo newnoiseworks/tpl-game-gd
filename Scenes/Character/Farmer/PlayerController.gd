@@ -1,54 +1,46 @@
-# using Godot;
-# using TPV.Utils;
-# using TPV.Scenes.FarmGrid;
-# using TPV.Scenes.MovementGrid;
-# using TPV.Scenes.UI.Inventory;
-# using TPV.Scenes.Items;
-# using TPV.GameEvents;
-# using System.Collections.Generic;
-# using TPV.Scenes.Items.EquiptableItems;
-# using System.Timers;
-# using TPV.Autoload;
+extends "res://Scenes/Character/Farmer/FarmerController.gd"
 
-# namespace TPV.Scenes.Character.Farmer {
+var lock_movement: bool
+var current_farm_grid: Node2D
+var item_under_target: Node2D
+var area_to_use_equipped_item: Vector2
+var last_move_counter: float
+var map_constraints: Dictionary = {}
 
-#   public class PlayerController : FarmerController {
+var movement_ping_timer: Timer
 
-#     public static PlayerController instance;
+const MOVE_POSITION_FROM_BUTTON: int = 32
+const MOVE_DELAY_MINIMUM: float = .25
+const MOVEMENT_PING_TIMER_INTERVAL: float = .15
 
-#     public FarmGridController currentFarmGrid;
-#     public ItemController itemUnderTarget;
-#     public Vector2 areaToUseEquippedItem;
-#     public bool lockMovement;
-#     public Camera2D camera;
+onready var camera: Camera2D = find_node("Camera2D")
 
-#     private const int MOVE_POSITION_FROM_BUTTON = 32;
-#     private const float MOVE_DELAY_MINIMUM = .25f;
-#     private const int movementPingTimerInterval = 150;
 
-#     private Dictionary<string, float> mapConstraints = new Dictionary<string, float>();
-#     private float lastMoveCounter;
-#     private System.Timers.Timer movementPingTimer;
+func lock_movement():
+	lock_movement = true
 
-#     public static void LockMovement() {
-#       instance.lockMovement = true;
-#     }
 
-#     public static void UnlockMovement() {
-#       instance.lockMovement = false;
-#     }
+func unlock_movement():
+	lock_movement = false
 
-#     public override void _Ready() {
-#       base._Ready();
-#       instance = this;
-#       NodeManager.ScheduleFree(FindNode("CharacterInteractItem"));
+
+func _ready():
+	movement_ping_timer = Timer.new()
+	movement_ping_timer.wait_time = MOVEMENT_PING_TIMER_INTERVAL
+	add_child(movement_ping_timer)
+
+	find_node("CharacterInteractItem").queue_free()
+	get_parent().call_deferred("remove_child", self)  # remove from tree on entry
+
+
+func _enter_tree():
+	pass
 #       MoveTargetAsNeeded(Position);
 
 #       movementPingTimer = new System.Timers.Timer(movementPingTimerInterval);
 #       movementPingTimer.Elapsed += OnMovementPingTimerEvent;
 #       movementPingTimer.AutoReset = true;
 #       movementPingTimer.Enabled = false;
-#       camera = FindNode("Camera2D") as Camera2D;
 #     }
 
 #     public override void _ExitTree() {
