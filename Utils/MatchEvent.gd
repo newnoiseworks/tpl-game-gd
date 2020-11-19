@@ -9,12 +9,12 @@ enum {
 	MATCH_JOIN = 6
 }
 
-signal movement(state)
-signal farming(state)
-signal farm_permission_update(state)
+signal movement(state, presence)
+signal farming(state, presence)
+signal farm_permission_update(state, presence)
 signal data_reset(state)
-signal avatar_update(state)
-signal match_join(state)
+signal avatar_update(state, presence)
+signal match_join(state, presence)
 
 var signal_map = {
 	MOVEMENT: "movement",
@@ -32,23 +32,27 @@ func handle_match_state_update(state: NakamaRTAPI.MatchData):
 
 	match state.op_code:
 		MOVEMENT:
-			emit_signal("movement", state)
+			emit_signal("movement", state.data, state.presence)
 		FARMING:
-			emit_signal("farming", state)
+			emit_signal("farming", state.data, state.presence)
 		FARM_PERMISSION_UPDATE:
-			emit_signal("farm_permission_update", state)
+			emit_signal("farm_permission_update", state.data, state.presence)
 		DATA_RESET:
-			emit_signal("data_reset", state)
+			emit_signal("data_reset", state.data, state.presence)
 		AVATAR_UPDATE:
-			emit_signal("avatar_update", state)
+			emit_signal("avatar_update", state.data, state.presence)
 		MATCH_JOIN:
-			emit_signal("match_join", state)
+			emit_signal("match_join", state.data, state.presence)
 
 
 func emit(op_code: int, payload: String):
 	var event: String = signal_map[op_code]
-	emit_signal(event, {"data": payload, "presence": {"user_id": SessionManager.session.user_id}})
-	MatchManager.socket.send_match_state_async(MatchManager.game_match.match_id, op_code, payload)
+	emit_signal(event, payload, {"user_id": SessionManager.session.user_id})
+
+	if MatchManager.game_match != null:
+		MatchManager.socket.send_match_state_async(
+			MatchManager.game_match.match_id, op_code, payload
+		)
 
 
 func movement(payload):

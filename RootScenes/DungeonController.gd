@@ -15,6 +15,8 @@ func _ready():
 		call_deferred("_login_with_dev_creds")
 		return
 
+	call("add_child", MoveTarget)
+
 	_add_player_to_scene()
 	user_ids.append(SessionManager.session.user_id)
 
@@ -56,25 +58,18 @@ func _join_dungeon():
 
 func _add_player_to_scene():
 	Player.position = player_entry_node.position
-	find_node("EnvironmentItems").add_child(Player)
+	Player.name = SessionManager.session.user_id
+	Player.user_id = SessionManager.session.user_id
+	find_node("EnvironmentItems").call("add_child", Player)
+	Player.restrict_camera_to_tile_map(find_node("Ground"))
+	get_tree().root.emit_signal("size_changed")
+	Player.set_idle()
 	pass
 
 
-#       PlayerController playerNode = (PlayerController)playerScene.Instance();
 #       playerNode.avatarData = SessionManager.currentCharacter;
-#       playerNode.Name = SessionManager.GetUserId();
-#       playerNode.userId = SessionManager.GetUserId();
-#       playerNode.Position = playerEntryNode.Position;
-#       playerNode.CallDeferred("RestrictCameraToTileMap", FindNode("Ground") as TileMap);
-#       CallDeferred("OnWindowResize");
 
-#       PlayerController.instance = playerNode;
 #       SessionManager.player = playerNode;
-
-#       FindNode("EnvironmentItems").AddChild(playerNode);
-#     }
-
-#   }
 
 
 func _on_match_presence(match_event: NakamaRTAPI.MatchPresenceEvent):

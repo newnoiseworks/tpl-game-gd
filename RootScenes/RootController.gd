@@ -22,15 +22,17 @@ func _exit_tree():
 
 func window_size_setup():
 	OS.min_window_size = Vector2(1280, 720)
-	on_window_resize()
 	get_tree().root.connect("size_changed", self, "on_window_resize")
 
 
 func on_window_resize():
-	get_viewport().set_size_override(
-		true, Vector2(OS.window_size.x, OS.window_size.y) / zoom_offset
-	)
-	get_viewport().size_override_stretch = true
+	var vp = get_viewport()
+
+	if vp == null:
+		return
+
+	vp.set_size_override(true, Vector2(OS.window_size.x, OS.window_size.y) / zoom_offset)
+	vp.size_override_stretch = true
 
 	if Player.is_inside_tree():
 		var camera: Camera2D = Player.camera

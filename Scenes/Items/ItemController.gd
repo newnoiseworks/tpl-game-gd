@@ -1,17 +1,17 @@
 extends Node2D
 
-export var on_ground: bool
-export var is_crafted: bool
-export var crafted_item_type: String
+# export var on_ground: bool
+# export var is_crafted: bool
+# export var crafted_item_type: String
 
-var current_interacting_player: Node2D
+# var current_interacting_player: Node2D
 var tile_map: TileMap
 var tile_map_node: Node
 var base_z_index: int
 
-onready var interaction_area: Area2D = find_node("InteractionArea")
-onready var colliding_characters: Array = []
-onready var tween: Tween = $Tween
+# onready var interaction_area: Area2D = find_node("InteractionArea")
+# onready var colliding_characters: Array = []
+# onready var tween: Tween = $Tween
 
 
 func _ready():

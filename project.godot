@@ -116,6 +116,7 @@ SaveData="*res://Utils/SaveData.gd"
 RealmEvent="*res://Utils/RealmEvent.gd"
 MatchEvent="*res://Utils/MatchEvent.gd"
 Player="*res://Scenes/Character/Farmer/Player.tscn"
+MoveTarget="*res://Scenes/Utils/MoveTarget.tscn"
 
 [debug]
 

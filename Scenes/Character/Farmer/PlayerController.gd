@@ -1,261 +1,269 @@
 extends "res://Scenes/Character/Farmer/FarmerController.gd"
 
 var lock_movement: bool
-var current_farm_grid: Node2D
+# var current_farm_grid: Node2D
 var item_under_target: Node2D
 var area_to_use_equipped_item: Vector2
 var last_move_counter: float
 var map_constraints: Dictionary = {}
 
-var movement_ping_timer: Timer
-
 const MOVE_POSITION_FROM_BUTTON: int = 32
 const MOVE_DELAY_MINIMUM: float = .25
-const MOVEMENT_PING_TIMER_INTERVAL: float = .15
+const MOVEMENT_PING_TIMER_INTERVAL: float = 30.0  # .15
 
-onready var camera: Camera2D = find_node("Camera2D")
-
-
-func lock_movement():
-	lock_movement = true
-
-
-func unlock_movement():
-	lock_movement = false
+onready var camera: Camera2D = $Camera2D
+onready var movement_ping_timer: Timer = $MovementPing
 
 
 func _ready():
-	movement_ping_timer = Timer.new()
 	movement_ping_timer.wait_time = MOVEMENT_PING_TIMER_INTERVAL
-	add_child(movement_ping_timer)
+	movement_ping_timer.connect("timeout", self, "on_movement_ping_timer_event")
 
 	find_node("CharacterInteractItem").queue_free()
 	get_parent().call_deferred("remove_child", self)  # remove from tree on entry
 
 
 func _enter_tree():
+	move_target_as_needed(position)
+	# if movement_ping_timer != null:
+	# 	movement_ping_timer.autostart = true
 	pass
-#       MoveTargetAsNeeded(Position);
 
-#       movementPingTimer = new System.Timers.Timer(movementPingTimerInterval);
-#       movementPingTimer.Elapsed += OnMovementPingTimerEvent;
-#       movementPingTimer.AutoReset = true;
-#       movementPingTimer.Enabled = false;
-#     }
 
-#     public override void _ExitTree() {
-#       base._ExitTree();
-#       instance = null;
-#     }
+func _exit_tree():
+	movement_ping_timer.stop()
 
-#     public override void _PhysicsProcess(float delta) {
-#       if (navigationPoints == null || navigationPoints.Length == 0) {
-#         if (movementPingTimer.Enabled) {
-#           movementPingTimer.Stop();
-#           SendMovementPingUpdate();
-#         }
-#       } else {
-#         movementPingTimer.Start();
-#       }
 
-#       base._PhysicsProcess(delta);
+func _physics_process(delta: float):
+	if movement_ping_timer == null || avatar_data == null:
+		return
 
-#       if (lockMovement) return;
+	if navigation_points == null || navigation_points.size() == 0:
+		if movement_ping_timer.paused == false:
+			movement_ping_timer.stop()
+			# send_movement_ping_update()
+	else:
+		movement_ping_timer.start()
 
-#       lastMoveCounter += delta;
+		# base._Physics_process(delta);
 
-#       if (InputController.Moving(null, true, true) && !InputController.Moving(null))
-#         OrientTargetToPositionOnButtonUp(Position);
-#       else if (lastMoveCounter >= MOVE_DELAY_MINIMUM && InputController.Moving())
-#         UpdateTargetIfNeeded();
+	if lock_movement:
+		return
 
-#       if (
-#         instance != null
-#         && areaToUseEquippedItem != Vector2.Inf
-#         && areaToUseEquippedItem.DistanceTo(instance.Position) < 3
-#       ) {
-#         UseEquippedItem();
-#         areaToUseEquippedItem = Vector2.Inf;
-#       }
-#     }
+	last_move_counter += delta
 
-#     public override void _UnhandledInput(InputEvent @event) {
-#       if (lockMovement) return;
+	# 	if (Input_controller.Moving(null, true, true) && !Input_controller.Moving(null))
+	if was_moving() && is_moving() == false:
+		orient_target_to_position_on_button_up(position)
+	elif last_move_counter >= MOVE_DELAY_MINIMUM && is_moving():
+		update_target_if_needed()
 
-#       if (@event is InputEventMouseButton mouseEvent) {
+	if (
+		area_to_use_equipped_item != Vector2.INF
+		&& area_to_use_equipped_item.distance_to(position) < 3
+	):
+		use_equipped_item()
+		area_to_use_equipped_item = Vector2.INF
 
-#         if (mouseEvent.IsActionReleased("action_one")) {
-#           if (UpdateTargetIfNeeded(true) == false && itemUnderTarget?.currentInteractingPlayer == this)
-#             itemUnderTarget.Interact();
-#         }
 
-#         if (mouseEvent.IsActionReleased("action_two")) {
-#           UpdateTargetIfNeeded(true);
-#           areaToUseEquippedItem = movementTarget;
-#         }
+func is_moving():
+	return (
+		Input.is_action_pressed("move_down")
+		|| Input.is_action_pressed("move_up")
+		|| Input.is_action_pressed("move_left")
+		|| Input.is_action_pressed("move_right")
+	)
 
-#         if (mouseEvent.IsActionReleased("action_three")) {
-#           SecondaryActionOnCursorItem();
-#         }
 
-#         return;
-#       }
+func was_moving():
+	return (
+		Input.is_action_just_released("move_down")
+		|| Input.is_action_just_released("move_up")
+		|| Input.is_action_just_released("move_left")
+		|| Input.is_action_just_released("move_right")
+	)
 
-#       if (@event.IsActionReleased("action_one")) {
-#         if (itemUnderTarget != null) {
-#           itemUnderTarget.Interact();
-#         }
-#       }
 
-#       if (@event.IsActionReleased("action_two")) {
-#         UseEquippedItem();
-#       }
+func _unhandled_input(event: InputEvent):
+	if lock_movement:
+		return
 
-#       if (@event.IsActionReleased("action_three")) {
-#         SecondaryActionOnCursorItem();
-#       }
+	if event is InputEventMouseButton:
+		if Input.is_action_just_released("action_one"):
+			if (
+				update_target_if_needed(true) == false
+				&& item_under_target != null
+				&& item_under_target.current_interacting_player == self
+			):
+				item_under_target.interact()
 
-#       if (@event.IsActionReleased("action_four")) {
-#         InventoryController.instance.ShiftEquiptItem(false);
-#       }
+		if Input.is_action_just_released("action_two"):
+			update_target_if_needed(true)
+			area_to_use_equipped_item = movement_target
 
-#       if (@event.IsActionReleased("action_five")) {
-#         InventoryController.instance.ShiftEquiptItem();
-#       }
-#     }
+		if Input.is_action_just_released("action_three"):
+			secondary_action_on_cursor_item()
 
-#     public void RestrictCameraToTileMap(TileMap map) {
-#       Rect2 limits = map.GetUsedRect();
-#       Vector2 cellSize = map.CellSize;
+		return
 
-#       camera.LimitLeft = (int)Mathf.Round(limits.Position.x * cellSize.x);
-#       camera.LimitRight = (int)Mathf.Round(limits.End.x * cellSize.x);
-#       camera.LimitTop = (int)Mathf.Round(limits.Position.y * cellSize.y);
-#       camera.LimitBottom = (int)Mathf.Round(limits.End.y * cellSize.y);
+	if event.is_action_released("action_one"):
+		if item_under_target != null:
+			item_under_target.interact()
 
-#       mapConstraints.Add("left", camera.LimitLeft);
-#       mapConstraints.Add("right", camera.LimitRight);
-#       mapConstraints.Add("top", camera.LimitTop);
-#       mapConstraints.Add("bottom", camera.LimitBottom);
-#     }
+	if event.is_action_released("action_two"):
+		use_equipped_item()
 
-#     private void OnMovementPingTimerEvent(object source, ElapsedEventArgs e) {
-#       SendMovementPingUpdate();
-#     }
+	if event.is_action_released("action_three"):
+		secondary_action_on_cursor_item()
 
-#     private void SendMovementPingUpdate() {
-#       new MovementEvent(
-#         new MovementEventArgs(Position, true),
-#         userId
-#       );
-#     }
+	if event.is_action_released("action_four"):
+		# Inventory_controller.instance.Shift_equipt_item(false);
+		pass
 
-#     private void UseEquippedItem() {
-#       if (InventoryController.instance.equippedItem != null)
-#         InventoryController.instance.equippedItem.PrimaryAction();
-#     }
+	if event.is_action_released("action_five"):
+		# Inventory_controller.instance.Shift_equipt_item();
+		pass
 
-#     private void SecondaryActionOnCursorItem() {
-#       IEquiptableDualActionItem item = itemUnderTarget as IEquiptableDualActionItem;
+
+func restrict_camera_to_tile_map(map: TileMap):
+	var limits: Rect2 = map.get_used_rect()
+	var cell_size: Vector2 = map.cell_size
+
+	camera.limit_left = int(round(limits.position.x * cell_size.x))
+	camera.limit_right = int(round(limits.end.x * cell_size.x))
+	camera.limit_top = int(round(limits.position.y * cell_size.y))
+	camera.limit_bottom = int(round(limits.end.y * cell_size.y))
+
+	map_constraints["left"] = camera.limit_left
+	map_constraints["right"] = camera.limit_right
+	map_constraints["top"] = camera.limit_top
+	map_constraints["bottom"] = camera.limit_bottom
+
+
+func on_movement_ping_timer_event():
+	send_movement_ping_update()
+
+
+func send_movement_ping_update():
+	if user_id != null:
+		MatchEvent.movement({"ping": true, "position": {"x": position.x, "y": position.y}})
+
+
+func use_equipped_item():
+	# if Inventory_controller.instance.equipped_item != null)
+	#       Inventory_controller.instance.equipped_item.Primary_action();
+	#   }
+	pass
+
+
+func secondary_action_on_cursor_item():
+#       IEquiptable_dual_action_item item = item_under_target as IEquiptable_dual_action_item;
 
 #       if (item != null) {
-#         item.SecondaryAction();
+#         item.Secondary_action();
 #       }
 #     }
+	pass
 
-#     private bool UpdateTargetIfNeeded(bool mouseMovement = false) {
-#       Vector2 target;
 
-#       if (mouseMovement) {
-#         target = GetGlobalMousePosition();
-#       } else {
-#         target = Position;
+func update_target_if_needed(mouse_movement: bool = false):
+	var target: Vector2
 
-#         if (InputController.Moving("up"))
-#           target.y -= MOVE_POSITION_FROM_BUTTON;
+	if mouse_movement:
+		target = get_global_mouse_position()
+	else:
+		target = position
 
-#         if (InputController.Moving("down"))
-#           target.y += MOVE_POSITION_FROM_BUTTON + 16;
+	if Input.is_action_pressed("move_up"):
+		target.y -= MOVE_POSITION_FROM_BUTTON
 
-#         if (InputController.Moving("left"))
-#           target.x -= MOVE_POSITION_FROM_BUTTON + 16;
+	if Input.is_action_pressed("move_down"):
+		target.y += MOVE_POSITION_FROM_BUTTON + 16
 
-#         if (InputController.Moving("right"))
-#           target.x += MOVE_POSITION_FROM_BUTTON + 16;
-#       }
+	if Input.is_action_pressed("move_left"):
+		target.x -= MOVE_POSITION_FROM_BUTTON + 16
 
-#       if (target.x < mapConstraints["left"] || target.x > mapConstraints["right"] || target.y < mapConstraints["top"] || target.y > mapConstraints["bottom"]) return false;
+	if Input.is_action_pressed("move_right"):
+		target.x += MOVE_POSITION_FROM_BUTTON + 16
 
-#       return MoveTargetAsNeeded(target, mouseMovement);
-#     }
+	if (
+		target.x < map_constraints["left"]
+		|| target.x > map_constraints["right"]
+		|| target.y < map_constraints["top"]
+		|| target.y > map_constraints["bottom"]
+	):
+		return false
 
-#     private void OrientTargetToPositionOnButtonUp(Vector2 position) {
-#       Vector2 offset;
+	return move_target_as_needed(target, mouse_movement)
 
-#       if (isRight) offset = new Vector2(1, 0);
-#       else if (isLeft) offset = new Vector2(-1, 0);
-#       else if (isUp) offset = new Vector2(0, -1);
-#       else offset = new Vector2(0, 1);
 
-#       new MovementEvent(new MovementEventArgs(position + offset), userId);
+func orient_target_to_position_on_button_up(position: Vector2):
+	var offset: Vector2
 
-#       Vector2 target = MovementGridController.instance.WorldToMap(position);
+	if is_right():
+		offset = Vector2(1, 0)
+	elif is_left():
+		offset = Vector2(-1, 0)
+	elif is_up():
+		offset = Vector2(0, -1)
+	else:
+		offset = Vector2(0, 1)
 
-#       if (isRight) target.x++;
-#       else if (isLeft) target.x--;
+	var target: Vector2 = position + offset
 
-#       if (isDown) target.y = target.y + 2;
-#       else if (isUp) target.y--;
+	MatchEvent.movement({"ping": false, "position": {"x": target.x, "y": target.y}})
 
-#       MovementGridController.instance.SetTargetTileFrom(target * 16);
-#     }
+	target = MoveTarget.world_to_map(position)
 
-#     private bool MoveTargetAsNeeded(Vector2 target, bool mouseMovement = false) {
-#       if (mouseMovement) {
-#         MovementGridController.instance.SetTargetTileFrom(target);
-#         target = MovementGridController.instance.GetTilePosition();
+	if is_right():
+		target.x = target.x + 1
+	elif is_left():
+		target.x = target.x - 1
 
-#         direction = GetDirectionRelativeToTarget(target * 16);
+	if is_down():
+		target.y = target.y + 2
+	elif is_up():
+		target.y = target.y - 1
 
-#         if (isRight) target.x -= 1;
-#         if (isLeft) target.x += 1;
-#         if (isDown) target.y -= 1;
-#         if (isUp) target.y += 1;
+	MoveTarget.set_target_tile_from(target * 16)
 
-#         target *= 16;
 
-#         target.x += 8; // compensating as farmers are "centered"
+func move_target_as_needed(target: Vector2, mouse_movement: bool = false):
+	if mouse_movement:
+		MoveTarget.set_target_tile_from(target)
 
-#         if (target != this.movementTarget) {
-#           lastMoveCounter = 0;
+		target = MoveTarget.get_tile_position()
 
-#           new MovementEvent(
-#             new MovementEventArgs(target),
-#             userId
-#           );
+		direction = get_direction_relative_to_target(target * 16)
 
-#           return true;
-#         }
-#       } else {
-#         if (isLeft || isRight) {
-#           target.y++;
-#         }
+		if is_right():
+			target.x -= 1
+		if is_left():
+			target.x += 1
+		if is_down():
+			target.y -= 1
+		if is_up():
+			target.y += 1
 
-#         MovementGridController.instance.SetTargetTileFrom(target);
+		print(target)
 
-#         if (target != this.movementTarget) {
-#           lastMoveCounter = 0;
+		target *= 16
 
-#           new MovementEvent(
-#             new MovementEventArgs(target),
-#             userId
-#           );
+		target.x += 8  # compensating as farmers are "centered"
 
-#           return true;
-#         }
-#       }
+		if target != movement_target:
+			last_move_counter = 0
+			MatchEvent.movement({"ping": false, "position": {"x": target.x, "y": target.y}})
+			return true
+	else:
+		# if is_left() || is_right():
+		# 	target.y = target.y + 1
 
-#       return false;
-#     }
-#   }
-# }
+		MoveTarget.set_target_tile_from(target)
+
+		if target != movement_target:
+			last_move_counter = 0
+			MatchEvent.movement({"ping": false, "position": {"x": target.x, "y": target.y}})
+			return true
+
+	return false

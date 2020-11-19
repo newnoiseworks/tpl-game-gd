@@ -50,10 +50,6 @@ z_as_relative = false
 collision_layer = 16
 collision_mask = 2
 script = ExtResource( 2 )
-userId = ""
-characterBase = ""
-dialogueFile = ""
-dialogueSection = ""
 current_tile = "1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -109,3 +105,5 @@ scale = Vector2( 0.986538, 1.82116 )
 [node name="Walk" type="AnimationPlayer" parent="."]
 autoplay = "WalkAnim"
 anims/WalkAnim = SubResource( 4 )
+
+[node name="PositionComparator" type="Timer" parent="."]

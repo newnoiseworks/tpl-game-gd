@@ -14,6 +14,9 @@ onready var axe_animation: AnimationPlayer = $Axe
 onready var pickup_animation: AnimationPlayer = $Pickup
 onready var tool_tile_map: TileMap = find_node("ToolTile")
 onready var back_tool_tile_map: TileMap = find_node("BackToolTile")
+onready var hair_tile_map: TileMap = find_node("Hair")
+onready var top_tile_map: TileMap = find_node("Top")
+onready var bottom_tile_map: TileMap = find_node("Bottom")
 
 
 func _ready():
@@ -25,8 +28,6 @@ func _ready():
 	tool_tile_map.clear()
 	back_tool_tile_map.clear()
 
-	set_idle()
-
 
 #       if (userId != null) {
 #         FarmingEvent.Subscribe(HandleFarmingEvent, userId);
@@ -37,8 +38,6 @@ func _ready():
 
 func _physics_process(_delta: float):
 	if is_animation_playing:
-		update_current_tile()
-	else:
 		update_current_tile()
 	# else:
 	# 	._physics_process(delta)
@@ -145,14 +144,6 @@ func assemble_and_return_tilename(map: TileMap, part: String, dir_str: String, o
 #       if (userId != null) {
 #         FarmingEvent.Unsubscribe(HandleFarmingEvent, userId);
 #         AvatarUpdateEvent.Unsubscribe(HandleAvatarUpdateEvent, userId);
-#       }
-#     }
-
-#     public override void _PhysicsProcess(float delta) {
-#       if (is_animation_playing) {
-#         UpdateCurrentTile();
-#       } else {
-#         base._PhysicsProcess(delta);
 #       }
 #     }
 
