@@ -45,11 +45,11 @@ func is_right() -> bool:
 func _ready():
 	position_comparator_timer.wait_time = POSITION_COMPARATOR_TIMER_INTERVAL
 	position_comparator_timer.one_shot = true
-	position_comparator_timer.connect("timeout", self, "server_position_check")
+	position_comparator_timer.connect("timeout", self, "_server_position_check")
 
 
 func _enter_tree():
-	if username != null && username != "":
+	if username_label != null && username != null && username != "":
 		_set_username(username)
 
 	if server_derived_position:
@@ -64,6 +64,11 @@ func _enter_tree():
 
 	direction = Vector2.DOWN
 	# set_idle()
+
+
+func _exit_tree():
+	if user_id != null:
+		MatchEvent.disconnect("movement", self, "_handle_move_event")
 
 
 func _set_username(_username: String):
@@ -109,11 +114,6 @@ func get_direction_relative_to_target(target: Vector2):
 	return _direction
 
 
-func _exit_tree():
-	if user_id != null:
-		MatchEvent.disconnect("movement", self, "_handle_move_event")
-
-
 func _physics_process(_delta: float):
 	if navigation_points.size() == 0:
 		set_idle()
@@ -128,9 +128,9 @@ func _physics_process(_delta: float):
 			navigation_points = []
 			set_idle()
 
-	if position_comparator_timer.paused == false:
+	if position_comparator_timer.is_stopped():
 		player_position_at_start = position
-		position_comparator_timer.start()
+		position_comparator_timer.start(POSITION_COMPARATOR_TIMER_INTERVAL)
 
 	if walk_animation.is_playing() == false:
 		walk_animation.play()
@@ -164,7 +164,7 @@ func _server_position_check():
 
 
 func move_event_on_load():
-	_move_event(movement_target)
+	_move_event({"x": movement_target.x, "y": movement_target.y, "ping": "0"})
 
 
 #     public virtual void Interact() {
@@ -188,13 +188,11 @@ func _handle_move_event(msg, presence):
 
 
 func _move_event(args):
-	if args.ping:
-		position_from_server = Vector2(args.position.x, args.position.y)
+	if args.ping == "1":
+		position_from_server = Vector2(args.x, args.y)
 		return
 
-	print(JSON.print(args))
-
-	movement_target = Vector2(args.position.x, args.position.y)
+	movement_target = Vector2(args.x, args.y)
 	# navigation_points = TPLNavigation2DController.get_simple_path(position, movement_target, true);
 	navigation_points = [movement_target]
 

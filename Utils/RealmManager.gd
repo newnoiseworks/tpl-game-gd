@@ -95,8 +95,8 @@ func _change_dungeon_event_response(state: NakamaRTAPI.MatchData):
 	if state == null:
 		return
 
-	var args = JSON.parse(state.data)
-	user_id_to_dungeon_map[state.presence.user_id] = args.dungeon
+	var dungeon = JSON.parse(state.data).result
+	user_id_to_dungeon_map[state.presence.user_id] = dungeon
 
 
 func _on_socket_disconnect():

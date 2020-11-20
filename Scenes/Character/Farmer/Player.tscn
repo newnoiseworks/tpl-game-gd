@@ -34,4 +34,3 @@ position = Vector2( 0, 0 )
 scale = Vector2( 1, 1 )
 
 [node name="MovementPing" type="Timer" parent="." index="18"]
-one_shot = true

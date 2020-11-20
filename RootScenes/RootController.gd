@@ -4,19 +4,16 @@ export var scene_name: String
 
 # var debug_window_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/DebugWindow.tscn")
 # var teleporter_scene: PackedScene = ResourceLoader.load("res://Scenes/MovementGrid/Teleporter.tscn")
-# var ui_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/UI.tscn")
 
 var zoom_offset: float = 3
 
 
 func _ready():
 	# add_child(debug_window_scene.instance())
-	# setup_socket_disconnect()
 	window_size_setup()
 
 
 func _exit_tree():
-	# setup_socket_disconnect(false)
 	pass
 
 

@@ -4,7 +4,7 @@ export var dungeon: String
 
 var user_ids: Array = []
 # var player_scene: PackedScene = ResourceLoader.load("res://Scenes/Character/Farmer/Player.tscn")
-# var farmer_scene: PackedScene = ResourceLoader.load("res://Scenes/Character/Farmer/Farmer.tscn")
+var farmer_scene: PackedScene = ResourceLoader.load("res://Scenes/Character/Farmer/Farmer.tscn")
 var base_viewports_scene = preload("res://RootScenes/BaseViewports/BaseViewports.tscn")
 
 onready var player_entry_node: Node2D = find_node("PlayerEntry")
@@ -20,11 +20,11 @@ func _ready():
 	_add_player_to_scene()
 	user_ids.append(SessionManager.session.user_id)
 
+	MatchEvent.connect("match_join", self, "_handle_match_join_event")
+	MatchManager.socket.connect("received_match_presence", self, "_on_match_presence")
+
 	if dungeon != null && dungeon != '':
 		yield(_join_dungeon(), "completed")
-
-	MatchManager.socket.connect("received_match_presence", self, "_on_match_presence")
-	MatchEvent.connect("match_join", self, "_handle_match_join_event")
 
 
 func _exit_tree():
@@ -64,61 +64,75 @@ func _add_player_to_scene():
 	Player.restrict_camera_to_tile_map(find_node("Ground"))
 	get_tree().root.emit_signal("size_changed")
 	Player.set_idle()
-	pass
-
-
-#       playerNode.avatarData = SessionManager.currentCharacter;
-
-#       SessionManager.player = playerNode;
 
 
 func _on_match_presence(match_event: NakamaRTAPI.MatchPresenceEvent):
 	for presence in match_event.leaves:
 		user_ids.erase(presence.user_id)
-		find_node(presence.user_id, true, false).queue_free()
+		var user_to_erase = find_node(presence.user_id, true, false)
+		if user_to_erase != null:
+			user_to_erase.queue_free()
 
 
-func handle_match_join_event(args):
-	pass
-#       foreach (KeyValuePair<string, int> pair in args.plotMap) {
-#         string userId = pair.Key;
+func _handle_match_join_event(data, _presence):
+	var args = JSON.parse(data).result
 
-#         if (userIds.Contains(userId)) continue;
+	for user_id in args.plotMap.keys():
+		if user_ids.has(user_id):
+			continue
 
-#         Friend friend = SessionManager.friends.Find(f => f.id == userId);
+		user_ids.append(user_id)
 
-#         if (friend != null && friend.apiFriend.State == 3) continue;
+		var starting_position: Vector2
 
-#         userIds.Add(userId);
-#         userIdToAvatarMap.Add(userId, args.avatarMap[userId]);
+		if args.positions.keys().has(user_id) && args.positions[user_id].has("x"):
+			starting_position = Vector2(args.positions[user_id].x, args.positions[user_id].y)
+		else:
+			starting_position = player_entry_node.position
 
-#         Vector2 startingPosition = args.positions.ContainsKey(userId) ? args.positions[userId] : playerEntryNode.Position;
+		var movement_target: Vector2
 
-#         CallDeferred(
-#           "AddNetworkedPlayerToScene",
-#           userId,
-#           args.avatarMap[userId],
-#           startingPosition,
-#           args.movementTargets.ContainsKey(userId) ? args.movementTargets[userId] : startingPosition
-#         );
-#       }
-#     }
+		if args.movementTargets.keys().has(user_id) && args.movementTargets[user_id].has("x"):
+			movement_target = Vector2(
+				args.movementTargets[user_id].x, args.movementTargets[user_id].y
+			)
+		else:
+			movement_target = starting_position
 
-#     private async void AddNetworkedPlayerToScene(string userId, string avatarKey, Vector2 position, Vector2 movementTarget) {
-#       FarmerController playerNode = (FarmerController)farmerScene.Instance();
+		call_deferred(
+			"add_networked_player_to_scene",
+			user_id,
+			args.avatarMap[user_id],
+			starting_position,
+			movement_target
+		)
 
-#       ProfileData profileData = new ProfileData(userId);
-#       await profileData.Load();
 
-#       playerNode.avatarData = profileData.avatars.list.Find((a) => a.key == avatarKey);
-#       playerNode.username = playerNode.avatarData.name;
-#       playerNode.Name = userId;
-#       playerNode.userId = userId;
-#       playerNode.Position = position;
-#       playerNode.positionFromServer = position;
-#       playerNode.movementTarget = movementTarget;
-#       playerNode.serverDerivedPosition = true;
+func add_networked_player_to_scene(
+	user_id: String, avatar_key: String, position: Vector2, movement_target: Vector2
+):
+	var player_node = farmer_scene.instance()
 
-#       FindNode("EnvironmentItems").AddChild(playerNode);
-#     }
-# }
+	var profile_data = yield(
+		SaveData.load("profile", SaveData.all_avatars_key, user_id), "completed"
+	)
+
+	var avatar_data
+
+	for avatar in profile_data.avatars:
+		if avatar.key == avatar_key:
+			avatar_data = avatar
+
+	if avatar_data == null:
+		print_debug("No avatar data!")
+
+	player_node.avatar_data = avatar_data
+	player_node.username = avatar_data.name
+	player_node.name = user_id
+	player_node.user_id = user_id
+	player_node.position = position
+	player_node.position_from_server = position
+	player_node.movement_target = movement_target
+	player_node.server_derived_position = true
+
+	find_node("EnvironmentItems").add_child(player_node)

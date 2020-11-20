@@ -9,7 +9,7 @@ var map_constraints: Dictionary = {}
 
 const MOVE_POSITION_FROM_BUTTON: int = 32
 const MOVE_DELAY_MINIMUM: float = .25
-const MOVEMENT_PING_TIMER_INTERVAL: float = 30.0  # .15
+const MOVEMENT_PING_TIMER_INTERVAL: float = .30
 
 onready var camera: Camera2D = $Camera2D
 onready var movement_ping_timer: Timer = $MovementPing
@@ -17,7 +17,7 @@ onready var movement_ping_timer: Timer = $MovementPing
 
 func _ready():
 	movement_ping_timer.wait_time = MOVEMENT_PING_TIMER_INTERVAL
-	movement_ping_timer.connect("timeout", self, "on_movement_ping_timer_event")
+	movement_ping_timer.connect("timeout", self, "_send_movement_ping_update")
 
 	find_node("CharacterInteractItem").queue_free()
 	get_parent().call_deferred("remove_child", self)  # remove from tree on entry
@@ -38,12 +38,12 @@ func _physics_process(delta: float):
 	if movement_ping_timer == null || avatar_data == null:
 		return
 
-	if navigation_points == null || navigation_points.size() == 0:
-		if movement_ping_timer.paused == false:
+	if movement_ping_timer.is_stopped() == false:
+		if navigation_points.size() == 0:
 			movement_ping_timer.stop()
-			# send_movement_ping_update()
-	else:
-		movement_ping_timer.start()
+			_send_movement_ping_update()
+	elif navigation_points.size() > 0:
+		movement_ping_timer.start(MOVEMENT_PING_TIMER_INTERVAL)
 
 		# base._Physics_process(delta);
 
@@ -52,7 +52,6 @@ func _physics_process(delta: float):
 
 	last_move_counter += delta
 
-	# 	if (Input_controller.Moving(null, true, true) && !Input_controller.Moving(null))
 	if was_moving() && is_moving() == false:
 		orient_target_to_position_on_button_up(position)
 	elif last_move_counter >= MOVE_DELAY_MINIMUM && is_moving():
@@ -140,13 +139,9 @@ func restrict_camera_to_tile_map(map: TileMap):
 	map_constraints["bottom"] = camera.limit_bottom
 
 
-func on_movement_ping_timer_event():
-	send_movement_ping_update()
-
-
-func send_movement_ping_update():
+func _send_movement_ping_update():
 	if user_id != null:
-		MatchEvent.movement({"ping": true, "position": {"x": position.x, "y": position.y}})
+		MatchEvent.movement({"ping": "1", "x": position.x, "y": position.y})
 
 
 func use_equipped_item():
@@ -211,7 +206,7 @@ func orient_target_to_position_on_button_up(position: Vector2):
 
 	var target: Vector2 = position + offset
 
-	MatchEvent.movement({"ping": false, "position": {"x": target.x, "y": target.y}})
+	MatchEvent.movement({"ping": "0", "x": target.x, "y": target.y})
 
 	target = MoveTarget.world_to_map(position)
 
@@ -245,15 +240,13 @@ func move_target_as_needed(target: Vector2, mouse_movement: bool = false):
 		if is_up():
 			target.y += 1
 
-		print(target)
-
 		target *= 16
 
 		target.x += 8  # compensating as farmers are "centered"
 
 		if target != movement_target:
 			last_move_counter = 0
-			MatchEvent.movement({"ping": false, "position": {"x": target.x, "y": target.y}})
+			MatchEvent.movement({"ping": "0", "x": target.x, "y": target.y})
 			return true
 	else:
 		# if is_left() || is_right():
@@ -263,7 +256,7 @@ func move_target_as_needed(target: Vector2, mouse_movement: bool = false):
 
 		if target != movement_target:
 			last_move_counter = 0
-			MatchEvent.movement({"ping": false, "position": {"x": target.x, "y": target.y}})
+			MatchEvent.movement({"ping": "0", "x": target.x, "y": target.y})
 			return true
 
 	return false
