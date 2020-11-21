@@ -4,13 +4,11 @@ extends Node2D
 # export var is_crafted: bool
 # export var crafted_item_type: String
 
-# var current_interacting_player: Node2D
 var tile_map: TileMap
 var tile_map_node: Node
 var base_z_index: int
 
-# onready var interaction_area: Area2D = find_node("InteractionArea")
-# onready var colliding_characters: Array = []
+onready var interaction_area: Area2D = find_node("InteractionArea")
 # onready var tween: Tween = $Tween
 
 
@@ -27,48 +25,31 @@ func _ready():
 	base_z_index = z_index
 
 
-func on_body_enter(_body: PhysicsBody2D):
-#       PlayerController player = body as PlayerController;
+func on_body_enter(body: PhysicsBody2D):
+	if body == MoveTarget:
+		Player.item_under_target = self
 
-#       if (player != null && player.itemUnderTarget == this && !InputController.Moving()) {
-#         currentInteractingPlayer = player;
-#         TPV.Utils.Logger.Log("item interaction");
-#         CallDeferred("Interact");
-	pass
+	if body == Player && Player.item_under_target == self:
+		interact()
 
 
-func on_body_exit(_body: PhysicsBody2D):
-#       PlayerController player = body as PlayerController;
+func on_body_exit(body: PhysicsBody2D):
+	if body == MoveTarget && Player.item_under_target == self:
+		Player.item_under_target = null
 
-#       if (player != null && currentInteractingPlayer == player)
-#         currentInteractingPlayer = null;
 
-#       MovementGridController grid = body as MovementGridController;
+func _exit_tree():
+	if Player.item_under_target == self:
+		Player.item_under_target = null
 
-#       if (grid != null && PlayerController.instance?.itemUnderTarget == this)
-#         PlayerController.instance.itemUnderTarget = null;
-	pass
 
-#     public override void _ExitTree() {
-#       if (PlayerController.instance != null && PlayerController.instance.itemUnderTarget == this)
-#         PlayerController.instance.itemUnderTarget = null;
-#     }
+func set_collision_mask_on_interaction_area(mask: int):
+	if interaction_area != null:
+		interaction_area.collision_mask = mask
 
-#     public void SetCollisionMaskOnInteractionArea(uint mask) {
-#       if (interactionArea != null)
-#         interactionArea.CollisionMask = mask;
-#     }
 
-#       MovementGridController grid = body as MovementGridController;
-
-#       if (grid != null) {
-#         PlayerController.instance.itemUnderTarget = this;
-#       }
-#     }
-
-#     public virtual void Interact() {
-#       Logger.Log("base interact with item");
-#     }
+func interact():
+	print("base interact with item")
 
 #     public virtual void OnWalkBehindTriggerEnter(PhysicsBody2D body) {
 #       baseZIndex = ZIndex;

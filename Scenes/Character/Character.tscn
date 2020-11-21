@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Character/CharacterInteractItem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Fonts/FreePixel.ttf" type="DynamicFontData" id=5]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 1 )
 shader_param/skinColor = Vector3( -1, -1, -1 )
 shader_param/skinChangeColor = Vector3( -1, -1, -1 )
@@ -19,7 +19,7 @@ shader_param/secondaryChangeColor = Vector3( -1, -1, -1 )
 shader_param/tertiaryColor = Vector3( -1, -1, -1 )
 shader_param/tertiaryChangeColor = Vector3( -1, -1, -1 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 8, 8.15299 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -28,8 +28,7 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "WalkAnim"
+[sub_resource type="Animation" id=6]
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:current_tile")
@@ -45,7 +44,7 @@ tracks/0/keys = {
 }
 
 [node name="Character" type="KinematicBody2D"]
-material = SubResource( 1 )
+material = SubResource( 4 )
 z_as_relative = false
 collision_layer = 16
 collision_mask = 2
@@ -53,11 +52,12 @@ script = ExtResource( 2 )
 current_tile = "1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 8, 8.15299 )
-shape = SubResource( 2 )
+position = Vector2( -0.0180969, 8.15299 )
+shape = SubResource( 5 )
 
 [node name="Body" type="TileMap" parent="."]
 use_parent_material = true
+position = Vector2( -8.0181, 0 )
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -87,23 +87,27 @@ format = 1
 tile_data = PoolIntArray( -65536, 746, 0 )
 
 [node name="CharacterInteractItem" parent="." instance=ExtResource( 4 )]
-position = Vector2( 0.138889, 16 )
+position = Vector2( -7.87921, 16 )
 
-[node name="IGN" type="Label" parent="."]
-margin_left = -11.1404
-margin_top = -32.0
-margin_right = 26.8596
-margin_bottom = -16.0
+[node name="UsernameLabel" type="Label" parent="."]
+margin_left = -18.1421
+margin_top = -26.3469
+margin_right = 19.8579
+margin_bottom = -10.3469
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
+text = "fdasf"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 8.12184, 0.314103 )
+position = Vector2( 0.12079, -2.98023e-08 )
 scale = Vector2( 0.986538, 1.82116 )
 
 [node name="Walk" type="AnimationPlayer" parent="."]
 autoplay = "WalkAnim"
-anims/WalkAnim = SubResource( 4 )
+anims/WalkAnim = SubResource( 6 )
 
 [node name="PositionComparator" type="Timer" parent="."]

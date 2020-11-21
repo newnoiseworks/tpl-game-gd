@@ -288,10 +288,6 @@ __meta__ = {
 [node name="CharacterInteractItem" parent="." index="7"]
 position = Vector2( -7.86111, 16 )
 
-[node name="IGN" parent="." index="8"]
-margin_left = -19.1404
-margin_right = 18.8596
-
 [node name="VisibilityNotifier2D" parent="." index="9"]
 position = Vector2( 0.121838, 0.314087 )
 

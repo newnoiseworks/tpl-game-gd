@@ -123,9 +123,6 @@ func add_networked_player_to_scene(
 		if avatar.key == avatar_key:
 			avatar_data = avatar
 
-	if avatar_data == null:
-		print_debug("No avatar data!")
-
 	player_node.avatar_data = avatar_data
 	player_node.username = avatar_data.name
 	player_node.name = user_id

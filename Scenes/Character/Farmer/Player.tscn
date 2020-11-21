@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Character/Farmer/PlayerController.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.99999, 8.09626 )
+extents = Vector2( 12.7282, 11.6076 )
 
 [node name="Player" instance=ExtResource( 1 )]
 z_as_relative = true
@@ -12,7 +12,7 @@ collision_layer = 9
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2( 8.00001, 8.09626 )
+position = Vector2( 0.71612, 6.90705 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="1"]
@@ -23,11 +23,14 @@ limit_right = 600
 limit_bottom = 400
 
 [node name="CharacterInteractItem" parent="." index="8"]
-position = Vector2( 0, 16 )
+position = Vector2( -7.5812, 16 )
 
-[node name="IGN" parent="." index="9"]
-margin_top = -43.0
-margin_bottom = -27.0
+[node name="UsernameLabel" parent="." index="9"]
+visible = false
+margin_left = -18.6021
+margin_top = -26.4372
+margin_right = 19.3979
+margin_bottom = -10.4372
 
 [node name="VisibilityNotifier2D" parent="." index="10"]
 position = Vector2( 0, 0 )

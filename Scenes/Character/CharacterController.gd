@@ -22,8 +22,7 @@ var player_position_at_start: Vector2
 onready var position_comparator_timer: Timer = $PositionComparator
 onready var body_tile_map: TileMap = find_node("Body")
 onready var walk_animation: AnimationPlayer = find_node("Walk")
-# onready var visibility_notifier: VisibilityNotifier2D = find_node("VisibilityNotifier2D")
-onready var username_label: Label = $IGN
+onready var username_label = find_node("UsernameLabel")
 
 
 func is_up() -> bool:
@@ -49,8 +48,13 @@ func _ready():
 
 
 func _enter_tree():
-	if username_label != null && username != null && username != "":
+	if username_label == null:
+		username_label = get_node("UsernameLabel")
+
+	if username != null && username != "":
 		_set_username(username)
+	else:
+		username_label.hide()
 
 	if server_derived_position:
 		move_event_on_load()

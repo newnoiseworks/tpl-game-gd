@@ -25,9 +25,6 @@ func _ready():
 
 func _enter_tree():
 	move_target_as_needed(position)
-	# if movement_ping_timer != null:
-	# 	movement_ping_timer.autostart = true
-	pass
 
 
 func _exit_tree():
@@ -89,11 +86,7 @@ func _unhandled_input(event: InputEvent):
 
 	if event is InputEventMouseButton:
 		if Input.is_action_just_released("action_one"):
-			if (
-				update_target_if_needed(true) == false
-				&& item_under_target != null
-				&& item_under_target.current_interacting_player == self
-			):
+			if update_target_if_needed(true) == false && item_under_target != null:
 				item_under_target.interact()
 
 		if Input.is_action_just_released("action_two"):
