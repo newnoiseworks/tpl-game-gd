@@ -33,6 +33,8 @@ func bag_slot_to_position(id: int) -> Vector2:
 
 
 func _ready():
+	TPLG.set_inventory(self)
+
 	setup_grid()
 
 	bag = inventory_bag_scene.instance()

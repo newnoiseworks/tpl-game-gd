@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/MainMenu/SocialModals/FriendsModal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI/MainMenu/MainMenuController.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/UI/MainMenu/Exit.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/UI/MainMenu/Realm.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/UI/MainMenu/AvatarOutfitManager/AvatarOutfitManager.tscn" type="PackedScene" id=7]
+
+[node name="MainMenu" type="WindowDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -375.0
+margin_top = -174.0
+margin_right = 377.0
+margin_bottom = 165.0
+focus_mode = 1
+theme = ExtResource( 1 )
+popup_exclusive = true
+window_title = "Menu"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Outfit" parent="TabContainer" instance=ExtResource( 7 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 44.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Friends" parent="TabContainer" instance=ExtResource( 3 )]
+visible = false
+margin_left = 8.0
+margin_top = 44.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Realm" parent="TabContainer" instance=ExtResource( 6 )]
+visible = false
+margin_left = 8.0
+margin_top = 44.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Exit" parent="TabContainer" instance=ExtResource( 5 )]
+visible = false
+margin_left = 8.0
+margin_top = 44.0
+margin_right = -8.0
+margin_bottom = -8.0
+[connection signal="tab_selected" from="TabContainer" to="." method="on_tab_container_tab_selected"]

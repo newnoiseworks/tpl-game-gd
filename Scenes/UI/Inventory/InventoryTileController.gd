@@ -3,11 +3,7 @@ extends TextureButton
 signal select_slot
 signal equip_item
 
-var quantity_count_label: Label
-
-
-func _ready():
-	quantity_count_label = find_node("QuantityCount")
+onready var quantity_count_label: Label = find_node("QuantityCount")
 
 
 func update_quantity(count: int, always_show: bool = false):

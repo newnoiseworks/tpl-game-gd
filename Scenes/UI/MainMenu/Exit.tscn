@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/MainMenu/ExitController.gd" type="Script" id=2]
+
+[node name="Exit" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+margin_left = 545.0
+margin_top = 314.0
+margin_right = 735.0
+margin_bottom = 406.0
+
+[node name="Change Avatar" type="Button" parent="Container/VBoxContainer"]
+margin_right = 190.0
+margin_bottom = 28.0
+text = "Change Avatar"
+
+[node name="Logout" type="Button" parent="Container/VBoxContainer"]
+margin_top = 32.0
+margin_right = 190.0
+margin_bottom = 60.0
+text = "Logout"
+
+[node name="Quit to Desktop" type="Button" parent="Container/VBoxContainer"]
+margin_top = 64.0
+margin_right = 190.0
+margin_bottom = 92.0
+text = "Quit to Desktop"
+[connection signal="pressed" from="Container/VBoxContainer/Change Avatar" to="." method="change_avatar"]
+[connection signal="pressed" from="Container/VBoxContainer/Logout" to="." method="logout"]
+[connection signal="pressed" from="Container/VBoxContainer/Quit to Desktop" to="." method="quit"]

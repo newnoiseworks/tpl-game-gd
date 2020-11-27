@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/FarmPermissions/FarmPermissionsController.gd" type="Script" id=3]
+
+[node name="FarmPermissions" type="WindowDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -421.5
+margin_top = -252.0
+margin_right = 421.5
+margin_bottom = 252.0
+theme = ExtResource( 1 )
+window_title = "Farm Permissions Manager"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -410.5
+margin_top = -233.5
+margin_right = 410.5
+margin_bottom = 233.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer"]
+margin_right = 821.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+size_flags_horizontal = 3
+text = "Avatarname (username)"
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 821.0
+margin_bottom = 467.0
+size_flags_vertical = 3
+tab_align = 0

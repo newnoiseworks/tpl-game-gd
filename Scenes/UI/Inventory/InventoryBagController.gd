@@ -123,7 +123,7 @@ func add_item_scene_or_update_quantity(item_data: Dictionary):
 		print_debug("TODO: Need to implement multi row inventory")
 		return
 
-  if (equippable_items[item_data.bagPosition] == null):
+	if equippable_items[item_data.bagPosition] == null:
 		var item_scene = equiptable_item_scenes[item_data.itemType]
 		var item_node = item_scene.instance()
 
@@ -134,22 +134,20 @@ func add_item_scene_or_update_quantity(item_data: Dictionary):
 
 		item_node.set_collision_mask_on_interaction_area(0)
 
-		if (item_node.has_method("ready_for_inventory"))
+		if item_node.has_method("ready_for_inventory"):
 			item_node.ready_for_inventory()
 
-		if (inventory.equipped_item == null)
+		if inventory.equipped_item == null:
 			inventory.equipped_item = item_node
 
-	inventory.tiles[item_data.bagPosition].update_quantity(item_data.quantity);
+	inventory.tiles[item_data.bagPosition].update_quantity(item_data.quantity)
 
 
-func move_item(
-	old_bag_position: int,
-	bag_position: int
-):
+func move_item(old_bag_position: int, bag_position: int):
 	# probably should call server && perform local?
 	# we weren't actually calling this early iirc
 	pass
+
 
 #     public async Task<bool> AddItemToBag(InventoryItemType itemType, string context = null) {
 #       // TODO: Figure out better way to get available bag position as this method may incur collision errors
@@ -169,23 +167,26 @@ func move_item(
 #       return didAdd;
 #     }
 
+
 func remove_item_locally(item_type):
+	var inventory = get_parent()
+
 	var item
 
 	for _item in data.items:
-		if _item.itemType == type:
-			item = _item 
+		if _item.itemType == item_type:
+			item = _item
 
-	if item == null return
+	if item == null:
+		return
 
 	if item.quantity > 1:
-		item.quantity--
-		inventory.tiles[item.bagPosition].update_quantity(item.quantity);
+		item.quantity -= 1
+		inventory.tiles[item.bagPosition].update_quantity(item.quantity)
 	else:
-		inventory.tiles[item.bagPosition].update_quantity(0);
+		inventory.tiles[item.bagPosition].update_quantity(0)
 		equippable_items[item.bagPosition].queue_free()
 		equippable_items[item.bagPosition] = null
-
 
 
 func add_item_locally(item_type: Dictionary):
@@ -194,7 +195,7 @@ func add_item_locally(item_type: Dictionary):
 	var inventory = get_parent()
 
 	if bag_position >= inventory.columns:
-		print_debug("TODO: Need to implement multi row inventory");
+		print_debug("TODO: Need to implement multi row inventory")
 		return
 
 	var has_item
@@ -203,16 +204,14 @@ func add_item_locally(item_type: Dictionary):
 		if item.itemType == item_type:
 			has_item = item
 
-  var quantity = 0
+	var quantity = 0
 
-	if (has_item != null):
-		quantity++
+	if has_item != null:
+		quantity += 1
 
-  add_item_scene_or_update_quantity({
-		"bagPosition": bag_position,
-		"itemType": item_type,
-		"quantity": quantity
-	})
+	add_item_scene_or_update_quantity(
+		{"bagPosition": bag_position, "itemType": item_type, "quantity": quantity}
+	)
 
 
 func has_item(type):
@@ -220,7 +219,7 @@ func has_item(type):
 
 	for _item in data.items:
 		if _item.itemType == type:
-			item = _item 
+			item = _item
 
 	return item != null
 
@@ -230,22 +229,27 @@ func has_item_at(slot: int):
 
 	for _item in data.items:
 		if _item.bagPosition == slot:
-			item = _item 
+			item = _item
 
 	return item != null
+
 
 func has_empty_slot():
 	var slot: int = -1
 	var inventory = get_parent()
 
 	for i in range(inventory.columns):
-		if (has_item_at(i) == false) return i;
+		if has_item_at(i) == false:
+			return i
 
 	return slot
 
+
 func get_first_empty_bag_position():
+	var inventory = get_parent()
+
 	for i in range(inventory.columns):
-		if (get_at_slot(i) == null):
+		if get_at_slot(i) == null:
 			return i
 
 	return -1

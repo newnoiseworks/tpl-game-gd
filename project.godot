@@ -118,6 +118,8 @@ MatchEvent="*res://Utils/MatchEvent.gd"
 Player="*res://Scenes/Character/Farmer/Player.tscn"
 MoveTarget="*res://Scenes/Utils/MoveTarget.tscn"
 InventoryItems="*res://Utils/InventoryItems.gd"
+I18n="*res://Utils/I18n.gd"
+GameTime="*res://Utils/GameTime.gd"
 
 [debug]
 

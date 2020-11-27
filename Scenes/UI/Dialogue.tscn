@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/DialogueController.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Fonts/EXEPixelPerfect.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 3 )
+
+[node name="Dialogue" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogueContainer" type="TextEdit" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -195.0
+margin_right = -56.0
+margin_bottom = -1.0
+theme = ExtResource( 1 )
+readonly = true
+
+[node name="Dialogue" type="RichTextLabel" parent="DialogueContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+grow_vertical = 0
+theme = ExtResource( 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+scroll_following = true
+
+[node name="AvatarDialogue" type="RichTextLabel" parent="DialogueContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+grow_vertical = 0
+theme = ExtResource( 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+scroll_following = true
+
+[node name="WhomstContainer" type="TextEdit" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 9.0
+margin_top = -272.0
+margin_right = 368.0
+margin_bottom = -199.0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_readonly = Color( 0, 0, 0, 1 )
+text = "ComputerHaus"
+readonly = true
+context_menu_enabled = false
+
+[node name="Options" type="ItemList" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 33.0
+margin_top = 15.0
+margin_right = -51.0
+margin_bottom = -137.0
+grow_vertical = 0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
+max_text_lines = 6
+auto_height = true
+same_column_width = true
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -213.537
+margin_top = -189.837
+margin_right = -173.537
+margin_bottom = -149.837
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="Control"]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 880, 0, 131096, 606, 0 )
+[connection signal="item_selected" from="Options" to="." method="dialogue_option_selected"]

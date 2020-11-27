@@ -15,6 +15,10 @@ onready var client := Nakama.create_client(
 )
 
 
+func rpc_async(uri: String, payload: String):
+	yield(client.rpc_async(session, uri, payload), "completed")
+
+
 func set_current_avatar(avatar_data):
 	current_avatar = avatar_data
 

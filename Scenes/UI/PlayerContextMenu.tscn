@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/PlayerContextMenuController.gd" type="Script" id=2]
+
+[node name="Control" type="PopupMenu"]
+margin_left = 8.95959
+margin_top = 30.9513
+margin_right = 206.96
+margin_bottom = 171.951
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="id_pressed" from="." to="." method="on_control_pressed"]
+[connection signal="popup_hide" from="." to="." method="on_popup_hide"]

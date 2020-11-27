@@ -1,11 +1,10 @@
 extends Control
 
-onready var game_viewport: Viewport
+onready var game_viewport: Viewport = find_node("GameViewport")
 
 
 func _ready():
-	game_viewport = find_node("GameViewport")
-	var _c = TPLG.connect("base_change_scene", self, "change_scene")
+	TPLG.connect("base_change_scene", self, "change_scene")
 
 
 func change_scene(scene_path: String):

@@ -13,9 +13,14 @@ onready var mannequin = find_node("Farmer")
 func _ready():
 	if is_creating:
 		mannequin.avatar_data = {"topType": 1, "hairType": 1, "bottomType": 1, "baseType": 1}
-	# else:
-	# 	AvatarData avatarData = PlayerController.instance.avatarData;
-	# 	mannequin.avatarData = new AvatarData(avatarData.key, avatarData.name, avatarData.type, Vector3.Zero, avatarData.hairType, avatarData.topType, avatarData.bottomType, avatarData.baseType);
+	else:
+		var avatar_data = Player.avatar_data
+		mannequin.avatar_data = {
+			"topType": avatar_data.topType,
+			"hairType": avatar_data.hairType,
+			"bottomType": avatar_data.bottomType,
+			"baseType": avatar_data.baseType
+		}
 
 	mannequin.set_idle()
 	draw_labels()
@@ -26,8 +31,8 @@ func draw_labels():
 
 	if is_creating:
 		data = mannequin.avatar_data
-	# else
-	#   data = PlayerController.instance.avatarData;
+	else:
+		data = Player.avatar_data
 
 	hair_label.text = "Haircut %s" % data.hairType
 	top_label.text = "Top %s" % data.topType
@@ -38,24 +43,21 @@ func set_base_type(new_base_type: int):
 	mannequin.avatar_data.baseType = new_base_type
 
 
-# func save_avatar():
-#       ProfileData profile = new ProfileData(SessionManager.GetUserId());
+func save_avatar():
+	var profile = yield(
+		SaveData.load("profile", SaveData.current_avatar_key, SessionManager.session.user_id),
+		"completed"
+	)
 
-#       await profile.Load();
+	for a in profile.avatars:
+		if a.key == Player.avatar_data.key:
+			a.hairType = mannequin.avatarData.hairType
+			a.topType = mannequin.avatarData.topType
+			a.bottomType = mannequin.avatarData.bottomType
 
-#       for (int i = 0; i < profile.avatars.Count; i++) {
-#         AvatarData a = profile.avatars.list[i];
+	yield(SaveData.save(profile, "profile", Player.avatar_data.key), "completed")
 
-#         if (a.key == PlayerController.instance.avatarData.key) {
-#           a.hairType = mannequin.avatarData.hairType;
-#           a.topType = mannequin.avatarData.topType;
-#           a.bottomType = mannequin.avatarData.bottomType;
-#         }
-
-# #       await profile.Save();
-
-# #       new AvatarUpdateEvent(new AvatarUpdateEventArgs(), SessionManager.GetUserId());
-# #     }
+	MatchEvent.avatar_update("true")
 
 
 func shift_outfit_piece(key: String, shift_up: bool):

@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/Store/StoreController.gd" type="Script" id=2]
+
+[node name="StoreUI" type="Container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemsContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buy" type="ScrollContainer" parent="ItemsContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 44.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="PurchaseList" type="VBoxContainer" parent="ItemsContainer/Buy"]
+margin_right = 1264.0
+margin_bottom = 668.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sell" type="ScrollContainer" parent="ItemsContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 44.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="SellList" type="VBoxContainer" parent="ItemsContainer/Sell"]
+margin_right = 1264.0
+margin_bottom = 668.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Close" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -106.0
+margin_top = -48.0
+margin_right = -47.7667
+margin_bottom = -26.8049
+theme = ExtResource( 1 )
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_up" from="Close" to="." method="on_close_button_up"]
