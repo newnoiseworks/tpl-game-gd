@@ -1,7 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
-[ext_resource path="res://Scenes/UI/MainMenu/SocialModals/FriendsModal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/UI/MainMenu/MainMenuController.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/UI/MainMenu/Exit.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/UI/MainMenu/Realm.tscn" type="PackedScene" id=6]
@@ -37,13 +36,6 @@ __meta__ = {
 [node name="Outfit" parent="TabContainer" instance=ExtResource( 7 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 44.0
-margin_right = -8.0
-margin_bottom = -8.0
-
-[node name="Friends" parent="TabContainer" instance=ExtResource( 3 )]
-visible = false
 margin_left = 8.0
 margin_top = 44.0
 margin_right = -8.0

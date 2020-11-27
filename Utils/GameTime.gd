@@ -20,19 +20,21 @@ var was_night_at_last_check: bool
 var was_day_at_last_check: bool
 
 
+func _ready():
+	timer = Timer.new()
+	timer.wait_time = 5
+	timer.connect("timeout", self, "set_in_game_time_of_day")
+	timer.one_shot = false
+	timer.autostart = true
+	add_child(timer)
+
+
 func start_timer(unix_epoch_from_server_on_login_in_milliseconds: int):
 	unix_epoch_from_server_on_login = int(
 		ceil(float(unix_epoch_from_server_on_login_in_milliseconds) / 1000.0)
 	)
 	unix_epoch_from_client_on_login = OS.get_unix_time()
 	client_server_diff = unix_epoch_from_client_on_login - unix_epoch_from_server_on_login
-
-	if timer == null:
-		timer = Timer.new()
-		timer.wait_time = 5
-		timer.connect("timeout", self, "set_in_game_time_of_day")
-		timer.one_shot = false
-		timer.start()
 
 	set_in_game_time_of_day()
 
