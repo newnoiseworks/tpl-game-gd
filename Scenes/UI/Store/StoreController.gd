@@ -11,7 +11,7 @@ func _ready():
 	clear_store()
 
 	catalog_items = JSON.parse(
-		yield(SessionManager.rpc_async("pos.get_prices"), "completed").payload
+		yield(SessionManager.rpc_async("pos.get_prices", ""), "completed").payload
 	).result
 
 

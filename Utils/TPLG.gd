@@ -8,6 +8,24 @@ var inventory
 
 var store
 
+var dialogue
+
+var farm_perms
+
+var ui
+
+
+func set_ui(_ui):
+	ui = _ui
+
+
+func set_farm_perms(_perms):
+	farm_perms = _perms
+
+
+func set_dialogue(_dialogue):
+	dialogue = _dialogue
+
 
 func set_store(_store):
 	store = _store

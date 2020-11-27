@@ -1,243 +1,215 @@
 extends Control
 
-# using Godot;
-# using System;
-# using System.Collections.Generic;
-# using System.Timers;
-# using TPV.Utils;
-# using TPV.Scenes.Character.Farmer;
+# holds signals & objects in a dictionary, emits signal on object as dialogue files request it
+var dialogue_scripts = {}
 
-# namespace TPV.Scenes.UI {
 
-#   public class DialogueController : Control {
+func add_dialogue_script(signal_path: String, node: Node):
+	dialogue_scripts[signal_path] = node
 
-#     public static Dictionary<string, DialogueScript> dialogueScripts = new Dictionary<string, DialogueScript>();
-#     public delegate void DialogueScript();
 
-#     public const int TYPEWRITER_SPEED = 25;
-#     public const int MAX_DIALOGUE_CHARS = 90;
-#     public const int MAX_DIALOGUE_CHARS_WITH_AVATAR = 75;
-#     public const string ELIPSES = "...";
+func remove_dialogue_script(signal_path: String):
+	dialogue_scripts.erase(signal_path)
 
-#     private RichTextLabel currentText;
-#     private RichTextLabel dialogueText;
-#     private RichTextLabel text;
-#     private TileMap avatarTilemap;
-#     private ItemList optionList;
-#     private TextEdit whomst;
 
-#     private static Vector2 avatarTile = new Vector2(0, 0);
-#     private static DialogueController instance;
-#     private static System.Timers.Timer typeTimer;
-#     private static int nextCharPos;
-#     private static char[] bbcode;
-#     private static bool isTyping;
-#     private static Dictionary<string, string> dialogueStep;
-#     private static List<Dictionary<string, string>> dialogueOptions = new List<Dictionary<string, string>>();
-#     private static int nextDialogueOptionIndex = -1;
-#     private static bool cutOffBBCode;
-#     private static string filename;
+const TYPEWRITER_SPEED: int = 25
+const MAX_DIALOGUE_CHARS: int = 90
+const MAX_DIALOGUE_CHARS_WITH_AVATAR: int = 75
+const ELIPSES: String = "..."
 
-#     public override void _Ready() {
-#       instance = this;
-#       text = currentText = (RichTextLabel)FindNode("Dialogue");
-#       dialogueText = (RichTextLabel)FindNode("AvatarDialogue");
-#       optionList = (ItemList)FindNode("Options");
-#       whomst = (TextEdit)FindNode("WhomstContainer");
-#       avatarTilemap = (TileMap)FindNode("TileMap");
-#       typeTimer = new System.Timers.Timer(TYPEWRITER_SPEED);
-#       typeTimer.AutoReset = false;
+onready var current_text: RichTextLabel = find_node("Dialogue")
+onready var dialogue_text: RichTextLabel = find_node("AvatarDialogue")
+var text: RichTextLabel
+onready var avatar_tilemap: TileMap = find_node("TileMap")
+onready var option_list: ItemList = find_node("Options")
+onready var whomst: TextEdit = find_node("WhomstContainer")
 
-#       typeTimer.Elapsed += TypeTimerElapsed;
-#     }
+var avatar_tile: Vector2 = Vector2(0, 0)
+var type_timer: Timer = Timer.new()
+var next_char_pos: int
+var bbcode: PoolStringArray = []
+var is_typing: bool
+var dialogue_step = {}
+var dialogue_options: PoolStringArray = []
+var next_dialogue_option_index: int = -1
+var cut_off_bb_code: bool
+var dialogue_filename: String
 
-#     public override void _Input(InputEvent @event) {
-#       if (Visible == false) return;
 
-#       if (
-#       @event.IsActionReleased("action_one")
-#       ||
-#       @event.IsActionReleased("action_two")
-#       ) {
-#         if (isTyping)
-#           isTyping = false;
-#         else if (cutOffBBCode)
-#           ContinueBBCode();
-#         else if (nextDialogueOptionIndex > -1)
-#           HandleOptionSelection();
-#         else if (dialogueStep[I18n.optionsKey] != null)
-#           StartOptions();
-#         else if (dialogueStep[I18n.nextKey] != null)
-#           Start(I18n.GetDialogueStep(filename, dialogueStep[I18n.nextKey]));
-#         else if (dialogueStep[I18n.scriptKey] != null)
-#           RunScript(dialogueStep);
-#         else if (Visible) {
-#           GetTree().SetInputAsHandled();
-#           HideDialogs();
-#         }
-#       }
-#     }
+func _ready():
+	TPLG.set_dialogue(self)
+	text = current_text
+	type_timer.wait_time = TYPEWRITER_SPEED
+	type_timer.autostart = false
+	type_timer.connect("timeout", self, "type_timer_elapsed")
+	add_child(type_timer)
 
-#     public static void HideDialogs() {
-#       instance.Hide();
-#       PlayerController.UnlockMovement();
-#     }
 
-#     public void DialogueOptionSelected(int index) {
-#       nextDialogueOptionIndex = index;
-#     }
+func _input(event):
+	if ! visible:
+		return
 
-#     // WELP: It would be really nice if, as a precautionary measure, we checked the Dialogue file for any "script" references, and then make sure that DialogueController.dialogueScripts contains delegates for every corresponding key before starting.
-#     public static void Start(
-#       string filename,
-#       string section
-#     ) {
-#       DialogueController.filename = filename;
+	if event.is_action_released("action_one") || event.is_action_released("action_two"):
+		if is_typing:
+			is_typing = false
+		elif cut_off_bb_code:
+			continue_bb_code()
+		elif next_dialogue_option_index > -1:
+			handle_option_selection()
+		elif dialogue_step[I18n.options_key] != null:
+			start_options()
+		elif dialogue_step[I18n.next_key] != null:
+			start_step(I18n.get_dialogue_step(dialogue_filename, dialogue_step[I18n.next_key]))
+		elif dialogue_step[I18n.script_key] != null:
+			run_script(dialogue_step)
+		elif visible:
+			get_tree().set_input_as_handled()
+			hide_dialogs()
 
-#       Start(I18n.GetDialogueStep(filename, section));
-#     }
 
-#     public static void Start(Dictionary<string, string> dialogueStep) {
-#       PlayerController.LockMovement();
-#       DialogueController.dialogueStep = dialogueStep;
-#       UpdateSpeaker();
-#       instance.optionList.Hide();
-#       nextDialogueOptionIndex = -1;
-#       nextCharPos = 0;
-#       isTyping = true;
+func hide_dialogs():
+	TPLG.dialogue.hide()
+	Player.unlock_movement()
 
-#       if (cutOffBBCode)
-#         cutOffBBCode = false;
-#       else
-#         bbcode = dialogueStep[I18n.textKey].ToCharArray();
 
-#       instance.currentText.BbcodeText = "";
-#       instance.Show();
-#       Typewrite();
-#     }
+func dialogue_option_selected(index: int):
+	next_dialogue_option_index = index
 
-#     private static void Typewrite() {
-#       if (
-#       instance.currentText == instance.text ?
-#       instance.currentText.Text.Length >= MAX_DIALOGUE_CHARS
-#       :
-#       instance.currentText.Text.Length >= MAX_DIALOGUE_CHARS_WITH_AVATAR
-#       &&
-#       bbcode[nextCharPos - 1].ToString() == " "
-#       ) {
-#         isTyping = false;
-#         bbcode = new String(bbcode).Replace(instance.currentText.BbcodeText, "... ").ToCharArray();
-#         instance.currentText.BbcodeText += ELIPSES;
-#         cutOffBBCode = true;
-#         return;
-#       } else if (nextCharPos >= bbcode.Length) {
-#         isTyping = false;
-#         return;
-#       }
 
-#       TypeNextCharacter();
-#     }
+# WELP: It would be really nice if, as a precautionary measure, we checked the Dialogue file for any "script" references, and then make sure that DialogueController.dialogueScripts contains delegates for every corresponding key before starting.
+func start(_dialogue_filename: String, section: String):
+	dialogue_filename = _dialogue_filename
+	start_step(I18n.get_dialogue_step(dialogue_filename, section))
 
-#     private static void TypeNextCharacter() {
-#       bool passed = false;
-#       string text = bbcode[nextCharPos].ToString();
 
-#       while (passed == false) {
-#         try {
-#           nextCharPos++;
-#           instance.currentText.BbcodeText += text;
-#           passed = true;
-#         } catch {
-#           text += bbcode[nextCharPos];
-#         }
-#       }
+func start_step(_dialogue_step):
+	Player.lock_movement = true
+	dialogue_step = _dialogue_step
+	update_speaker()
+	option_list.hide()
+	next_dialogue_option_index = -1
+	next_char_pos = 0
+	is_typing = true
 
-#       if (isTyping)
-#         typeTimer.Start();
-#       else
-#         Typewrite();
-#     }
+	if cut_off_bb_code:
+		cut_off_bb_code = false
+	else:
+		bbcode = dialogue_step[I18n.text_key].split("")
 
-#     private static void TypeTimerElapsed(
-#       object sender,
-#       ElapsedEventArgs e
-#     ) {
-#       typeTimer.Stop();
-#       Typewrite();
-#     }
+	current_text.bbcode_text = ""
+	show()
+	typewrite()
 
-#     private static void UpdateSpeaker() {
-#       instance.text.BbcodeText = "";
-#       instance.dialogueText.BbcodeText = "";
-#       instance.avatarTilemap.Clear();
-#       instance.currentText = instance.text;
-#       instance.whomst.Hide();
 
-#       if (dialogueStep[I18n.whomKey] != null) {
-#         string characterName = dialogueStep[I18n.whomKey];
+func typewrite():
+	if (
+		(current_text == text && current_text.text.length() >= MAX_DIALOGUE_CHARS)
+		|| (
+			current_text != text
+			&& current_text.text.length() >= MAX_DIALOGUE_CHARS_WITH_AVATAR
+			&& bbcode[next_char_pos - 1] == " "
+		)
+	):
+		is_typing = false
+		bbcode = bbcode.join("").replace(current_text.bbcode_text, "... ").split("")
+		current_text.bbcode_text += ELIPSES
+		cut_off_bb_code = true
+		return
+	elif next_char_pos >= bbcode.size():
+		is_typing = false
+		return
 
-#         instance.whomst.Show();
-#         instance.whomst.Text = characterName.Trim();
+	type_next_character()
 
-#         int portraitTile = instance.avatarTilemap.TileSet.FindTileByName($"Characters/NPC PORTRAITS/{characterName}/Standard Face");
 
-#         if (portraitTile > -1) {
-#           instance.currentText = instance.dialogueText;
-#           instance.avatarTilemap.SetCellv(avatarTile, portraitTile);
-#         } else {
-#           instance.avatarTilemap.Clear();
-#         }
-#       }
-#     }
+func type_next_character():
+	var _text = ""
 
-#     private static void StartOptions() {
-#       string[] options = dialogueStep[I18n.optionsKey].Replace(" ", "").Split(',');
-#       dialogueOptions.Clear();
-#       instance.optionList.Clear();
-#       instance.optionList.Show();
+	while _text == "":
+		_text += bbcode[next_char_pos]
+		next_char_pos += 1
 
-#       foreach (string optionKey in options) {
-#         Dictionary<string, string> dialogueOption = I18n.GetDialogueStep(filename, optionKey);
-#         dialogueOptions.Add(dialogueOption);
-#         instance.optionList.AddItem(dialogueOption[I18n.optionTextKey]);
-#       }
-#     }
+		if _text != "":
+			current_text.bbcode_text += _text
 
-#     private static void HandleOptionSelection() {
-#       var option = dialogueOptions[nextDialogueOptionIndex];
+	if is_typing:
+		type_timer.Start()
+	else:
+		typewrite()
 
-#       if (option[I18n.scriptKey] != null)
-#         RunScript(option);
-#       else
-#         Start(option);
-#     }
 
-#     private static void ContinueBBCode() {
-#       Start(dialogueStep);
-#     }
+func type_timer_elapsed():
+	type_timer.Stop()
+	typewrite()
 
-#     private static void RunScript(Dictionary<string, string> dialogueStep) {
-#       DialogueController.dialogueStep = dialogueStep;
-#       instance.optionList.Hide();
-#       nextDialogueOptionIndex = -1;
-#       instance.CallDeferred("HideDialogs"); // will unlock player movement
 
-#       RunScriptFromStep();
-#     }
+func update_speaker():
+	text.bbcode_text = ""
+	dialogue_text.bbcode_text = ""
+	avatar_tilemap.clear()
+	current_text = text
+	whomst.hide()
 
-#     private static void RunScriptFromStep() {
-#       string scriptKey = dialogueStep[I18n.scriptKey];
+	if dialogue_step[I18n.whom_key] != null:
+		var character_name: String = dialogue_step[I18n.whom_key]
 
-#       if (dialogueScripts.ContainsKey(scriptKey))
-#         dialogueScripts[scriptKey].Invoke();
-#       else
-#         Logger.Log($"Dialogue scriptKey not defined, check initial DialogueController.Start() call and make sure DialogueController.dialogScripts[\"{scriptKey}\"] is setup w/ a callback");
-#     }
+		whomst.show()
+		whomst.text = character_name.strip_edges(true, true)
 
-#     public static void Conceal() {
-#       if (instance == null) return;
+		var portrait_tile: int = avatar_tilemap.tile_set.find_tile_by_name(
+			"Characters/NPC PORTRAITS/%s/Standard Face" % [character_name]
+		)
 
-#       instance.Hide();
-#     }
-#   }
-# }
+		if portrait_tile > -1:
+			current_text = dialogue_text
+			avatar_tilemap.set_cellv(avatar_tile, portrait_tile)
+		else:
+			avatar_tilemap.clear()
+
+
+func start_options():
+	var options: PoolStringArray = dialogue_step[I18n.options_key].replace(" ", "").split(',')
+	dialogue_options = []
+	option_list.clear()
+	option_list.show()
+
+	for key in options:
+		var dialogue_option = I18n.get_dialogue_step(dialogue_filename, key)
+		dialogue_options.append(dialogue_option)
+		option_list.add_item(dialogue_option[I18n.option_text_key])
+
+
+func handle_option_selection():
+	var option = dialogue_options[next_dialogue_option_index]
+
+	if option[I18n.script_key] != null:
+		run_script(option)
+	else:
+		start_step(option)
+
+
+func continue_bb_code():
+	start_step(dialogue_step)
+
+
+func run_script(_dialogue_step):
+	dialogue_step = _dialogue_step
+	option_list.hide()
+	next_dialogue_option_index = -1
+	call_deferred("HideDialogs")
+
+	run_script_from_step()
+
+
+func run_script_from_step():
+	var script_key: String = dialogue_step[I18n.script_key]
+
+	if dialogue_scripts.has(script_key):
+		dialogue_scripts[script_key].invoke()
+	else:
+		print_debug(
+			(
+				"Dialogue scriptKey not defined, check initial DialogueController.Start() call and make sure DialogueController.dialogScripts[\"%s\"] is setup w/ a callback"
+				% [script_key]
+			)
+		)

@@ -1,78 +1,65 @@
 extends CanvasLayer
 
-# using Godot;
-# using System.Threading.Tasks;
-# using static Godot.Tween;
+onready var saving_label: Label = get_node("Container/TopLeft/SavingLabel")
+onready var toast_label: Label = find_node("AlertLabel")
+onready var loading_dialog: WindowDialog = get_node("Modals/LoadingDialog")
+onready var tween: Tween = find_node("Tween")
+onready var timer: Timer = Timer.new()
 
-# namespace TPV.Scenes.UI {
 
-#   public class UIController : CanvasLayer {
+func _ready():
+	TPLG.set_ui(self)
+	timer.wait_time = 5
+	timer.one_shot = true
+	timer.connect("timeout", self, "hide_label")
+	add_child(timer)
 
-#     public static UIController instance;
 
-#     private Label savingLabel;
-#     private Label toastLabel;
-#     private WindowDialog loadingDialog;
-#     private Tween tween;
+func _exit_tree():
+	TPLG.ui = null
 
-#     public override void _Ready() {
-#       savingLabel = (Label)GetNode("Container/TopLeft/SavingLabel");
-#       toastLabel = (Label)FindNode("AlertLabel");
-#       loadingDialog = (WindowDialog)GetNode("Modals/LoadingDialog");
-#       tween = (Tween)FindNode("Tween");
-#       instance = this;
-#     }
 
-#     public override void _ExitTree() {
-#       instance = null;
-#     }
+func show_saving_indicator():
+	saving_label.show()
 
-#     public static void ShowSavingIndicator() {
-#       if (instance == null) return;
-#       instance.savingLabel.Show();
-#     }
 
-#     public static void HideSavingIndicator() {
-#       if (instance == null) return;
-#       instance.savingLabel.Hide();
-#     }
+func hide_saving_indicator():
+	saving_label.hide()
 
-#     public static void ShowLoadingDialog() {
-#       if (instance == null) return;
-#       instance.loadingDialog.Show();
-#     }
 
-#     public static void HideLoadingDialog() {
-#       if (instance == null) return;
-#       instance.loadingDialog.Hide();
-#     }
+func show_loading_dialog():
+	loading_dialog.show()
 
-#     public static async void ShowToast(string message) {
-#       // TODO: YO USE THE SEMAPHORE LIB TO QUEUE INCOMING MESSAGES
-#       instance.toastLabel.Text = message;
 
-#       await Task.Delay(1);
+func hide_loading_dialog():
+	loading_dialog.hide()
 
-#       instance.toastLabel.Show();
-#       Vector2 startingPoint = instance.toastLabel.RectPosition + new Vector2(800, 0);
-#       Vector2 originalPosition = instance.toastLabel.RectPosition;
-#       instance.toastLabel.RectPosition = startingPoint;
 
-#       instance.tween.InterpolateProperty(
-#         instance.toastLabel,
-#         "rect_position",
-#         startingPoint,
-#         originalPosition,
-#         1.5f,
-#         TransitionType.Quint,
-#         EaseType.Out
-#       );
+func show_toast(message: String):
+	toast_label.text = message
 
-#       instance.tween.Start();
+	_show_toast()
 
-#       await Task.Delay(5000);
 
-#       instance.toastLabel.Hide();
-#     }
-#   }
-# }
+func _show_toast():
+	toast_label.show()
+	var starting_point = toast_label.rect_position + Vector2(800, 0)
+	var original_position = toast_label.rect_position
+	toast_label.rect_position = starting_point
+
+	tween.interpolate_property(
+		toast_label,
+		"rect_position",
+		starting_point,
+		original_position,
+		1.5,
+		Tween.TRANS_QUINT,
+		Tween.EASE_OUT
+	)
+
+	tween.start()
+	timer.start()
+
+
+func hide_label():
+	toast_label.hide()

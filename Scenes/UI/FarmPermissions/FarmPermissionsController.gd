@@ -11,6 +11,10 @@ onready var permissions_options_scene: PackedScene = ResourceLoader.load(
 onready var tab_container: TabContainer = find_node("TabContainer")
 
 
+func _ready():
+	TPLG.set_farm_perms(self)
+
+
 func popup_with_user(_user_id: String):
 	user_id = _user_id
 	username = RealmManager.user_id_to_username_map[user_id]

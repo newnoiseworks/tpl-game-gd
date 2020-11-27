@@ -1,60 +1,37 @@
 extends PopupMenu
 
-# using System.Collections.Generic;
-# using Godot;
-# using TPV.Autoload;
-# using TPV.Scenes.UI.FarmPermissionsUI;
-# using TPV.Utils.Network;
+var user_id: String = ""
 
-# namespace TPV.Scenes.UI {
-#   public class PlayerContextMenuController : PopupMenu {
+enum { ADD_FRIEND = 0, BLOCK = 1, DIRECT_MESSAGE = 2, FARM_PERMISSIONS = 3 }
 
-#     public string userId = "";
+var menu_item_label_map: Dictionary = {FARM_PERMISSIONS: "Farm Permissions"}
 
-#     private enum MenuItem {
-#       AddFriend = 0,
-#       Block = 1,
-#       DirectMessage = 2,
-#       FarmPermissions = 3
-#     }
 
-#     private static Dictionary<MenuItem, string> menuItemLabelMap = new Dictionary<MenuItem, string>() {
-#     { MenuItem.AddFriend, "Add Friend" },
-#     { MenuItem.Block, "Block" },
-#     { MenuItem.DirectMessage, "Direct Message" },
-#     { MenuItem.FarmPermissions, "Farm Permissions" }
-#   };
+func _ready():
+	for label in menu_item_label_map:
+		add_item(menu_item_label_map[label], label)
 
-#     public override void _Ready() {
-#       foreach (KeyValuePair<MenuItem, string> label in menuItemLabelMap)
-#         AddItem(label.Value, (int)label.Key);
-#     }
 
-#     private void OnPopupHide() {
-#       NodeManager.ScheduleFree(this);
-#     }
+func on_popup_hide():
+	self.queue_free()
 
-#     private void OnControlPressed(int id) {
-#       MenuItem item = (MenuItem)id;
 
-#       switch (item) {
-#         case MenuItem.AddFriend:
-#           AddFriend();
-#           break;
-#         case MenuItem.Block:
-#           BlockUser();
-#           break;
-#         case MenuItem.FarmPermissions:
-#           OpenFarmPerms();
-#           break;
-#       }
-#     }
+func on_control_pressed(item: int):
+	match item:
+		ADD_FRIEND:
+			pass
+			# add_friend()
+		BLOCK:
+			pass
+			# block_user()
+		FARM_PERMISSIONS:
+			open_farm_perms()
 
-#     private void OpenFarmPerms() {
-#       FarmPermissionsController.instance.Popup(userId);
-#     }
 
-#     private async void AddFriend() {
+func open_farm_perms():
+	TPLG.farm_perms.popup()
+
+# func add_friend():
 #       if (await new Friend(RealmManager.userIdToUsernameMap[userId]).RequestFriendship())
 #         TPV.Scenes.UI.MessageDialogController.ShowMessage("Friend request sent");
 #       else

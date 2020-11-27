@@ -1,21 +1,11 @@
 extends Label
 
-# using Godot;
-# using System;
-# using TPV.Utils;
+var in_game_hour: int
+var in_game_minute: int
 
-# namespace TPV.Scenes.UI {
 
-#   public class GameTimeLabelController : Label {
-
-#     private int inGameHour;
-#     private int inGameMinute;
-#     public override void _PhysicsProcess(float delta) {
-#       if (inGameHour != GameTime.inGameHour && inGameMinute != GameTime.inGameMinute) {
-#         inGameHour = GameTime.inGameHour;
-#         inGameMinute = GameTime.inGameMinute;
-#         Text = GameTime.GetRoundedTime();
-#       }
-#     }
-#   }
-# }
+func _physics_process(_delta: float):
+	if in_game_hour != GameTime.in_game_hour && in_game_minute != GameTime.in_game_minute:
+		in_game_hour = GameTime.in_game_hour
+		in_game_minute = GameTime.in_game_minute
+		text = GameTime.get_rounded_time()
