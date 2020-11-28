@@ -1,18 +1,19 @@
 extends Container
 
 var item_scene = ResourceLoader.load("res://Scenes/UI/Store/StoreItem.tscn")
-var items_for_sale_container: VBoxContainer = find_node("SellList")
-var items_for_purchase_container: VBoxContainer = find_node("PurchaseList")
 var catalog_items = {}
+
+onready var items_for_sale_container: VBoxContainer = find_node("SellList")
+onready var items_for_purchase_container: VBoxContainer = find_node("PurchaseList")
 
 
 func _ready():
 	TPLG.set_store(self)
 	clear_store()
 
-	catalog_items = JSON.parse(
-		yield(SessionManager.rpc_async("pos.get_prices", ""), "completed").payload
-	).result
+	var response = yield(SessionManager.rpc_async("pos.get_prices"), "completed")
+
+	catalog_items = JSON.parse(response.payload).result
 
 
 func populate_store(allowed_purchase_items: Array = [], allowed_sale_items: Array = []):

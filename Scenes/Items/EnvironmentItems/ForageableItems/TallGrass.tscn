@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Items/CollidableItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=2]
+
+[node name="TallGrass" instance=ExtResource( 1 )]
+position = Vector2( 0, 0.552078 )
+
+[node name="InteractionArea" parent="." index="0"]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0"]
+visible = false
+shape = null
+
+[node name="StaticBody2D" parent="." index="1"]
+visible = false
+
+[node name="Variants" type="Node2D" parent="." index="2"]
+
+[node name="TileMap" type="TileMap" parent="Variants" index="0"]
+visible = false
+position = Vector2( -13, -10 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 536871886, 0 )
+
+[node name="FlippedTileMap" type="TileMap" parent="Variants" index="1"]
+position = Vector2( -2, -10 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 974, 0 )
+
+[node name="TileMap" parent="." index="3"]
+visible = false

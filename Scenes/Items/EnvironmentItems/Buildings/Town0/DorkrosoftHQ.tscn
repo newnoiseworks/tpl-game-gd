@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Items/WalkBehindable.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.17982, 6.73563 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 242.542, 104.504 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 244.542, 45.869 )
+
+[sub_resource type="OccluderPolygon2D" id=4]
+polygon = PoolVector2Array( -0.162384, 71.6896, -0.162384, 229.475, 0.377991, 269.462, -0.162384, 307.827, 30.6382, 340.249, 200.312, 340.789, 425.642, 341.33, 456.983, 341.33, 487.784, 312.691, 486.703, 60.342, 486.703, 0.361954, 354.855, 0.902313, 233.814, 0.361954, 128.444, 0.361954, 69.5442, 0.361954, 32.2593, 0.361954, 1.00098, 1.00064 )
+
+[sub_resource type="NavigationPolygon" id=5]
+vertices = PoolVector2Array( 503.063, 93.5245, 503.063, 337.363, -15.9276, 337.363, -15.9276, 92.4978 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -15.9276, 92.4978, -15.9276, 337.363, 503.063, 337.363, 503.063, 93.5245 ) ]
+
+[node name="BuildingType1" instance=ExtResource( 1 )]
+
+[node name="InteractionArea" parent="." index="0"]
+collision_layer = 2
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0"]
+position = Vector2( 63.754, 41.818 )
+shape = SubResource( 1 )
+
+[node name="TileMap" parent="." index="1"]
+tile_data = PoolIntArray( 0, 794, 0 )
+
+[node name="StaticBody2D" parent="." index="3"]
+collision_layer = 2
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2( 243.621, 216.18 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
+position = Vector2( 244.46, 44.8697 )
+shape = SubResource( 3 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5"]
+occluder = SubResource( 4 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]
+navpoly = SubResource( 5 )
+

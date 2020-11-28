@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Items/WalkBehindable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Lights/LampController.cs" type="Script" id=2]
+[ext_resource path="res://Resources/Images/light.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.65906, 4.39032 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.2233, 13.8869 )
+
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( 26.8792, 25.5472, 26.8792, 69.8525, -12.9028, 69.8525, -12.9028, 25.4312 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -12.9028, 25.4312, -12.9028, 69.8525, 26.8792, 69.8525, 26.8792, 25.5472 ) ]
+
+[node name="Lamp" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="TileMap" parent="." index="1"]
+tile_data = PoolIntArray( 0, 802, 0 )
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2( 7.04447, 47.3714 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
+position = Vector2( 7.04883, 17.1655 )
+shape = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="." index="5"]
+position = Vector2( 7.25124, 8.44158 )
+scale = Vector2( 0.462386, 0.467667 )
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 3 )
+texture_scale = 0.35
+color = Color( 0.972549, 0.890196, 0.34902, 1 )
+energy = 0.55
+range_height = -90.3
+range_z_max = 0
+shadow_enabled = true
+shadow_color = Color( 0.321569, 0.278431, 0.278431, 0 )
+shadow_filter = 1
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]
+navpoly = SubResource( 3 )

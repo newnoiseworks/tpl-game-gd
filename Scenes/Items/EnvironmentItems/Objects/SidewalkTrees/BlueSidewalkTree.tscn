@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Items/WalkBehindable.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.12455, 9.32068 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 13.1533, 17.2564 )
+
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( 35.2511, 17.6605, 35.2511, 68.4487, -13.9499, 68.4487, -13.9499, 17.6605 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -13.9499, 17.6605, -13.9499, 68.4487, 35.2511, 68.4487, 35.2511, 17.6605 ) ]
+
+[node name="BlueSidewalkTree" index="0" instance=ExtResource( 1 )]
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0"]
+position = Vector2( 10.808, 43.2831 )
+
+[node name="TileMap" parent="." index="1"]
+tile_data = PoolIntArray( 0, 598, 0 )
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2( 10.8657, 42.4862 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
+position = Vector2( 11.4762, 15.6272 )
+shape = SubResource( 2 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="5"]
+navpoly = SubResource( 3 )
+

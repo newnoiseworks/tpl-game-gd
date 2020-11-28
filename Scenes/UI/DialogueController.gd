@@ -168,7 +168,7 @@ func update_speaker():
 
 
 func start_options():
-	var options: PoolStringArray = dialogue_step[I18n.options_key].replace(" ", "").split(',')
+	var options: PoolStringArray = dialogue_step[I18n.options_key].replace(" ").split(',')
 	dialogue_options = []
 	option_list.clear()
 	option_list.show()

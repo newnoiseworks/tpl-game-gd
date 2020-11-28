@@ -47,6 +47,7 @@ func _login_with_dev_creds():
 	get_parent().remove_child(self)
 	yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
 	TPLG.call_deferred("base_change_scene", filename)
+	TPLG.call_deferred("set_ui_scene")
 
 
 func _join_dungeon():

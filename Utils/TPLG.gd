@@ -14,6 +14,14 @@ var farm_perms
 
 var ui
 
+var ui_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/UI.tscn")
+
+
+func set_ui_scene():
+	get_node("/root/BaseViewports/UIViewportContainer/UIViewport").call_deferred(
+		"add_child", ui_scene.instance()
+	)
+
 
 func set_ui(_ui):
 	ui = _ui

@@ -22,3 +22,4 @@ func on_pressed():
 	yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
 
 	TPLG.base_change_scene("res://RootScenes/RewriteTest.tscn")
+	TPLG.call_deferred("set_ui_scene")

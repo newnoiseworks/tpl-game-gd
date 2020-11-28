@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Items/EquiptableItems/Seeds/SeedPack.tscn" type="PackedScene" id=1]
+
+[node name="TurnipSeedPack" instance=ExtResource( 1 )]
+type = "Turnip"
+
+[node name="TileMap" parent="." index="1"]
+tile_data = PoolIntArray( 0, 712, 0 )
+

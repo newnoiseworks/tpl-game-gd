@@ -45,7 +45,7 @@ func setup_grid():
 
 			var tile = inventory_tile_scene.instance()
 			tile.rect_position = bag_slot_to_position(position)
-			tiles[position] = tile
+			tiles.insert(position, tile)
 
 			add_child(tile)
 

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Lights/SunController.cs" type="Script" id=1]
+[ext_resource path="res://Resources/Images/light.png" type="Texture" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1264.43, 446.27, 6.93167, -0.479533, -6.93167, 0.479533, -281.946, 387.459, 0, 0, 0, 0, 333.838, -136.649, 0, 0, 0, 0, 1205.62, 401.297, 0, 0, 0, 0, 2027.24, 446.27 )
+}
+
+[node name="Sky" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -193, -266 )
+scale = Vector2( 0.578125, 0.578125 )
+curve = SubResource( 1 )
+
+[node name="SunPathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 377.496, -109.709 )
+rotation = -0.0266927
+offset = 1841.79
+rotate = false
+
+[node name="Sun" type="Light2D" parent="Path2D/SunPathFollow2D"]
+rotation = 1.16541
+texture = ExtResource( 2 )
+texture_scale = 2.0
+color = Color( 0.87451, 0.101961, 0, 0.631373 )
+range_height = -100.0
+shadow_enabled = true
+shadow_color = Color( 0.0352941, 0, 0.0745098, 0.117647 )
+shadow_filter = 1
+shadow_filter_smooth = 0.1
+
+[node name="NightSky" type="CanvasModulate" parent="."]
+modulate = Color( 0, 0, 0, 0 )
+self_modulate = Color( 0, 0, 0, 0 )

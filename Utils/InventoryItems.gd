@@ -1,73 +1,29 @@
 extends Node
 
 const plant_growth_stages = {
-	"1ae4f24c55b5f623f1096fbc5081d236":
-	[
-		1,
-		1,
-		1,
-		1,
-		1,
+	"1ae4f24c55b5f623f1096fbc5081d236": [
+		1, 1, 1, 1, 1, 
 	],
-	"d846ed6b27749f802150466e9ed6f303":
-	[
-		1,
-		1,
-		1,
-		1,
-		1,
+	"d846ed6b27749f802150466e9ed6f303": [
+		1, 1, 1, 1, 1, 
 	],
-	"39b5c3cb61c0271dc445971f94da7f48":
-	[
-		1,
-		1,
-		1,
-		1,
-		1,
-		1,
+	"39b5c3cb61c0271dc445971f94da7f48": [
+		1, 1, 1, 1, 1, 1, 
 	],
-	"b2585bc3e070132d2bf51dffae794f64":
-	[
-		1,
-		1,
-		1,
-		1,
-		1,
-		1,
+	"b2585bc3e070132d2bf51dffae794f64": [
+		1, 1, 1, 1, 1, 1, 
 	],
-	"bb8e09a312941709ab85b7b147c74abc":
-	[
-		1,
-		1,
-		1,
-		1,
-		1,
-		1,
+	"bb8e09a312941709ab85b7b147c74abc": [
+		1, 1, 1, 1, 1, 1, 
 	],
-	"aece6208ee77d49f49d29099eb231fac":
-	[
-		1,
-		1,
-		1,
-		1,
-		1,
-		1,
+	"aece6208ee77d49f49d29099eb231fac": [
+		1, 1, 1, 1, 1, 1, 
 	],
-	"77bd79b3dca1f49815655b6f2df760ba":
-	[
-		1,
-		1,
-		1,
-		1,
-		1,
+	"77bd79b3dca1f49815655b6f2df760ba": [
+		1, 1, 1, 1, 1, 
 	],
-	"043a46a48c1f62dd647c5b570c01fb4c":
-	[
-		1,
-		1,
-		1,
-		1,
-		1,
+	"043a46a48c1f62dd647c5b570c01fb4c": [
+		1, 1, 1, 1, 1, 
 	],
 }
 
@@ -176,14 +132,47 @@ enum {
 	TURNIP = 31,
 }
 
+const id_to_enum_map = {
+	0: TILLER,
+	1: PAIL,
+	2: PICKAXE,
+	3: SCYTHE,
+	4: AXE,
+	5: CORPUS_COIN,
+	6: COMMUNITY_COIN,
+	7: STONE,
+	8: FERN,
+	9: WOOD,
+	10: BLUEPRINT__STONE_PATH,
+	11: BLUEPRINT__WOOD_PATH,
+	12: BLUEPRINT__LAMP,
+	13: CRAFTED__STONE_PATH,
+	14: CRAFTED__WOOD_PATH,
+	15: CRAFTED__LAMP,
+	16: BEET_SEEDS,
+	17: BEET,
+	18: CABBAGE_SEEDS,
+	19: CABBAGE,
+	20: DRAGON_FRUIT_SEEDS,
+	21: DRAGON_FRUIT,
+	22: EGGPLANT_SEEDS,
+	23: EGGPLANT,
+	24: POTATO_SEEDS,
+	25: POTATO,
+	26: ODD_FRUIT_SEEDS,
+	27: ODD_FRUIT,
+	28: TOMATO_SEEDS,
+	29: TOMATO,
+	30: TURNIP_SEEDS,
+	31: TURNIP,
+}
 
 func get_hash_from_int(id: int):
 	return id_to_hash_map[id]
 
-
 func get_int_from_hash(id: String):
 	return hash_to_id_map[id]
-
+	
 #		public static InventoryItemType GetEnum(string id) {
 #			return (InventoryItemType)GetIntFromHash(id);
 #		}

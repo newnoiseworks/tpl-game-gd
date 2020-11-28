@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Items/EquiptableItems/Seeds/SeedPackController.gd" type="Script" id=2]
+[ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="SeedPack" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0"]
+shape = SubResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="." index="1"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
+

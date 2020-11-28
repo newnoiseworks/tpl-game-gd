@@ -1,66 +1,59 @@
 extends Node2D
 
-var InventoryController = preload("res://Scenes/UI/Inventory/InventoryController.gd")
-
 var equiptable_item_scenes = {
-	InventoryItems.TILLER:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Tiller.tscn", ""),
-	InventoryItems.PAIL: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Pail.tscn", ""),
-	InventoryItems.PICKAXE:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Pickaxe.tscn", ""),
-	InventoryItems.SCYTHE:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Scythe.tscn", ""),
-	InventoryItems.AXE: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Axe.tscn", ""),
+	InventoryItems.TILLER: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Tiller.tscn"),
+	InventoryItems.PAIL: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Pail.tscn"),
+	InventoryItems.PICKAXE: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Pickaxe.tscn"),
+	InventoryItems.SCYTHE: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Scythe.tscn"),
+	InventoryItems.AXE: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Axe.tscn"),
 	InventoryItems.STONE:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Stone.tscn", ""),
-	InventoryItems.FERN:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Fern.tscn", ""),
-	InventoryItems.WOOD:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Wood.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Stone.tscn"),
+	InventoryItems.FERN: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Fern.tscn"),
+	InventoryItems.WOOD: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Wood.tscn"),
 	InventoryItems.BLUEPRINT__WOOD_PATH:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/WoodPath.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/WoodPath.tscn"),
 	InventoryItems.CRAFTED__WOOD_PATH:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/WoodPath.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/WoodPath.tscn"),
 	InventoryItems.BLUEPRINT__STONE_PATH:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/StonePath.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/StonePath.tscn"),
 	InventoryItems.CRAFTED__STONE_PATH:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/StonePath.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/StonePath.tscn"),
 	InventoryItems.BLUEPRINT__LAMP:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Lamp.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Lamp.tscn"),
 	InventoryItems.CRAFTED__LAMP:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Lamp.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Lamp.tscn"),
 	InventoryItems.CABBAGE_SEEDS:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/CabbageSeedPack.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/CabbageSeedPack.tscn"),
 	InventoryItems.CABBAGE:
-	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Cabbage.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Cabbage.tscn"),
 	InventoryItems.BEET_SEEDS:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/BeetSeedPack.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/BeetSeedPack.tscn"),
 	InventoryItems.BEET:
-	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Beet.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Beet.tscn"),
 	InventoryItems.DRAGON_FRUIT_SEEDS:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/DragonFruitSeedPack.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/DragonFruitSeedPack.tscn"),
 	InventoryItems.DRAGON_FRUIT:
-	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/DragonFruit.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/DragonFruit.tscn"),
 	InventoryItems.EGGPLANT_SEEDS:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/EggplantSeedPack.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/EggplantSeedPack.tscn"),
 	InventoryItems.EGGPLANT:
-	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Eggplant.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Eggplant.tscn"),
 	InventoryItems.POTATO_SEEDS:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/PotatoSeedPack.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/PotatoSeedPack.tscn"),
 	InventoryItems.POTATO:
-	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Potato.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Potato.tscn"),
 	InventoryItems.ODD_FRUIT_SEEDS:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/OddFruitSeedPack.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/OddFruitSeedPack.tscn"),
 	InventoryItems.ODD_FRUIT:
-	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/OddFruit.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/OddFruit.tscn"),
 	InventoryItems.TOMATO_SEEDS:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/TomatoSeedPack.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/TomatoSeedPack.tscn"),
 	InventoryItems.TOMATO:
-	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Tomato.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Tomato.tscn"),
 	InventoryItems.TURNIP_SEEDS:
-	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/TurnipSeedPack.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/TurnipSeedPack.tscn"),
 	InventoryItems.TURNIP:
-	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Turnip.tscn", ""),
+	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Turnip.tscn"),
 }
 
 var data: Dictionary
@@ -70,7 +63,7 @@ var equippable_items: Dictionary = {}
 func get_at_slot(slot: int):
 	var item
 
-	for _item in data.items:
+	for _item in data.bag:
 		if _item.bagPosition == slot:
 			item = _item
 
@@ -112,7 +105,7 @@ func redraw_bag():
 
 
 func draw_items_from_data():
-	for item_data in data.items:
+	for item_data in data.bag:
 		add_item_scene_or_update_quantity(item_data)
 
 
@@ -123,8 +116,10 @@ func add_item_scene_or_update_quantity(item_data: Dictionary):
 		print_debug("TODO: Need to implement multi row inventory")
 		return
 
-	if equippable_items[item_data.bagPosition] == null:
-		var item_scene = equiptable_item_scenes[item_data.itemType]
+	if ! equippable_items.has(item_data.bagPosition):
+		var item_int = InventoryItems.get_int_from_hash(item_data.itemTypeId)
+
+		var item_scene = equiptable_item_scenes.get(item_int)
 		var item_node = item_scene.instance()
 
 		equippable_items[item_data.bagPosition] = item_node
@@ -174,7 +169,7 @@ func remove_item_locally(item_type):
 	var item
 
 	for _item in data.items:
-		if _item.itemType == item_type:
+		if InventoryItems.get_int_from_hash(_item.itemTypeId) == item_type:
 			item = _item
 
 	if item == null:
@@ -189,7 +184,7 @@ func remove_item_locally(item_type):
 		equippable_items[item.bagPosition] = null
 
 
-func add_item_locally(item_type: Dictionary):
+func add_item_locally(item_type: int):
 	# TODO: Figure out better way to get available bag position as this method may incur collision errors
 	var bag_position: int = get_first_empty_bag_position()
 	var inventory = get_parent()
@@ -200,8 +195,8 @@ func add_item_locally(item_type: Dictionary):
 
 	var has_item
 
-	for item in data.items:
-		if item.itemType == item_type:
+	for item in data.bag:
+		if InventoryItems.get_int_from_hash(item.itemTypeId) == item_type:
 			has_item = item
 
 	var quantity = 0
@@ -210,15 +205,15 @@ func add_item_locally(item_type: Dictionary):
 		quantity += 1
 
 	add_item_scene_or_update_quantity(
-		{"bagPosition": bag_position, "itemType": item_type, "quantity": quantity}
+		{"bagPosition": bag_position, "itemTypeId": item_type, "quantity": quantity}
 	)
 
 
 func has_item(type):
 	var item
 
-	for _item in data.items:
-		if _item.itemType == type:
+	for _item in data.bag:
+		if InventoryItems.get_int_from_hash(_item.itemTypeId) == type:
 			item = _item
 
 	return item != null
@@ -227,7 +222,7 @@ func has_item(type):
 func has_item_at(slot: int):
 	var item
 
-	for _item in data.items:
+	for _item in data.bag:
 		if _item.bagPosition == slot:
 			item = _item
 

@@ -1,0 +1,141 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Items/WalkBehindable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.1391, 2.67114 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 35 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( 21, 22, 17.1898, 45.6145, 18.229, 64.2247, 18, 79, 17.8511, 99.6503, 12, 107, 41, 107, 28.6205, 89.5422, 29.4707, 62.4298, 31.549, 53.3609, 34.1941, 41.4579, 33, 27, 25, 18 )
+
+[node name="Tree" instance=ExtResource( 1 )]
+light_mask = 0
+z_index = 1
+
+[node name="InteractionArea" parent="." index="0"]
+visible = false
+position = Vector2( -16, -96 )
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0"]
+visible = false
+position = Vector2( 24, 56 )
+scale = Vector2( 0.812503, 4.73626 )
+shape = null
+
+[node name="TileMap" parent="." index="1"]
+position = Vector2( -16, -96 )
+
+[node name="StaticBody2D" parent="." index="2"]
+position = Vector2( -16, -96 )
+collision_layer = 2
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2( 23.8688, 94.7714 )
+shape = SubResource( 1 )
+
+[node name="WalkBehindTrigger" parent="." index="3"]
+position = Vector2( -16, -96 )
+
+[node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
+position = Vector2( 24, 37 )
+shape = SubResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="4"]
+position = Vector2( -16, -96 )
+occluder = SubResource( 3 )
+
+[node name="Variants" type="Node2D" parent="." index="5"]
+position = Vector2( -16, -96 )
+
+[node name="TileMap" type="TileMap" parent="Variants" index="0"]
+visible = false
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 59, 0, 65536, 607, 0 )
+
+[node name="FlippedTileMap" type="TileMap" parent="Variants" index="1"]
+visible = false
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 59, 0, 65536, 536871519, 0 )
+
+[node name="TileMap2" type="TileMap" parent="Variants" index="2"]
+visible = false
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 59, 0, 65536, 536871863, 0 )
+
+[node name="FlippedTileMap2" type="TileMap" parent="Variants" index="3"]
+visible = false
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 59, 0, 65536, 951, 0 )
+
+[node name="TileMap3" type="TileMap" parent="Variants" index="4"]
+visible = false
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 59, 0, 65536, 952, 0 )
+
+[node name="FlippedTileMap3" type="TileMap" parent="Variants" index="5"]
+visible = false
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 59, 0, 65536, 536871864, 0 )
+
+[node name="TileMap4" type="TileMap" parent="Variants" index="6"]
+visible = false
+position = Vector2( -5, 0 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 973, 0 )
+
+[node name="FlippedTileMap4" type="TileMap" parent="Variants" index="7"]
+visible = false
+position = Vector2( -10, 0 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 536871885, 0 )
+
+[node name="TileMap5" type="TileMap" parent="Variants" index="8"]
+visible = false
+position = Vector2( -10, -8 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 536871884, 0 )
+
+[node name="FlippedTileMap5" type="TileMap" parent="Variants" index="9"]
+visible = false
+position = Vector2( -6, -8 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 972, 0 )
+
+[node name="TileMap6" type="TileMap" parent="Variants" index="10"]
+position = Vector2( -6, -6 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 971, 0 )
+
+[node name="FlippedTileMap6" type="TileMap" parent="Variants" index="11"]
+position = Vector2( -10, -6 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 536871883, 0 )
