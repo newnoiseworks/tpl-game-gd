@@ -1,7 +1,7 @@
 extends Control
 
 var item_key_name: String
-var price_definitions: PoolStringArray
+var price_definitions: Array
 var is_sale: bool = false
 var is_combo_price: bool
 var type
@@ -27,9 +27,7 @@ func setup_price_items():
 	# if is_combo_price:
 
 	# else:
-	for price_json in price_definitions:
-		var price = JSON.parse("{" + price_json + "}").parse
-
+	for price in price_definitions:
 		var price_item = price_item_scene.instance()
 
 		price_item.item_key_name = price["itemKey"]

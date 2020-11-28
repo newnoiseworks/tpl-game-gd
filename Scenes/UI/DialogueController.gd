@@ -19,18 +19,18 @@ const ELIPSES: String = "..."
 
 onready var current_text: RichTextLabel = find_node("Dialogue")
 onready var dialogue_text: RichTextLabel = find_node("AvatarDialogue")
-var text: RichTextLabel
 onready var avatar_tilemap: TileMap = find_node("TileMap")
 onready var option_list: ItemList = find_node("Options")
 onready var whomst: TextEdit = find_node("WhomstContainer")
 
+var text: RichTextLabel
 var avatar_tile: Vector2 = Vector2(0, 0)
 var type_timer: Timer = Timer.new()
 var next_char_pos: int
 var bbcode: PoolStringArray = []
 var is_typing: bool
 var dialogue_step = {}
-var dialogue_options: PoolStringArray = []
+var dialogue_options: Array = []
 var next_dialogue_option_index: int = -1
 var cut_off_bb_code: bool
 var dialogue_filename: String
@@ -69,7 +69,7 @@ func _input(event):
 
 func hide_dialogs():
 	TPLG.dialogue.hide()
-	Player.unlock_movement()
+	Player.lock_movement = false
 
 
 func dialogue_option_selected(index: int):
@@ -133,13 +133,13 @@ func type_next_character():
 			current_text.bbcode_text += _text
 
 	if is_typing:
-		type_timer.Start()
+		type_timer.start()
 	else:
 		typewrite()
 
 
 func type_timer_elapsed():
-	type_timer.Stop()
+	type_timer.stop()
 	typewrite()
 
 
@@ -168,7 +168,7 @@ func update_speaker():
 
 
 func start_options():
-	var options: PoolStringArray = dialogue_step[I18n.options_key].replace(" ").split(',')
+	var options: PoolStringArray = dialogue_step[I18n.options_key].replace(" ", "").split(',')
 	dialogue_options = []
 	option_list.clear()
 	option_list.show()
@@ -196,7 +196,7 @@ func run_script(_dialogue_step):
 	dialogue_step = _dialogue_step
 	option_list.hide()
 	next_dialogue_option_index = -1
-	call_deferred("HideDialogs")
+	call_deferred("hide_dialogs")
 
 	run_script_from_step()
 
@@ -205,7 +205,7 @@ func run_script_from_step():
 	var script_key: String = dialogue_step[I18n.script_key]
 
 	if dialogue_scripts.has(script_key):
-		dialogue_scripts[script_key].invoke()
+		dialogue_scripts[script_key].emit_signal(script_key)
 	else:
 		print_debug(
 			(

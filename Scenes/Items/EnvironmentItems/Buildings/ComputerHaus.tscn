@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Items/WalkBehindable.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/ComputerHausController.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/ComputerHausController.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30.9534, 22.2722 )

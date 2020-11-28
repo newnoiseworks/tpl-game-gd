@@ -32,4 +32,4 @@ options = "storeScript, handleHarshClimates, whatAmI"
 
 [storeScript]
 optionText = "Cool story bro, can I get some seeds?"
-script = "computerHausStore"
+script = "computer_haus_store"

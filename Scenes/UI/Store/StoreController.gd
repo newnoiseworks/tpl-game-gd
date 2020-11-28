@@ -23,7 +23,7 @@ func populate_store(allowed_purchase_items: Array = [], allowed_sale_items: Arra
 		for key in catalog_items.keys():
 			var item = catalog_items[key]
 
-			if allowed_purchase_items.has(key):
+			if allowed_purchase_items.has(InventoryItems.get_int_from_hash(key)):
 				var item_obj = item_scene.instance()
 
 				item_obj.is_combo_price = item.has("comboPrice") && item["comboPrice"]
@@ -37,7 +37,7 @@ func populate_store(allowed_purchase_items: Array = [], allowed_sale_items: Arra
 		for key in catalog_items.keys():
 			var item = catalog_items[key]
 
-			if allowed_sale_items.has(key):
+			if allowed_sale_items.has(InventoryItems.get_int_from_hash(key)):
 				var item_obj = item_scene.instance()
 
 				item_obj.is_combo_price = item.has("comboPrice") && item["comboPrice"]
