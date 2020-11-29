@@ -29,7 +29,7 @@ func on_body_enter(body: PhysicsBody2D):
 	if body == MoveTarget:
 		Player.item_under_target = self
 
-	if body == Player && Player.item_under_target == self:
+	if body == Player && Player.item_under_target == self && Player.last_movement_from_mouse:
 		interact()
 
 

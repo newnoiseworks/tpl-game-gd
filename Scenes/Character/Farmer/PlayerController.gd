@@ -6,6 +6,7 @@ var item_under_target: Node2D
 var area_to_use_equipped_item: Vector2
 var last_move_counter: float
 var map_constraints: Dictionary = {}
+var last_movement_from_mouse: bool = false
 
 const MOVE_POSITION_FROM_BUTTON: int = 32
 const MOVE_DELAY_MINIMUM: float = .25
@@ -52,6 +53,7 @@ func _physics_process(delta: float):
 	if was_moving() && is_moving() == false:
 		orient_target_to_position_on_button_up(position)
 	elif last_move_counter >= MOVE_DELAY_MINIMUM && is_moving():
+		last_movement_from_mouse = false
 		update_target_if_needed()
 
 	if (
@@ -85,6 +87,8 @@ func _unhandled_input(event: InputEvent):
 		return
 
 	if event is InputEventMouseButton:
+		last_movement_from_mouse = true
+
 		if Input.is_action_just_released("action_one"):
 			if update_target_if_needed(true) == false && item_under_target != null:
 				item_under_target.interact()
