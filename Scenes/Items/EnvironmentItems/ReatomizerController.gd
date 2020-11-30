@@ -1,40 +1,48 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-# using System.Collections.Generic;
-# using TPV.Data;
-# using TPV.Scenes.UI.Store;
+var data
 
-# namespace TPV.Scenes.Items.EnvironmentItems {
+var blueprint_to_items: Dictionary = {
+	InventoryItems.BLUEPRINT__STONE_PATH: InventoryItems.CRAFTED__STONE_PATH,
+	InventoryItems.BLUEPRINT__WOOD_PATH: InventoryItems.CRAFTED__WOOD_PATH,
+	InventoryItems.BLUEPRINT__LAMP: InventoryItems.CRAFTED__LAMP
+}
 
-#   public class ReatomizerController : ItemController {
 
-#     public static ReatomizerController instance;
-#     public ReatomizerData data;
+func _ready():
+	TPLG.set_reatomizer(self)
+	data = SaveData.load("reatomizer")
 
-#     public override void _Ready() {
-#       instance = this;
-#       base._Ready();
 
-#       data = new ReatomizerData();
-#     }
+func interact():
+	setup_store()
 
-#     public async override void Interact() {
-#       await data.Load();
-#       SetupStore();
-#     }
 
-#     private void SetupStore() {
-#       if (data.blueprints.Count == 0) {
-#         TPV.Scenes.UI.UIController.ShowToast("Get some blueprints from Violine in town!");
-#         return;
-#       }
+func setup_store():
+	if data.blueprints.size() == 0:
+		TPLG.ui.show_toast("Get some blueprints from Violine in town!")
 
-#       List<InventoryItemType> craftableItems = new List<InventoryItemType>();
+	var craftable_items = []
 
-#       foreach (InventoryItemType blueprint in data.blueprints)
-#         craftableItems.Add(ReatomizerData.blueprintToItems[blueprint]);
+	for blueprint in data.blueprints:
+		craftable_items.append(blueprint_to_items[blueprint])
 
-#       StoreController.instance.PopulateStore(craftableItems);
-#     }
-#   }
-# }
+	TPLG.store.populate_store(craftable_items)
+
+
+func add_blueprint(type):
+	var item_data = {
+		"blueprint": InventoryItems.get_hash_from_int(type), "avatar": SaveData.current_avatar_key
+	}
+
+	var add_blueprint_call = yield(
+		SessionManager.rpc_async("reatomizer.add_blueprint", JSON.print(item_data)), "completed"
+	)
+
+	var valid_call = add_blueprint_call.payload != "false"
+
+	if add_blueprint_call.payload != "false":
+		data.blueprints.append(item_data)
+
+	if valid_call:
+		yield(TPLG.inventory.bag.reload_and_redraw_data(), "completed")

@@ -76,7 +76,7 @@ func get_rounded_time():
 		hour = 12
 
 	return (
-		"{%s}:{%02d} {%s}"
+		"%s:%02d %s"
 		% [
 			in_game_hour,
 			(in_game_minute / LABEL_MINUTES_TO_ROUND_BY) * LABEL_MINUTES_TO_ROUND_BY,

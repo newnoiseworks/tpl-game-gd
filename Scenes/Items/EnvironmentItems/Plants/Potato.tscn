@@ -4,8 +4,8 @@
 [ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=2]
 
 [node name="Potato" instance=ExtResource( 1 )]
-plantType = "Potato"
-growthStages = [ 0, 1, 1, 1, 1, 1 ]
+plant_type = "Potato"
+growth_stages = [ 0, 1, 1, 1, 1, 1 ]
 
 [node name="Stage1" parent="." index="1"]
 tile_data = PoolIntArray( 0, 716, 0 )

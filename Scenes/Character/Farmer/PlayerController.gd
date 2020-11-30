@@ -1,7 +1,8 @@
 extends "res://Scenes/Character/Farmer/FarmerController.gd"
 
+var is_over_water_source: bool
 var lock_movement: bool
-# var current_farm_grid: Node2D
+var current_farm_grid: Node2D
 var item_under_target: Node2D
 var area_to_use_equipped_item: Vector2
 var last_move_counter: float

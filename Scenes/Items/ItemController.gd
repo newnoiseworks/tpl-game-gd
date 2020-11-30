@@ -1,15 +1,16 @@
 extends Node2D
 
-# export var on_ground: bool
-# export var is_crafted: bool
-# export var crafted_item_type: String
+export var on_ground: bool
+export var is_crafted: bool
+export var crafted_item_type: String
 
+var colliding_characters = []
 var tile_map: TileMap
 var tile_map_node: Node
-var base_z_index: int
 
+onready var base_z_index: int = z_index
 onready var interaction_area: Area2D = find_node("InteractionArea")
-# onready var tween: Tween = $Tween
+onready var tween: Tween = $Tween
 
 
 func _ready():
@@ -22,7 +23,6 @@ func _ready():
 		tile_map_node = get_node("TileMap")
 
 	tile_map = tile_map_node
-	base_z_index = z_index
 
 
 func on_body_enter(body: PhysicsBody2D):
@@ -51,96 +51,107 @@ func set_collision_mask_on_interaction_area(mask: int):
 func interact():
 	print("base interact with item")
 
-#     public virtual void OnWalkBehindTriggerEnter(PhysicsBody2D body) {
-#       baseZIndex = ZIndex;
-#       CharacterController character = body as CharacterController;
-#       PlayerController player = body as PlayerController;
 
-#       if (character == null) return;
+func on_walk_behind_trigger_enter(body: PhysicsBody2D):
+	base_z_index = z_index
 
-#       collidingCharacters.Add(character);
+	var character: bool = body.user_id != null
+	var player: bool = body == Player
 
-#       if (player != null) {
-#         tween.InterpolateProperty(
-#           tileMapNode,
-#           "modulate",
-#           tileMap.Modulate,
-#           new Color(1, 1, 1, 0.3f),
-#           0.33f,
-#           Tween.TransitionType.Linear,
-#           Tween.EaseType.In
-#         );
+	if ! character:
+		return
 
-#         LightOccluder2D light = FindNode("LightOccluder2D") as LightOccluder2D;
+	colliding_characters.append(character)
 
-#         if (light != null) light.Hide();
-#       }
+	if player != false:
+		tween.interpolate_property(
+			tile_map_node,
+			"modulate",
+			tile_map.modulate,
+			Color(1, 1, 1, 0.3),
+			0.33,
+			Tween.TRANS_LINEAR,
+			Tween.EASE_IN
+		)
 
-#       // FUCK: WARNING - ENTERING MAGIC NUMBER FUCKERY
-#       ZIndex = baseZIndex + 3;
+		var light: LightOccluder2D = find_node("LightOccluder2D")
 
-#       tween.Start();
-#     }
+		if light != null:
+			light.hide()
 
-#     public virtual void OnWalkBehindTriggerExit(PhysicsBody2D body) {
-#       CharacterController character = body as CharacterController;
-#       PlayerController player = body as PlayerController;
+	z_index = base_z_index + 3
 
-#       if (character == null) return;
+	tween.start()
 
-#       if (collidingCharacters.Contains(character)) collidingCharacters.Remove(character);
 
-#       if (collidingCharacters.Count == 0)
-#         ZIndex = baseZIndex;
+func on_walk_behind_trigger_exit(body):
+	var character: bool = body.user_id != null
+	var player: bool = body == Player
 
-#       if (player != null) {
-#         tween.Stop(tileMapNode);
+	if ! character:
+		return
 
-#         tween.InterpolateProperty(
-#           tileMapNode,
-#           "modulate",
-#           tileMap.Modulate,
-#           new Color(1, 1, 1, 1),
-#           0.33f,
-#           Tween.TransitionType.Linear,
-#           Tween.EaseType.In
-#         );
+	if colliding_characters.has(character):
+		colliding_characters.erase(character)
 
-#         if (tween.IsInsideTree()) tween.Start();
+	if colliding_characters.size() == 0:
+		z_index = base_z_index
 
-#         LightOccluder2D light = FindNode("LightOccluder2D") as LightOccluder2D;
+	if player != false:
+		tween.stop(tile_map_node)
 
-#         if (light != null) light.Show();
-#       }
-#     }
+		tween.interpolate_property(
+			tile_map_node,
+			"modulate",
+			tile_map.modulate,
+			Color(1, 1, 1, 1),
+			0.33,
+			Tween.TRANS_LINEAR,
+			Tween.EASE_IN
+		)
 
-#     protected async void PlaceCraftedItemOnFarmGrid() {
-#       FarmGridController farmGrid = PlayerController.instance.currentFarmGrid;
+		if tween.is_inside_tree():
+			tween.start()
 
-#       if (isCrafted == false || farmGrid == null) return;
+		var light = find_node("LightOccluder2D")
 
-#       Vector2 gridPosition = MovementGrid.MovementGridController.instance.GetCurrentFarmGridTile();
+		if light != null:
+			light.show()
 
-#       if (farmGrid.IsUserOwner() == false) {
-#         TPV.Scenes.UI.UIController.ShowToast("You can't put crafted items on someone else's farm.");
-#         return;
-#       }
 
-#       if (farmGrid.HasFarmItem(gridPosition)) return;
+func place_crafted_item_on_farm_grid():
+	var farm_grid = Player.current_farm_grid
 
-#       FarmGridData farmData = farmGrid.data;
-#       string itemHash = InventoryItemIDHelper.GetHash(
-#         InventoryItemIDHelper.GetEnumFromName($"Crafted_{craftedItemType}")
-#       );
+	if is_crafted == false || farm_grid == null:
+		return
 
-#       new FarmingEvent(new FarmingEventArgs(
-#         FarmingEventType.PlaceCraftedItem,
-#         gridPosition,
-#         farmData.userId,
-#         farmData.avatarDataName,
-#         farmData.collectionName,
-#         itemHash
-#       ));
+	var grid_position = MoveTarget.get_current_farm_grid_tile()
+
+	if farm_grid.is_user_owner() == false:
+		TPLG.ui.show_toast("You can't put crafted items on someone else's farm.")
+		return
+
+	if farm_grid.has_farm_item(grid_position):
+		return
+
+	var farm_data = farm_grid.data
+	var item_hash = InventoryItems.get_hash(
+		InventoryItems.get_enum_from_name("Crafted_" % [crafted_item_type])
+	)
+
+	MatchEvent.farming(
+		{
+			"type": FarmEvent.PLACE_CRAFTED_ITEM,
+			"avatar": SaveData.current_avatar_key,
+			"farm_owner_id": farm_grid.owner_id,
+			"farm_owner_avatar": farm_grid.owner_avatar_name,
+			"farm_collection": farm_grid.collection_name,
+			"x": String(position.x),
+			"y": String(position.y),
+			"metadata": item_hash
+		}
+	)
+
 
 #       if (SessionManager.match == null) {
 #         if (await farmData.PlaceCraftedItem(
@@ -156,42 +167,44 @@ func interact():
 #       }
 #     }
 
-#     protected async void RemoveCraftedItemOnFarmGrid() {
-#       if (isCrafted == false || PlayerController.instance.currentFarmGrid == null) return;
 
-#       FarmGridController farmGrid = PlayerController.instance.currentFarmGrid;
-#       FarmGridData farmData = farmGrid.data;
-#       Vector2 gridPosition = MovementGrid.MovementGridController.instance.GetCurrentFarmGridTile();
-#       string itemHash = InventoryItemIDHelper.GetHash(
-#         InventoryItemIDHelper.GetEnumFromName($"Crafted_{craftedItemType}")
-#       );
+func remove_crafted_item_on_farm_grid():
+	if is_crafted == false || Player.current_farm_grid == null:
+		return
 
-#       if (farmGrid.IsUserOwner() == false) {
-#         TPV.Scenes.UI.UIController.ShowToast("You can't steal crafted items. Tsk!");
-#         return;
-#       }
+	var farm_grid = Player.current_farm_grid
+	var farm_data = farm_grid.data
+	var grid_position = MoveTarget.get_current_farm_grid_tile()
+	var item_hash = InventoryItems.get_hash_from_int(
+		InventoryItems.get_int_from_name("Crafted_%s" % [crafted_item_type])
+	)
 
-#       new FarmingEvent(new FarmingEventArgs(
-#         FarmingEventType.RemoveCraftedItem,
-#         gridPosition,
-#         farmData.userId,
-#         farmData.avatarDataName,
-#         farmData.collectionName,
-#         itemHash
-#       ));
+	if farm_grid.is_user_owner() == false:
+		TPLG.ui.show_toast("You can't steal crafted items. Tsk!")
+		return
 
-#       if (SessionManager.match == null) {
-#         if (await farmData.RemoveCraftedItem(
-#           gridPosition,
-#           itemHash
-#         )) {
-#           await InventoryController.instance.bag.ReloadBag();
-#         } else {
-#           new DataResetEvent(new DataResetEventArgs(SessionManager.GetUserId()));
-#         }
-#       } else {
-#         InventoryController.instance.bag.AddItemLocally(InventoryItemIDHelper.GetEnum(itemHash));
-#       }
-#     }
+	MatchEvent.farming(
+		{
+			"type": FarmEvent.REMOVE_CRAFTED_ITEM,
+			"avatar": SaveData.current_avatar_key,
+			"farm_owner_id": farm_grid.owner_id,
+			"farm_owner_avatar": farm_grid.owner_avatar_name,
+			"farm_collection": farm_grid.collection_name,
+			"x": String(position.x),
+			"y": String(position.y),
+			"metadata": item_hash
+		}
+	)
+
+# if (SessionManager.match == null) {
+#   if (await farmData.RemoveCraftedItem(
+#     gridPosition,
+#     itemHash
+#   )) {
+#     await InventoryController.instance.bag.ReloadBag();
+#   } else {
+#     new DataResetEvent(new DataResetEventArgs(SessionManager.GetUserId()));
 #   }
+# } else {
+#   InventoryController.instance.bag.AddItemLocally(InventoryItemIDHelper.GetEnum(itemHash));
 # }

@@ -1,83 +1,76 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-# using Godot;
-# using TPV.Data;
-# using TPV.GameEvents;
-# using TPV.Scenes.Character.Farmer;
-# using TPV.Scenes.FarmGrid;
-# using TPV.Scenes.MovementGrid;
-# using TPV.Utils.Network;
+const MAX_POURS: int = 10
+const FULL_PAIL_TILE_NAME: String = "Items/Tools/Bucket Full"
+const EMPTY_PAIL_TILE_NAME: String = "Items/Tools/Bucket Empty"
 
-# namespace TPV.Scenes.Items.EquiptableItems {
+var pours_left: int
 
-#   public class PailController : ItemController, IEquiptableItem {
+var full_pail_idx: int
+var empty_pail_idx: int
 
-#     public static PailController instance;
 
-#     private const int MAX_POURS = 10;
-#     private const string FULL_PAIL_TILE_NAME = "Items/Tools/Bucket Full";
-#     private const string EMPTY_PAIL_TILE_NAME = "Items/Tools/Bucket Empty";
+func _ready():
+	full_pail_idx = tile_map.tile_set.find_tile_by_name(FULL_PAIL_TILE_NAME)
+	empty_pail_idx = tile_map.tile_set.find_tile_by_name(EMPTY_PAIL_TILE_NAME)
 
-#     public bool isOverWaterSource;
-#     public int poursLeft;
+	fill_pail()
 
-#     private int fullPailIdx;
-#     private int emptyPailIdx;
 
-#     public override void _Ready() {
-#       base._Ready();
+func primary_action():
+	if Player.is_over_water_source && pours_left < MAX_POURS:
+		fill_pail()
+	elif pours_left > 0 && Player != null && Player.current_farm_grid != null:
+		var tile_pos = MoveTarget.get_current_farm_grid_tile()
+		var farm_grid = Player.current_farm_grid
+		var farm_data = farm_grid.data
 
-#       instance = this;
-#       fullPailIdx = tileMap.TileSet.FindTileByName(FULL_PAIL_TILE_NAME);
-#       emptyPailIdx = tileMap.TileSet.FindTileByName(EMPTY_PAIL_TILE_NAME);
+		var plant
 
-#       FillPail();
-#     }
+		for p in farm_data.plants:
+			var position = Vector2(p.position.x, p.position.y)
 
-#     public async void PrimaryAction() {
-#       if (isOverWaterSource && poursLeft < MAX_POURS) {
-#         FillPail();
-#       } else if (poursLeft > 0 && PlayerController.instance != null && PlayerController.instance.currentFarmGrid != null) {
-#         Vector2 tilePos = MovementGridController.instance.GetCurrentFarmGridTile();
-#         FarmGridController farmGrid = PlayerController.instance.currentFarmGrid;
-#         FarmGridData farmData = farmGrid.data;
+			if position == tile_pos:
+				plant = p
 
-#         PlantData plant = farmData.plants.list.Find((p) => p.position == tilePos);
+		if plant == null:
+			return
 
-#         if (plant == null) return;
+		pour_and_empty_when_needed()
 
-#         PourAndEmptyWhenNeeded();
+		MatchEvent.farming(
+			{
+				"type": FarmEvent.WATER,
+				"avatar": SaveData.current_avatar_key,
+				"farm_owner_id": farm_grid.owner_id,
+				"farm_owner_avatar": farm_grid.owner_avatar_name,
+				"farm_collection": farm_grid.collection_name,
+				"x": String(plant.position.x),
+				"y": String(plant.position.y),
+				"metadata": plant.plantType
+			}
+		)
 
-#         new FarmingEvent(new FarmingEventArgs(
-#           FarmingEventType.Water,
-#           plant.position,
-#           farmData.userId,
-#           farmData.avatarDataName,
-#           farmData.collectionName,
-#           plant.plantType
-#         ));
 
-#         if (
-#           SessionManager.match == null &&
-#           await farmData.Water(
-#             plant.position,
-#             plant.plantType
-#           ) == false
-#         )
-#           new DataResetEvent(new DataResetEventArgs(SessionManager.GetUserId()));
-#       }
-#     }
-
-#     public void FillPail() {
-#       tileMap.SetCellv(new Vector2(), fullPailIdx);
-#       poursLeft = MAX_POURS;
-#     }
-
-#     public void PourAndEmptyWhenNeeded() {
-#       poursLeft--;
-
-#       if (poursLeft == 0)
-#         tileMap.SetCellv(new Vector2(), emptyPailIdx);
-#     }
-#   }
+#   if (
+#     SessionManager.match == null &&
+#     await farmData.Water(
+#       plant.position,
+#       plant.plantType
+#     ) == false
+#   )
+#     new DataResetEvent(new DataResetEventArgs(SessionManager.GetUserId()));
 # }
+#
+
+
+func fill_pail():
+	tile_map.set_cellv(Vector2(), full_pail_idx)
+	pours_left = MAX_POURS
+
+
+func pour_and_empty_when_needed():
+	pours_left -= 1
+
+	if pours_left == 0:
+		tile_map.set_cellv(Vector2(), empty_pail_idx)

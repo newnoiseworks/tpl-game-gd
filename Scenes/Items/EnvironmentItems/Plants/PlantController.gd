@@ -1,101 +1,109 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-#     [Export] public string plantType;
-#     [Export] public List<int> growthStages;
+export var plant_type: String
+export var growth_stages: Array = []
 
-#     public long createdAt;
-#     public PlantData data;
-#     public FarmGridController farmGrid;
+var created_at: int
+var data: Dictionary
 
-#     private int currentGrowthStage;
-#     private string plantTypeId;
-#     private TileMap waterTile;
+var current_growth_stage: int
+var plant_type_id: String
+var water_tile: TileMap
 
-#     public override void _EnterTree() {
-#       base._EnterTree();
 
-#       if (waterTile == null)
-#         waterTile = (TileMap)FindNode("WaterTile");
+func _enter_tree():
+	if water_tile == null:
+		water_tile = find_node("WaterTile")
 
-#       plantTypeId = InventoryItemIDHelper.GetHash(PlantData.plantItemTypeMap[plantType]);
-#       growthStages = PlantInfoHelper.plantGrowthStages[plantTypeId];
-#       GameTime.TriggerDaybreakEvent += DryWaterAndGrowPlantIfNeeded;
-#       currentGrowthStage = DetermineGrowthStage();
+	plant_type_id = InventoryItems.get_hash_from_int(PlantData.plant_item_type_map[plant_type])
+	growth_stages = InventoryItems.plant_growth_stages[plant_type_id]
+	GameTime.connect("daybreak_event", self, "dry_water_and_grow_plant_if_needed")
+	current_growth_stage = determine_growth_stage()
 
-#       if (data != null && data.waterHistory.Count > currentGrowthStage && data.waterHistory[currentGrowthStage] > 0)
-#         CallDeferred("Water");
+	if (
+		! data.empty()
+		&& data.waterHistory.size() > current_growth_stage
+		&& data.waterHistory[current_growth_stage] > 0
+	):
+		call_deferred("Water")
 
-#       Node2D growthStage;
+	var growth_stage
 
-#       if (IsHarvestable())
-#         growthStage = (Node2D)FindNode($"Stage{growthStages.Count}");
-#       else
-#         growthStage = (Node2D)FindNode($"Stage{currentGrowthStage}");
+	if is_harvestable():
+		growth_stage = find_node("Stage%s" % [growth_stages.size()])
+	else:
+		growth_stage = find_node("Stage%s" % [current_growth_stage])
 
-#       if (growthStage != null) growthStage.CallDeferred("show");
-#     }
+	if growth_stage != null:
+		growth_stage.call_deferred("show")
 
-#     public override void _ExitTree() {
-#       base._ExitTree();
-#       GameTime.TriggerDaybreakEvent -= DryWaterAndGrowPlantIfNeeded;
-#       Dry();
-#       data = null;
 
-#       int stage = 1;
+func exit_tree():
+	GameTime.disconnect("daybreak_event", self, "dry_water_and_grow_plant_if_needed")
+	dry()
 
-#       while (HasNode($"Stage{stage}")) {
-#         Node2D node = (Node2D)FindNode($"Stage{stage}");
+	var stage: int = 1
 
-#         if (node == null) break;
+	while has_node("Stage%s" % [stage]):
+		var node = find_node("Stage%s" % [stage])
 
-#         if (stage > 1) node.Hide();
-#         else node.Show();
+		if node == null:
+			break
 
-#         stage++;
-#       }
-#     }
+		if stage > 1:
+			node.hide()
+		else:
+			node.show()
 
-#     public override void Interact() {
-#       if (!IsHarvestable() || PlayerController.instance.currentFarmGrid == null) return;
+		stage += 1
 
-#       FarmGridController farmGrid = PlayerController.instance.currentFarmGrid;
 
-#       if (farmGrid.IsUserOwner() == false && farmGrid.GetPermissions().plant != FarmPermission.Can) {
-#         TPV.Scenes.UI.UIController.ShowToast("You don't have permission to harvest crops on this farm!");
-#         return;
-#       }
+func interact():
+	if ! is_harvestable() || Player.current_farm_grid == null:
+		return
 
-#       InventoryBagController bag = InventoryController.instance.bag;
+	var farm_grid = Player.current_farm_grid
 
-#       if (bag.HasItem(PlantData.plantItemTypeMap[plantType]) == false && bag.HasEmptySlot() == -1) {
-#         UIController.ShowToast("Inventory Full!");
-#         Logger.Log("TODO: Need to implement multi row inventory");
-#         return;
-#       }
+	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().plant != 1:
+		TPLG.ui.show_toast("You don't have permission to harvest crops on this farm!")
 
-#       FarmGridData farmData = farmGrid.data;
+	var bag = TPLG.inventory.bag
 
-#       InventoryController.instance.bag.AddItemLocally(PlantData.plantItemTypeMap[plantType]);
+	if (
+		bag.has_item(PlantData.plant_item_type_map[plant_type]) == false
+		&& bag.has_empty_slot() == -1
+	):
+		TPLG.ui.show_toast("Inventory Full!")
+		print_debug("TODO: Need to implement multi row inventory")
+		return
 
-#       new FarmingEvent(new FarmingEventArgs(
-#         FarmingEventType.Harvest,
-#         data.position,
-#         farmData.userId,
-#         farmData.avatarDataName,
-#         farmData.collectionName,
-#         plantTypeId
-#       ));
+	bag.add_item_locally(PlantData.plant_item_type_map[plant_type])
 
-#       if (SessionManager.match == null) HarvestRPCMethod(farmData);
-#     }
+	MatchEvent.farming(
+		{
+			"type": FarmEvent.HARVEST,
+			"avatar": SaveData.current_avatar_key,
+			"farm_owner_id": farm_grid.owner_id,
+			"farm_owner_avatar": farm_grid.owner_avatar_name,
+			"farm_collection": farm_grid.collection_name,
+			"x": String(data.position.x),
+			"y": String(data.position.y),
+			"metadata": plant_type_id
+		}
+	)
 
-#     public void Water() {
-#       waterTile.Show();
-#     }
 
-#     public void Dry() {
-#       waterTile.Hide();
-#     }
+#   if (SessionManager.match == null) HarvestRPCMethod(farmData);
+# }
+
+
+func water():
+	water_tile.show()
+
+
+func dry():
+	water_tile.hide()
+
 
 #     private async void HarvestRPCMethod(FarmGridData farmData) {
 #       bool harvestOk = await farmData.Harvest(
@@ -130,49 +138,49 @@ func ready_for_inventory():
 	var inventory_tile = find_node("InventoryTile")
 	inventory_tile.show()
 
-#     private bool IsHarvestable() {
-#       return currentGrowthStage == growthStages.Count;
-#     }
 
-#     public int DetermineGrowthStage() {
-#       int growthStageIdx = 0;
-#       int dayCounter = 0;
-#       long daysPassedSinceCreatedAt = GameTime.NumberOfGameDaysFromDaybreakFromUnixTimestamp(createdAt);
+func is_harvestable():
+	return current_growth_stage == growth_stages.size()
 
-#       for (int i = 0; i < growthStages.Count; i++) {
-#         dayCounter += growthStages[i];
 
-#         if (daysPassedSinceCreatedAt >= dayCounter)
-#           growthStageIdx = i;
-#         else
-#           break;
-#       }
+func determine_growth_stage():
+	var growth_stage_idx = 0
+	var day_counter = 0
+	var days_passed_since_created_at = GameTime.number_of_game_days_from_daybreak_from_unix_timestamp(
+		created_at
+	)
 
-#       // adding another one if it's "passed" all growth stages and thusly this will trigger IsHarvestable() to return true
-#       if (daysPassedSinceCreatedAt > dayCounter) growthStageIdx++;
+	for i in range(growth_stages.size()):
+		day_counter += growth_stages[i]
 
-#       return growthStageIdx;
-#     }
+		if days_passed_since_created_at >= day_counter:
+			growth_stage_idx = i
+		else:
+			break
 
-#     protected void DryWaterAndGrowPlantIfNeeded() {
-#       Dry();
+	# adding another one if it's "passed" all growth stages and thusly this will trigger IsHarvestable() to return true
+	if days_passed_since_created_at > day_counter:
+		growth_stage_idx += 1
 
-#       int growthStage = DetermineGrowthStage();
+	return growth_stage_idx
 
-#       if (currentGrowthStage >= growthStage) return;
 
-#       Node2D currentStage = (Node2D)FindNode(string.Format("Stage{0}", currentGrowthStage));
-#       Node2D nextStage = (Node2D)FindNode(string.Format("Stage{0}", growthStage));
-#       Node2D lastStage = (Node2D)FindNode($"Stage{growthStages.Count}");
+func dry_water_and_grow_plant_if_needed():
+	dry()
 
-#       if (!IsHarvestable() && currentStage != null && nextStage != null) {
-#         currentStage.Hide();
-#         nextStage.Show();
-#       } else if (IsHarvestable() && lastStage != null) {
-#         lastStage.Show();
-#       }
+	var growth_stage: int = determine_growth_stage()
 
-#       currentGrowthStage = growthStage;
-#     }
-#   }
-# }
+	if current_growth_stage >= growth_stage:
+		return
+
+	var current_stage: Node2D = find_node("Stage%s" % current_growth_stage)
+	var next_stage: Node2D = find_node("Stage%s" % growth_stage)
+	var last_stage: Node2D = find_node("Stage%s" % growth_stages.size())
+
+	if ! is_harvestable() && current_stage != null && next_stage != null:
+		current_stage.Hide()
+		next_stage.Show()
+	elif is_harvestable() && last_stage != null:
+		last_stage.Show()
+
+	current_growth_stage = growth_stage

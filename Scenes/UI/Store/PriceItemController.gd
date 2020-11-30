@@ -4,7 +4,7 @@ var item_key_name: String
 var purchase_key_name: String
 var quantity: int
 var is_sale: bool
-var type: Node2D
+var type: String
 
 onready var picture: Sprite = find_node("Sprite")
 
@@ -31,18 +31,27 @@ func on_button_up():
 	var response: NakamaAPI.ApiRpc = yield(
 		SessionManager.rpc_async(
 			"pos.sell_item" if is_sale else "pos.purchase_item",
-			(
-				"{{ \"item\": \"%s\", \"currency\": \"%s\", \"avatar\": \"%s\" }}"
-				% [purchase_key_name, item_key_name, SaveData.current_avatar_key]
+			JSON.print(
+				{
+					"item": purchase_key_name,
+					"currency": item_key_name,
+					"avatar": SaveData.current_avatar_key
+				}
 			)
 		),
 		"completed"
 	)
 
 	if response.payload:
+		if is_sale:
+			TPLG.inventory.bag.remove_item_locally(
+				InventoryItems.get_int_from_name(purchase_key_name)
+			)
+		else:
+			TPLG.inventory.bag.add_item_locally(InventoryItems.get_int_from_name(purchase_key_name))
+
 		# TODO: The below *should* just update the items in the inventory locally!
-		yield(TPLG.Inventory.bag.reload_and_redraw_data({}), "completed")
-		# await WalletController.instance.SyncWithWallet();
+		yield(TPLG.wallet.sync_with_wallet(), "completed")
 	elif response.payload == "false":
 		print_debug("call failed.")
 

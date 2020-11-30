@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/MovementGrid/Teleporter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/MovementGrid/FarmTeleporterController.gd" type="Script" id=2]
+
+[node name="FarmTeleporter" instance=ExtResource( 1 )]
+script = ExtResource( 2 )

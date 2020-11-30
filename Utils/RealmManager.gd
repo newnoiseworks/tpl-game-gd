@@ -65,8 +65,8 @@ func _destroy_realm_session():
 	# FarmController.userAvatarToJoin = null;
 
 
-func _on_match_state(_state: NakamaRTAPI.MatchData):
-	RealmEvent.handle_match_state_update(_state)
+func _on_match_state(state: NakamaRTAPI.MatchData):
+	RealmEvent.handle_match_state_update(state)
 
 
 func _on_match_presence(event: NakamaRTAPI.MatchPresenceEvent):
@@ -77,8 +77,8 @@ func _on_match_presence(event: NakamaRTAPI.MatchPresenceEvent):
 		plot_map.erase(presence.user_id)
 
 
-func _realm_join_event_response(state: NakamaRTAPI.MatchData):
-	var args = parse_json(state.data)
+func _realm_join_event_response(msg: String, _presence):
+	var args = parse_json(msg)
 
 	user_id_to_avatar_map = args.avatarMap
 	user_id_to_dungeon_map = args.dungeonMap
@@ -91,12 +91,12 @@ func _realm_join_event_response(state: NakamaRTAPI.MatchData):
 		user_ids.append(key)
 
 
-func _change_dungeon_event_response(state: NakamaRTAPI.MatchData):
-	if state == null:
+func _change_dungeon_event_response(msg: String, presence):
+	if msg == null || msg == "":
 		return
 
-	var dungeon = JSON.parse(state.data).result
-	user_id_to_dungeon_map[state.presence.user_id] = dungeon
+	var dungeon = JSON.parse(msg).result
+	user_id_to_dungeon_map[presence.user_id] = dungeon.dungeon
 
 
 func _on_socket_disconnect():

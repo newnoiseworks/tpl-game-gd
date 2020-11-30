@@ -100,7 +100,6 @@ _global_script_class_icons={
 
 config/name="ThePromisedLand-GD"
 run/main_scene="res://RootScenes/BaseViewports/BaseViewports.tscn"
-boot_splash/image="res://Resources/Images/Finished_Tiles/UI/Logo.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.0862745, 0.627451, 0.952941, 1 )
 config/icon="res://icon.png"
@@ -120,6 +119,9 @@ MoveTarget="*res://Scenes/Utils/MoveTarget.tscn"
 InventoryItems="*res://Utils/InventoryItems.gd"
 I18n="*res://Utils/I18n.gd"
 GameTime="*res://Utils/GameTime.gd"
+FarmEvent="*res://Utils/FarmEvent.gd"
+PlantData="*res://Utils/PlantData.gd"
+ForageItems="*res://Utils/ForageItems.gd"
 
 [debug]
 

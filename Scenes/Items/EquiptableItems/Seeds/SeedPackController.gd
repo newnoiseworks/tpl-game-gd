@@ -1,44 +1,36 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-# using Godot;
-# using TPV.Scenes.Character.Farmer;
-# using TPV.Scenes.FarmGrid;
-# using TPV.Scenes.MovementGrid;
-# using TPV.Utils;
-# using TPV.Utils.Network;
-# using TPV.Scenes.UI.Inventory;
-# using TPV.GameEvents;
-# using TPV.Data;
+export var type: String
 
-# namespace TPV.Scenes.Items.EquiptableItems.Seeds {
+onready var inventory_type: int = PlantData.seed_item_type_map[type]
 
-#   public class SeedPackController : ItemController, IEquiptableItem {
 
-#     [Export] public string type;
+func primary_action():
+	if Player.current_farm_grid == null:
+		return
+	if can_add_plant_to(Player, Player.current_farm_grid) == false:
+		return
 
-#     private InventoryItemType inventoryType;
+	var farm_grid = Player.current_farm_grid
 
-#     public override void _Ready() {
-#       base._Ready();
-#       inventoryType = PlantData.seedItemTypeMap[type];
-#     }
+	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().till != 1:
+		TPLG.ui.show_toast("You don't have permission to plant seeds on this farm!")
 
-#     public void PrimaryAction() {
-#       PlayerController player = PlayerController.instance;
+		TPLG.inventory.bag.remove_item_locally(inventory_type)
 
-#       if (PlayerController.instance.currentFarmGrid == null) return;
-#       if (CanAddPlantTo(player, PlayerController.instance.currentFarmGrid) == false) return;
+		MatchEvent.farming(
+			{
+				"type": FarmEvent.PLANT,
+				"avatar": SaveData.current_avatar_key,
+				"farm_owner_id": farm_grid.owner_id,
+				"farm_owner_avatar": farm_grid.owner_avatar_name,
+				"farm_collection": farm_grid.collection_name,
+				"x": String(MoveTarget.get_current_farm_grid_tile().x),
+				"y": String(MoveTarget.get_current_farm_grid_tile().y),
+				"metadata": InventoryItems.get_hash_from_int(inventory_type)
+			}
+		)
 
-#       FarmGridController farmGrid = PlayerController.instance.currentFarmGrid;
-
-#       if (farmGrid.IsUserOwner() == false && farmGrid.GetPermissions().till != FarmPermission.Can) {
-#         TPV.Scenes.UI.UIController.ShowToast("You don't have permission to plant seeds on this farm!");
-#         return;
-#       }
-
-#       InventoryController.instance.bag.RemoveItemLocally(inventoryType);
-
-#       FarmGridData farmData = farmGrid.data;
 
 #       new FarmingEvent(
 #         new FarmingEventArgs(
@@ -70,19 +62,18 @@ extends "res://Scenes/Items/ItemController.gd"
 #         new DataResetEvent(new DataResetEventArgs(SessionManager.GetUserId()));
 #     }
 
-#     private bool CanAddPlantTo(
-#       PlayerController player,
-#       FarmGridController farmGrid
-#     ) {
-#       Vector2 gridPosition = MovementGridController.instance.GetCurrentFarmGridTile();
 
-#       if (farmGrid.data.plants.list.Exists((p) => p.position == gridPosition)) return false;
+func can_add_plant_to(player, farm_grid):
+	var grid_position: Vector2 = MoveTarget.get_current_farm_grid_tile()
 
-#       string tilename = farmGrid.GetGroundMapTilenameFromPosition(gridPosition);
+	for plant in farm_grid.data.plants:
+		if plant.position == grid_position:
+			return false
 
-#       if (tilename == null) return false;
+	var tilename: String = farm_grid.get_ground_map_tilename_from_position(grid_position)
 
+	if tilename == "" || tilename == null:
+		return false
+
+	return "Environment/Tilled Dirt/Tilled Dirt" in tilename
 #       return tilename.Contains(TileAdjuster.searchString);
-#     }
-#   }
-# }

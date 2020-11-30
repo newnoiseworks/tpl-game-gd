@@ -1,52 +1,36 @@
 extends "res://Scenes/Items/CraftedItemController.gd"
 
-# using Godot;
-# using TPV.Utils;
-# using TPV.Scenes.Items.EquiptableItems;
+onready var light: Light2D = find_node("Light2D")
 
-# namespace TPV.Scenes.Items.EnvironmentItems.Lights {
 
-#   public class LampController : CraftedItemController, IEquiptableInventoryReadiedItem {
+func _ready():
+	if GameTime.is_day():
+		turn_lamp_off()
+	else:
+		turn_lamp_on()
 
-#     private Light2D light;
+	GameTime.connect("daybreak_event", self, "turn_lamp_off")
+	GameTime.connect("nightfall_event", self, "turn_lamp_on")
 
-#     public override void _Ready() {
-#       base._Ready();
 
-#       light = (Light2D)FindNode("Light2D");
+func _exit_tree():
+	GameTime.disconnect("daybreak_event", self, "turn_lamp_off")
+	GameTime.disconnect("nightfall_event", self, "turn_lamp_on")
 
-#       if (GameTime.IsDay())
-#         TurnLampOff();
-#       else
-#         TurnLampOn();
 
-#       GameTime.TriggerDaybreakEvent += TurnLampOff;
-#       GameTime.TriggerNightfallEvent += TurnLampOn;
-#     }
+func turn_lamp_off():
+	light.enabled = false
 
-#     public override void _ExitTree() {
-#       base._ExitTree();
 
-#       GameTime.TriggerDaybreakEvent -= TurnLampOff;
-#       GameTime.TriggerNightfallEvent -= TurnLampOn;
-#     }
-
-#     public void TurnLampOff() {
-#       // light.Visible = false;
-#       light.Enabled = false;
-#     }
-
-#     public void TurnLampOn() {
-#       // light.Visible = true;
-#       light.Enabled = true;
-#     }
+func turn_lamp_on():
+	light.enabled = true
 
 
 func ready_for_inventory():
 	find_node("TileMap").hide()
 	find_node("Inventory").show()
 
-# GameTime.TriggerDaybreakEvent -= TurnLampOff;
-# GameTime.TriggerNightfallEvent -= TurnLampOn;
+	GameTime.disconnect("daybreak_event", self, "turn_lamp_off")
+	GameTime.disconnect("nightfall_event", self, "turn_lamp_on")
 
-# TurnLampOff();
+	turn_lamp_off()

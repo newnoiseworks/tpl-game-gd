@@ -1,29 +1,73 @@
 extends Node
 
 const plant_growth_stages = {
-	"1ae4f24c55b5f623f1096fbc5081d236": [
-		1, 1, 1, 1, 1, 
+	"1ae4f24c55b5f623f1096fbc5081d236":
+	[
+		1,
+		1,
+		1,
+		1,
+		1,
 	],
-	"d846ed6b27749f802150466e9ed6f303": [
-		1, 1, 1, 1, 1, 
+	"d846ed6b27749f802150466e9ed6f303":
+	[
+		1,
+		1,
+		1,
+		1,
+		1,
 	],
-	"39b5c3cb61c0271dc445971f94da7f48": [
-		1, 1, 1, 1, 1, 1, 
+	"39b5c3cb61c0271dc445971f94da7f48":
+	[
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
 	],
-	"b2585bc3e070132d2bf51dffae794f64": [
-		1, 1, 1, 1, 1, 1, 
+	"b2585bc3e070132d2bf51dffae794f64":
+	[
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
 	],
-	"bb8e09a312941709ab85b7b147c74abc": [
-		1, 1, 1, 1, 1, 1, 
+	"bb8e09a312941709ab85b7b147c74abc":
+	[
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
 	],
-	"aece6208ee77d49f49d29099eb231fac": [
-		1, 1, 1, 1, 1, 1, 
+	"aece6208ee77d49f49d29099eb231fac":
+	[
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
 	],
-	"77bd79b3dca1f49815655b6f2df760ba": [
-		1, 1, 1, 1, 1, 
+	"77bd79b3dca1f49815655b6f2df760ba":
+	[
+		1,
+		1,
+		1,
+		1,
+		1,
 	],
-	"043a46a48c1f62dd647c5b570c01fb4c": [
-		1, 1, 1, 1, 1, 
+	"043a46a48c1f62dd647c5b570c01fb4c":
+	[
+		1,
+		1,
+		1,
+		1,
+		1,
 	],
 }
 
@@ -132,57 +176,59 @@ enum {
 	TURNIP = 31,
 }
 
-const id_to_enum_map = {
-	0: TILLER,
-	1: PAIL,
-	2: PICKAXE,
-	3: SCYTHE,
-	4: AXE,
-	5: CORPUS_COIN,
-	6: COMMUNITY_COIN,
-	7: STONE,
-	8: FERN,
-	9: WOOD,
-	10: BLUEPRINT__STONE_PATH,
-	11: BLUEPRINT__WOOD_PATH,
-	12: BLUEPRINT__LAMP,
-	13: CRAFTED__STONE_PATH,
-	14: CRAFTED__WOOD_PATH,
-	15: CRAFTED__LAMP,
-	16: BEET_SEEDS,
-	17: BEET,
-	18: CABBAGE_SEEDS,
-	19: CABBAGE,
-	20: DRAGON_FRUIT_SEEDS,
-	21: DRAGON_FRUIT,
-	22: EGGPLANT_SEEDS,
-	23: EGGPLANT,
-	24: POTATO_SEEDS,
-	25: POTATO,
-	26: ODD_FRUIT_SEEDS,
-	27: ODD_FRUIT,
-	28: TOMATO_SEEDS,
-	29: TOMATO,
-	30: TURNIP_SEEDS,
-	31: TURNIP,
+const name_to_enum_map = {
+	"Tiller": 0,
+	"Pail": 1,
+	"Pickaxe": 2,
+	"Scythe": 3,
+	"Axe": 4,
+	"CorpusCoin": 5,
+	"CommunityCoin": 6,
+	"Stone": 7,
+	"Fern": 8,
+	"Wood": 9,
+	"Blueprint_StonePath": 10,
+	"Blueprint_WoodPath": 11,
+	"Blueprint_Lamp": 12,
+	"Crafted_StonePath": 13,
+	"Crafted_WoodPath": 14,
+	"Crafted_Lamp": 15,
+	"BeetSeeds": 16,
+	"Beet": 17,
+	"CabbageSeeds": 18,
+	"Cabbage": 19,
+	"DragonFruitSeeds": 20,
+	"DragonFruit": 21,
+	"EggplantSeeds": 22,
+	"Eggplant": 23,
+	"PotatoSeeds": 24,
+	"Potato": 25,
+	"OddFruitSeeds": 26,
+	"OddFruit": 27,
+	"TomatoSeeds": 28,
+	"Tomato": 29,
+	"TurnipSeeds": 30,
+	"Turnip": 31,
 }
+
 
 func get_hash_from_int(id: int):
 	return id_to_hash_map[id]
 
+
 func get_int_from_hash(id: String):
 	return hash_to_id_map[id]
-	
+
+
+func get_int_from_name(id: String):
+	return name_to_enum_map[id]
+
 #		public static InventoryItemType GetEnum(string id) {
 #			return (InventoryItemType)GetIntFromHash(id);
 #		}
 #
 #		public static InventoryItemType GetEnum(int id) {
 #			return (InventoryItemType)id;
-#		}
-#
-#		public static InventoryItemType GetEnumFromName(string type) {
-#			return (InventoryItemType)Enum.Parse(typeof(InventoryItemType), type);
 #		}
 #
 #		public static string GetHash(InventoryItemType type) {

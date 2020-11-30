@@ -1,77 +1,52 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-# using Godot;
-# using System;
-# using TPV.Scenes.Character.Farmer;
-# using Nakama.TinyJson;
-# using TPV.Data;
-# using TPV.Scenes.UI.Inventory;
-# using System.Collections.Generic;
-# using static Godot.Tween;
-# using TPV.Utils;
-# using TPV.Scenes.UI;
-# using TPV.Autoload;
+export var inventory_item_type: String
+var forage_item_data
+var farm_owner_id
+var farm_owner_avatar
+var farm_owner_collection
 
-# namespace TPV.Scenes.Items {
-#   public class DropItemController : ItemController {
+onready var type = InventoryItems.get_int_from_name(inventory_item_type)
 
-#     [Export] public string inventoryItemType;
-#     public ForageItemData forageItemData;
-#     public string farmOwnerId;
-#     public string farmOwnerAvatar;
-#     public string farmOwnerCollection;
 
-#     private InventoryItemType type;
-#     private Tween tween;
+func _ready():
+	tween.connect("tween_completed", self, "on_tween_complete")
 
-#     public override void _Ready() {
-#       base._Ready();
 
-#       tween = (Tween)FindNode("Tween");
-#       type = (InventoryItemType)Enum.Parse(typeof(InventoryItemType), inventoryItemType);
-#     }
+func on_body_enter(body):
+	if body != Player:
+		return
 
-#     public async override void OnBodyEnter(PhysicsBody2D body) {
-#       if (body as PlayerController == null) return;
+	if TPLG.inventory.bag.has_empty_slot() == -1 && TPLG.inventory.bag.has_item(type) == false:
+		TPLG.ui.show_toast("Inventory Full!")
+		print("TODO: Need to implement multi row inventory")
+		return
 
-#       if (
-#         InventoryController.instance.bag.HasEmptySlot() == -1 &&
-#         InventoryController.instance.bag.HasItem(type) == false
-#       ) {
-#         UIController.ShowToast("Inventory Full!");
-#         Logger.Log("TODO: Need to implement multi row inventory");
-#         return;
-#       }
+	var destination = Player.position - get_parent().position
 
-#       Vector2 destination = PlayerController.instance.Position - ((Node2D)GetParent()).Position;
+	tween.interpolate_property(
+		self, "position", position, destination, 0.35, Tween.TRANS_QUINT, Tween.EASE_IN
+	)
 
-#       tween.InterpolateProperty(
-#         this,
-#         "position",
-#         Position,
-#         destination,
-#         0.35f,
-#         TransitionType.Quint,
-#         EaseType.In
-#       );
+	tween.start()
 
-#       tween.Start();
+	yield(
+		TPLG.inventory.bag.add_item_to_bag(
+			type,
+			JSON.print(
+				{
+					"farm_owner_id": farm_owner_id,
+					"farm_owner_avatar": farm_owner_avatar,
+					"farm_owner_collection": farm_owner_collection,
+					"x": forage_item_data.position.x,
+					"y": forage_item_data.position.y,
+					"forage_item_type": forage_item_data.type
+				}
+			)
+		),
+		"completed"
+	)
 
-#       await InventoryController.instance.bag.AddItemToBag(
-#         type,
-#         new Dictionary<string, object>() {
-#           { "farm_owner_id", farmOwnerId },
-#           { "farm_owner_avatar", farmOwnerAvatar },
-#           { "farm_owner_collection", farmOwnerCollection },
-#           { "x", forageItemData.position.x },
-#           { "y", forageItemData.position.y },
-#           { "forage_item_type", (int)forageItemData.type },
-#         }.ToJson()
-#       );
-#     }
 
-#     private void OnTweenComplete(Godot.Object @object, NodePath key) {
-#       NodeManager.ScheduleFree(this);
-#     }
-#   }
-# }
+func on_tween_complete():
+	queue_free()

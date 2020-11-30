@@ -1,97 +1,87 @@
 extends Node2D
 
-# using Godot;
-# using TPV.Utils;
-# using System.Timers;
+onready var path_follow: PathFollow2D = find_node("SunPathFollow2D")
+onready var timer: Timer = Timer.new()
+onready var sun: Light2D = find_node("Sun")
+onready var night_sky: CanvasModulate = find_node("NightSky")
 
-# namespace TPV.Scenes.Items.EnvironmentItems.Lights {
 
-#   public class SunController : Node2D {
+func _ready():
+	show()
+	timer.wait_time = 1000
+	timer.connect("timeout", self, "process_atmospher")
+	timer.autostart = true
+	add_child(timer)
 
-#     private PathFollow2D pathFollow;
-#     private System.Timers.Timer timer;
-#     private Light2D sun;
-#     private CanvasModulate nightSky;
+	process_atmosphere()
 
-#     public override void _Ready() {
-#       Show();
-#       sun = FindNode("Sun") as Light2D;
-#       nightSky = FindNode("NightSky") as CanvasModulate;
-#       pathFollow = FindNode("SunPathFollow2D") as PathFollow2D;
-#       timer = new System.Timers.Timer(1000);
-#       timer.Elapsed += ProcessAtmosphere;
-#       timer.AutoReset = true;
-#       timer.Start();
 
-#       ProcessAtmosphere();
-#     }
+func _exit_tree():
+	timer.stop()
 
-#     public override void _ExitTree() {
-#       timer.Stop();
-#       timer.Dispose();
-#       timer = null;
 
-#       base._ExitTree();
-#     }
+func process_atmosphere():
+	if timer == null:
+		print_debug("Timer still elapsing on Sun Controller for some reason...")
+		return
 
-#     private void ProcessAtmosphere(object source = null, ElapsedEventArgs e = null) {
-#       if (timer == null) {
-#         Logger.Log("Timer still elapsing on Sun Controller for some reason...");
-#         return;
-#       }
+	if GameTime.is_day():
+		call_deferred("position_sun")
+	else:
+		call_deferred("setup_night_sky")
 
-#       if (GameTime.IsDay())
-#         CallDeferred("PositionSun");
-#       else
-#         CallDeferred("SetupNightSky");
-#     }
 
-#     private void SetupNightSky() {
-#       if (sun.Enabled) sun.Enabled = false;
-#       if (nightSky.Visible == false) nightSky.Show();
+func setup_night_sky():
+	if sun.enabled:
+		sun.enabled = false
+	if night_sky.visible == false:
+		night_sky.show()
 
-#       float hoursOfNightfallPassed;
+	var hours_of_nightfall_passed
 
-#       // TODO: Maybe move the below into a generic GameTime.GetPercentageOfNightComplete
-#       if (GameTime.inGameHour > 12)
-#         hoursOfNightfallPassed = GameTime.inGameHour - GameTime.NIGHTFALL;
-#       else
-#         hoursOfNightfallPassed = GameTime.inGameHour + (24 - GameTime.NIGHTFALL);
+	# TODO: Maybe move the below into a generic GameTime.GetPercentageOfNightComplete
+	if GameTime.in_game_hour > 12:
+		hours_of_nightfall_passed = GameTime.in_game_hour - GameTime.NIGHTFALL
+	else:
+		hours_of_nightfall_passed = GameTime.in_game_hour + (24 - GameTime.NIGHTFALL)
 
-#       float percentageOfNightComplete = hoursOfNightfallPassed / ((24 - GameTime.NIGHTFALL) + GameTime.DAYBREAK);
+	var percentage_of_night_complete: float = (
+		hours_of_nightfall_passed
+		/ ((24 - GameTime.NIGHTFALL) + GameTime.DAYBREAK)
+	)
 
-#       float currentNightIntensityPercentage;
+	var current_night_intensity_percentage: float
 
-#       if (percentageOfNightComplete > 0.5f)
-#         currentNightIntensityPercentage = 1f - Mathf.Abs(percentageOfNightComplete - 0.5f) / 0.5f;
-#       else
-#         currentNightIntensityPercentage = percentageOfNightComplete * 2;
+	if percentage_of_night_complete > 0.5:
+		current_night_intensity_percentage = 1 - abs(percentage_of_night_complete - 0.5) / 0.5
+	else:
+		current_night_intensity_percentage = percentage_of_night_complete * 2
 
-#       Color color = nightSky.Color;
+	var color = night_sky.color
 
-#       color.r = 1 - ((1 - 0.17f) * currentNightIntensityPercentage);
-#       color.g = 1 - ((1 - 0.03f) * currentNightIntensityPercentage);
-#       color.b = 1 - ((1 - 0.38f) * currentNightIntensityPercentage);
+	color.r = 1 - ((1 - 0.17) * current_night_intensity_percentage)
+	color.g = 1 - ((1 - 0.03) * current_night_intensity_percentage)
+	color.b = 1 - ((1 - 0.38) * current_night_intensity_percentage)
 
-#       nightSky.Color = color;
-#     }
+	night_sky.color = color
 
-#     private void PositionSun() {
-#       if (sun.Enabled == false) sun.Enabled = true;
 
-#       Color color = nightSky.Color;
-#       color.r = 1;
-#       color.g = 1;
-#       color.b = 1;
-#       nightSky.Color = color;
+func position_sun():
+	if sun.enabled == false:
+		sun.enabled = true
 
-#       float percentageOfDayComplete = GameTime.GetPercentageOfDayComplete();
-#       float percentageOfSunPathComplete = Mathf.Clamp((percentageOfDayComplete - 0.25f) / (0.83f - 0.25f), 0, 0.99f);
+	var color: Color = night_sky.color
+	color.r = 1
+	color.g = 1
+	color.b = 1
+	night_sky.color = color
 
-#       float energyOfSun = Mathf.Abs(percentageOfSunPathComplete - 0.5f) + .75f;
+	var percentage_of_day_complete: float = GameTime.get_percentage_of_day_complete()
+	var percentage_of_sun_path_complete: float = clamp(
+		(percentage_of_day_complete - 0.25) / (0.83 - 0.25), 0, 0.99
+	)
 
-#       sun.Energy = energyOfSun;
-#       pathFollow.UnitOffset = percentageOfSunPathComplete;
-#     }
-#   }
-# }
+	var energy_of_sun = abs(percentage_of_sun_path_complete - 0.5) + .75
+
+	sun.energy = energy_of_sun
+	path_follow.unit_offset = percentage_of_sun_path_complete

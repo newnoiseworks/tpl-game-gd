@@ -44,8 +44,8 @@ func reload_data_and_redraw():
 
 	for user_id in RealmManager.user_id_to_avatar_map.keys():
 		var avatar_key = RealmManager.user_id_to_avatar_map[user_id]
-		var data = profile_map[avatar_key]
-		users_listed.insert(user_id)
+		var data = profile_map[user_id]
+		users_listed.append(user_id)
 
 		var avatar
 
@@ -53,7 +53,7 @@ func reload_data_and_redraw():
 			if _avatar.key == avatar_key:
 				avatar = _avatar
 
-		avatar_map.insert(user_id, avatar)
+		avatar_map[user_id] = avatar
 
 		var dungeon: String = (
 			RealmManager.user_id_to_dungeon_map[user_id]
@@ -65,11 +65,11 @@ func reload_data_and_redraw():
 		item_list.add_item("%s (%s) - %s" % [avatar.name, username, dungeon])
 
 
-func on_match_presence():
+func on_match_presence_event(_args):
 	call_deferred("reload_data_and_redraw")
 
 
-func change_dungeon_event_response():
+func change_dungeon_event_response(_msg, _presence):
 	call_deferred("reload_data_and_redraw")
 
 

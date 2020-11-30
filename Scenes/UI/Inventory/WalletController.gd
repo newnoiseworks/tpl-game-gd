@@ -25,6 +25,7 @@ func bag_slot_to_position(id: int):
 
 
 func _ready():
+	TPLG.set_wallet(self)
 	setup_grid()
 	RealmEvent.connect("wallet_update", self, "on_day_break")
 	yield(sync_with_wallet(), "completed")
@@ -34,7 +35,7 @@ func _exit_tree():
 	RealmEvent.disconnect("wallet_update", self, "on_day_break")
 
 
-func on_day_break(_args):
+func on_day_break(_args, _presence):
 	yield(sync_with_wallet(), "completed")
 
 
@@ -68,3 +69,17 @@ func sync_with_wallet():
 					else SessionManager.get_community_coin()
 				)
 			)
+
+# TODO: The below also need to update local data store
+
+# func deduct_corpus_coin(amount: int):
+# 	tiles[0].update_quantity(SessionManager.get_corpus_coin() - amount)
+
+# func add_corpus_coin(amount: int):
+# 	tiles[0].update_quantity(SessionManager.get_corpus_coin() + amount)
+
+# func deduct_community_coin(amount: int):
+# 	tiles[0].update_quantity(SessionManager.get_community_coin() - amount)
+
+# func add_community_coin(amount: int):
+# 	tiles[0].update_quantity(SessionManager.get_community_coin() + amount)

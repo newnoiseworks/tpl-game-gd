@@ -46,7 +46,7 @@ func populate_store(allowed_purchase_items: Array = [], allowed_sale_items: Arra
 				item_obj.is_sale = true
 				item_obj.type = key
 
-				items_for_purchase_container.add_child(item_obj)
+				items_for_sale_container.add_child(item_obj)
 
 	show()
 

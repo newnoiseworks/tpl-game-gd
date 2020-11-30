@@ -59,6 +59,8 @@ var equiptable_item_scenes = {
 var data: Dictionary
 var equippable_items: Dictionary = {}
 
+onready var inventory = get_parent()
+
 
 func get_at_slot(slot: int):
 	var item
@@ -110,8 +112,6 @@ func draw_items_from_data():
 
 
 func add_item_scene_or_update_quantity(item_data: Dictionary):
-	var inventory = get_parent()
-
 	if item_data.bagPosition >= inventory.columns:
 		print_debug("TODO: Need to implement multi row inventory")
 		return
@@ -163,12 +163,28 @@ func move_item(old_bag_position: int, bag_position: int):
 #     }
 
 
-func remove_item_locally(item_type):
-	var inventory = get_parent()
+func add_item(type: int, context: String = ""):
+	var item_data = {
+		"item": InventoryItems.get_hash_from_int(type),
+		"quantity": 1,
+		"avatar": SessionManager.player.avatarData.key,
+	}
 
+	if context != "":
+		item_data["context"] = context
+
+	var add_item_call = yield(
+		SessionManager.rpc_async("inventory.add_item", JSON.print(item_data)), "completed"
+	)
+
+	if add_item_call.payload != "false":
+		reload_and_redraw_data(null)
+
+
+func remove_item_locally(item_type):
 	var item
 
-	for _item in data.items:
+	for _item in data.bag:
 		if InventoryItems.get_int_from_hash(_item.itemTypeId) == item_type:
 			item = _item
 
@@ -185,31 +201,41 @@ func remove_item_locally(item_type):
 
 
 func add_item_locally(item_type: int):
-	# TODO: Figure out better way to get available bag position as this method may incur collision errors
 	var bag_position: int = get_first_empty_bag_position()
-	var inventory = get_parent()
-
-	if bag_position >= inventory.columns:
-		print_debug("TODO: Need to implement multi row inventory")
-		return
 
 	var has_item
 
 	for item in data.bag:
 		if InventoryItems.get_int_from_hash(item.itemTypeId) == item_type:
 			has_item = item
+			bag_position = item.bagPosition
 
-	var quantity = 0
+	if bag_position >= inventory.columns:
+		print_debug("TODO: Need to implement multi row inventory")
+		return
+
+	var quantity = 1
 
 	if has_item != null:
-		quantity += 1
+		has_item.quantity += 1
+		quantity = has_item.quantity
 
-	add_item_scene_or_update_quantity(
-		{"bagPosition": bag_position, "itemTypeId": item_type, "quantity": quantity}
-	)
+	var item = {
+		"bagPosition": bag_position,
+		"itemTypeId": InventoryItems.get_hash_from_int(item_type),
+		"quantity": quantity
+	}
+
+	if has_item == null:
+		data.bag.append(item)
+
+	add_item_scene_or_update_quantity(item)
 
 
 func has_item(type):
+	if type is String:
+		type = InventoryItems.get_int_from_hash(type)
+
 	var item
 
 	for _item in data.bag:
@@ -231,7 +257,6 @@ func has_item_at(slot: int):
 
 func has_empty_slot():
 	var slot: int = -1
-	var inventory = get_parent()
 
 	for i in range(inventory.columns):
 		if has_item_at(i) == false:
@@ -241,8 +266,6 @@ func has_empty_slot():
 
 
 func get_first_empty_bag_position():
-	var inventory = get_parent()
-
 	for i in range(inventory.columns):
 		if get_at_slot(i) == null:
 			return i

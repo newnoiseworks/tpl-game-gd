@@ -7,8 +7,8 @@
 extents = Vector2( 9.5339, 9.8267 )
 
 [node name="Cabbage" index="0" instance=ExtResource( 1 )]
-plantType = "Cabbage"
-growthStages = [ 0, 1, 1, 1, 1, 1 ]
+plant_type = "Cabbage"
+growth_stages = [ 0, 1, 1, 1, 1, 1 ]
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
 shape = SubResource( 1 )

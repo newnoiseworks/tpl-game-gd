@@ -64,7 +64,7 @@ func _join_match(match_id: String, label: String, starting_position: Vector2) ->
 		var parts: PoolStringArray = label.split("//")
 		dungeon_label = "%s's Farm" % parts[2]
 
-	RealmEvent.change_dungeon(dungeon_label)
+	RealmEvent.change_dungeon({"dungeon": dungeon_label})
 
 	return game_match
 

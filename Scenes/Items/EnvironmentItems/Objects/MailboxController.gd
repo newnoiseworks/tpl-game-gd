@@ -1,58 +1,48 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-# using Godot;
-# using System.Collections.Generic;
-# using TPV.Data;
+var user_id: String
+var user_avatar_key: String
+var data: Dictionary
 
-# namespace TPV.Scenes.Items.EnvironmentItems.Objects {
+onready var static_body: StaticBody2D = find_node("StaticBody2D")
+onready var mask: int = static_body.collision_mask
+onready var layer: int = static_body.collision_layer
 
-#   public class MailboxController : ItemController {
 
-#     public string userId;
-#     public string userAvatarKey;
+func set_user_and_show(_user_id: String, _user_avatar_key: String):
+	if user_id != user_id || user_avatar_key != _user_avatar_key:
+		user_avatar_key = _user_avatar_key
+		user_id = _user_id
 
-#     private StaticBody2D staticBody;
-#     private AvatarData data;
-#     private uint mask;
-#     private uint layer;
+	var profile_data = yield(
+		SaveData.load("profile", SaveData.all_avatars_key, user_id), "completed"
+	)
 
-#     public override void _Ready() {
-#       staticBody = (StaticBody2D)FindNode("StaticBody2D");
-#       mask = staticBody.CollisionMask;
-#       layer = staticBody.CollisionLayer;
-#     }
+	for avatar in profile_data.avatars:
+		if avatar.key == user_avatar_key:
+			data = avatar
 
-#     public async void SetUserAndShow(string userId, string userAvatarKey) {
-#       if (this.userId != userId || this.userAvatarKey != userAvatarKey) {
-#         this.userAvatarKey = userAvatarKey;
-#         this.userId = userId;
+	static_body.collision_mask = mask
+	static_body.collision_layer = layer
+	show()
 
-#         ProfileData data = new ProfileData(userId);
-#         await data.Load();
-#         this.data = data.avatars.list.Find(a => a.key == userAvatarKey);
-#       }
 
-#       staticBody.CollisionMask = mask;
-#       staticBody.CollisionLayer = layer;
-#       Show();
-#     }
+func hide_and_disable():
+	static_body.collision_mask = 0
+	static_body.collision_layer = 0
+	hide()
 
-#     public void HideAndDisable() {
-#       staticBody.CollisionMask = 0;
-#       staticBody.CollisionLayer = 0;
-#       Hide();
-#     }
 
-#     public override void Interact() {
-#       if (data == null) return;
+func interact():
+	if data == null:
+		return
 
-#       TPV.Scenes.UI.DialogueController.Start(new Dictionary<string, string>() {
-#         { "whom", "mailbox" },
-#         { "text", $"{data.name}'s Farm" },
-#         { "options", null },
-#         { "next", null },
-#         { "script", null },
-#       });
-#     }
-#   }
-# }
+	TPLG.dialogue.start(
+		{
+			"whom": "mailbox",
+			"text": "%s's Farm" % data.name,
+			"options": null,
+			"next": null,
+			"script": null,
+		}
+	)

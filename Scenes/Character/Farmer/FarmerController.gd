@@ -28,19 +28,20 @@ func _ready():
 	tool_tile_map.clear()
 	back_tool_tile_map.clear()
 
+	if user_id != null || user_id != "":
+		MatchEvent.connect("farming", self, "handle_farming_event")
+		MatchEvent.connect("avatar_update", self, "handle_avatar_update_event")
 
-#       if (userId != null) {
-#         FarmingEvent.Subscribe(HandleFarmingEvent, userId);
-#         AvatarUpdateEvent.Subscribe(HandleAvatarUpdateEvent, userId);
-#       }
-#     }
+
+func _exit_tree():
+	if user_id != null || user_id != "":
+		MatchEvent.disconnect("farming", self, "handle_farming_event")
+		MatchEvent.disconnect("avatar_update", self, "handle_avatar_update_event")
 
 
 func _physics_process(_delta: float):
 	if is_animation_playing:
 		update_current_tile()
-	# else:
-	# 	._physics_process(delta)
 
 
 func stop_all_animations():
@@ -138,94 +139,94 @@ func assemble_and_return_tilename(map: TileMap, part: String, dir_str: String, o
 
 	return map.tile_set.find_tile_by_name(tilename)
 
-#     public override void _ExitTree() {
-#       base._ExitTree();
 
-#       if (userId != null) {
-#         FarmingEvent.Unsubscribe(HandleFarmingEvent, userId);
-#         AvatarUpdateEvent.Unsubscribe(HandleAvatarUpdateEvent, userId);
-#       }
-#     }
+func on_collision(collision: KinematicCollision2D):
+	movement_target = position
 
-#     public override void OnCollision(KinematicCollision2D collision) {
-#       movementTarget = Position;
+	if collision.collider.user_id != null:
+		return
 
-#       if (collision.Collider is CharacterController) return;
+	set_idle()
 
-#       SetIdle();
-#     }
 
-#     private async void HandleAvatarUpdateEvent(AvatarUpdateEventArgs args) {
-#       ProfileData profile = new ProfileData(userId);
+func handle_avatar_update_event(msg: String, presence: Dictionary):
+	if msg == null:
+		return
 
-#       await profile.Load();
+	if presence.user_id != user_id:
+		return
 
-#       for (int i = 0; i < profile.avatars.Count; i++) {
-#         AvatarData avatar = profile.avatars.list[i];
+	var args = JSON.parse(msg).result
 
-#         if (avatar.key == avatarData.key) {
-#           avatarData = avatar;
+	var profile = yield(SaveData.load("profile", SaveData.all_avatars_key, user_id), "completed")
 
-#           if (userId == SessionManager.GetUserId())
-#             SessionManager.currentCharacter = avatar;
+	for i in range(profile.avatars.size()):
+		var avatar = profile.avatars[i]
 
-#           // Decorate();
-#           break;
-#         }
-#       }
-#     }
+		if avatar.key == avatar_data.key:
+			avatar_data = avatar
 
-#     private void HandleFarmingEvent(FarmingEventArgs args) {
-#       FarmGridController farmGrid = currentFarmGrids.Find((fg) =>
-#         fg.collectionName == args.farmCollection &&
-#         fg.ownerId == args.farmOwnerId &&
-#         fg.ownerAvatarName == args.farmOwnerAvatar
-#       );
+			if user_id == SessionManager.session.user_id:
+				SessionManager.current_avatar = avatar
+				SessionManager.profile_data = profile
 
-#       direction = GetDirectionRelativeToTarget(MovementGrid.MovementGridController.instance.Position);
+			break
 
-#       switch (args.type) {
-#         case FarmingEventType.Plant:
-#           StopAllAnimations();
-#           pickupAnimation.Play();
-#           break;
-#         case FarmingEventType.Till:
-#           StopAllAnimations();
-#           tillAnimation.Play();
-#           break;
-#         case FarmingEventType.Harvest:
-#           StopAllAnimations();
-#           pickupAnimation.Play();
-#           break;
-#         case FarmingEventType.Forage:
-#           StopAllAnimations();
 
-#           switch ((ForageItemData.Type)(Int32.Parse(args.metadata))) {
-#             case (ForageItemData.Type.Tree):
-#               axeAnimation.Play();
-#               break;
-#             case (ForageItemData.Type.Stone):
-#               strikeAnimation.Play();
-#               break;
-#             case (ForageItemData.Type.Weed):
-#             case (ForageItemData.Type.TallGrass):
-#               scytheAnimation.Play();
-#               break;
-#           }
-#           break;
-#         case FarmingEventType.Detill:
-#           StopAllAnimations();
-#           strikeAnimation.Play();
-#           break;
-#         case FarmingEventType.Water:
-#           break;
-#       }
+func handle_farming_event(msg, presence):
+	if msg == null:
+		return
 
-#       if (farmGrid == null) {
-#         Logger.Log($"Couldn't find a farm grid to match FarmingEvent request from {Name}, seeking grid owned by {args.farmOwnerId} at avatar {args.farmOwnerAvatar} at farm collection {args.farmCollection}");
-#       } else {
-#         farmGrid.OnFarmingEvent(args);
-#       }
-#     }
-#   }
-# }
+	if presence.user_id != user_id:
+		return
+
+	var args = JSON.parse(msg).result
+	var farm_grid
+
+	for fg in TPLG.current_farm_grids:
+		if (
+			fg.collection_name == args.farm_collection
+			&& fg.owner_id == args.farm_owner_id
+			&& fg.owner_avatar_name == args.farm_owner_avatar
+		):
+			farm_grid = fg
+
+	direction = get_direction_relative_to_target(MoveTarget.position)
+
+	match args.type:
+		FarmEvent.PLANT:
+			stop_all_animations()
+			pickup_animation.play()
+		FarmEvent.TILL:
+			stop_all_animations()
+			till_animation.play()
+		FarmEvent.HARVEST:
+			stop_all_animations()
+			pickup_animation.play()
+		FarmEvent.FORAGE:
+			stop_all_animations()
+
+			match int(args.metadata):
+				ForageItems.TREE:
+					axe_animation.play()
+				ForageItems.STONE:
+					strike_animation.play()
+				ForageItems.WEED:
+					scythe_animation.play()
+				ForageItems.TALL_GRASS:
+					scythe_animation.play()
+		FarmEvent.DETILL:
+			stop_all_animations()
+			strike_animation.play()
+		FarmEvent.WATER:
+			pass
+
+	if farm_grid == null:
+		print_debug(
+			(
+				"Couldn't find a farm grid to match FarmingEvent request from %s, seeking grid owned by %s at avatar %s at farm collection %s"
+				% [name, args.farmOwnerId, args.farmOwnerAvatar, args.farmCollection]
+			)
+		)
+	else:
+		farm_grid.on_farming_event(args)

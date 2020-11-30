@@ -1,0 +1,12 @@
+extends Node
+
+enum {
+	PLANT = 0,
+	TILL = 1,
+	HARVEST = 2,
+	FORAGE = 3,
+	PLACE_CRAFTED_ITEM = 4,
+	REMOVE_CRAFTED_ITEM = 5,
+	DETILL = 6,
+	WATER = 7
+}

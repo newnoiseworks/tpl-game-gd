@@ -52,6 +52,12 @@ func post_auth():
 	yield(MatchManager.connect_socket(), "completed")
 	yield(get_profile_data(), "completed")
 	yield(load_api_account(), "completed")
+	yield(load_time_from_server_and_start_game_time(), "completed")
+
+
+func load_time_from_server_and_start_game_time():
+	var time: NakamaAPI.ApiRpc = yield(rpc_async("get_server_time"), "completed")
+	GameTime.start_timer(int(time.payload))
 
 
 func load_api_account():

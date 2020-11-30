@@ -1,58 +1,56 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-# using TPV.Scenes.FarmGrid;
-# using TPV.Scenes.Character.Farmer;
-# using TPV.Scenes.MovementGrid;
-# using TPV.Data;
-# using Godot;
-# using TPV.GameEvents;
-# using TPV.Utils.Network;
 
-# namespace TPV.Scenes.Items.EquiptableItems {
+func primary_action():
+	var farm_grid = Player.current_farm_grid
 
-#   public class AxeController : ItemController, IEquiptableItem {
+	if farm_grid == null:
+		return
 
-#     public async void PrimaryAction() {
-#       FarmGridController farmGrid = PlayerController.instance.currentFarmGrid;
+	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().forage != 1:
+		TPLG.ui.show_toast("You don't have permission to forage on this farm!")
+		return
 
-#       if (farmGrid == null) return;
+	var farm_data = farm_grid.data
+	var grid_position = MoveTarget.get_current_farm_grid_tile()
+	var tree
 
-#       if (farmGrid.IsUserOwner() == false && farmGrid.GetPermissions().forage != FarmPermission.Can) {
-#         TPV.Scenes.UI.UIController.ShowToast("You don't have permission to forage on this farm!");
-#         return;
-#       }
+	for i in farm_data.forageItems:
+		var position = Vector2(i.position.x, i.position.y)
 
-#       FarmGridData farmData = farmGrid.data;
-#       Vector2 gridPosition = MovementGridController.instance.GetCurrentFarmGridTile();
+		if (
+			(
+				position == grid_position
+				|| position == grid_position - Vector2(1, 0)
+				|| position == grid_position + Vector2(1, 0)
+				|| position == grid_position + Vector2(0, 1)
+			)
+			&& i.type == ForageItems.TREE
+		):
+			tree = i
 
-#       ForageItemData tree = farmData.forageItems.list.Find((i) => {
-#         return (
-#           i.position == gridPosition ||
-#           i.position == gridPosition - new Vector2(1, 0) ||
-#           i.position == gridPosition + new Vector2(1, 0) ||
-#           i.position == gridPosition + new Vector2(0, 1)
-#         ) && i.type == ForageItemData.Type.Tree;
-#       });
+	if tree == null:
+		return
 
-#       if (tree == null) return;
+	MatchEvent.farming(
+		{
+			"type": FarmEvent.HARVEST,
+			"avatar": SaveData.all_avatars_key,
+			"farm_owner_id": farm_grid.owner_id,
+			"farm_owner_avatar": farm_grid.owner_avatar_name,
+			"farm_collection": farm_grid.collection_name,
+			"x": String(tree.position.x),
+			"y": String(tree.position.y),
+			"metadata": String(int(ForageItems.TREE))
+		}
+	)
 
-#       new FarmingEvent(new FarmingEventArgs(
-#         FarmingEventType.Forage,
-#         tree.position,
-#         farmData.userId,
-#         farmData.avatarDataName,
-#         farmData.collectionName,
-#         ((int)ForageItemData.Type.Tree).ToString()
-#       ));
-
-#       if (
-#       SessionManager.match == null &&
-#       await farmData.Forage(
-#         tree.position,
-#         ((int)ForageItemData.Type.Tree).ToString()
-#       ) == false
-#       )
-#         new DataResetEvent(new DataResetEventArgs(SessionManager.GetUserId()));
-#     }
-#   }
-# }
+#  if (
+#    SessionManager.match == null &&
+#    await farmData.Forage(
+#      tree.position,
+#      ((int)ForageItemData.Type.Tree).ToString()
+#     ) == false
+#   )
+#     new DataResetEvent(new DataResetEventArgs(SessionManager.GetUserId()));
+#  }

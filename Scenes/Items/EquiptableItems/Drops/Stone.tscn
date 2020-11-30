@@ -6,7 +6,7 @@
 extents = Vector2( 23.6016, 23.5699 )
 
 [node name="Stone" index="0" instance=ExtResource( 1 )]
-inventoryItemType = "Stone"
+inventory_item_type = "Stone"
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
 shape = SubResource( 1 )

@@ -1,32 +1,36 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-# using Godot;
-# using TPV.Scenes.Character.Farmer;
-# using TPV.Scenes.FarmGrid;
-# using TPV.Scenes.MovementGrid;
-# using TPV.Data;
-# using TPV.GameEvents;
-# using TPV.Utils.Network;
 
-# namespace TPV.Scenes.Items.EquiptableItems {
+func primary_action():
+	var farm_grid = Player.current_farm_grid
 
-#   public class TillerController : ItemController, IEquiptableItem {
+	if farm_grid == null:
+		return
 
-#     public void PrimaryAction() {
-#       FarmGridController farmGrid = PlayerController.instance.currentFarmGrid;
+	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().till != 1:
+		TPLG.ui.show_toast("You don't have permission to till soil on this farm!")
 
-#       if (farmGrid == null) return;
+	var farm_data = farm_grid.data
+	var grid_position: Vector2 = MoveTarget.get_current_farm_grid_tile()
+	var tile_name: String = farm_grid.get_ground_map_tilename_from_position(grid_position)
 
-#       if (farmGrid.IsUserOwner() == false && farmGrid.GetPermissions().till != FarmPermission.Can) {
-#         TPV.Scenes.UI.UIController.ShowToast("You don't have permission to till soil on this farm!");
-#         return;
-#       }
+	if (
+		(tile_name != null && ("Environment/Dirt/Dirt" in tile_name) == false)
+		|| farm_grid.has_farm_item(grid_position)
+	):
+		return
 
-#       FarmGridData farmData = farmGrid.data;
-#       Vector2 gridPosition = MovementGridController.instance.GetCurrentFarmGridTile();
-#       string tileName = farmGrid.GetGroundMapTilenameFromPosition(gridPosition);
-
-#       if ((tileName != null && tileName.Contains("Environment/Dirt/Dirt") == false) || farmGrid.HasFarmItem(gridPosition)) return;
+	MatchEvent.farming(
+		{
+			"type": FarmEvent.TILL,
+			"avatar": SaveData.current_avatar_key,
+			"farm_owner_id": farm_grid.owner_id,
+			"farm_owner_avatar": farm_grid.owner_avatar_name,
+			"farm_collection": farm_grid.collection_name,
+			"x": String(grid_position.x),
+			"y": String(grid_position.y),
+		}
+	)
 
 #       new FarmingEvent(new FarmingEventArgs(
 #         FarmingEventType.Till,
