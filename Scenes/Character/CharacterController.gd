@@ -18,6 +18,7 @@ var next_movement_point: Vector2
 var direction: Vector2
 var velocity: Vector2
 var player_position_at_start: Vector2
+var pause_physics_process: bool = false
 
 onready var position_comparator_timer: Timer = $PositionComparator
 onready var body_tile_map: TileMap = find_node("Body")
@@ -119,6 +120,9 @@ func get_direction_relative_to_target(target: Vector2):
 
 
 func _physics_process(_delta: float):
+	if pause_physics_process:
+		return
+
 	if navigation_points.size() == 0:
 		set_idle()
 		return

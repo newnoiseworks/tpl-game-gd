@@ -14,6 +14,9 @@ func _ready():
 
 
 func draw_from_data(data):
+	if data == null || data.avatars == null:
+		return
+
 	var avatar_container: HBoxContainer = find_node("AvatarContainer")
 
 	for avatar in data.avatars:

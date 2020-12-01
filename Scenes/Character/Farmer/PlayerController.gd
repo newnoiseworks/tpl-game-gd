@@ -143,10 +143,8 @@ func _send_movement_ping_update():
 
 
 func use_equipped_item():
-	# if Inventory_controller.instance.equipped_item != null)
-	#       Inventory_controller.instance.equipped_item.Primary_action();
-	#   }
-	pass
+	if TPLG.inventory.equipped_item != null:
+		TPLG.inventory.equipped_item.primary_action()
 
 
 func secondary_action_on_cursor_item():
@@ -247,9 +245,6 @@ func move_target_as_needed(target: Vector2, mouse_movement: bool = false):
 			MatchEvent.movement({"ping": "0", "x": target.x, "y": target.y})
 			return true
 	else:
-		# if is_left() || is_right():
-		# 	target.y = target.y + 1
-
 		MoveTarget.set_target_tile_from(target)
 
 		if target != movement_target:

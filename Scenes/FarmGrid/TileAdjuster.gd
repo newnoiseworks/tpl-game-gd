@@ -34,7 +34,7 @@ func till_tiled_dirt(
 	var tiles_with_tilled_dirt = []
 
 	for i in range(tiles.size()):
-		tiles_with_tilled_dirt[i] = search_string in tiles[i]
+		tiles_with_tilled_dirt.insert(i, search_string in tiles[i])
 
 	var tile_to_change_to = determine_tile_name_to_change_to(tiles_with_tilled_dirt)
 	var tile_to_change_idx = ground_map.tile_set.find_tile_by_name(tile_to_change_to)

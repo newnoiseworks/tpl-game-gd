@@ -7,14 +7,18 @@ func _ready():
 	TPLG.connect("base_change_scene", self, "change_scene")
 
 
-func change_scene(scene_path: String):
+func change_scene(scene_path: String, args: Dictionary):
 	for child in game_viewport.get_children():
 		child.queue_free()
 
-	call_deferred("add_scene", scene_path)
+	call_deferred("add_scene", scene_path, args)
 
 
-func add_scene(scene_path: String):
+func add_scene(scene_path: String, args: Dictionary):
 	var scene: Node = ResourceLoader.load(scene_path).instance()
+
+	for key in args.keys():
+		if scene.has_meta(key):
+			scene[key] = args[key]
 
 	game_viewport.add_child(scene)

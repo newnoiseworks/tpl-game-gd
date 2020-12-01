@@ -116,13 +116,13 @@ func add_item_scene_or_update_quantity(item_data: Dictionary):
 		print_debug("TODO: Need to implement multi row inventory")
 		return
 
-	if ! equippable_items.has(item_data.bagPosition):
+	if ! equippable_items.has(int(item_data.bagPosition)):
 		var item_int = InventoryItems.get_int_from_hash(item_data.itemTypeId)
 
 		var item_scene = equiptable_item_scenes.get(item_int)
 		var item_node = item_scene.instance()
 
-		equippable_items[item_data.bagPosition] = item_node
+		equippable_items[int(item_data.bagPosition)] = item_node
 		item_node.position = inventory.bag_slot_to_position(item_data.bagPosition)
 
 		add_child(item_node)

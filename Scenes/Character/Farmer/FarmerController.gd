@@ -20,28 +20,35 @@ onready var bottom_tile_map: TileMap = find_node("Bottom")
 
 
 func _ready():
-	character_base = "Avatars/base/#"
-
 	stop_all_animations()
-	is_animation_playing = false
-	current_tool_tile = ""
 	tool_tile_map.clear()
 	back_tool_tile_map.clear()
+	current_tool_tile = ""
 
-	if user_id != null || user_id != "":
+
+func _enter_tree():
+	character_base = "Avatars/base/#"
+
+	is_animation_playing = false
+	current_tool_tile = ""
+
+	if user_id != null && user_id != "":
 		MatchEvent.connect("farming", self, "handle_farming_event")
 		MatchEvent.connect("avatar_update", self, "handle_avatar_update_event")
 
 
 func _exit_tree():
-	if user_id != null || user_id != "":
+	if user_id != null && user_id != "":
 		MatchEvent.disconnect("farming", self, "handle_farming_event")
 		MatchEvent.disconnect("avatar_update", self, "handle_avatar_update_event")
 
 
 func _physics_process(_delta: float):
 	if is_animation_playing:
+		pause_physics_process = true
 		update_current_tile()
+	else:
+		pause_physics_process = false
 
 
 func stop_all_animations():
@@ -193,7 +200,7 @@ func handle_farming_event(msg, presence):
 
 	direction = get_direction_relative_to_target(MoveTarget.position)
 
-	match args.type:
+	match int(args.type):
 		FarmEvent.PLANT:
 			stop_all_animations()
 			pickup_animation.play()
@@ -225,7 +232,7 @@ func handle_farming_event(msg, presence):
 		print_debug(
 			(
 				"Couldn't find a farm grid to match FarmingEvent request from %s, seeking grid owned by %s at avatar %s at farm collection %s"
-				% [name, args.farmOwnerId, args.farmOwnerAvatar, args.farmCollection]
+				% [name, args.farm_owner_id, args.farm_owner_avatar, args.farm_collection]
 			)
 		)
 	else:

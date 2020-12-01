@@ -8,7 +8,7 @@ onready var inventory_type: int = PlantData.seed_item_type_map[type]
 func primary_action():
 	if Player.current_farm_grid == null:
 		return
-	if can_add_plant_to(Player, Player.current_farm_grid) == false:
+	if can_add_plant_to(Player.current_farm_grid) == false:
 		return
 
 	var farm_grid = Player.current_farm_grid
@@ -63,11 +63,11 @@ func primary_action():
 #     }
 
 
-func can_add_plant_to(player, farm_grid):
+func can_add_plant_to(farm_grid):
 	var grid_position: Vector2 = MoveTarget.get_current_farm_grid_tile()
 
 	for plant in farm_grid.data.plants:
-		if plant.position == grid_position:
+		if Vector2(plant.x, plant.y) == grid_position:
 			return false
 
 	var tilename: String = farm_grid.get_ground_map_tilename_from_position(grid_position)

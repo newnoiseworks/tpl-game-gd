@@ -19,7 +19,8 @@ func load(collection: String, key: String = current_avatar_key, user_id: String 
 		push_error("Error interpreting JSON!")
 		return
 
-	return JSON.parse(result.objects[0].value).result
+	if result.objects.size() > 0:
+		return JSON.parse(result.objects[0].value).result
 
 
 func save(

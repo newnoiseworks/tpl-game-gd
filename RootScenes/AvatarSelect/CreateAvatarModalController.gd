@@ -18,12 +18,13 @@ func confirmed():
 	if avatar_name == null || avatar_name == "":
 		return
 
-	var data = SessionManager.profile_data
+	var data = SessionManager.profile_data if SessionManager.profile_data else {}
 	var has_key = false
 
-	for avatar in data.avatars:
-		if avatar.key == avatar_name:
-			has_key = true
+	if data.has("avatars"):
+		for avatar in data.avatars:
+			if avatar.key == avatar_name:
+				has_key = true
 
 	if has_key:
 		TPLG.show_message("Can't use that name, please try another.")
@@ -38,20 +39,19 @@ func confirmed():
 		"baseType": outfit_manager.mannequin.avatar_data.baseType
 	}
 
-	data.avatars.push_back(avatar_data)
+	if ! data.has("avatars"):
+		data.avatars = []
+
+	data.avatars.append(avatar_data)
+
+	print(JSON.print(data))
 
 	yield(SaveData.save(data, "profile", SaveData.all_avatars_key), "completed")
 
-#       await SessionManager.client.RpcAsync(
-#         SessionManager.session,
-#         "user.on_registration",
-#         avatarData.key
-#       );
+	yield(SessionManager.rpc_async("user.on_registration", avatar_data.key), "completed")
 
-#       await SessionManager.SetCurrentCharacter(avatarData);
-#       await RealmManager.FindOrCreateRealm("town0-realm");
+	SessionManager.set_current_avatar(avatar_data)
+	yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
 
-#       GetTree().ChangeScene("res://RootScenes/BaseViewports/BaseViewports.tscn");
-#     }
-#   }
-# }
+	TPLG.base_change_scene("res://RootScenes/RewriteTest.tscn")
+	TPLG.call_deferred("set_ui_scene")

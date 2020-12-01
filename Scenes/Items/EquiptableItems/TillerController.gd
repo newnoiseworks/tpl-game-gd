@@ -10,9 +10,8 @@ func primary_action():
 	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().till != 1:
 		TPLG.ui.show_toast("You don't have permission to till soil on this farm!")
 
-	var farm_data = farm_grid.data
 	var grid_position: Vector2 = MoveTarget.get_current_farm_grid_tile()
-	var tile_name: String = farm_grid.get_ground_map_tilename_from_position(grid_position)
+	var tile_name = farm_grid.get_ground_map_tilename_from_position(grid_position)
 
 	if (
 		(tile_name != null && ("Environment/Dirt/Dirt" in tile_name) == false)

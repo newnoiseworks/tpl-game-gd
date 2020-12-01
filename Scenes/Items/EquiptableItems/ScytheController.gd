@@ -16,7 +16,7 @@ func primary_action():
 	var weed_or_grass
 
 	for i in farm_data.forageItems:
-		var position = Vector2(i.position.x, i.position.y)
+		var position = Vector2(i.x, i.y)
 
 		if (
 			position == grid_position

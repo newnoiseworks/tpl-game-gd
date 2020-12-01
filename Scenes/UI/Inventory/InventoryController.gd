@@ -2,7 +2,7 @@ extends Node2D
 
 # var InventoryController instance = null;
 
-var equipped_item: TextureButton
+var equipped_item: Node2D
 var bag: Node2D
 var tiles: Array
 var equipped_item_highlight: Sprite
@@ -78,7 +78,7 @@ func setup_grid():
 			binds.insert(0, position)
 
 			tile.connect("select_slot", self, "on_select_slot", binds)
-			tile.connect("equip_item", self, "on_equipt_item", binds)
+			tile.connect("equip_item", self, "on_equip_item", binds)
 
 
 func on_equip_item(slot: int):

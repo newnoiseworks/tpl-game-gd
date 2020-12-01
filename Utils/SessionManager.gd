@@ -21,6 +21,9 @@ func rpc_async(uri: String, payload: String = "") -> NakamaAPI.ApiRpc:
 
 func set_current_avatar(avatar_data):
 	current_avatar = avatar_data
+	SaveData.current_avatar_key = avatar_data.key
+	Player.user_id = session.user_id
+	Player.avatar_data = avatar_data
 
 
 func get_profile_data():
@@ -36,7 +39,7 @@ func login(email: String, password: String):
 	return session
 
 
-func sign_up(email: String, username: String, password: String):
+func signup(email: String, username: String, password: String):
 	session = yield(client.authenticate_email_async(email, password, username, true), "completed")
 	yield(post_auth(), "completed")
 

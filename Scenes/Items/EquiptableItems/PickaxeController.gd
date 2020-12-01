@@ -13,7 +13,7 @@ func primary_action():
 	var stone
 
 	for i in farm_data.forageItems:
-		var position = Vector2(i.position.x, i.position.y)
+		var position = Vector2(i.x, i.y)
 		if position == grid_position && i.type == ForageItems.STONE:
 			stone = i
 

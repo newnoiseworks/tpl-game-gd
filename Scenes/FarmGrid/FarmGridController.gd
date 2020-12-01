@@ -26,7 +26,9 @@ func _exit_tree():
 
 
 func on_body_enter(body: Node):
+	print("on enter")
 	if body == MoveTarget:
+		print("its mopve target")
 		Player.current_farm_grid = self
 
 
@@ -136,7 +138,7 @@ func draw_things_from_data():
 
 
 func draw_ground_from_data():
-	if data.groundTiles == null:
+	if ! data.has("groundTiles"):
 		return
 
 	var tilled_tiles = []
@@ -175,6 +177,9 @@ func draw_forage_items_from_data():
 
 
 func draw_plants_from_data():
+	if ! data.has("plants"):
+		return
+
 	for plant in data.plants:
 		add_plant_to_grid(plant)
 
@@ -186,7 +191,7 @@ func get_ground_map_tilename_from_position(grid_position):
 func on_farming_event(farm_event):
 	farm_event.position = Vector2(farm_event.x, farm_event.y)
 
-	match farm_event.type:
+	match int(farm_event.type):
 		FarmEvent.PLANT:
 			add_plant_from_event(farm_event)
 		FarmEvent.TILL:
@@ -197,7 +202,7 @@ func on_farming_event(farm_event):
 			forage_item(farm_event)
 		FarmEvent.PLACE_CRAFTED_ITEM:
 			place_crafted_item(farm_event)
-		FarmEvent.REMOVE_CRAFTED_ITem:
+		FarmEvent.REMOVE_CRAFTED_ITEM:
 			remove_crafted_item(farm_event)
 		FarmEvent.DETILL:
 			detill_soil(farm_event)
@@ -269,13 +274,13 @@ func forage_item(farm_event: Dictionary):
 	var item
 
 	for i in data.forageItems:
-		var i_pos = Vector2(i.position.x, i.position.y)
-		if i.position == farm_event.position && i.type == int(farm_event.metadata):
+		var i_position = Vector2(i.x, i.y)
+		if i_position == farm_event.position && i.type == int(farm_event.metadata):
 			item = i
 
 	if item.health > 0:
 		item.health -= item.damageOnHit
-		var i_pos = Vector2(item.position.x, item.position.y)
+		var i_pos = Vector2(item.x, item.y)
 		var forage_item = forage_item_scenes[i_pos]
 
 		if item.health <= 0:
@@ -357,20 +362,21 @@ func add_plant_to_grid(plant_data: Dictionary):
 	var plant_scene = PlantData.item_type_to_plant_scene_map[plant_data.plantType]
 	var instanced_plant = plant_scene.instance()
 
-	instanced_plant.farm_grid = self
 	instanced_plant.data = plant_data
 	instanced_plant.created_at = plant_data.createdAt
 	instanced_plant.position = Vector2(plant_data.x, plant_data.y) * 16
 
-	plant_scenes[plant_data.position] = instanced_plant
+	plant_scenes[Vector2(plant_data.x, plant_data.y)] = instanced_plant
 
 	call_deferred("add_child", instanced_plant)
 
 
 func add_crafted_item_to_grid(item: Dictionary):
-	var item_scene = TPLG.inventory.bag.equiptable_item_scenes[item.type]
+	var item_scene = TPLG.inventory.bag.equiptable_item_scenes[InventoryItems.get_int_from_hash(
+		item.type
+	)]
 	var instanced_item = item_scene.instance()
-	instanced_item.position = Vector2(item.position.x, item.position.y) * 16
+	instanced_item.position = Vector2(item.x, item.y) * 16
 
 	if instanced_item.on_ground:
 		find_node("GroundedItems").call_deferred("add_child", instanced_item)
@@ -381,21 +387,21 @@ func add_crafted_item_to_grid(item: Dictionary):
 
 
 func add_forage_item_to_grid(item: Dictionary):
-	var item_scene = ForageItems.type_to_scene_map[item.type]
+	var item_scene = ForageItems.type_to_scene_map[int(item.type)]
 	var instanced_forage_item = item_scene.instance()
-	instanced_forage_item.position = Vector2(item.position.x, item.position.y) * 16
+	instanced_forage_item.position = Vector2(item.x, item.y) * 16
 
-	for node in instanced_forage_item.GetNode("Variants").get_children():
+	for node in instanced_forage_item.get_node("Variants").get_children():
 		node.hide()
 
 	var ivariant: String = String(item.variant + 1) if item.variant > 0 else ""
 	var flipped: String = "Flipped" if item.flippedX else ""
 
-	var tile: TileMap = instanced_forage_item.get_node("Variants/%sTileMap%s", [flipped, ivariant])
+	var tile: TileMap = instanced_forage_item.get_node("Variants/%sTileMap%s" % [flipped, ivariant])
 
 	tile.show()
 
-	forage_item_scenes[Vector2(item.position.x, item.position.y)] = instanced_forage_item
+	forage_item_scenes[Vector2(item.x, item.y)] = instanced_forage_item
 	call_deferred("add_child", instanced_forage_item)
 
 

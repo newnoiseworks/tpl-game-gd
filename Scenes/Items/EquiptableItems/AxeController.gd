@@ -16,7 +16,7 @@ func primary_action():
 	var tree
 
 	for i in farm_data.forageItems:
-		var position = Vector2(i.position.x, i.position.y)
+		var position = Vector2(i.x, i.y)
 
 		if (
 			(
@@ -34,13 +34,13 @@ func primary_action():
 
 	MatchEvent.farming(
 		{
-			"type": FarmEvent.HARVEST,
+			"type": FarmEvent.FORAGE,
 			"avatar": SaveData.all_avatars_key,
 			"farm_owner_id": farm_grid.owner_id,
 			"farm_owner_avatar": farm_grid.owner_avatar_name,
 			"farm_collection": farm_grid.collection_name,
-			"x": String(tree.position.x),
-			"y": String(tree.position.y),
+			"x": String(tree.x),
+			"y": String(tree.y),
 			"metadata": String(int(ForageItems.TREE))
 		}
 	)

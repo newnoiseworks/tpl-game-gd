@@ -28,7 +28,7 @@ func primary_action():
 		var plant
 
 		for p in farm_data.plants:
-			var position = Vector2(p.position.x, p.position.y)
+			var position = Vector2(p.x, p.y)
 
 			if position == tile_pos:
 				plant = p
@@ -45,8 +45,8 @@ func primary_action():
 				"farm_owner_id": farm_grid.owner_id,
 				"farm_owner_avatar": farm_grid.owner_avatar_name,
 				"farm_collection": farm_grid.collection_name,
-				"x": String(plant.position.x),
-				"y": String(plant.position.y),
+				"x": String(plant.x),
+				"y": String(plant.y),
 				"metadata": plant.plantType
 			}
 		)

@@ -2,7 +2,7 @@ extends "res://RootScenes/DungeonController.gd"
 
 var user_id_to_join: String
 var user_avatar_to_join: String
-var join_match_on_ready: bool
+var join_match_on_ready: bool = true
 
 var farm_grid_scene: PackedScene = ResourceLoader.load("res://Scenes/FarmGrid/FarmGrid.tscn")
 
@@ -75,7 +75,7 @@ func load_match_if_necessary():
 
 func start_match(user_id: String, avatar: String):
 	return yield(
-		MatchManager.find_or_create_dungeon(get_farm_match_label(user_id, avatar), Player.position),
+		MatchManager.find_or_create_match(get_farm_match_label(user_id, avatar), Player.position),
 		"completed"
 	)
 
@@ -103,8 +103,9 @@ func setup_farm_grids():
 	for x in range(5):
 		for y in range(5):
 			var farm_grid = find_node("FarmGrid-%s-%s" % [x, y])
-			farm_grids.append(farm_grid)
-			TPLG.current_farm_grids.append(farm_grid)
+			if farm_grid != null:
+				farm_grids.append(farm_grid)
+				TPLG.current_farm_grids.append(farm_grid)
 
 
 func setup_player_entry():

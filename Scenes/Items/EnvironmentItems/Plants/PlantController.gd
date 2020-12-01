@@ -86,8 +86,8 @@ func interact():
 			"farm_owner_id": farm_grid.owner_id,
 			"farm_owner_avatar": farm_grid.owner_avatar_name,
 			"farm_collection": farm_grid.collection_name,
-			"x": String(data.position.x),
-			"y": String(data.position.y),
+			"x": String(data.x),
+			"y": String(data.y),
 			"metadata": plant_type_id
 		}
 	)

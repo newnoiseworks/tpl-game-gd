@@ -2,7 +2,7 @@ extends "res://Utils/GameConfig.gd"
 
 signal ui_message_dialog(message)
 
-signal base_change_scene(scene_path)
+signal base_change_scene(scene_path, args)
 
 var current_farm_grids = []
 
@@ -63,5 +63,5 @@ func show_message(message: String):
 	emit_signal("ui_message_dialog", message)
 
 
-func base_change_scene(scene_path: String):
-	emit_signal("base_change_scene", scene_path)
+func base_change_scene(scene_path: String, args: Dictionary = {}):
+	emit_signal("base_change_scene", scene_path, args)
