@@ -13,23 +13,24 @@ func primary_action():
 
 	var farm_grid = Player.current_farm_grid
 
-	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().till != 1:
+	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().plant != 1:
 		TPLG.ui.show_toast("You don't have permission to plant seeds on this farm!")
+		return
 
-		TPLG.inventory.bag.remove_item_locally(inventory_type)
+	TPLG.inventory.bag.remove_item_locally(inventory_type)
 
-		MatchEvent.farming(
-			{
-				"type": FarmEvent.PLANT,
-				"avatar": SaveData.current_avatar_key,
-				"farm_owner_id": farm_grid.owner_id,
-				"farm_owner_avatar": farm_grid.owner_avatar_name,
-				"farm_collection": farm_grid.collection_name,
-				"x": String(MoveTarget.get_current_farm_grid_tile().x),
-				"y": String(MoveTarget.get_current_farm_grid_tile().y),
-				"metadata": InventoryItems.get_hash_from_int(inventory_type)
-			}
-		)
+	MatchEvent.farming(
+		{
+			"type": FarmEvent.PLANT,
+			"avatar": SaveData.current_avatar_key,
+			"farm_owner_id": farm_grid.owner_id,
+			"farm_owner_avatar": farm_grid.owner_avatar_name,
+			"farm_collection": farm_grid.collection_name,
+			"x": String(MoveTarget.get_current_farm_grid_tile().x),
+			"y": String(MoveTarget.get_current_farm_grid_tile().y),
+			"metadata": InventoryItems.get_hash_from_int(inventory_type)
+		}
+	)
 
 
 #       new FarmingEvent(
@@ -70,7 +71,7 @@ func can_add_plant_to(farm_grid):
 		if Vector2(plant.x, plant.y) == grid_position:
 			return false
 
-	var tilename: String = farm_grid.get_ground_map_tilename_from_position(grid_position)
+	var tilename = farm_grid.get_ground_map_tilename_from_position(grid_position)
 
 	if tilename == "" || tilename == null:
 		return false

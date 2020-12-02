@@ -14,7 +14,7 @@ var crafted_item_scenes = {}
 
 onready var ground_map: TileMap = find_node("Ground")
 onready var tweener: Tween = find_node("Tween")
-onready var tileAdjuster: Node = $TileAdjuster
+onready var tile_adjuster: Node = $TileAdjuster
 
 
 func _ready():
@@ -161,7 +161,7 @@ func draw_ground_from_data():
 			ground_map.set_cellv(pos, tile_idx)
 
 	for pos in tilled_tiles:
-		tileAdjuster.till_tiled_dirt(ground_map, pos, data)
+		tile_adjuster.till_tiled_dirt(ground_map, pos, data)
 		pass
 
 
@@ -305,7 +305,7 @@ func forage_item(farm_event: Dictionary):
 func till_soil(farm_event):
 	var grid_position = farm_event.position
 
-	tileAdjuster.till_tiled_dirt(ground_map, grid_position, data)
+	tile_adjuster.till_tiled_dirt(ground_map, grid_position, data)
 
 
 func detill_soil(farm_event):
