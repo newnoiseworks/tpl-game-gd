@@ -1,28 +1,22 @@
 extends "res://Scenes/MovementGrid/TeleporterController.gd"
 
-# using Godot;
-# using TPV.RootScenes.Farm;
+export var enabled: bool
 
-# namespace TPV.Scenes.MovementGrid {
+var user_id_to_join: String
+var user_avatar_to_join: String
 
-#   public class FarmTeleporterController : TeleporterController {
 
-#     [Export] public bool enabled;
+func on_body_enter(body: PhysicsBody2D):
+	print("farm teleporter on body enter")
+	if enabled == false || exit_enabled == false:
+		return
 
-#     public string userIdToJoin;
-#     public string userAvatarToJoin;
+	scene_to_load = "RootScenes/Farm/Farm.tscn"
+	exit_enabled = true
 
-#     protected override void OnBodyEnter(PhysicsBody2D body) {
-#       if (enabled == false || exitEnabled == false) return;
+	TPLG.current_farm = {
+		"user_id": user_id_to_join,
+		"user_avatar": user_avatar_to_join,
+	}
 
-#       sceneToLoad = "RootScenes/Farm/Farm.tscn";
-#       exitEnabled = true;
-
-#       FarmController.userIdToJoin = userIdToJoin;
-#       FarmController.userAvatarToJoin = userAvatarToJoin;
-#       FarmController.joinMatchOnReady = true;
-
-#       base.OnBodyEnter(body);
-#     }
-#   }
-# }
+	.on_body_enter(body)

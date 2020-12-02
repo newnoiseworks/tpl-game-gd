@@ -52,8 +52,8 @@ func _exit_tree():
 		tile.disconnect("equip_item", self, "on_equip_item")
 
 
-func shift_equip_item(up: bool = true):
-	var next_slot: int = current_equipped_slot + 1 if up else -1
+func shift_equipped_item(up: bool = true):
+	var next_slot: int = current_equipped_slot + 1 if up else current_equipped_slot - 1
 
 	if next_slot >= columns:
 		next_slot = 0

@@ -138,7 +138,7 @@ func add_item_scene_or_update_quantity(item_data: Dictionary):
 	inventory.tiles[item_data.bagPosition].update_quantity(item_data.quantity)
 
 
-func move_item(old_bag_position: int, bag_position: int):
+func move_item(_old_bag_position: int, _bag_position: int):
 	# probably should call server && perform local?
 	# we weren't actually calling this early iirc
 	pass

@@ -60,7 +60,7 @@ func number_of_game_days_from_daybreak_from_unix_timestamp(timestamp):
 
 
 func unix_timestamp_start_of_game_day_from_seconds(seconds):
-	return seconds - (seconds % REAL_WORLD_SECONDS_PER_GAME_DAY)
+	return seconds - int(seconds % REAL_WORLD_SECONDS_PER_GAME_DAY)
 
 
 func get_current_timestamp():
@@ -78,8 +78,8 @@ func get_rounded_time():
 	return (
 		"%s:%02d %s"
 		% [
-			in_game_hour,
-			(in_game_minute / LABEL_MINUTES_TO_ROUND_BY) * LABEL_MINUTES_TO_ROUND_BY,
+			hour,
+			int(in_game_minute / LABEL_MINUTES_TO_ROUND_BY) * LABEL_MINUTES_TO_ROUND_BY,
 			"PM" if in_game_hour > 11 else "AM"
 		]
 	)
@@ -88,8 +88,8 @@ func get_rounded_time():
 func set_in_game_time_of_day():
 	var percentage_of_day_complete = get_percentage_of_day_complete()
 
-	in_game_hour = floor(percentage_of_day_complete * 24)
-	in_game_minute = floor(percentage_of_day_complete * 24 * 60) - (in_game_hour * 60)
+	in_game_hour = int(floor(percentage_of_day_complete * 24))
+	in_game_minute = int(floor(percentage_of_day_complete * 24 * 60) - (in_game_hour * 60))
 
 	if was_day_at_last_check == was_night_at_last_check:
 		was_day_at_last_check = is_day()

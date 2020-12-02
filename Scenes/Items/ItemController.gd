@@ -55,7 +55,7 @@ func interact():
 func on_walk_behind_trigger_enter(body: PhysicsBody2D):
 	base_z_index = z_index
 
-	var character: bool = body.user_id != null
+	var character: bool = "user_id" in body
 	var player: bool = body == Player
 
 	if ! character:
@@ -85,7 +85,7 @@ func on_walk_behind_trigger_enter(body: PhysicsBody2D):
 
 
 func on_walk_behind_trigger_exit(body):
-	var character: bool = body.user_id != null
+	var character: bool = "user_id" in body
 	var player: bool = body == Player
 
 	if ! character:
@@ -134,9 +134,8 @@ func place_crafted_item_on_farm_grid():
 	if farm_grid.has_farm_item(grid_position):
 		return
 
-	var farm_data = farm_grid.data
-	var item_hash = InventoryItems.get_hash(
-		InventoryItems.get_enum_from_name("Crafted_" % [crafted_item_type])
+	var item_hash = InventoryItems.get_hash_from_int(
+		InventoryItems.get_int_from_name("Crafted_%s" % [crafted_item_type])
 	)
 
 	MatchEvent.farming(
@@ -173,8 +172,6 @@ func remove_crafted_item_on_farm_grid():
 		return
 
 	var farm_grid = Player.current_farm_grid
-	var farm_data = farm_grid.data
-	var grid_position = MoveTarget.get_current_farm_grid_tile()
 	var item_hash = InventoryItems.get_hash_from_int(
 		InventoryItems.get_int_from_name("Crafted_%s" % [crafted_item_type])
 	)
@@ -190,8 +187,8 @@ func remove_crafted_item_on_farm_grid():
 			"farm_owner_id": farm_grid.owner_id,
 			"farm_owner_avatar": farm_grid.owner_avatar_name,
 			"farm_collection": farm_grid.collection_name,
-			"x": String(position.x),
-			"y": String(position.y),
+			"x": String(position.x / 16),
+			"y": String(position.y / 16),
 			"metadata": item_hash
 		}
 	)

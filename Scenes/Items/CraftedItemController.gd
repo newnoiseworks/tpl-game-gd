@@ -2,10 +2,10 @@ extends "res://Scenes/Items/ItemController.gd"
 
 
 func primary_action():
-	# place_crafted_item_on_farm_grid()
-	pass
+	print("are we placing yet")
+	place_crafted_item_on_farm_grid()
 
 
 func secondary_action():
-	# remove_crafted_item_on_farm_grid()
-	pass
+	print("it should be happening")
+	remove_crafted_item_on_farm_grid()

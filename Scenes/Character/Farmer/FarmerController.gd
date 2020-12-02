@@ -163,7 +163,7 @@ func handle_avatar_update_event(msg: String, presence: Dictionary):
 	if presence.user_id != user_id:
 		return
 
-	var args = JSON.parse(msg).result
+	# var args = JSON.parse(msg).result
 
 	var profile = yield(SaveData.load("profile", SaveData.all_avatars_key, user_id), "completed")
 

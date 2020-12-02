@@ -119,7 +119,7 @@ func unset_farm(full_reset: bool = false):
 		data = {}
 
 
-func reload_data_on_reset_event(args):
+func reload_data_on_reset_event(_args, _presence):
 	print_debug("Unsetting farm grid")
 	unset_farm()
 	yield(load_data(), "completed")
@@ -246,14 +246,10 @@ func water_plant(farm_event: Dictionary):
 func remove_crafted_item(farm_event: Dictionary):
 	var crafted_item_to_remove
 
-	for item_key in data.craftedItems:
-		var i = data.craftedItems[item_key]
-		var i_pos = Vector2(i.position.x, i.position.y)
+	for i in data.craftedItems:
+		var i_pos = Vector2(i.x, i.y)
 
-		if (
-			i_pos == farm_event.position
-			&& i.type == InventoryItems.get_int_from_hash(farm_event.metadata)
-		):
+		if i_pos == farm_event.position && i.type == farm_event.metadata:
 			crafted_item_to_remove = i
 
 	data.craftedItems.erase(crafted_item_to_remove)
@@ -343,7 +339,7 @@ func add_plant_from_event(farm_event: Dictionary):
 	var plant_hash_id = PlantData.seed_to_plant_hash_map[farm_event.metadata]
 	var initial_water_history = []
 
-	for i in range(InventoryItems.plant_growth_stages[plant_hash_id].size()):
+	for _i in range(InventoryItems.plant_growth_stages[plant_hash_id].size()):
 		initial_water_history.append(0)
 
 	var plant_to_add = {

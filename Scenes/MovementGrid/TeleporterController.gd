@@ -3,37 +3,18 @@ extends Area2D
 export var scene_to_load: String
 export var exit_enabled: bool
 
-# using Godot;
-# using TPV.RootScenes;
-# using TPV.Scenes.Character.Farmer;
-# using TPV.Utils.Network;
-# using TPV.Scenes.UI;
+var last_scene
 
-# namespace TPV.Scenes.MovementGrid {
-#   public class TeleporterController : Area2D {
 
-#     public static string lastScene;
+func on_body_enter(body):
+	print("teleporter on body enter")
+	if body == Player && exit_enabled:
+		TPLG.ui.show_loading_dialog()
+		yield(MatchManager.leave_match(), "completed")
 
-#     protected virtual async void OnBodyEnter(PhysicsBody2D body) {
-#       PlayerController player = body as PlayerController;
+		TPLG.base_change_scene("res://%s" % [scene_to_load])
 
-#       if (player != null && exitEnabled && player == PlayerController.instance) {
-#         UIController.ShowLoadingDialog();
-#         await MatchManager.LeaveMatch();
 
-#         lastScene = RootController.rootInstance.sceneName;
-#         BaseViewportsController.instance.ChangeScene($"res://{sceneToLoad}");
-
-#         if (SessionManager.match != null)
-#           await MatchManager.LeaveMatch();
-#       }
-#     }
-
-#     private void OnBodyExit(PhysicsBody2D body) {
-#       PlayerController player = body as PlayerController;
-
-#       if (player != null && player == PlayerController.instance)
-#         exitEnabled = true;
-#     }
-#   }
-# }
+func on_body_exit(body):
+	if body == Player:
+		exit_enabled = true

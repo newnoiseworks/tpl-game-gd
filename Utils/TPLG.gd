@@ -6,6 +6,8 @@ signal base_change_scene(scene_path, args)
 
 var current_farm_grids = []
 
+var current_farm = {"user_id": "", "user_avatar": ""}
+
 var last_scene = ""
 
 var inventory
@@ -64,4 +66,11 @@ func show_message(message: String):
 
 
 func base_change_scene(scene_path: String, args: Dictionary = {}):
+	if Player.is_inside_tree():
+		Player.get_parent().call_deferred("remove_child", Player)
+
+	if MoveTarget.is_inside_tree():
+		MoveTarget.get_parent().call_deferred("remove_child", MoveTarget)
+
 	emit_signal("base_change_scene", scene_path, args)
+	TPLG.last_scene = scene_path.replace("res://", "")

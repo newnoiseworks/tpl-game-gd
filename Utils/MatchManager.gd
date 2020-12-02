@@ -33,8 +33,9 @@ func find_or_create_match(label: String, starting_position: Vector2):
 func leave_match():
 	if game_match != null:
 		yield(socket.leave_match_async(game_match.match_id), "completed")
-
-	game_match = null
+		game_match = null
+	else:
+		yield()
 
 
 func _join_match(match_id: String, label: String, starting_position: Vector2) -> NakamaRTAPI.Match:

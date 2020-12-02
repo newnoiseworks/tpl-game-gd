@@ -15,9 +15,9 @@ func _ready():
 		call_deferred("_login_with_dev_creds")
 		return
 
-	call("add_child", MoveTarget)
+	call_deferred("add_child", MoveTarget)
 
-	_add_player_to_scene()
+	call_deferred("_add_player_to_scene")
 	user_ids.append(SessionManager.session.user_id)
 
 	MatchEvent.connect("match_join", self, "_handle_match_join_event")
@@ -29,7 +29,6 @@ func _ready():
 
 func _exit_tree():
 	if MatchManager.game_match != null:
-		yield(MatchManager.leave_match(), "completed")
 		MatchManager.socket.disconnect("received_match_presence", self, "_on_match_presence")
 		MatchEvent.disconnect("match_join", self, "_handle_match_join_event")
 
@@ -51,17 +50,15 @@ func _login_with_dev_creds():
 
 
 func _join_dungeon():
-#       UIController.ShowLoadingDialog();
 	yield(MatchManager.find_or_create_match(dungeon, player_entry_node.position), "completed")
-#       UIController.HideLoadingDialog();
-	pass
+	TPLG.ui.hide_loading_dialog()
 
 
 func _add_player_to_scene():
 	Player.position = player_entry_node.position
 	Player.name = SessionManager.session.user_id
 	Player.user_id = SessionManager.session.user_id
-	find_node("EnvironmentItems").call("add_child", Player)
+	find_node("EnvironmentItems").call_deferred("add_child", Player)
 	Player.restrict_camera_to_tile_map(find_node("Ground"))
 	get_tree().root.emit_signal("size_changed")
 	Player.set_idle()

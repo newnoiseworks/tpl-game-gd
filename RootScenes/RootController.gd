@@ -44,8 +44,8 @@ func on_window_resize():
 
 
 # WELP: Kind of a weird place to put this but need a non static context that exists across scenes
-func join_farm_match(match_id: String, match_label: String):
-	var parts = match_label.split("//")
+func join_farm_match(_match_id: String, _match_label: String):
+	var _parts = _match_label.split("//")
 #       string[] parts = matchLabel.Split("//");
 
 #       FarmController.userIdToJoin = parts[1];

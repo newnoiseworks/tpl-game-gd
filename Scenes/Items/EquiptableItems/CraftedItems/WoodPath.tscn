@@ -7,8 +7,8 @@
 z_as_relative = false
 script = ExtResource( 2 )
 onGround = true
-isCrafted = true
-craftedItemType = "WoodPath"
+is_crafted = true
+crafted_item_type = "WoodPath"
 
 [node name="TileMap" parent="." index="1"]
 tile_data = PoolIntArray( 0, 975, 0 )

@@ -17,6 +17,9 @@ func _ready():
 	if user_avatar_to_join == "":
 		user_avatar_to_join = SaveData.current_avatar_key
 
+	TPLG.current_farm.user_id = user_id_to_join
+	TPLG.current_farm.user_avatar = user_avatar_to_join
+
 	RealmEvent.connect("change_dungeon", self, "change_dungeon_handler")
 	MatchEvent.connect("farm_permission_update", self, "farm_permissions_update_event_callback")
 	setup_farm_grids()
@@ -38,7 +41,7 @@ func _exit_tree():
 	join_match_on_ready = false
 
 
-func farm_permissions_update_event_callback(args: Dictionary, user_id: String):
+func farm_permissions_update_event_callback(_args: Dictionary, _user_id: String):
 	permissions_data = yield(
 		SaveData.load("town0FarmGridPermissions", user_avatar_to_join, user_id_to_join), "completed"
 	)
@@ -61,7 +64,7 @@ func load_farm():
 		RealmEvent.change_dungeon({"dungeon": "%s's Farm" % [user_avatar_to_join]})
 
 
-func change_dungeon_handler(_args: Dictionary, _user_id):
+func change_dungeon_handler(_args, _presence):
 	call_deferred("load_match_if_necessary")
 
 

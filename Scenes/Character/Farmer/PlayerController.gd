@@ -26,11 +26,11 @@ func _ready():
 
 
 func _enter_tree():
+	navigation_points = []
+	current_nav_index = 0
+	next_movement_point = Vector2.ONE * -1  # ????
+	player_position_at_start = position
 	move_target_as_needed(position)
-
-
-func _exit_tree():
-	movement_ping_timer.stop()
 
 
 func _physics_process(delta: float):
@@ -114,11 +114,11 @@ func _unhandled_input(event: InputEvent):
 		secondary_action_on_cursor_item()
 
 	if event.is_action_released("action_four"):
-		# Inventory_controller.instance.Shift_equipt_item(false);
+		TPLG.inventory.shift_equipped_item(false)
 		pass
 
 	if event.is_action_released("action_five"):
-		# Inventory_controller.instance.Shift_equipt_item();
+		TPLG.inventory.shift_equipped_item()
 		pass
 
 
@@ -148,13 +148,14 @@ func use_equipped_item():
 
 
 func secondary_action_on_cursor_item():
-#       IEquiptable_dual_action_item item = item_under_target as IEquiptable_dual_action_item;
-
-#       if (item != null) {
-#         item.Secondary_action();
-#       }
-#     }
-	pass
+	if item_under_target != null && item_under_target.has_method("secondary_action"):
+		print("well then")
+		item_under_target.secondary_action()
+	elif item_under_target != null:
+		print("hmm")
+		print(item_under_target.has_method("secondary_action"))
+	else:
+		print("oh, item under target is null apparently")
 
 
 func update_target_if_needed(mouse_movement: bool = false):

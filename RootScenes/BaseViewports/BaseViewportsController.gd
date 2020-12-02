@@ -11,6 +11,10 @@ func change_scene(scene_path: String, args: Dictionary):
 	for child in game_viewport.get_children():
 		child.queue_free()
 
+	call_deferred("add_scene_after_one_frame", scene_path, args)
+
+
+func add_scene_after_one_frame(scene_path: String, args: Dictionary):
 	call_deferred("add_scene", scene_path, args)
 
 
