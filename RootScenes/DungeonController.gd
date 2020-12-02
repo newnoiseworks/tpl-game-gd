@@ -4,7 +4,9 @@ export var dungeon: String
 
 var user_ids: Array = []
 # var player_scene: PackedScene = ResourceLoader.load("res://Scenes/Character/Farmer/Player.tscn")
-var farmer_scene: PackedScene = ResourceLoader.load("res://Scenes/Character/Farmer/Farmer.tscn")
+var farmer_scene: PackedScene = ResourceLoader.load(
+	"res://Scenes/Character/Farmer/Farmer.tscn", "", true
+)
 var base_viewports_scene = preload("res://RootScenes/BaseViewports/BaseViewports.tscn")
 
 onready var player_entry_node: Node2D = find_node("PlayerEntry")
@@ -83,7 +85,9 @@ func _handle_match_join_event(data, _presence):
 
 		var starting_position: Vector2
 
-		if args.positions.keys().has(user_id) && args.positions[user_id].has("x"):
+		print(JSON.print(args.positions))
+
+		if user_id in args.positions.keys() && "x" in args.positions[user_id]:
 			starting_position = Vector2(args.positions[user_id].x, args.positions[user_id].y)
 		else:
 			starting_position = player_entry_node.position

@@ -19,6 +19,17 @@ onready var top_tile_map: TileMap = find_node("Top")
 onready var bottom_tile_map: TileMap = find_node("Bottom")
 
 
+func _enter_tree():
+	character_base = "Avatars/base/#"
+
+	is_animation_playing = false
+	current_tool_tile = ""
+
+	if user_id != "":
+		MatchEvent.connect("farming", self, "handle_farming_event")
+		MatchEvent.connect("avatar_update", self, "handle_avatar_update_event")
+
+
 func _ready():
 	stop_all_animations()
 	tool_tile_map.clear()
@@ -26,19 +37,8 @@ func _ready():
 	current_tool_tile = ""
 
 
-func _enter_tree():
-	character_base = "Avatars/base/#"
-
-	is_animation_playing = false
-	current_tool_tile = ""
-
-	if user_id != null && user_id != "":
-		MatchEvent.connect("farming", self, "handle_farming_event")
-		MatchEvent.connect("avatar_update", self, "handle_avatar_update_event")
-
-
 func _exit_tree():
-	if user_id != null && user_id != "":
+	if user_id != "":
 		MatchEvent.disconnect("farming", self, "handle_farming_event")
 		MatchEvent.disconnect("avatar_update", self, "handle_avatar_update_event")
 
@@ -203,28 +203,28 @@ func handle_farming_event(msg, presence):
 	match int(args.type):
 		FarmEvent.PLANT:
 			stop_all_animations()
-			pickup_animation.play()
+			pickup_animation.play("Main")
 		FarmEvent.TILL:
 			stop_all_animations()
-			till_animation.play()
+			till_animation.play("Main")
 		FarmEvent.HARVEST:
 			stop_all_animations()
-			pickup_animation.play()
+			pickup_animation.play("Main")
 		FarmEvent.FORAGE:
 			stop_all_animations()
 
 			match int(args.metadata):
 				ForageItems.TREE:
-					axe_animation.play()
+					axe_animation.play("Main")
 				ForageItems.STONE:
-					strike_animation.play()
+					strike_animation.play("Main")
 				ForageItems.WEED:
-					scythe_animation.play()
+					scythe_animation.play("Main")
 				ForageItems.TALL_GRASS:
-					scythe_animation.play()
+					scythe_animation.play("Main")
 		FarmEvent.DETILL:
 			stop_all_animations()
-			strike_animation.play()
+			strike_animation.play("Main")
 		FarmEvent.WATER:
 			pass
 

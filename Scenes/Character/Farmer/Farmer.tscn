@@ -21,6 +21,7 @@ shader_param/tertiaryChangeColor = Vector3( -1, -1, -1 )
 [sub_resource type="Animation" id=2]
 resource_name = "WalkAnim"
 length = 0.72
+loop = true
 step = 0.18
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:current_tile")
@@ -37,6 +38,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 length = 0.56
+loop = true
 step = 0.07
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:current_tile")
@@ -198,7 +200,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-length = 0.15
+length = 0.155
 step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:current_tile")
@@ -229,8 +231,6 @@ tracks/1/keys = {
 material = SubResource( 1 )
 collision_layer = 40
 script = ExtResource( 3 )
-user_id = null
-character_base = null
 current_tile = "till 0"
 is_animation_playing = true
 current_tool_tile = "till 0"
@@ -294,24 +294,19 @@ position = Vector2( -7.86111, 16 )
 position = Vector2( 0.121838, 0.314087 )
 
 [node name="Walk" parent="." index="10"]
-anims/WalkAnim = SubResource( 2 )
+anims/Main = SubResource( 2 )
 
 [node name="Till" type="AnimationPlayer" parent="." index="11"]
-autoplay = "Till"
-anims/Till = SubResource( 3 )
+anims/Main = SubResource( 3 )
 
 [node name="Scythe" type="AnimationPlayer" parent="." index="12"]
-autoplay = "Till"
-anims/Till = SubResource( 4 )
+anims/Main = SubResource( 4 )
 
 [node name="Axe" type="AnimationPlayer" parent="." index="13"]
-autoplay = "Till"
-anims/Till = SubResource( 5 )
+anims/Main = SubResource( 5 )
 
 [node name="Strike" type="AnimationPlayer" parent="." index="14"]
-autoplay = "Till"
-anims/Till = SubResource( 6 )
+anims/Main = SubResource( 6 )
 
 [node name="Pickup" type="AnimationPlayer" parent="." index="15"]
-autoplay = "Till"
-anims/Till = SubResource( 7 )
+anims/Main = SubResource( 7 )

@@ -22,7 +22,6 @@ func add_scene(scene_path: String, args: Dictionary):
 	var scene: Node = ResourceLoader.load(scene_path).instance()
 
 	for key in args.keys():
-		if scene.has_meta(key):
-			scene[key] = args[key]
+		scene[key] = args[key]
 
 	game_viewport.add_child(scene)

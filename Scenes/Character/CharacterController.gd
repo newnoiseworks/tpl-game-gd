@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 export var user_id: String
 export var character_base: String
-# export var dialogue_file: String
-# export var dialogue_section: String
+export var dialogue_file: String
+export var dialogue_section: String
 export var current_tile: String
 
 const POSITION_COMPARATOR_TIMER_INTERVAL: int = 3
@@ -42,12 +42,6 @@ func is_right() -> bool:
 	return direction == Vector2.RIGHT
 
 
-func _ready():
-	position_comparator_timer.wait_time = POSITION_COMPARATOR_TIMER_INTERVAL
-	position_comparator_timer.one_shot = true
-	position_comparator_timer.connect("timeout", self, "_server_position_check")
-
-
 func _enter_tree():
 	if username_label == null:
 		username_label = get_node("UsernameLabel")
@@ -62,7 +56,7 @@ func _enter_tree():
 	else:
 		movement_target = position
 
-	if user_id != null:
+	if user_id != "":
 		MatchEvent.connect("movement", self, "_handle_move_event")
 
 #       Material = Material.Duplicate() as Material;
@@ -71,8 +65,14 @@ func _enter_tree():
 	# set_idle()
 
 
+func _ready():
+	position_comparator_timer.wait_time = POSITION_COMPARATOR_TIMER_INTERVAL
+	position_comparator_timer.one_shot = true
+	position_comparator_timer.connect("timeout", self, "_server_position_check")
+
+
 func _exit_tree():
-	if user_id != null:
+	if user_id != "":
 		MatchEvent.disconnect("movement", self, "_handle_move_event")
 
 
@@ -82,7 +82,7 @@ func _set_username(_username: String):
 
 
 func set_idle():
-	walk_animation.Stop()
+	walk_animation.stop()
 	current_tile = "1"
 	update_current_tile()
 
@@ -141,7 +141,7 @@ func _physics_process(_delta: float):
 		position_comparator_timer.start(POSITION_COMPARATOR_TIMER_INTERVAL)
 
 	if walk_animation.is_playing() == false:
-		walk_animation.play()
+		walk_animation.play("Main")
 
 	_physics_loop()
 
@@ -175,13 +175,11 @@ func move_event_on_load():
 	_move_event({"x": movement_target.x, "y": movement_target.y, "ping": "0"})
 
 
-#     public virtual void Interact() {
-#       if (!dialogueFile.Empty() && !dialogueSection.Empty()) {
-#         DialogueController.Start(dialogueFile, dialogueSection);
-#       } else {
-#         Logger.Log("Character interaction");
-#       }
-#     }
+func interact():
+	if dialogue_file != "" && dialogue_section != "":
+		TPLG.dialogue.start(dialogue_file, dialogue_section)
+	else:
+		print("Character interaction")
 
 
 func _handle_move_event(msg, presence):

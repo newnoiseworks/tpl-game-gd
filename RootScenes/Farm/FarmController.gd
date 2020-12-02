@@ -12,10 +12,10 @@ var permissions_data = {}
 
 func _ready():
 	if user_id_to_join == "":
-		user_id_to_join = SessionManager.session.user_id
+		user_id_to_join = TPLG.current_farm.user_id
 
 	if user_avatar_to_join == "":
-		user_avatar_to_join = SaveData.current_avatar_key
+		user_avatar_to_join = TPLG.current_farm.user_avatar
 
 	TPLG.current_farm.user_id = user_id_to_join
 	TPLG.current_farm.user_avatar = user_avatar_to_join
