@@ -10,9 +10,6 @@ extents = Vector2( 12.7282, 11.6076 )
 z_as_relative = true
 collision_layer = 9
 script = ExtResource( 2 )
-current_tile = "idle 0"
-is_animation_playing = false
-current_tool_tile = "scythe 0"
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( 0.71612, 6.90705 )
@@ -38,8 +35,5 @@ margin_bottom = -10.4372
 [node name="VisibilityNotifier2D" parent="." index="10"]
 position = Vector2( 0, 0 )
 scale = Vector2( 1, 1 )
-
-[node name="Scythe" parent="." index="13"]
-autoplay = ""
 
 [node name="MovementPing" type="Timer" parent="." index="18"]

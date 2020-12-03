@@ -38,7 +38,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 length = 0.56
-loop = true
 step = 0.07
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:current_tile")
