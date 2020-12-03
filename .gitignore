@@ -1,4 +1,25 @@
 godot.log
 debug.log
 
-dist/*
+# Godot-specific ignores
+.import/
+export.cfg
+
+# Mono-specific ignores
+.mono/
+
+# Viz studio garbage
+.vs/
+.vscode/
+
+dist
+
+.Nakama
+.cookie
+.DS_Store
+
+config.tpl_*.tres
+config.tpl.tres
+Data/InventoryItems.cs
+
+Resources/Config/GameConfig.cs
