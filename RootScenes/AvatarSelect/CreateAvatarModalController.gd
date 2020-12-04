@@ -44,8 +44,6 @@ func confirmed():
 
 	data.avatars.append(avatar_data)
 
-	print(JSON.print(data))
-
 	yield(SaveData.save(data, "profile", SaveData.all_avatars_key), "completed")
 
 	yield(SessionManager.rpc_async("user.on_registration", avatar_data.key), "completed")
@@ -53,5 +51,12 @@ func confirmed():
 	SessionManager.set_current_avatar(avatar_data)
 	yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
 
-	TPLG.base_change_scene("res://RootScenes/RewriteTest.tscn")
-	TPLG.call_deferred("set_ui_scene")
+	TPLG.set_ui_scene()
+	TPLG.base_change_scene(
+		"res://RootScenes/Farm/Farm.tscn",
+		{
+			"user_id_to_join": SessionManager.session.user_id,
+			"user_avatar_to_join": avatar_data.key,
+			"join_match_on_ready": true
+		}
+	)

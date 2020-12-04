@@ -32,7 +32,6 @@ scale = Vector2( 1.3289, 1.24145 )
 position = Vector2( 92.1497, -47.4819 )
 
 [node name="LeftEntry" type="Node2D" parent="."]
-visible = false
 position = Vector2( 32, -48 )
 
 [node name="RoadGround" type="TileMap" parent="LeftEntry"]
@@ -41,7 +40,7 @@ cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( -327659, 536871367, 0, -327658, 536871367, 0, -262123, 536871367, 0, -262122, 536871367, 0, -196587, 536871367, 0, -196586, 536871367, 0, -65538, 456, 0, -65537, 456, 0, -131072, 456, 0, -131071, 456, 0, -131070, 456, 0, -131069, 456, 0, -131068, 456, 0, -131067, 456, 0, -131066, 456, 0, -131065, 456, 0, -131064, 456, 0, -131063, 456, 0, -131062, 456, 0, -131061, 456, 0, -131060, 456, 0, -131059, 456, 0, -131058, 456, 0, -131057, 456, 0, -131056, 456, 0, -131055, 456, 0, -131054, 1610613192, 0, -131053, 1610613192, 0, -2, 455, 0, -1, 455, 0, -65536, 455, 0, -65535, 455, 0, -65534, 455, 0, -65533, 455, 0, -65532, 455, 0, -65531, 455, 0, -65530, 455, 0, -65529, 455, 0, -65528, 455, 0, -65527, 455, 0, -65526, 455, 0, -65525, 455, 0, -65524, 455, 0, -65523, 455, 0, -65522, 455, 0, -65521, 455, 0, -65520, 455, 0, -65519, 455, 0, 65534, 455, 0, 65535, 455, 0, 0, 455, 0, 1, 536871367, 0, 2, 455, 0, 3, 455, 0, 4, 455, 0, 5, 455, 0, 6, 455, 0, 7, 455, 0, 8, 455, 0, 9, 455, 0, 10, 455, 0, 11, 455, 0, 12, 455, 0, 13, 455, 0, 14, 455, 0, 15, 455, 0, 16, 455, 0, 17, 455, 0, 18, 536871368, 0, 19, 536871368, 0, 131070, 1610613192, 0, 131071, 1610613192, 0, 65536, 1610613192, 0, 65537, 1610613192, 0, 65538, 1610613192, 0, 65539, 1610613192, 0, 65540, 1610613192, 0, 65541, 1610613192, 0, 65542, 1610613192, 0, 65543, 1610613192, 0, 65544, 1610613192, 0, 65545, 1610613192, 0, 65546, 1610613192, 0, 65547, 1610613192, 0, 65548, 1610613192, 0, 65549, 1610613192, 0, 65550, 1610613192, 0, 65551, 1610613192, 0, 65552, 1610613192, 0, 65553, 1610613192, 0, 65554, 1610613192, 0, 65555, 1610613192, 0 )
+tile_data = PoolIntArray( -327659, 536871367, 0, -327658, 536871367, 0, -262123, 536871367, 0, -262122, 536871367, 0, -196587, 536871367, 0, -196586, 536871367, 0, -65538, 2216, 0, -65537, 2216, 0, -131072, 2216, 0, -131071, 2216, 0, -131070, 2216, 0, -131069, 2216, 0, -131068, 2216, 0, -131067, 2216, 0, -131066, 2216, 0, -131065, 2216, 0, -131064, 2216, 0, -131063, 2216, 0, -131062, 2216, 0, -131061, 2216, 0, -131060, 2216, 0, -131059, 2216, 0, -131058, 456, 0, -131057, 456, 0, -131056, 456, 0, -131055, 456, 0, -131054, 1610613192, 0, -131053, 1610613192, 0, -2, 2229, 0, -1, 2228, 0, -65536, 2228, 0, -65535, 2229, 0, -65534, 2228, 0, -65533, 2228, 0, -65532, 2228, 0, -65531, 2228, 0, -65530, 2228, 0, -65529, 2231, 0, -65528, 2228, 0, -65527, 2228, 0, -65526, 2228, 0, -65525, 2231, 0, -65524, 2229, 0, -65523, 2228, 0, -65522, 2228, 0, -65521, 2228, 0, -65520, 2228, 0, -65519, 455, 0, 65534, 2264, 0, 65535, 2264, 0, 0, 2264, 0, 1, 2187, 0, 2, 2264, 0, 3, 2264, 0, 4, 2264, 0, 5, 2264, 0, 6, 2264, 0, 7, 2264, 0, 8, 2264, 0, 9, 2264, 0, 10, 2264, 0, 11, 2264, 0, 12, 2264, 0, 13, 2264, 0, 14, 2264, 0, 15, 2264, 0, 16, 2264, 0, 17, 2264, 0, 18, 2264, 0, 19, 2264, 0, 131070, 2217, 0, 131071, 2217, 0, 65536, 2217, 0, 65537, 2217, 0, 65538, 2217, 0, 65539, 2217, 0, 65540, 2217, 0, 65541, 2217, 0, 65542, 2217, 0, 65543, 2217, 0, 65544, 2217, 0, 65545, 2217, 0, 65546, 2217, 0, 65547, 2217, 0, 65548, 2217, 0, 65549, 2217, 0, 65550, 2217, 0, 65551, 2217, 0, 65552, 2217, 0, 65553, 2217, 0, 65554, 2217, 0, 65555, 2217, 0 )
 
 [node name="Teleporter" parent="LeftEntry" instance=ExtResource( 11 )]
 scene_to_load = "RootScenes/Town0/OldTownRoad.tscn"
@@ -66,41 +65,38 @@ tile_data = PoolIntArray( -65538, 536871335, 0, -65537, 536871367, 0, -131072, 5
 scene_to_load = "RootScenes/Town0/OldTownRoad.tscn"
 exit_enabled = true
 
-[node name="Lamp2" parent="TopEntry" instance=ExtResource( 7 )]
-position = Vector2( -29.9611, -65.1555 )
-
-[node name="Lamp" parent="TopEntry" instance=ExtResource( 7 )]
-position = Vector2( 19.8971, -17.7841 )
+[node name="Lamp4" parent="TopEntry" instance=ExtResource( 7 )]
+position = Vector2( -32, -65.1555 )
 
 [node name="EnvironmentItems" type="YSort" parent="."]
 z_as_relative = false
+
+[node name="Lamp" parent="EnvironmentItems" instance=ExtResource( 7 )]
+position = Vector2( 243.897, -119.821 )
 
 [node name="Tree" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 130.383, -240 )
 
 [node name="Tree2" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 574.014, -217.748 )
+position = Vector2( 581.177, -177.784 )
 
 [node name="Tree4" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 16.6757, -196.519 )
 
 [node name="Tree5" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 414.014, -240 )
+position = Vector2( 342.314, -240 )
 
 [node name="Tree6" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 606.014, -130.92 )
+position = Vector2( 799.077, -184 )
 
 [node name="House" parent="EnvironmentItems" instance=ExtResource( 6 )]
-position = Vector2( 295, -192.192 )
+position = Vector2( 256, -80.8159 )
 
 [node name="Tree3" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 270.014, -206.92 )
+position = Vector2( 673.856, -225.156 )
 
 [node name="Lamp3" parent="EnvironmentItems" instance=ExtResource( 7 )]
-position = Vector2( 192, -116.828 )
-
-[node name="Lamp4" parent="EnvironmentItems" instance=ExtResource( 7 )]
-position = Vector2( 239.428, -71.6942 )
+position = Vector2( 192, -70.6995 )
 
 [node name="Reatomizer" parent="EnvironmentItems" instance=ExtResource( 9 )]
 position = Vector2( 464, -128 )

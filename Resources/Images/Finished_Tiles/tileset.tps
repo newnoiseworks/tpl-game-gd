@@ -2445,6 +2445,146 @@
             <key type="filename">Items/Tools/Pickaxe.png</key>
             <key type="filename">Items/Tools/Scythe.png</key>
             <key type="filename">Items/Tools/Shovel.png</key>
+            <key type="filename">tiles/city/ground_city_tiles (1).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (10).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (100).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (101).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (102).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (103).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (104).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (105).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (106).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (107).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (108).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (109).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (11).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (110).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (111).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (112).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (113).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (114).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (115).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (116).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (117).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (118).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (119).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (12).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (120).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (121).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (122).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (123).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (124).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (125).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (126).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (127).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (128).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (129).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (13).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (130).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (131).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (132).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (133).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (134).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (135).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (136).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (137).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (138).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (139).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (14).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (140).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (15).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (16).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (17).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (18).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (19).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (2).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (20).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (21).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (22).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (23).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (24).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (25).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (26).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (27).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (28).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (29).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (3).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (30).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (31).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (32).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (33).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (34).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (35).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (36).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (37).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (38).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (39).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (4).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (40).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (41).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (42).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (43).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (44).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (45).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (46).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (47).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (48).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (49).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (5).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (50).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (51).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (52).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (53).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (54).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (55).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (56).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (57).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (58).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (59).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (6).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (60).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (61).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (62).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (63).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (64).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (65).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (66).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (67).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (68).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (69).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (7).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (70).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (71).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (72).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (73).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (74).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (75).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (76).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (77).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (78).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (79).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (8).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (80).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (81).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (82).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (83).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (84).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (85).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (86).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (87).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (88).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (89).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (9).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (90).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (91).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (92).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (93).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (94).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (95).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (96).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (97).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (98).png</key>
+            <key type="filename">tiles/city/ground_city_tiles (99).png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -3090,6 +3230,358 @@
                 <rect>63,29,126,59</rect>
                 <key>scale9Paddings</key>
                 <rect>63,29,126,59</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/bigtree_house.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>46,65,91,130</rect>
+                <key>scale9Paddings</key>
+                <rect>46,65,91,130</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/hunderthouse.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>71,56,142,113</rect>
+                <key>scale9Paddings</key>
+                <rect>71,56,142,113</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/hunderthouse1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>70,56,140,112</rect>
+                <key>scale9Paddings</key>
+                <rect>70,56,140,112</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/hunderthouse2.png</key>
+            <key type="filename">envir/city/hunderthouse4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>61,56,123,112</rect>
+                <key>scale9Paddings</key>
+                <rect>61,56,123,112</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/hunderthouse3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>57,56,113,112</rect>
+                <key>scale9Paddings</key>
+                <rect>57,56,113,112</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/notree_houseA.png</key>
+            <key type="filename">envir/city/notree_houseB.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,37,85,73</rect>
+                <key>scale9Paddings</key>
+                <rect>43,37,85,73</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/roundhouseA.png</key>
+            <key type="filename">envir/city/roundhouseA2.png</key>
+            <key type="filename">envir/city/roundhouseA3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,31,86,61</rect>
+                <key>scale9Paddings</key>
+                <rect>43,31,86,61</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/roundhouseB.png</key>
+            <key type="filename">envir/city/roundhouseB2.png</key>
+            <key type="filename">envir/city/roundhouseB3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>47,31,94,61</rect>
+                <key>scale9Paddings</key>
+                <rect>47,31,94,61</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/square_house.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>58,56,117,112</rect>
+                <key>scale9Paddings</key>
+                <rect>58,56,117,112</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/square_house2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,46,85,92</rect>
+                <key>scale9Paddings</key>
+                <rect>43,46,85,92</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/tiles_ground_city.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>56,40,112,80</rect>
+                <key>scale9Paddings</key>
+                <rect>56,40,112,80</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/tower.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>32,50,63,100</rect>
+                <key>scale9Paddings</key>
+                <rect>32,50,63,100</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/big_tree.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>41,38,83,75</rect>
+                <key>scale9Paddings</key>
+                <rect>41,38,83,75</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/globe_big.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,12,17,24</rect>
+                <key>scale9Paddings</key>
+                <rect>9,12,17,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/globe_medium.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,5,7,10</rect>
+                <key>scale9Paddings</key>
+                <rect>4,5,7,10</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/globe_small.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,4,7,7</rect>
+                <key>scale9Paddings</key>
+                <rect>4,4,7,7</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/pumpkin_big.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>3,3,6,5</rect>
+                <key>scale9Paddings</key>
+                <rect>3,3,6,5</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/pumpkin_halloween.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>3,3,7,5</rect>
+                <key>scale9Paddings</key>
+                <rect>3,3,7,5</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/pumpkin_medium.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,5,4</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,5,4</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/pumpkin_small.png</key>
+            <key type="filename">envir/plants/starplant_small.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>1,1,3,3</rect>
+                <key>scale9Paddings</key>
+                <rect>1,1,3,3</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/starplant_big.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>7,3,15,7</rect>
+                <key>scale9Paddings</key>
+                <rect>7,3,15,7</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/starplant_medium.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,2,7,4</rect>
+                <key>scale9Paddings</key>
+                <rect>4,2,7,4</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/plants/teal_bush.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,11,15,21</rect>
+                <key>scale9Paddings</key>
+                <rect>8,11,15,21</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

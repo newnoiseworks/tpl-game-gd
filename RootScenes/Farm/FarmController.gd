@@ -53,7 +53,7 @@ func farm_permissions_update_event_callback(_args: Dictionary, _user_id: String)
 func load_farm():
 	for farm_grid in farm_grids:
 		yield(farm_grid.load_farm(user_id_to_join, user_avatar_to_join), "completed")
-		farm_grid.farm_permissions = permissions_data
+		# farm_grid.farm_permissions = permissions_data
 		farm_grid.draw_plants_from_data()
 
 	if join_match_on_ready || are_other_people_on_farm():

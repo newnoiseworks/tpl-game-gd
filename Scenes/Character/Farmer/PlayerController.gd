@@ -138,7 +138,8 @@ func restrict_camera_to_tile_map(map: TileMap):
 
 
 func _send_movement_ping_update():
-	if user_id != null:
+	if user_id != "":
+		print("pingarnange")
 		MatchEvent.movement({"ping": "1", "x": position.x, "y": position.y})
 
 

@@ -77,6 +77,8 @@ func _on_match_presence(match_event: NakamaRTAPI.MatchPresenceEvent):
 func _handle_match_join_event(data, _presence):
 	var args = JSON.parse(data).result
 
+	print(JSON.print(args))
+
 	for user_id in args.plotMap.keys():
 		if user_ids.has(user_id):
 			continue
@@ -84,8 +86,6 @@ func _handle_match_join_event(data, _presence):
 		user_ids.append(user_id)
 
 		var starting_position: Vector2
-
-		print(JSON.print(args.positions))
 
 		if user_id in args.positions.keys() && "x" in args.positions[user_id]:
 			starting_position = Vector2(args.positions[user_id].x, args.positions[user_id].y)
