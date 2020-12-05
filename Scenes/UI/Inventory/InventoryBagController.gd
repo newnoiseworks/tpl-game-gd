@@ -196,8 +196,8 @@ func remove_item_locally(item_type):
 		inventory.tiles[item.bagPosition].update_quantity(item.quantity)
 	else:
 		inventory.tiles[item.bagPosition].update_quantity(0)
-		equippable_items[item.bagPosition].queue_free()
-		equippable_items[item.bagPosition] = null
+		equippable_items[int(item.bagPosition)].queue_free()
+		equippable_items[int(item.bagPosition)] = null
 
 
 func add_item_locally(item_type: int):

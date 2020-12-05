@@ -128,6 +128,13 @@ func reload_data_on_reset_event(_args, _presence):
 
 func load_data():
 	data = yield(SaveData.load(collection_name, owner_avatar_name, owner_id), "completed")
+
+	if ! data.has("plants"):
+		data.plants = []
+
+	if ! data.has("craftedItems"):
+		data.craftedItems = []
+
 	call_deferred("draw_things_from_data")
 
 
@@ -349,6 +356,9 @@ func add_plant_from_event(farm_event: Dictionary):
 		"plantType": plant_hash_id,
 		"waterHistory": initial_water_history
 	}
+
+	if data.empty() || data.plants is Dictionary:
+		data.plants = []
 
 	data.plants.append(plant_to_add)
 	add_plant_to_grid(plant_to_add)

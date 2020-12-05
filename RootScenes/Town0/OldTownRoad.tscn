@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://RootScenes/Dungeon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RootScenes/Town0/OldTownRoadController.gd" type="Script" id=2]
@@ -7,6 +7,13 @@
 [ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/Town0/BuildingType1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Items/EnvironmentItems/Lights/Sky.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/MovementGrid/Teleporter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/Town0/BuildingType2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/Town0/BuildingType3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/Town0/BuildingType4.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/Town0/BuildingType6.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/Town0/BuildingType5.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/Town0/BuildingType7.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/ComputerHaus.tscn" type="PackedScene" id=14]
 
 [node name="OldTownRoad" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -48,6 +55,27 @@ position = Vector2( 323.163, 524.439 )
 visible = false
 position = Vector2( 1040, 16.0291 )
 
+[node name="BuildingType1" parent="EnvironmentItems" index="8" instance=ExtResource( 5 )]
+position = Vector2( 624, 496 )
+
+[node name="BuildingType2" parent="EnvironmentItems" index="9" instance=ExtResource( 8 )]
+position = Vector2( 384, 464 )
+
+[node name="BuildingType3" parent="EnvironmentItems" index="10" instance=ExtResource( 9 )]
+position = Vector2( 136, 584 )
+
+[node name="BuildingType4" parent="EnvironmentItems" index="11" instance=ExtResource( 10 )]
+position = Vector2( 144, 416 )
+
+[node name="BuildingType5" parent="EnvironmentItems" index="12" instance=ExtResource( 12 )]
+position = Vector2( 704, 456 )
+
+[node name="BuildingType6" parent="EnvironmentItems" index="13" instance=ExtResource( 11 )]
+position = Vector2( 376, 312 )
+
+[node name="BuildingType7" parent="EnvironmentItems" index="14" instance=ExtResource( 13 )]
+position = Vector2( 880, 456 )
+
 [node name="Sky" parent="." index="3" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 522.007, -34.3295 )
@@ -83,5 +111,5 @@ position = Vector2( 544, 704 )
 [node name="FarmTeleporter7" parent="Teleporters" index="7" instance=ExtResource( 3 )]
 position = Vector2( 1184, 256 )
 
-[node name="BuildingType1" parent="." index="6" instance=ExtResource( 5 )]
-position = Vector2( 624, 496 )
+[node name="ComputerHaus" parent="." index="6" instance=ExtResource( 14 )]
+position = Vector2( 976.083, 464 )

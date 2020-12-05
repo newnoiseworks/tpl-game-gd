@@ -34,7 +34,7 @@ func hide_and_disable():
 
 
 func interact():
-	if data == null:
+	if data.empty() || ! data.has("name"):
 		return
 
 	TPLG.dialogue.start(

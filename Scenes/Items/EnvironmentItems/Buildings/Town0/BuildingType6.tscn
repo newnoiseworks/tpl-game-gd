@@ -27,7 +27,7 @@ position = Vector2( 48.0835, 95.3139 )
 shape = SubResource( 1 )
 
 [node name="TileMap" parent="." index="1"]
-tile_data = PoolIntArray( -589824, 2110, 0, 0, 0, 0 )
+tile_data = PoolIntArray( -589824, 2110, 0, -589822, 2111, 0, 0, 0, 0 )
 
 [node name="StaticBody2D" parent="." index="2"]
 collision_layer = 2
@@ -40,6 +40,7 @@ shape = SubResource( 2 )
 position = Vector2( 138.976, -68.3953 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5"]
+position = Vector2( -1.68179, -0.840897 )
 occluder = SubResource( 3 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]

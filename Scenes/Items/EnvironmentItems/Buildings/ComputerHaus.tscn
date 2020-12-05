@@ -4,37 +4,35 @@
 [ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/ComputerHausController.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30.9534, 22.2722 )
+extents = Vector2( 64, 40 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 87.343, 46.7043 )
+extents = Vector2( 64, 40 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
-polygon = PoolVector2Array( -47.8055, -18.5652, -47.2067, 50.8884, -40.0219, 50.8884, -41.2194, 95.7937, -0.505188, 94.5963, 0.692291, 113.157, 128.822, 112.558, 128.822, 94.5963, 128.822, 70.6467, 129.421, 58.0733, 127.625, 25.1427, 126.427, -21.5589, 124.631, -93.4074, 73.7383, -93.4074, 44.4002, -93.4074, 2.4885, -94.6049, 0.692291, -64.668 )
+polygon = PoolVector2Array( 8, 32, -24, 32, -16, 56, 16, 56, 8, 64, -3.8147e-06, 72, -3.8147e-06, 96, -24, 104, -3.8147e-06, 104, 104, 104, 96, 80, 88, 72, 88, 64, 88, 32, 80, 24, 80, 8, 80, -56, 64, -80, 32, -80, 16, -56, 16, 24 )
 
 [sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( 144.488, -7.09536, 144.496, 114.494, -63.277, 114.679, -64.1093, -7.09536 )
+vertices = PoolVector2Array( 64, 32, 64.3329, 115.129, -63.277, 114.679, -64, 32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -64.1093, -7.09536, -63.277, 114.679, 144.496, 114.494, 144.488, -7.09536 ) ]
+outlines = [ PoolVector2Array( -64, 32, -63.277, 114.679, 64.3329, 115.129, 64, 32 ) ]
 
 [node name="ComputerHaus" instance=ExtResource( 1 )]
+position = Vector2( 48.0835, -8 )
 script = ExtResource( 2 )
 
-[node name="InteractionArea" parent="." index="0"]
-collision_layer = 2
-
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
-position = Vector2( 48.0835, 95.3139 )
+position = Vector2( 17.3307, 65.8995 )
 shape = SubResource( 1 )
 
 [node name="TileMap" parent="." index="1"]
-tile_data = PoolIntArray( -327683, 377, 0, 0, 0, 0 )
+tile_data = PoolIntArray( -327683, 2115, 0, 0, 0, 0 )
 
 [node name="StaticBody2D" parent="." index="2"]
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 39.879, 57.5103 )
+position = Vector2( 15.9165, 56 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
@@ -43,10 +41,12 @@ shape = null
 disabled = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WalkBehindTrigger" index="1"]
-polygon = PoolVector2Array( -0.418747, -96.0448, -0.0215302, -64.2676, -48.0845, -17.7935, -48.0845, 6.83385, 128.279, 6.03941, 127.882, -97.2364 )
+polygon = PoolVector2Array( 7.9165, -88, -8.0835, -64, -8.0835, -24, -8.0835, 16, 55.9165, 16, 55.9165, -64, 39.9165, -88 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5"]
+position = Vector2( -24.0835, -8 )
 occluder = SubResource( 3 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]
+position = Vector2( 15.9165, -16 )
 navpoly = SubResource( 4 )

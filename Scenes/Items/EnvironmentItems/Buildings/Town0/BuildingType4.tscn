@@ -9,7 +9,7 @@ extents = Vector2( 30.9534, 22.2722 )
 extents = Vector2( 120, 40 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
-polygon = PoolVector2Array( 8, -8, 0, -8, 0, 32, 0, 96, 48, 96, 96, 96, 152, 96, 208, 96, 240, 80, 240, -16, 240, -112, 208, -128, 136, -128, 136, -64, 120, -64, 120, -80, 64, -80, 63.7847, -64, 8, -64 )
+polygon = PoolVector2Array( 0, -16, 0, -8, 0, 32, 0, 96, 48, 96, 96, 96, 152, 96, 208, 96, 232, 80, 232, -16, 232, -112, 208, -112, 168, -112, 144, -112, 128, -112, 112, -112, 80, -112, 48, -112, 0, -112 )
 
 [sub_resource type="NavigationPolygon" id=4]
 vertices = PoolVector2Array( 144, 192, -62.6293, 193.984, -64, 88, 176, 88, 176, 176 )
@@ -29,7 +29,7 @@ shape = SubResource( 1 )
 
 [node name="TileMap" parent="." index="1"]
 position = Vector2( -24, -112 )
-tile_data = PoolIntArray( -524288, 2113, 0, 0, 0, 0 )
+tile_data = PoolIntArray( -524288, 2114, 0, 0, 0, 0 )
 
 [node name="StaticBody2D" parent="." index="2"]
 position = Vector2( -24, -112 )
@@ -50,7 +50,7 @@ shape = null
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WalkBehindTrigger" index="1"]
 position = Vector2( 112, 40 )
 scale = Vector2( 10.3212, 9.69983 )
-polygon = PoolVector2Array( 12.4017, 4.12378, 9.30124, 5.7733, 6.20083, 5.7733, 3.69724, 5.92732, -10.1799, 6.02239, -10.0763, -10.7218, -4.65062, -10.7218, -4.65062, -12.3714, 0.775104, -12.3714, 0.775104, -10.7218, 2.32531, -10.7218, 2.32531, -17.3199, 10.0763, -17.3199, 12.4017, -15.6704, 12.4017, -6.59805 )
+polygon = PoolVector2Array( 11.6266, -4.94854, 11.6266, 0.824757, 9.30124, 3.29903, 9.30124, 5.7733, -7.75104, 5.7733, -7.75104, 3.29903, -10.8515, 0.824757, -10.8515, -15.6704, 0, -15.6704, 1.55021, -15.6704, 3.10041, -15.6704, 5.42572, -15.6704, 9.30124, -15.6704, 11.6266, -15.6704, 11.6266, -6.59805 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5"]
 position = Vector2( -24, -112 )
