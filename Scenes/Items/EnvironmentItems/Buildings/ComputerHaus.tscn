@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/ComputerHausController.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 64, 40 )
+extents = Vector2( 67.6125, 40 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 64, 40 )
@@ -22,7 +22,7 @@ position = Vector2( 48.0835, -8 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
-position = Vector2( 17.3307, 65.8995 )
+position = Vector2( 15.5629, 68.7279 )
 shape = SubResource( 1 )
 
 [node name="TileMap" parent="." index="1"]
