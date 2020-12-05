@@ -12,14 +12,12 @@ func _ready():
 
 	RealmManager.socket.connect("received_match_presence", self, "on_match_presence_event")
 	RealmEvent.connect("realm_join", self, "realm_join_event_response")
-	RealmEvent.connect("change_dungeon", self, "change_dungeon_event_response")
 
 	reload_data_and_redraw()
 
 
 func _exit_tree():
 	RealmEvent.disconnect("realm_join", self, "realm_join_event_response")
-	RealmEvent.disconnect("change_dungeon", self, "change_dungeon_event_response")
 
 
 func setup_teleporter():
@@ -64,8 +62,4 @@ func on_math_presence_event(_match_event):
 
 
 func realm_join_event_response(_args):
-	call_deferred("reload_data_and_redraw")
-
-
-func change_dungeon_event_response(_args, _userId):
 	call_deferred("reload_data_and_redraw")

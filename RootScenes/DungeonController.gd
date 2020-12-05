@@ -25,6 +25,9 @@ func _ready():
 	MatchEvent.connect("match_join", self, "_handle_match_join_event")
 	MatchManager.socket.connect("received_match_presence", self, "_on_match_presence")
 
+	if self.has_method("setup_teleporter"):
+		call("setup_teleporter")
+
 	if dungeon != null && dungeon != '':
 		yield(_join_dungeon(), "completed")
 
@@ -88,7 +91,9 @@ func _handle_match_join_event(data, _presence):
 		var starting_position: Vector2
 
 		if user_id in args.positions.keys() && "x" in args.positions[user_id]:
-			starting_position = Vector2(args.positions[user_id].x, args.positions[user_id].y)
+			starting_position = Vector2(
+				float(args.positions[user_id].x), float(args.positions[user_id].y)
+			)
 		else:
 			starting_position = player_entry_node.position
 

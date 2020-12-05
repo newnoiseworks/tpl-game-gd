@@ -44,8 +44,8 @@ func _join_match(match_id: String, label: String, starting_position: Vector2) ->
 			match_id,
 			{
 				"avatarName": SessionManager.current_avatar.name,
-				"x": starting_position.x,
-				"y": starting_position.y,
+				"x": String(starting_position.x),
+				"y": String(starting_position.y),
 			}
 		),
 		"completed"
