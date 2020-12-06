@@ -91,6 +91,7 @@ tile_data = PoolIntArray( -65536, 746, 0 )
 position = Vector2( -7.87921, 16 )
 
 [node name="UsernameLabel" type="Label" parent="."]
+visible = false
 margin_left = -18.1421
 margin_top = -26.3469
 margin_right = 19.8579

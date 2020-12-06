@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://RootScenes/Dungeon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RootScenes/Town0/OldTownRoadController.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/Town0/BuildingType7.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Items/EnvironmentItems/Buildings/ComputerHaus.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Items/EnvironmentItems/Lights/Lamp.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Character/Character.tscn" type="PackedScene" id=16]
 
 [node name="OldTownRoad" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -86,6 +87,30 @@ position = Vector2( 623.044, 312 )
 
 [node name="ComputerHaus" parent="EnvironmentItems" index="20" instance=ExtResource( 14 )]
 position = Vector2( 696, 256 )
+
+[node name="Sakana" parent="EnvironmentItems" index="21" instance=ExtResource( 16 )]
+position = Vector2( 976, 592 )
+character_base = "Characters/Sakana/"
+dialogue_file = "Sakana"
+dialogue_section = "hello"
+
+[node name="Baph" parent="EnvironmentItems" index="22" instance=ExtResource( 16 )]
+position = Vector2( 640, 587.774 )
+character_base = "Characters/Baph/"
+dialogue_file = "Baph"
+dialogue_section = "hello"
+
+[node name="York" parent="EnvironmentItems" index="23" instance=ExtResource( 16 )]
+position = Vector2( 680, 592 )
+character_base = "Characters/York/"
+dialogue_file = "York"
+dialogue_section = "hello"
+
+[node name="Gil" parent="EnvironmentItems" index="24" instance=ExtResource( 16 )]
+position = Vector2( 446.67, 587.774 )
+character_base = "Characters/Gil/"
+dialogue_file = "Gil"
+dialogue_section = "hello"
 
 [node name="Sky" parent="." index="3" instance=ExtResource( 6 )]
 visible = false
