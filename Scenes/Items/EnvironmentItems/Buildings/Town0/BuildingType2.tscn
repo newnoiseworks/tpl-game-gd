@@ -21,12 +21,8 @@ outlines = [ PoolVector2Array( -66.1952, 83.2405, -66.2644, 181.111, 142.347, 18
 
 [node name="BuildingType2" instance=ExtResource( 1 )]
 
-[node name="InteractionArea" parent="." index="0"]
-visible = false
-
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
-visible = false
-position = Vector2( 48.0835, 95.3139 )
+position = Vector2( 103.705, 8.96767 )
 shape = SubResource( 1 )
 
 [node name="TileMap" parent="." index="1"]

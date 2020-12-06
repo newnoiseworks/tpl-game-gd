@@ -86,28 +86,28 @@ position = Vector2( 664, 184 )
 position = Vector2( 623.044, 312 )
 
 [node name="ComputerHaus" parent="EnvironmentItems" index="20" instance=ExtResource( 14 )]
-position = Vector2( 693.496, 247.314 )
+position = Vector2( 693.496, 248 )
 
 [node name="Sakana" parent="EnvironmentItems" index="21" instance=ExtResource( 16 )]
-position = Vector2( 976, 592 )
+position = Vector2( 984, 592 )
 character_base = "Characters/Sakana/"
 dialogue_file = "Sakana"
 dialogue_section = "hello"
 
 [node name="Baph" parent="EnvironmentItems" index="22" instance=ExtResource( 16 )]
-position = Vector2( 640, 587.774 )
+position = Vector2( 632, 592 )
 character_base = "Characters/Baph/"
 dialogue_file = "Baph"
 dialogue_section = "hello"
 
 [node name="York" parent="EnvironmentItems" index="23" instance=ExtResource( 16 )]
-position = Vector2( 680, 592 )
+position = Vector2( 664, 595.631 )
 character_base = "Characters/York/"
 dialogue_file = "York"
 dialogue_section = "hello"
 
 [node name="Gil" parent="EnvironmentItems" index="24" instance=ExtResource( 16 )]
-position = Vector2( 446.67, 587.774 )
+position = Vector2( 440, 592 )
 character_base = "Characters/Gil/"
 dialogue_file = "Gil"
 dialogue_section = "hello"

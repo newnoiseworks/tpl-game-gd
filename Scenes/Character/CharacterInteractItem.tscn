@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Character/CharacterInteractItemController.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.4569, 23.654 )
+extents = Vector2( 19.9203, 23.654 )
 
 [node name="CharacterInteractItem" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

@@ -33,6 +33,9 @@ func _enter_tree():
 		MatchEvent.connect("avatar_update", self, "handle_avatar_update_event")
 		MatchEvent.connect("heart", self, "handle_heart")
 
+	if hearts.size() > 0:
+		clear_hearts()
+
 
 func _ready():
 	stop_all_animations()
@@ -82,7 +85,7 @@ func handle_heart(_msg, presence):
 
 func clear_hearts():
 	for heart in hearts:
-		if heart != null && heart.is_inside_tree():
+		if heart != null:
 			heart.queue_free()
 
 
