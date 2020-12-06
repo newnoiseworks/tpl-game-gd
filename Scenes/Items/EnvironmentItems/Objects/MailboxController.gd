@@ -7,6 +7,7 @@ var data: Dictionary
 onready var static_body: StaticBody2D = find_node("StaticBody2D")
 onready var mask: int = static_body.collision_mask
 onready var layer: int = static_body.collision_layer
+onready var label: Label = find_node("Label")
 
 
 func set_user_and_show(_user_id: String, _user_avatar_key: String):
@@ -21,6 +22,8 @@ func set_user_and_show(_user_id: String, _user_avatar_key: String):
 	for avatar in profile_data.avatars:
 		if avatar.key == user_avatar_key:
 			data = avatar
+
+  label.text = "%s'%s Farm" % [data.name, "s" if data.name[data.name.length() - 1] != "s" else ""]
 
 	static_body.collision_mask = mask
 	static_body.collision_layer = layer

@@ -8,8 +8,8 @@ onready var night_sky: CanvasModulate = find_node("NightSky")
 
 func _ready():
 	show()
-	timer.wait_time = 1000
-	timer.connect("timeout", self, "process_atmospher")
+	timer.wait_time = 1
+	timer.connect("timeout", self, "process_atmosphere")
 	timer.autostart = true
 	add_child(timer)
 

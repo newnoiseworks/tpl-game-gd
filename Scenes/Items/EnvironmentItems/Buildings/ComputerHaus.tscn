@@ -7,22 +7,22 @@
 extents = Vector2( 67.6125, 40 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 64, 40 )
+extents = Vector2( 64, 26.4295 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 8, 32, -24, 32, -16, 56, 16, 56, 8, 64, -3.8147e-06, 72, -3.8147e-06, 96, -24, 104, -3.8147e-06, 104, 104, 104, 96, 80, 88, 72, 88, 64, 88, 32, 80, 24, 80, 8, 80, -56, 64, -80, 32, -80, 16, -56, 16, 24 )
 
 [sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( 64, 32, 64.3329, 115.129, -63.277, 114.679, -64, 32 )
+vertices = PoolVector2Array( 63.7239, 43.1776, 64.7845, 108.585, -62.4946, 108.231, -62.4946, 42.4705 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -64, 32, -63.277, 114.679, 64.3329, 115.129, 64, 32 ) ]
+outlines = [ PoolVector2Array( -62.4946, 42.4705, -62.4946, 108.231, 64.7845, 108.585, 63.7239, 43.1776 ) ]
 
 [node name="ComputerHaus" instance=ExtResource( 1 )]
 position = Vector2( 48.0835, -8 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
-position = Vector2( 15.5629, 68.7279 )
+position = Vector2( 17.0612, 68.3533 )
 shape = SubResource( 1 )
 
 [node name="TileMap" parent="." index="1"]
@@ -32,7 +32,7 @@ tile_data = PoolIntArray( -327683, 2115, 0, 0, 0, 0 )
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 15.9165, 56 )
+position = Vector2( 16.6656, 62.7424 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
@@ -48,5 +48,5 @@ position = Vector2( -24.0835, -8 )
 occluder = SubResource( 3 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]
-position = Vector2( 15.9165, -16 )
+position = Vector2( 15.1673, -17.3511 )
 navpoly = SubResource( 4 )

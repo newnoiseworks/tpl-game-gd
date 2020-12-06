@@ -11,7 +11,7 @@ var blueprint_to_items: Dictionary = {
 
 func _ready():
 	TPLG.set_reatomizer(self)
-	data = SaveData.load("reatomizer")
+	data = yield(SaveData.load("reatomizer"), "completed")
 
 
 func interact():

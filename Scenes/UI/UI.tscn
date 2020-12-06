@@ -79,7 +79,7 @@ margin_left = 16.0
 margin_top = -16.0
 margin_right = -16.0
 margin_bottom = -16.0
-mouse_filter = 2
+mouse_filter = 1
 theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -125,6 +125,7 @@ alignment = 2
 margin_left = 1784.0
 margin_right = 1888.0
 margin_bottom = 40.0
+mouse_filter = 1
 theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 6 )
 text = "Menu"
@@ -137,8 +138,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 2.0
-margin_bottom = 16.0
+margin_bottom = 34.0
 rect_min_size = Vector2( 0, 32 )
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -148,6 +150,7 @@ margin_left = 944.0
 margin_top = 16.0
 margin_right = 944.0
 margin_bottom = 16.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

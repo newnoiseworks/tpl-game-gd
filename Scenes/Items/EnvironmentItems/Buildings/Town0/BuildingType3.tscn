@@ -6,7 +6,7 @@
 extents = Vector2( 30.9534, 22.2722 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 120, 40 )
+extents = Vector2( 120, 24 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 8, -8, 0, -8, 0, 32, 0, 96, 48, 96, 96, 96, 152, 96, 208, 96, 240, 80, 240, -16, 240, -112, 208, -128, 136, -128, 136, -64, 120, -64, 120, -80, 64, -80, 63.7847, -64, 8, -64 )
@@ -36,7 +36,7 @@ position = Vector2( -24, -112 )
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 120, 48 )
+position = Vector2( 120, 60.8502 )
 shape = SubResource( 2 )
 
 [node name="WalkBehindTrigger" parent="." index="3"]

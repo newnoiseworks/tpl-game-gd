@@ -221,7 +221,7 @@ func get_permissions(user_id = ""):
 	if user_id == "":
 		user_id = SessionManager.session.user_id
 
-	if farm_permissions.perm_collection.has(user_id):
+	if farm_permissions.has("perm_collection") && farm_permissions.perm_collection.has(user_id):
 		return farm_permissions.perm_collection[user_id]
 
 	return farm_permissions.default_permissions

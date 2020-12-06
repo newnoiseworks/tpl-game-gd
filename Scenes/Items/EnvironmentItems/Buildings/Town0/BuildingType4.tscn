@@ -6,15 +6,15 @@
 extents = Vector2( 30.9534, 22.2722 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 120, 40 )
+extents = Vector2( 120, 26.3532 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 0, -16, 0, -8, 0, 32, 0, 96, 48, 96, 96, 96, 152, 96, 208, 96, 232, 80, 232, -16, 232, -112, 208, -112, 168, -112, 144, -112, 128, -112, 112, -112, 80, -112, 48, -112, 0, -112 )
 
 [sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( 144, 192, -62.6293, 193.984, -64, 88, 176, 88, 176, 176 )
+vertices = PoolVector2Array( 144, 192, -62.6293, 193.984, -64, 96, 176, 96, 176, 176 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
-outlines = [ PoolVector2Array( 176, 176, 176, 88, -64, 88, -62.6293, 193.984, 144, 192 ) ]
+outlines = [ PoolVector2Array( 176, 176, 176, 96, -64, 96, -62.6293, 193.984, 144, 192 ) ]
 
 [node name="BuildingType2" instance=ExtResource( 1 )]
 position = Vector2( 24, 112 )
@@ -36,7 +36,7 @@ position = Vector2( -24, -112 )
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 120, 48 )
+position = Vector2( 117.089, 63.3532 )
 shape = SubResource( 2 )
 
 [node name="WalkBehindTrigger" parent="." index="3"]

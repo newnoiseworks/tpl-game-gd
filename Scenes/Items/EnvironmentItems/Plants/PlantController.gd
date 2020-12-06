@@ -178,9 +178,9 @@ func dry_water_and_grow_plant_if_needed():
 	var last_stage: Node2D = find_node("Stage%s" % growth_stages.size())
 
 	if ! is_harvestable() && current_stage != null && next_stage != null:
-		current_stage.Hide()
-		next_stage.Show()
+		current_stage.hide()
+		next_stage.show()
 	elif is_harvestable() && last_stage != null:
-		last_stage.Show()
+		last_stage.show()
 
 	current_growth_stage = growth_stage

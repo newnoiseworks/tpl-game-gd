@@ -17,7 +17,6 @@ polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 5, 6 ), PoolIntArra
 outlines = [ PoolVector2Array( 71.9165, 192, 71.9165, 88, -64, 88, -64.0835, 224, -24.0835, 224, -24.0835, 232, 39.9165, 232, 39.9165, 224, 71.9165, 224 ) ]
 
 [node name="BuildingType2" instance=ExtResource( 1 )]
-position = Vector2( 24, 112 )
 
 [node name="InteractionArea" parent="." index="0"]
 visible = false
@@ -28,19 +27,14 @@ position = Vector2( 48.0835, 95.3139 )
 shape = SubResource( 1 )
 
 [node name="TileMap" parent="." index="1"]
-position = Vector2( -24, -112 )
 tile_data = PoolIntArray( -393216, 2117, 0, 0, 0, 0 )
 
 [node name="StaticBody2D" parent="." index="2"]
-position = Vector2( -24, -112 )
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
 position = Vector2( 75.7916, 16 )
 shape = SubResource( 2 )
-
-[node name="WalkBehindTrigger" parent="." index="3"]
-position = Vector2( -24, -112 )
 
 [node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
 position = Vector2( 449.311, 2.16145 )
@@ -53,9 +47,8 @@ scale = Vector2( 10.3212, 9.69983 )
 polygon = PoolVector2Array( 0, 0, 0, 0.824757, -6.20083, 0.824757, -6.20083, 0, -10.0763, 0, -9.30124, -2.47427, -10.0763, -4.94854, -10.0763, -14.0209, -3.10041, -14.0209, 0, -14.0209, 2.32531, -14.0209, 3.10041, -14.0209, 3.10041, -9.07232, 3.10041, -5.7733, 3.10041, 0 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5"]
-position = Vector2( -24, -112 )
 occluder = SubResource( 3 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]
-position = Vector2( 48.0835, -296 )
+position = Vector2( 72.0835, -184 )
 navpoly = SubResource( 4 )
