@@ -15,6 +15,10 @@ func _ready():
 
 func draw_from_data(data):
 	if data == null || data.avatars == null:
+		var modal = find_node("CreateAvatarModal")
+		modal.avatar_name = SessionManager.session.username
+		modal.call("popup_centered")
+		modal.find_node("TextEdit").text = modal.avatar_name
 		return
 
 	var avatar_container: HBoxContainer = find_node("AvatarContainer")

@@ -135,6 +135,9 @@ func load_data():
 	if ! data.has("craftedItems"):
 		data.craftedItems = []
 
+	if ! data.has("groundTiles"):
+		data.groundTiles = {}
+
 	call_deferred("draw_things_from_data")
 
 

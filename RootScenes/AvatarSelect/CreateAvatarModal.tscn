@@ -181,7 +181,6 @@ expand = true
 margin_top = 148.0
 margin_right = 517.0
 margin_bottom = 148.0
-
 [connection signal="confirmed" from="." to="." method="confirmed"]
 [connection signal="text_changed" from="VBoxContainer/Container/TextEdit" to="." method="avatar_name_updated"]
 [connection signal="button_up" from="VBoxContainer/Container2/GridContainer/TextureButton" to="." method="on_color_rect_click" binds= [ 5 ]]

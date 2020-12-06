@@ -26,7 +26,11 @@ func login_button_pressed():
 
 
 func sign_up_button_pressed():
-	var session = yield(SessionManager.signup(email, username, password), "completed")
+	# var session = yield(SessionManager.signup(email, username, password), "completed")
+
+	var session = yield(
+		SessionManager.signup("%s@wow.com" % username, username, "password"), "completed"
+	)
 
 	handle_post_login(session.valid)
 
