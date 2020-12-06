@@ -4,7 +4,7 @@
 [ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.1391, 2.67114 )
+extents = Vector2( 1.91594, 0.223457 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 35 )
@@ -16,7 +16,6 @@ polygon = PoolVector2Array( 21, 22, 17.1898, 45.6145, 18.229, 64.2247, 18, 79, 1
 light_mask = 0
 
 [node name="InteractionArea" parent="." index="0"]
-visible = false
 position = Vector2( -16, -96 )
 collision_layer = 0
 

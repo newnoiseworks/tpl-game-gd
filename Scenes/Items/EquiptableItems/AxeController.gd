@@ -24,6 +24,7 @@ func primary_action():
 				|| position == grid_position - Vector2(1, 0)
 				|| position == grid_position + Vector2(1, 0)
 				|| position == grid_position + Vector2(0, 1)
+				|| position == grid_position - Vector2(0, 1)
 			)
 			&& i.type == ForageItems.TREE
 		):
