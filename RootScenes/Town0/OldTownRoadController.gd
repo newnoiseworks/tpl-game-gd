@@ -10,7 +10,6 @@ var town_teleporter
 func _ready():
 	setup_teleporter()
 
-	RealmManager.socket.connect("received_match_presence", self, "on_match_presence_event")
 	RealmEvent.connect("realm_join", self, "realm_join_event_response")
 	RealmEvent.connect("change_dungeon", self, "change_dungeon_event_response")
 
@@ -63,7 +62,7 @@ func on_math_presence_event(_match_event):
 	call_deferred("reload_data_and_redraw")
 
 
-func realm_join_event_response(_args):
+func realm_join_event_response(_args, _presence):
 	call_deferred("reload_data_and_redraw")
 
 

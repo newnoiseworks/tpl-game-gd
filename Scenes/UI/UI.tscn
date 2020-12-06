@@ -117,11 +117,12 @@ grow_horizontal = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="Container2/VBoxContainer"]
 margin_top = 30.0
 margin_right = 1888.0
-margin_bottom = 70.0
+margin_bottom = 30.0
 theme = ExtResource( 2 )
 alignment = 2
 
 [node name="MainMenuButton" type="Button" parent="Container2/VBoxContainer/HBoxContainer"]
+visible = false
 margin_left = 1784.0
 margin_right = 1888.0
 margin_bottom = 40.0

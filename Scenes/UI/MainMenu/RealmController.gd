@@ -34,8 +34,8 @@ func reload_data_and_redraw():
 		var data = yield(SaveData.load("profile", SaveData.all_avatars_key, user_id), "completed")
 
 		# NOTE: Kind of jank, just in case another profile call finishes first from another event
-		if profile_map.has(user_id):
-			continue
+		# if profile_map.has(user_id):
+		# 	continue
 
 		profile_map[user_id] = data
 
