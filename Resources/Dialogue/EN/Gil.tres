@@ -2,4 +2,36 @@
 
 [hello]
 whom = "Gil"
-text = "Gil's the name, taking other people's work and selling it under my name's my game."
+text = "Gil Bates' the name, taking other people's work and selling it under my name's my game."
+options = "sucks"
+
+[sucks]
+optionText = "Wow that kind of sucks"
+whom = "Gil"
+text = "Well, not for me. And if I try really hard to forget other people exist, it's even better!"
+options = "sick"
+
+[sick]
+optionText = "How does society not fall apart cause of you?"
+whom = "Baph"
+text = "It's cause I'm watching you Gil!"
+next = "cancel"
+
+[cancel]
+whom = "Gil"
+text = "Oh no!! I'm being cancelled!"
+next = "shutup"
+
+[shutup]
+whom = "York"
+text = "Shut up Gil, you're just getting yelled at, you're still here... and so are we!"
+next = "nods"
+
+[nods]
+whom = "Baph"
+text = "*nods approvingly*"
+next = "sigh"
+
+[sigh]
+whom = "Gil"
+text = "Sigh... I'd get away with a whole lot more if it weren't for those meddling Carta Police and this ungrateful community..."

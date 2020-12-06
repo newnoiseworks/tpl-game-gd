@@ -160,7 +160,8 @@ func _physics_loop():
 
 
 func _on_collision(_collision: KinematicCollision2D):
-	print_debug("character collision")
+	# print_debug("character collision")
+	pass
 
 
 func _server_position_check():

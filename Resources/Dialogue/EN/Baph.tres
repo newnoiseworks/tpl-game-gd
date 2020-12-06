@@ -29,7 +29,7 @@ options = "whatsCartaPolice, whosYork, pigsOrNo, exit"
 
 [pigsOrNo]
 whom = "Baph"
-optionText = "Wait, do you arrest people etc?"
+optionText = "Wait... do you lock people up?"
 text = "Oh, god no. We interrogate and disrupt bad faith dialogue before others blindly follow along. That way society doesn't get schnookered by legal charlatans."
 next = "faqReroute"
 

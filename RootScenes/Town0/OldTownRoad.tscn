@@ -56,7 +56,7 @@ position = Vector2( 392, 152 )
 position = Vector2( 400, 480 )
 
 [node name="BuildingType3" parent="EnvironmentItems" index="10" instance=ExtResource( 9 )]
-position = Vector2( 808, 368 )
+position = Vector2( 784, 280 )
 
 [node name="BuildingType4" parent="EnvironmentItems" index="11" instance=ExtResource( 10 )]
 position = Vector2( 424, 368 )

@@ -17,7 +17,6 @@ polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
 outlines = [ PoolVector2Array( 176, 176, 176, 88, -64, 88, -62.6293, 193.984, 144, 192 ) ]
 
 [node name="BuildingType2" instance=ExtResource( 1 )]
-position = Vector2( 24, 112 )
 
 [node name="InteractionArea" parent="." index="0"]
 visible = false
@@ -28,11 +27,11 @@ position = Vector2( 48.0835, 95.3139 )
 shape = SubResource( 1 )
 
 [node name="TileMap" parent="." index="1"]
-position = Vector2( -24, -112 )
+position = Vector2( 0, -24 )
 tile_data = PoolIntArray( -524288, 2113, 0, 0, 0, 0 )
 
 [node name="StaticBody2D" parent="." index="2"]
-position = Vector2( -24, -112 )
+position = Vector2( 0, -24 )
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
@@ -40,9 +39,10 @@ position = Vector2( 120, 60.8502 )
 shape = SubResource( 2 )
 
 [node name="WalkBehindTrigger" parent="." index="3"]
-position = Vector2( -24, -112 )
+position = Vector2( 0, -24 )
 
 [node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
+visible = false
 position = Vector2( 449.311, 2.16145 )
 scale = Vector2( 10.3212, 9.69983 )
 shape = null
@@ -50,12 +50,12 @@ shape = null
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WalkBehindTrigger" index="1"]
 position = Vector2( 112, 40 )
 scale = Vector2( 10.3212, 9.69983 )
-polygon = PoolVector2Array( 12.4017, 4.12378, 9.30124, 5.7733, 6.20083, 5.7733, 3.69724, 5.92732, -10.1799, 6.02239, -10.0763, -10.7218, -4.65062, -10.7218, -4.65062, -12.3714, 0.775104, -12.3714, 0.775104, -10.7218, 2.32531, -10.7218, 2.32531, -17.3199, 10.0763, -17.3199, 12.4017, -15.6704, 12.4017, -6.59805 )
+polygon = PoolVector2Array( 12.4126, -4.09602, 9.48289, -4.09602, 6.248, -4.03108, 2.28069, -4.03108, -10.5229, -4.1298, -10.5686, -10.6495, -4.65062, -10.7218, -4.65062, -12.3714, 0.775104, -12.3714, 0.775104, -10.7218, 2.32531, -10.7218, 2.32531, -17.3199, 10.0763, -17.3199, 12.4017, -15.6704, 12.4017, -6.59805 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5"]
-position = Vector2( -24, -112 )
+position = Vector2( 0, -24 )
 occluder = SubResource( 3 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]
-position = Vector2( 40, -208 )
+position = Vector2( 64, -120 )
 navpoly = SubResource( 4 )
