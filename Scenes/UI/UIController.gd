@@ -5,6 +5,7 @@ onready var toast_label: Label = find_node("AlertLabel")
 onready var loading_dialog: WindowDialog = get_node("Modals/LoadingDialog")
 onready var tween: Tween = find_node("Tween")
 onready var timer: Timer = Timer.new()
+onready var instructions: TextureRect = find_node("Instructions")
 
 
 func _ready():
@@ -17,6 +18,13 @@ func _ready():
 
 func _exit_tree():
 	TPLG.ui = null
+
+
+func toggle_instructions():
+	if instructions.visible:
+		instructions.hide()
+	else:
+		instructions.show()
 
 
 func show_saving_indicator():

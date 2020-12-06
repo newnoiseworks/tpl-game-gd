@@ -122,6 +122,9 @@ func _unhandled_input(event: InputEvent):
 	if event.is_action_released("action_six"):
 		MatchEvent.heart()
 
+	if event.is_action_released("escape"):
+		TPLG.ui.toggle_instructions()
+
 
 func restrict_camera_to_tile_map(map: TileMap):
 	var limits: Rect2 = map.get_used_rect()
