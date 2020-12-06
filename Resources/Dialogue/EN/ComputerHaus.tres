@@ -18,18 +18,13 @@ options = "storeScript, howMuch, handleHarshClimates"
 [howMuch]
 optionText = "How much did you cost?"
 text = "I cost the exact estimated dollar amount that could have ended homelessness permanently through other means. So the investors figure'd I would solve the problem, but then I couldn't given the data."
-options = "storeScript, whyTrashForSeeds, handleHarshClimates"
+options = "storeScript, handleHarshClimates"
 
 [handleHarshClimates]
 optionText = "So you can handle harsh climates?"
 text = "Yeap - I ain't going nowhere."
-options = "storeScript, whyTrashForSeeds, whatAmI"
-
-[whyTrashForSeeds]
-optionText = "Was trash for seeds Beauzeaux's idea?"
-text = "Hah! Jeff Beauzeaux was an idiot. Couldn't help it - they let him get too rich and powerful and he actually thought it was because of him, and then he kept doing dumb sh*t while the planet burned. Anyway, when he passed, AI'd figure it was the best thing I could do to help."
-options = "storeScript, handleHarshClimates, whatAmI"
+options = "storeScript, whatAmI"
 
 [storeScript]
-optionText = "Cool story bro, can I get some seeds?"
+optionText = "Cool story, can I get some seeds?"
 script = "computer_haus_store"
