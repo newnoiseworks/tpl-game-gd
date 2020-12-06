@@ -115,11 +115,12 @@ func _unhandled_input(event: InputEvent):
 
 	if event.is_action_released("action_four"):
 		TPLG.inventory.shift_equipped_item(false)
-		pass
 
 	if event.is_action_released("action_five"):
 		TPLG.inventory.shift_equipped_item()
-		pass
+
+	if event.is_action_released("action_six"):
+		MatchEvent.heart()
 
 
 func restrict_camera_to_tile_map(map: TileMap):

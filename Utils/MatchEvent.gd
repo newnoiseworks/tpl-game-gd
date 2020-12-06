@@ -4,6 +4,7 @@ enum {
 	MOVEMENT = 0,
 	FARMING = 1,
 	FARM_PERMISSION_UPDATE = 2,
+	HEART = 3,
 	DATA_RESET = 4,
 	AVATAR_UPDATE = 5,
 	MATCH_JOIN = 6
@@ -15,6 +16,7 @@ signal farm_permission_update(state, presence)
 signal data_reset(state)
 signal avatar_update(state, presence)
 signal match_join(state, presence)
+signal heart(state, presence)
 
 var signal_map = {
 	MOVEMENT: "movement",
@@ -22,7 +24,8 @@ var signal_map = {
 	FARM_PERMISSION_UPDATE: "farm_permission_update",
 	DATA_RESET: "data_reset",
 	AVATAR_UPDATE: "avatar_update",
-	MATCH_JOIN: "match_join"
+	MATCH_JOIN: "match_join",
+	HEART: "heart"
 }
 
 
@@ -43,6 +46,8 @@ func handle_match_state_update(state: NakamaRTAPI.MatchData):
 			emit_signal("avatar_update", state.data, state.presence)
 		MATCH_JOIN:
 			emit_signal("match_join", state.data, state.presence)
+		HEART:
+			emit_signal("heart", state.data, state.presence)
 
 
 func emit(op_code: int, payload: String):
@@ -73,3 +78,7 @@ func avatar_update(payload):
 
 func match_join(payload):
 	emit(MATCH_JOIN, JSON.print(payload))
+
+
+func heart():
+	emit(HEART, "heart")
