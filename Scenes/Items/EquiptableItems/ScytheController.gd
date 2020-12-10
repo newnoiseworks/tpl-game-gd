@@ -9,6 +9,7 @@ func primary_action():
 
 	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().forage != 1:
 		TPLG.ui.show_toast("You don't have permission to forage on this farm!")
+		return
 
 	var farm_data = farm_grid.data
 	var grid_position = MoveTarget.get_current_farm_grid_tile()

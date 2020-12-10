@@ -7,7 +7,6 @@ var last_scene
 
 
 func on_body_enter(body):
-	print("teleporter on body enter")
 	if body == Player && exit_enabled:
 		TPLG.ui.show_loading_dialog()
 		yield(MatchManager.leave_match(), "completed")

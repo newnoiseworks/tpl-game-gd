@@ -26,9 +26,7 @@ func _exit_tree():
 
 
 func on_body_enter(body: Node):
-	print("on enter")
 	if body == MoveTarget:
-		print("its mopve target")
 		Player.current_farm_grid = self
 
 
@@ -224,10 +222,10 @@ func get_permissions(user_id = ""):
 	if user_id == "":
 		user_id = SessionManager.session.user_id
 
-	if farm_permissions.has("perm_collection") && farm_permissions.perm_collection.has(user_id):
-		return farm_permissions.perm_collection[user_id]
+	if farm_permissions.has("permCollection") && farm_permissions.permCollection.has(user_id):
+		return farm_permissions.permCollection[user_id]
 
-	return farm_permissions.default_permissions
+	return farm_permissions.defaultPermissions
 
 
 func has_farm_item(position):

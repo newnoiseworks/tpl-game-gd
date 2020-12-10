@@ -31,6 +31,7 @@ func _ready():
 		SaveData.load("town0FarmGridPermissions", user_avatar_to_join, user_id_to_join), "completed"
 	)
 	yield(load_farm(), "completed")
+	yield(update_farm_permissions(), "completed")
 	TPLG.ui.hide_loading_dialog()
 	Player.lock_movement = false
 
@@ -42,13 +43,21 @@ func _exit_tree():
 
 
 func farm_permissions_update_event_callback(_args: Dictionary, _user_id: String):
+	yield(update_farm_permissions(), "completed")
+
+
+func update_farm_permissions():
 	permissions_data = yield(
 		SaveData.load("town0FarmGridPermissions", user_avatar_to_join, user_id_to_join), "completed"
 	)
 
-	# permissions_data.default_permissions = {
-	# 	"till": 0, "harvest": 0, "plant": 0, "forage": 0, "water": 0
-	# }
+	if permissions_data == null:
+		permissions_data = {}
+
+	if ! permissions_data.has("defaultPermissions"):
+		permissions_data.defaultPermissions = {
+			"till": 0, "harvest": 0, "plant": 0, "forage": 0, "water": 0
+		}
 
 	for farm_grid in farm_grids:
 		farm_grid.farm_permissions = permissions_data

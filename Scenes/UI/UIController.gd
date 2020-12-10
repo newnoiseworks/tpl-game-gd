@@ -44,6 +44,7 @@ func hide_loading_dialog():
 
 
 func show_toast(message: String):
+	print("show toast message: %s" % message)
 	toast_label.text = message
 
 	_show_toast()
