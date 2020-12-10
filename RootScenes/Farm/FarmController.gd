@@ -42,7 +42,7 @@ func _exit_tree():
 	join_match_on_ready = false
 
 
-func farm_permissions_update_event_callback(_args: Dictionary, _user_id: String):
+func farm_permissions_update_event_callback(_args, _user_id):
 	yield(update_farm_permissions(), "completed")
 
 

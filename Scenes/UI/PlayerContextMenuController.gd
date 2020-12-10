@@ -29,7 +29,7 @@ func on_control_pressed(item: int):
 
 
 func open_farm_perms():
-	TPLG.farm_perms.popup()
+	TPLG.farm_perms.popup_with_user(user_id)
 
 # func add_friend():
 #       if (await new Friend(RealmManager.userIdToUsernameMap[userId]).RequestFriendship())

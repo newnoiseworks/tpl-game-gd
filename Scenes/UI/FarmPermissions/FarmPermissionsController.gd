@@ -4,7 +4,7 @@ var user_id: String
 var username: String
 var avatar_name: String
 
-onready var label: RichTextLabel = find_node("label")
+onready var label: RichTextLabel = find_node("Label")
 onready var permissions_options_scene: PackedScene = ResourceLoader.load(
 	"res://Scenes/UI/FarmPermissions/FarmPermissionsOptionList.tscn"
 )

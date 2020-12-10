@@ -78,7 +78,7 @@ func on_item_list_rmb_click(index: int, at_position: Vector2):
 	if user_id == SessionManager.session.user_id:
 		return
 
-	var context_menu = player_context_menu_scene.instance()
+	var context_menu: PopupMenu = player_context_menu_scene.instance()
 	self.add_child(context_menu)
 	context_menu.user_id = user_id
-	context_menu.popup_(Rect2(get_global_rect().position + at_position, context_menu.rect_size))
+	context_menu.popup(Rect2(get_global_rect().position + at_position, context_menu.rect_size))

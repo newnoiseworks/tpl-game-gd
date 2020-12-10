@@ -5,7 +5,8 @@ onready var tabs: TabContainer = find_node("TabContainer")
 
 func popup_centered(_size = Vector2(0, 0)):
 	for child in tabs.get_children():
-		child.ready_on_popup()
+		if child.has_method("ready_on_popup"):
+			child.ready_on_popup()
 
 	.popup_centered()
 

@@ -64,8 +64,9 @@ func interact():
 
 	var farm_grid = Player.current_farm_grid
 
-	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().plant != 1:
+	if farm_grid.is_user_owner() == false && farm_grid.get_permissions().harvest != 1:
 		TPLG.ui.show_toast("You don't have permission to harvest crops on this farm!")
+		return
 
 	var bag = TPLG.inventory.bag
 
