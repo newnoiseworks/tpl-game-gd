@@ -113,7 +113,7 @@ func get_direction_relative_to_target(target: Vector2):
 		_direction = Vector2.DOWN
 	elif abs(vector_diff.x) > abs(vector_diff.y):
 		_direction = Vector2.RIGHT if vector_diff.x < 0 else Vector2.LEFT
-	else:
+	elif abs(vector_diff.x) < abs(vector_diff.y):
 		_direction = Vector2.DOWN if vector_diff.y < 0 else Vector2.UP
 
 	return _direction
@@ -135,6 +135,7 @@ func _physics_process(_delta: float):
 			next_movement_point = Vector2.ONE * -1  # ????
 			navigation_points = []
 			set_idle()
+			return
 
 	if position_comparator_timer.is_stopped():
 		player_position_at_start = position

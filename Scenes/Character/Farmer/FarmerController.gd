@@ -236,7 +236,7 @@ func handle_farming_event(msg, presence):
 		):
 			farm_grid = fg
 
-	direction = get_direction_relative_to_target(MoveTarget.position)
+	direction = get_direction_relative_to_target(movement_target)
 
 	match int(args.type):
 		FarmEvent.PLANT:

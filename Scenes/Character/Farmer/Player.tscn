@@ -26,7 +26,6 @@ limit_bottom = 400
 position = Vector2( -7.5812, 16 )
 
 [node name="UsernameLabel" parent="." index="9"]
-visible = false
 margin_left = -18.6021
 margin_top = -26.4372
 margin_right = 19.3979
