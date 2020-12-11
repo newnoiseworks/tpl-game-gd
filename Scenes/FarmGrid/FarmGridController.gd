@@ -288,8 +288,7 @@ func forage_item(farm_event: Dictionary):
 		var forage_item = forage_item_scenes[i_pos]
 
 		if item.health <= 0:
-			# see ForageItemData.cs for SpawnDrops function
-			# item.spawn_drops(forageItem, ownerId, ownerAvatarName, collectionName);
+			spawn_drops(forage_item, item)
 			forage_item.queue_free()
 			forage_item_scenes.erase(farm_event.position)
 			# TPLNavigation2DController.instance.SetupNav();
@@ -304,6 +303,30 @@ func forage_item(farm_event: Dictionary):
 				Tween.EASE_IN
 			)
 			tweener.start()
+
+
+func spawn_drops(forage_item, forage_item_data):
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+
+	for drop_item in forage_item_data.dropItems:
+		for _i in range(drop_item.count):
+			var item_scene: PackedScene = TPLG.inventory.bag.equiptable_item_scenes[InventoryItems.get_int_from_hash(
+				drop_item.type
+			)]
+			var instanced_drop = item_scene.instance()
+			instanced_drop.forage_item_data = forage_item_data
+			instanced_drop.farm_owner_id = owner_id
+			instanced_drop.farm_owner_avatar = owner_avatar_name
+			instanced_drop.farm_owner_collection = collection_name
+
+			var position = (
+				forage_item.position
+				+ Vector2(rng.randi_range(-24, 24), rng.randi_range(-24, 24))
+			)
+			instanced_drop.position = position
+
+			forage_item.get_parent().call_deferred("add_child", instanced_drop)
 
 
 func till_soil(farm_event):

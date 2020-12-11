@@ -31,15 +31,15 @@ func on_body_enter(body):
 	tween.start()
 
 	yield(
-		TPLG.inventory.bag.add_item_to_bag(
+		TPLG.inventory.bag.add_item(
 			type,
 			JSON.print(
 				{
 					"farm_owner_id": farm_owner_id,
 					"farm_owner_avatar": farm_owner_avatar,
 					"farm_owner_collection": farm_owner_collection,
-					"x": forage_item_data.position.x,
-					"y": forage_item_data.position.y,
+					"x": forage_item_data.x,
+					"y": forage_item_data.y,
 					"forage_item_type": forage_item_data.type
 				}
 			)
@@ -48,5 +48,5 @@ func on_body_enter(body):
 	)
 
 
-func on_tween_complete():
+func on_tween_complete(_arg1, _arg2):
 	queue_free()

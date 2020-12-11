@@ -144,30 +144,11 @@ func move_item(_old_bag_position: int, _bag_position: int):
 	pass
 
 
-#     public async Task<bool> AddItemToBag(InventoryItemType itemType, string context = null) {
-#       // TODO: Figure out better way to get available bag position as this method may incur collision errors
-#       int bagPosition = GetFirstEmptyBagPosition();
-
-#       if (bagPosition >= InventoryController.columns) {
-#         UIController.ShowToast("Inventory Full!");
-#         Logger.Log("TODO: Need to implement multi row inventory");
-#         return false;
-#       }
-
-#       // TODO: Probably should add the item "locally" then only "redraw" on errors
-#       bool didAdd = await data.AddItem(itemType, context);
-
-#       if (didAdd) RedrawBag();
-
-#       return didAdd;
-#     }
-
-
 func add_item(type: int, context: String = ""):
 	var item_data = {
 		"item": InventoryItems.get_hash_from_int(type),
 		"quantity": 1,
-		"avatar": SessionManager.player.avatarData.key,
+		"avatar": SaveData.current_avatar_key,
 	}
 
 	if context != "":
@@ -178,7 +159,7 @@ func add_item(type: int, context: String = ""):
 	)
 
 	if add_item_call.payload != "false":
-		reload_and_redraw_data(null)
+		add_item_locally(type)
 
 
 func remove_item_locally(item_type):
