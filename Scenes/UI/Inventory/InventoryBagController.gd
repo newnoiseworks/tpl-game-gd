@@ -90,14 +90,14 @@ func load_data():
 	data = yield(SaveData.load("inventoryBag"), "completed")
 
 
-func reload_and_redraw_data(_args):
+func reload_and_redraw_data(_args, _presence):
 	yield(load_data(), "completed")
 	redraw_bag()
 
 
 func redraw_bag():
 	for tile in get_parent().tiles:
-		tile.UpdateQuantity(0)
+		tile.update_quantity(0)
 
 	for node in get_children():
 		node.queue_free()

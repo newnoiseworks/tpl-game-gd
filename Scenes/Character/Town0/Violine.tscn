@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Character/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Character/Town0/ViolineController.gd" type="Script" id=2]
+
+[node name="Violine" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+user_id = "Violine"
+character_base = "Characters/Violine/"
+dialogue_file = "Violine"
+dialogue_section = "hello"

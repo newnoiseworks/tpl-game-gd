@@ -4,18 +4,16 @@ signal computer_haus_store
 
 
 func _ready():
-	pass
+	TPLG.dialogue.add_dialogue_script("computer_haus_store", self)
+	connect("computer_haus_store", self, "start_store")
 
 
 func _exit_tree():
-	# TPLG.dialogue.remove_dialogue_script("computer_haus_store")
-	# disconnect("computer_haus_store", self, "start_store")
-	pass
+	TPLG.dialogue.remove_dialogue_script("computer_haus_store")
+	disconnect("computer_haus_store", self, "start_store")
 
 
 func interact():
-	TPLG.dialogue.add_dialogue_script("computer_haus_store", self)
-	connect("computer_haus_store", self, "start_store")
 	TPLG.dialogue.start("ComputerHaus", "hello")
 
 

@@ -5,7 +5,7 @@
 
 [node name="Blueprint_StonePath" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-blueprintType = "StonePath"
+blueprint_type = "StonePath"
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 margin_left = 2.0
