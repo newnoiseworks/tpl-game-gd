@@ -13,4 +13,5 @@ func popup_centered(_size = Vector2(0, 0)):
 
 func on_tab_container_tab_selected(tab: int):
 	if tabs != null:
-		tabs.get_children()[tab].ready_on_popup()
+		if tabs.get_children()[tab].has_method("ready_on_popup"):
+			tabs.get_children()[tab].ready_on_popup()
