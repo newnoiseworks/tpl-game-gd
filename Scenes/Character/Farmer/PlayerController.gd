@@ -60,9 +60,10 @@ func _physics_process(delta: float):
 	if (
 		area_to_use_equipped_item != Vector2.INF
 		&& area_to_use_equipped_item.distance_to(position) < 3
+		&& navigation_points.size() == 0
 	):
-		use_equipped_item()
 		area_to_use_equipped_item = Vector2.INF
+		use_equipped_item()
 
 
 func is_moving():
@@ -153,13 +154,9 @@ func use_equipped_item():
 
 func secondary_action_on_cursor_item():
 	if item_under_target != null && item_under_target.has_method("secondary_action"):
-		print("well then")
 		item_under_target.secondary_action()
 	elif item_under_target != null:
-		print("hmm")
 		print(item_under_target.has_method("secondary_action"))
-	else:
-		print("oh, item under target is null apparently")
 
 
 func update_target_if_needed(mouse_movement: bool = false):
