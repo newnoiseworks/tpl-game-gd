@@ -15,5 +15,3 @@ shape = SubResource( 1 )
 tile_data = PoolIntArray( 0, 961, 0 )
 
 [node name="Tween" type="Tween" parent="." index="2"]
-
-[connection signal="tween_completed" from="Tween" to="." method="OnTweenComplete"]

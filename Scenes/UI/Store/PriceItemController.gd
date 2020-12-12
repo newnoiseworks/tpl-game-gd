@@ -52,6 +52,7 @@ func on_button_up():
 
 		# TODO: The below *should* just update the items in the inventory locally!
 		yield(TPLG.wallet.sync_with_wallet(), "completed")
+		yield(TPLG.inventory.bag.reload_and_redraw_data({}, {}), "completed")
 	elif response.payload == "false":
 		print_debug("call failed.")
 

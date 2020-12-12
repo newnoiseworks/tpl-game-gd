@@ -11,7 +11,14 @@ var blueprint_to_items: Dictionary = {
 
 func _ready():
 	TPLG.set_reatomizer(self)
+	load_data()
+
+
+func load_data():
 	data = yield(SaveData.load("reatomizer"), "completed")
+
+	if data.blueprints == null || data.blueprints.size() == 0:
+		data.blueprints = []
 
 
 func interact():
@@ -25,7 +32,12 @@ func setup_store():
 	var craftable_items = []
 
 	for blueprint in data.blueprints:
-		craftable_items.append(blueprint_to_items[blueprint])
+		if blueprint is Dictionary && blueprint.has("blueprint"):
+			craftable_items.append(
+				blueprint_to_items[InventoryItems.get_int_from_hash(blueprint.blueprint)]
+			)
+		elif blueprint is String:
+			craftable_items.append(blueprint_to_items[InventoryItems.get_int_from_hash(blueprint)])
 
 	TPLG.store.populate_store(craftable_items)
 
@@ -41,8 +53,6 @@ func add_blueprint(type):
 
 	var valid_call = add_blueprint_call.payload != "false"
 
-	if add_blueprint_call.payload != "false":
-		data.blueprints.append(item_data)
-
 	if valid_call:
-		yield(TPLG.inventory.bag.reload_and_redraw_data(), "completed")
+		TPLG.inventory.bag.remove_item_locally(type)
+		load_data()

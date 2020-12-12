@@ -6,7 +6,7 @@
 [node name="WoodPath" instance=ExtResource( 1 )]
 z_as_relative = false
 script = ExtResource( 2 )
-onGround = true
+on_ground = true
 is_crafted = true
 crafted_item_type = "WoodPath"
 

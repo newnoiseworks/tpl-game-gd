@@ -270,6 +270,9 @@ func place_crafted_item(farm_event: Dictionary):
 		"x": farm_event.position.x, "y": farm_event.position.y, "type": farm_event.metadata
 	}
 
+	if data.craftedItems is Dictionary && data.craftedItems.size() == 0:
+		data.craftedItems = []
+
 	data.craftedItems.append(crafted_item_to_add)
 	add_crafted_item_to_grid(crafted_item_to_add)
 

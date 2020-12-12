@@ -99,8 +99,7 @@ position = Vector2( 673.856, -225.156 )
 position = Vector2( 192, -70.6995 )
 
 [node name="Reatomizer" parent="EnvironmentItems" instance=ExtResource( 9 )]
-visible = false
-position = Vector2( 464, -128 )
+position = Vector2( 473.541, -127.821 )
 
 [node name="FarmGrid-1-1" parent="EnvironmentItems" instance=ExtResource( 10 )]
 tile_width = 16

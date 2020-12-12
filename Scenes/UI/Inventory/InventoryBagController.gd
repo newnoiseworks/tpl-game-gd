@@ -144,7 +144,24 @@ func move_item(_old_bag_position: int, _bag_position: int):
 	pass
 
 
+var to_add: Array = []
+
+var is_adding: bool = false
+
+
+func _physics_process(_delta):
+	if to_add.size() > 0 && ! is_adding:
+		is_adding = true
+		var item = to_add.pop_back()
+		yield(_add_item(item.type, item.context), "completed")
+		is_adding = false
+
+
 func add_item(type: int, context: String = ""):
+	to_add.append({"type": type, "context": context})
+
+
+func _add_item(type: int, context: String = ""):
 	var item_data = {
 		"item": InventoryItems.get_hash_from_int(type),
 		"quantity": 1,
@@ -162,7 +179,7 @@ func add_item(type: int, context: String = ""):
 		add_item_locally(type)
 
 
-func remove_item_locally(item_type):
+func remove_item_locally(item_type, quantity: int = 1):
 	var item
 
 	for _item in data.bag:
@@ -172,10 +189,10 @@ func remove_item_locally(item_type):
 	if item == null:
 		return
 
-	if item.quantity > 1:
-		item.quantity -= 1
+	if item.quantity > quantity:
+		item.quantity -= quantity
 		inventory.tiles[item.bagPosition].update_quantity(item.quantity)
-	else:
+	elif item.quantity == quantity:
 		inventory.tiles[item.bagPosition].update_quantity(0)
 		equippable_items[int(item.bagPosition)].queue_free()
 		equippable_items[int(item.bagPosition)] = null

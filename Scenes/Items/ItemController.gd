@@ -145,8 +145,8 @@ func place_crafted_item_on_farm_grid():
 			"farm_owner_id": farm_grid.owner_id,
 			"farm_owner_avatar": farm_grid.owner_avatar_name,
 			"farm_collection": farm_grid.collection_name,
-			"x": String(position.x),
-			"y": String(position.y),
+			"x": String(grid_position.x),
+			"y": String(grid_position.y),
 			"metadata": item_hash
 		}
 	)
@@ -171,6 +171,7 @@ func remove_crafted_item_on_farm_grid():
 	if is_crafted == false || Player.current_farm_grid == null:
 		return
 
+	var grid_position = MoveTarget.get_current_farm_grid_tile()
 	var farm_grid = Player.current_farm_grid
 	var item_hash = InventoryItems.get_hash_from_int(
 		InventoryItems.get_int_from_name("Crafted_%s" % [crafted_item_type])
@@ -187,8 +188,8 @@ func remove_crafted_item_on_farm_grid():
 			"farm_owner_id": farm_grid.owner_id,
 			"farm_owner_avatar": farm_grid.owner_avatar_name,
 			"farm_collection": farm_grid.collection_name,
-			"x": String(position.x / 16),
-			"y": String(position.y / 16),
+			"x": String(grid_position.x),
+			"y": String(grid_position.y),
 			"metadata": item_hash
 		}
 	)

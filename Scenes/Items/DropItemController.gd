@@ -30,21 +30,18 @@ func on_body_enter(body):
 
 	tween.start()
 
-	yield(
-		TPLG.inventory.bag.add_item(
-			type,
-			JSON.print(
-				{
-					"farm_owner_id": farm_owner_id,
-					"farm_owner_avatar": farm_owner_avatar,
-					"farm_owner_collection": farm_owner_collection,
-					"x": forage_item_data.x,
-					"y": forage_item_data.y,
-					"forage_item_type": forage_item_data.type
-				}
-			)
-		),
-		"completed"
+	TPLG.inventory.bag.add_item(
+		type,
+		JSON.print(
+			{
+				"farm_owner_id": farm_owner_id,
+				"farm_owner_avatar": farm_owner_avatar,
+				"farm_owner_collection": farm_owner_collection,
+				"x": forage_item_data.x,
+				"y": forage_item_data.y,
+				"forage_item_type": forage_item_data.type
+			}
+		)
 	)
 
 

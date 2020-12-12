@@ -6,9 +6,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.30033, 8.74476 )
 
-[node name="DropItem" index="0" instance=ExtResource( 1 )]
+[node name="DropItem" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
 shape = SubResource( 1 )
-

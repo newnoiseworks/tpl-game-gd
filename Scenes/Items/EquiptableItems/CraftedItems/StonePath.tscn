@@ -5,7 +5,7 @@
 
 [node name="StonePath" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-onGround = true
+on_ground = true
 is_crafted = true
 crafted_item_type = "StonePath"
 

@@ -7,4 +7,3 @@ type = "OddFruit"
 
 [node name="TileMap" parent="." index="1"]
 tile_data = PoolIntArray( 0, 722, 0 )
-
