@@ -45,17 +45,17 @@ func set_base_type(new_base_type: int):
 
 func save_avatar():
 	var profile = yield(
-		SaveData.load("profile", SaveData.current_avatar_key, SessionManager.session.user_id),
+		SaveData.load("profile", SaveData.all_avatars_key, SessionManager.session.user_id),
 		"completed"
 	)
 
 	for a in profile.avatars:
 		if a.key == Player.avatar_data.key:
-			a.hairType = mannequin.avatarData.hairType
-			a.topType = mannequin.avatarData.topType
-			a.bottomType = mannequin.avatarData.bottomType
+			a.hairType = mannequin.avatar_data.hairType
+			a.topType = mannequin.avatar_data.topType
+			a.bottomType = mannequin.avatar_data.bottomType
 
-	yield(SaveData.save(profile, "profile", Player.avatar_data.key), "completed")
+	yield(SaveData.save(profile, "profile", SaveData.all_avatars_key), "completed")
 
 	MatchEvent.avatar_update("true")
 

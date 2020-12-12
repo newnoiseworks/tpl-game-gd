@@ -194,7 +194,7 @@ func on_collision(collision: KinematicCollision2D):
 	set_idle()
 
 
-func handle_avatar_update_event(msg: String, presence: Dictionary):
+func handle_avatar_update_event(msg, presence):
 	if msg == null:
 		return
 
@@ -214,6 +214,8 @@ func handle_avatar_update_event(msg: String, presence: Dictionary):
 			if user_id == SessionManager.session.user_id:
 				SessionManager.current_avatar = avatar
 				SessionManager.profile_data = profile
+
+			update_current_tile()
 
 			break
 
