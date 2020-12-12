@@ -134,9 +134,10 @@ func place_crafted_item_on_farm_grid():
 	if farm_grid.has_farm_item(grid_position):
 		return
 
-	var item_hash = InventoryItems.get_hash_from_int(
-		InventoryItems.get_int_from_name("Crafted_%s" % [crafted_item_type])
-	)
+	var item_int = InventoryItems.get_int_from_name("Crafted_%s" % [crafted_item_type])
+	var item_hash = InventoryItems.get_hash_from_int(item_int)
+
+	TPLG.inventory.bag.remove_item_locally(item_int)
 
 	MatchEvent.farming(
 		{
@@ -173,13 +174,15 @@ func remove_crafted_item_on_farm_grid():
 
 	var grid_position = MoveTarget.get_current_farm_grid_tile()
 	var farm_grid = Player.current_farm_grid
-	var item_hash = InventoryItems.get_hash_from_int(
-		InventoryItems.get_int_from_name("Crafted_%s" % [crafted_item_type])
-	)
+
+	var item_int = InventoryItems.get_int_from_name("Crafted_%s" % [crafted_item_type])
+	var item_hash = InventoryItems.get_hash_from_int(item_int)
 
 	if farm_grid.is_user_owner() == false:
 		TPLG.ui.show_toast("You can't steal crafted items. Tsk!")
 		return
+
+	TPLG.inventory.bag.add_item_locally(item_int)
 
 	MatchEvent.farming(
 		{
