@@ -5,9 +5,6 @@ debug.log
 .import/
 export.cfg
 
-# Mono-specific ignores
-.mono/
-
 # Viz studio garbage
 .vs/
 .vscode/
@@ -18,8 +15,6 @@ dist
 .cookie
 .DS_Store
 
-config.tpl_*.tres
-config.tpl.tres
-Data/InventoryItems.cs
+Utils/InventoryItems.gd
 
-Resources/Config/GameConfig.cs
+Utils/GameConfig.gd
