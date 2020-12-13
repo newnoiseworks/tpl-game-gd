@@ -22,18 +22,19 @@ var was_day_at_last_check: bool
 
 func _ready():
 	timer = Timer.new()
-	timer.wait_time = 5
+	timer.wait_time = 2
 	timer.connect("timeout", self, "set_in_game_time_of_day")
 	timer.one_shot = false
 	timer.autostart = true
 	add_child(timer)
+	timer.start()
 
 
 func start_timer(unix_epoch_from_server_on_login_in_milliseconds: int):
 	unix_epoch_from_server_on_login = int(
 		ceil(float(unix_epoch_from_server_on_login_in_milliseconds) / 1000.0)
 	)
-	unix_epoch_from_client_on_login = OS.get_unix_time()
+	unix_epoch_from_client_on_login = get_current_timestamp()
 	client_server_diff = unix_epoch_from_client_on_login - unix_epoch_from_server_on_login
 
 	set_in_game_time_of_day()
@@ -88,8 +89,8 @@ func get_rounded_time():
 func set_in_game_time_of_day():
 	var percentage_of_day_complete = get_percentage_of_day_complete()
 
-	in_game_hour = int(floor(percentage_of_day_complete * 24))
-	in_game_minute = int(floor(percentage_of_day_complete * 24 * 60) - (in_game_hour * 60))
+	in_game_hour = int(floor(percentage_of_day_complete * 24.0))
+	in_game_minute = int(floor(percentage_of_day_complete * 24.0 * 60.0) - (in_game_hour * 60.0))
 
 	if was_day_at_last_check == was_night_at_last_check:
 		was_day_at_last_check = is_day()
