@@ -12,6 +12,7 @@ func _ready():
 	timer.connect("timeout", self, "process_atmosphere")
 	timer.autostart = true
 	add_child(timer)
+	timer.start()
 
 	process_atmosphere()
 
@@ -46,8 +47,8 @@ func setup_night_sky():
 		hours_of_nightfall_passed = GameTime.in_game_hour + (24 - GameTime.NIGHTFALL)
 
 	var percentage_of_night_complete: float = (
-		hours_of_nightfall_passed
-		/ ((24 - GameTime.NIGHTFALL) + GameTime.DAYBREAK)
+		float(hours_of_nightfall_passed)
+		/ float((24 - GameTime.NIGHTFALL) + GameTime.DAYBREAK)
 	)
 
 	var current_night_intensity_percentage: float
