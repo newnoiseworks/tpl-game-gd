@@ -3,28 +3,33 @@
 [hello]
 whom = "ComputerHaus"
 text = "You want seeds? Need some plants? You got coins, I'm your machine."
-options = "storeScript, whatAmI"
+options = "storeScript, whatAmI, exit"
 
 [whatAmI]
 optionText = "Wait... are you a computer? Or a house?"
 text = "Around a millenium ago, this rich guy Jeff Beauzeaux invented me as a house that would solve the problem of mass homelessness due to accelerated and harsh environments on Earth." 
-options = "storeScript, whyHouseWithComputer, handleHarshClimates"
+options = "storeScript, whyHouseWithComputer, handleHarshClimates, exit"
 
 [whyHouseWithComputer]
 optionText = "Why didn't Beauzeaux just make houses?"
 text = "Well, that would have solved homelessness, but without a computer, I wasn't deemed \"Smart\", which is a preference of Jeff Beauzeaux's."
-options = "storeScript, howMuch, handleHarshClimates"
+options = "storeScript, howMuch, handleHarshClimates, exit"
 
 [howMuch]
 optionText = "How much did you cost?"
 text = "I cost the exact estimated dollar amount that could have ended homelessness permanently through other means. So the investors figure'd I would solve the problem, but then I couldn't given the data."
-options = "storeScript, handleHarshClimates"
+options = "storeScript, handleHarshClimates, exit"
 
 [handleHarshClimates]
 optionText = "So you can handle harsh climates?"
 text = "Yeap - I ain't going nowhere."
-options = "storeScript, whatAmI"
+options = "storeScript, whatAmI, exit"
 
 [storeScript]
 optionText = "Cool story, can I get some seeds?"
 script = "computer_haus_store"
+
+[exit]
+whom = "ComputerHaus"
+optionText = "I gotta go"
+text = "Next time"
