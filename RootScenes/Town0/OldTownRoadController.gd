@@ -29,7 +29,7 @@ func setup_teleporter():
 			town_teleporter.exit_enabled = false
 			player_entry_node = town_teleporter
 		_:  # default
-			var plot: int = RealmManager.plot_map[SessionManager.session.user_id]
+			var plot: int = RealmManager.plot_map[TPLG.current_farm.user_id]
 			var farm_teleporter = find_node("FarmTeleporter%s" % [plot])
 			farm_teleporter.exit_enabled = false
 			player_entry_node = farm_teleporter
