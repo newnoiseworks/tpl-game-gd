@@ -1,7 +1,5 @@
 extends "res://Scenes/Character/CharacterController.gd"
 
-#     public static List<FarmGridController> currentFarmGrids = new List<FarmGridController>();
-
 export var is_animation_playing: bool
 export var current_tool_tile: String
 

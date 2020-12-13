@@ -64,16 +64,20 @@ func _enter_tree():
 	direction = Vector2.DOWN
 	# set_idle()
 
-
-func _ready():
-	position_comparator_timer.wait_time = POSITION_COMPARATOR_TIMER_INTERVAL
-	position_comparator_timer.one_shot = true
-	position_comparator_timer.connect("timeout", self, "_server_position_check")
+	if user_id != "" && position_comparator_timer != null:
+		position_comparator_timer.wait_time = POSITION_COMPARATOR_TIMER_INTERVAL
+		position_comparator_timer.one_shot = true
+		position_comparator_timer.connect("timeout", self, "_server_position_check")
 
 
 func _exit_tree():
-	if user_id != "":
+	if user_id != "" && position_comparator_timer != null:
 		MatchEvent.disconnect("movement", self, "_handle_move_event")
+
+		if position_comparator_timer.is_connected("timeout", self, "_server_position_check"):
+			position_comparator_timer.disconnect("timeout", self, "_server_position_check")
+
+		position_comparator_timer.stop()
 
 
 func _set_username(_username: String):

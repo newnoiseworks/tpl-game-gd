@@ -80,8 +80,6 @@ func _on_match_presence(match_event: NakamaRTAPI.MatchPresenceEvent):
 func _handle_match_join_event(data, _presence):
 	var args = JSON.parse(data).result
 
-	print(JSON.print(args))
-
 	for user_id in args.plotMap.keys():
 		if user_ids.has(user_id):
 			continue

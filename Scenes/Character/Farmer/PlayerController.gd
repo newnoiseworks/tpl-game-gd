@@ -19,18 +19,28 @@ onready var movement_ping_timer: Timer = $MovementPing
 
 func _ready():
 	movement_ping_timer.wait_time = MOVEMENT_PING_TIMER_INTERVAL
-	movement_ping_timer.connect("timeout", self, "_send_movement_ping_update")
 
 	find_node("CharacterInteractItem").queue_free()
 	get_parent().call_deferred("remove_child", self)  # remove from tree on entry
 
 
 func _enter_tree():
+	if movement_ping_timer != null:
+		movement_ping_timer.connect("timeout", self, "_send_movement_ping_update")
+
 	navigation_points = []
 	current_nav_index = 0
 	next_movement_point = Vector2.ONE * -1  # ????
 	player_position_at_start = position
 	move_target_as_needed(position)
+
+
+func _exit_tree():
+	if movement_ping_timer != null:
+		if movement_ping_timer.is_connected("timeout", self, "_send_movement_ping_update"):
+			movement_ping_timer.disconnect("timeout", self, "_send_movement_ping_update")
+
+		movement_ping_timer.stop()
 
 
 func _physics_process(delta: float):
