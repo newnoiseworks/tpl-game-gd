@@ -46,10 +46,6 @@ func signup(email: String, username: String, password: String):
 	return session
 
 
-func rpc(uri: String, payload: String = ""):
-	return yield(client.rpc_async(session, uri, payload), "completed")
-
-
 func post_auth():
 	yield(RealmManager.connect_socket(), "completed")
 	yield(MatchManager.connect_socket(), "completed")
@@ -60,7 +56,8 @@ func post_auth():
 
 func load_time_from_server_and_start_game_time():
 	var time: NakamaAPI.ApiRpc = yield(rpc_async("get_server_time"), "completed")
-	GameTime.start_timer(int(time.payload))
+	var pp = time.payload
+	GameTime.start_timer(int(pp))
 
 
 func load_api_account():

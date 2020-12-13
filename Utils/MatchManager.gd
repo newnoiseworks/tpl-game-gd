@@ -17,7 +17,7 @@ func connect_socket():
 
 func find_or_create_match(label: String, starting_position: Vector2):
 	var response = yield(
-		SessionManager.rpc(
+		SessionManager.rpc_async(
 			"find_or_create_dungeon", "%s-%s" % [RealmManager.realm_match.match_id, label]
 		),
 		"completed"

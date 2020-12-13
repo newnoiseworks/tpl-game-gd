@@ -21,7 +21,7 @@ func connect_socket():
 
 
 func find_or_create_realm(label: String):
-	var response = yield(SessionManager.rpc("find_or_create_realm", label), "completed")
+	var response = yield(SessionManager.rpc_async("find_or_create_realm", label), "completed")
 	var realm_id = response.payload.replace('"', "")
 
 	realm_match = yield(_join_realm(realm_id), "completed")
