@@ -13,10 +13,6 @@ func _ready():
 	window_size_setup()
 
 
-func _exit_tree():
-	pass
-
-
 func window_size_setup():
 	OS.min_window_size = Vector2(1280, 720)
 	get_tree().root.connect("size_changed", self, "on_window_resize")
