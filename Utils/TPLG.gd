@@ -2,7 +2,7 @@ extends "res://Utils/GameConfig.gd"
 
 signal ui_message_dialog(message)
 
-signal base_change_scene(scene_path, args)
+signal base_change_scene(scene_path, args, reset_vp)
 
 var current_farm_grids = []
 
@@ -65,12 +65,12 @@ func show_message(message: String):
 	emit_signal("ui_message_dialog", message)
 
 
-func base_change_scene(scene_path: String, args: Dictionary = {}):
+func base_change_scene(scene_path: String, args: Dictionary = {}, reset_vp: bool = false):
 	if Player.is_inside_tree():
 		Player.get_parent().call_deferred("remove_child", Player)
 
 	if MoveTarget.is_inside_tree():
 		MoveTarget.get_parent().call_deferred("remove_child", MoveTarget)
 
-	emit_signal("base_change_scene", scene_path, args)
+	emit_signal("base_change_scene", scene_path, args, reset_vp)
 	TPLG.last_scene = scene_path.replace("res://", "")

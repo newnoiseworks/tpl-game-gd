@@ -10,7 +10,7 @@ var api_account: NakamaAPI.ApiAccount
 
 var wallet_data
 
-onready var client := Nakama.create_client(
+onready var client = Nakama.create_client(
 	TPLG.nakama_key, TPLG.nakama_host, TPLG.nakama_port, "https" if TPLG.nakama_secure else "http"
 )
 
@@ -33,6 +33,14 @@ func get_profile_data():
 
 
 func login(email: String, password: String):
+	if client == null:
+		client = Nakama.create_client(
+			TPLG.nakama_key,
+			TPLG.nakama_host,
+			TPLG.nakama_port,
+			"https" if TPLG.nakama_secure else "http"
+		)
+
 	session = yield(client.authenticate_email_async(email, password), "completed")
 	yield(post_auth(), "completed")
 
@@ -40,6 +48,14 @@ func login(email: String, password: String):
 
 
 func signup(email: String, username: String, password: String):
+	if client == null:
+		client = Nakama.create_client(
+			TPLG.nakama_key,
+			TPLG.nakama_host,
+			TPLG.nakama_port,
+			"https" if TPLG.nakama_secure else "http"
+		)
+
 	session = yield(client.authenticate_email_async(email, password, username, true), "completed")
 	yield(post_auth(), "completed")
 

@@ -58,7 +58,7 @@ func _join_realm(realm_id: String) -> NakamaRTAPI.Match:
 func _destroy_realm_session():
 	socket.disconnect("received_match_state", self, "_on_match_state")
 	socket.disconnect("received_match_presence", self, "_on_match_presence")
-	socket.disconnect("disconnect", self, "_on_socket_disconnect")
+	socket.disconnect("closed", self, "_on_socket_disconnect")
 	RealmEvent.disconnect("realm_join", self, "_realm_join_event_response")
 	RealmEvent.disconnect("change_dungeon", self, "_change_dungeon_event_response")
 	# FarmController.userIdToJoin = null;
@@ -101,4 +101,4 @@ func _change_dungeon_event_response(msg: String, presence):
 
 func _on_socket_disconnect():
 	TPLG.show_message("Connection to server lost. Could indicate an update in progress.")
-	TPLG.base_change_scene("res://RootScenes/Authentication/Authentication.tscn")
+	TPLG.base_change_scene("res://RootScenes/Authentication/Authentication.tscn", {}, true)

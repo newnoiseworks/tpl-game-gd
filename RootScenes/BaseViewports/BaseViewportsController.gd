@@ -7,11 +7,22 @@ func _ready():
 	TPLG.connect("base_change_scene", self, "change_scene")
 
 
-func change_scene(scene_path: String, args: Dictionary):
+func change_scene(scene_path: String, args: Dictionary, reset_vp: bool = false):
 	for child in game_viewport.get_children():
 		child.queue_free()
 
 	call_deferred("add_scene_after_one_frame", scene_path, args)
+
+	if reset_vp:
+		var vp = get_node("/root/BaseViewports/GameViewportContainer/GameViewport/").get_children()[0].get_viewport()
+
+		if vp == null:
+			return
+
+		vp.set_size_override(true, Vector2(OS.window_size.x, OS.window_size.y))
+		vp.size_override_stretch = true
+
+		get_node("/root/BaseViewports/UIViewportContainer/UIViewport/UI").queue_free()
 
 
 func add_scene_after_one_frame(scene_path: String, args: Dictionary):

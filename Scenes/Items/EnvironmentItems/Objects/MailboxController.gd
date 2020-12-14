@@ -15,15 +15,9 @@ func set_user_and_show(_user_id: String, _user_avatar_key: String):
 		user_avatar_key = _user_avatar_key
 		user_id = _user_id
 
-	var profile_data = yield(
-		SaveData.load("profile", SaveData.all_avatars_key, user_id), "completed"
-	)
+	var name = RealmManager.user_id_to_avatar_map[user_id]
 
-	for avatar in profile_data.avatars:
-		if avatar.key == user_avatar_key:
-			data = avatar
-
-  label.text = "%s'%s Farm" % [data.name, "s" if data.name[data.name.length() - 1] != "s" else ""]
+	label.text = "%s'%s Farm" % [name, "s" if name[name.length() - 1] != "s" else ""]
 
 	static_body.collision_mask = mask
 	static_body.collision_layer = layer
