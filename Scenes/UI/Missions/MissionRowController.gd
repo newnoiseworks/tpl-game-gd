@@ -1,6 +1,7 @@
 extends HBoxContainer
 
-export var title: String
+var title: String
+var finished: bool = false
 
 onready var label: Label = $Label
 
