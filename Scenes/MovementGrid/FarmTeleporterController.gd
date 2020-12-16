@@ -7,7 +7,6 @@ var user_avatar_to_join: String
 
 
 func on_body_enter(body: PhysicsBody2D):
-	print("farm teleporter on body enter")
 	if enabled == false || exit_enabled == false:
 		return
 

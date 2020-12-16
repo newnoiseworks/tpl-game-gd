@@ -70,7 +70,7 @@ func load_farm():
 		farm_grid.draw_plants_from_data()
 
 	if join_match_on_ready || are_other_people_on_farm():
-		print("Joining a match for this farm...")
+		# print("Joining a match for this farm...")
 		yield(start_match(user_id_to_join, user_avatar_to_join), "completed")
 		join_match_on_ready = false
 	else:

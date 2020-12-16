@@ -9,9 +9,9 @@ func _ready():
 
 func change_scene(scene_path: String, args: Dictionary, reset_vp: bool = false):
 	for child in game_viewport.get_children():
-		child.queue_free()
+		game_viewport.call_deferred("remove_child", child)
 
-	call_deferred("add_scene_after_one_frame", scene_path, args)
+	add_scene_after_one_frame(scene_path, args)
 
 	if reset_vp:
 		var vp = get_node("/root/BaseViewports/GameViewportContainer/GameViewport/").get_children()[0].get_viewport()
