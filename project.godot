@@ -122,6 +122,7 @@ GameTime="*res://Utils/GameTime.gd"
 FarmEvent="*res://Utils/FarmEvent.gd"
 PlantData="*res://Utils/PlantData.gd"
 ForageItems="*res://Utils/ForageItems.gd"
+MissionList="*res://Utils/MissionList.gd"
 
 [debug]
 

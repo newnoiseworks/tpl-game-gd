@@ -6,13 +6,14 @@ onready var list = $ItemList
 
 
 func _ready():
-	var missionData = yield(SaveData.load("missionData"), "completed")
+	var mission_data = yield(SaveData.load("missionData"), "completed")
 
-	if missionData == null && missionData.missions == null:
+	if mission_data == null && mission_data.missions == null:
 		return
 
-	for mission in missionData.missions:
+	for mission in mission_data.missions:
 		if mission.finished == 0:
+			var mission_details = MissionList.list[mission.key]
 			var mission_row = row_scene.instance()
-			mission_row.title = mission.title
+			mission_row.title = mission_details.title
 			list.call_deferred("add_child", mission_row)

@@ -18,3 +18,5 @@ dist
 Utils/InventoryItems.gd
 
 Utils/GameConfig.gd
+
+Utils/MissionList.gd
