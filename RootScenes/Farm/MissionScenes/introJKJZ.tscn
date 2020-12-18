@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://RootScenes/Farm/MissionScenes/introJKJZController.gd" type="Script" id=1]
 [ext_resource path="res://Shaders/ColorSwap.shader" type="Shader" id=2]
 [ext_resource path="res://Scenes/Character/Character.tscn" type="PackedScene" id=3]
 
@@ -17,8 +18,9 @@ shader_param/tertiaryColor = Vector3( -1, -1, -1 )
 shader_param/tertiaryChangeColor = Vector3( -1, -1, -1 )
 
 [node name="introJKJZ" type="Node2D"]
+script = ExtResource( 1 )
 
-[node name="Character" parent="." instance=ExtResource( 3 )]
+[node name="JKJZ" parent="." instance=ExtResource( 3 )]
 material = SubResource( 1 )
 position = Vector2( 134.357, -56.6474 )
 collision_layer = 18
@@ -27,7 +29,10 @@ character_base = "Characters/JKJZ/"
 dialogue_file = "JKJZ"
 dialogue_section = "introJKJZ"
 
-[node name="Body" parent="Character" index="1"]
+[node name="Body" parent="JKJZ" index="1"]
 tile_data = PoolIntArray( -65536, 884, 0 )
 
-[editable path="Character"]
+[node name="Exit" type="Node2D" parent="."]
+position = Vector2( -106.434, -38.4358 )
+
+[editable path="JKJZ"]

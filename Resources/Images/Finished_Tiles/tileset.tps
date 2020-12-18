@@ -2059,6 +2059,16 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">Characters/JKJZ/Left 1.png</key>
+            <key type="filename">Characters/JKJZ/Left 2.png</key>
+            <key type="filename">Characters/JKJZ/Left 3.png</key>
+            <key type="filename">Characters/JKJZ/Left 4.png</key>
+            <key type="filename">Characters/JKJZ/Left 5.png</key>
+            <key type="filename">Characters/JKJZ/RIght 1.png</key>
+            <key type="filename">Characters/JKJZ/Right 2.png</key>
+            <key type="filename">Characters/JKJZ/Right 3.png</key>
+            <key type="filename">Characters/JKJZ/Right 4.png</key>
+            <key type="filename">Characters/JKJZ/Right 5.png</key>
             <key type="filename">Characters/JKJZ/Side 1.png</key>
             <key type="filename">Characters/JKJZ/Side 2.png</key>
             <key type="filename">Characters/JKJZ/Side 3.png</key>
@@ -2491,7 +2501,6 @@
             <key type="filename">tiles/city/ground_city_tiles (138).png</key>
             <key type="filename">tiles/city/ground_city_tiles (139).png</key>
             <key type="filename">tiles/city/ground_city_tiles (14).png</key>
-            <key type="filename">tiles/city/ground_city_tiles (140).png</key>
             <key type="filename">tiles/city/ground_city_tiles (15).png</key>
             <key type="filename">tiles/city/ground_city_tiles (16).png</key>
             <key type="filename">tiles/city/ground_city_tiles (17).png</key>
@@ -2585,6 +2594,7 @@
             <key type="filename">tiles/city/ground_city_tiles (97).png</key>
             <key type="filename">tiles/city/ground_city_tiles (98).png</key>
             <key type="filename">tiles/city/ground_city_tiles (99).png</key>
+            <key type="filename">tiles/city/ground_city_tiles_140.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

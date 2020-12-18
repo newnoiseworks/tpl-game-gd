@@ -6,10 +6,15 @@ text = "Talk to the Computer Haus over here for some plants."
 
 [introJKJZ]
 whom = "JKJZ"
-text = "\"You landed on what looks to be a utopian, futuristic, ultra chill area, with no recollection of how you got there, or why\""
+text = "\"You landed on what looks to be a utopian, futuristic, ultra chill farm area, with no recollection of how you got there, or why\""
 options = "introWhat"
 
 [introWhat]
 optionText = "What?"
 whom = "JKJZ"
 text = "Oh, you heard that? Sorry. Anyway, welcome to your new farm!"
+options = "introFinish"
+
+[introFinish]
+optionText = "Let's finish this"
+script = "intro_jkjz_finish"

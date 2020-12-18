@@ -13479,6 +13479,96 @@
 					}
 				},
 				{
+					"filename": "Characters/JKJZ/Left 1.png",
+					"region": {
+						"x": 864,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
+					"filename": "Characters/JKJZ/Left 2.png",
+					"region": {
+						"x": 864,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
+					"filename": "Characters/JKJZ/Left 4.png",
+					"region": {
+						"x": 864,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
+					"filename": "Characters/JKJZ/RIght 1.png",
+					"region": {
+						"x": 864,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
+					"filename": "Characters/JKJZ/Right 2.png",
+					"region": {
+						"x": 864,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
+					"filename": "Characters/JKJZ/Right 4.png",
+					"region": {
+						"x": 864,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
 					"filename": "Characters/JKJZ/Side 1.png",
 					"region": {
 						"x": 864,
@@ -13524,9 +13614,69 @@
 					}
 				},
 				{
+					"filename": "Characters/JKJZ/Left 3.png",
+					"region": {
+						"x": 896,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
+					"filename": "Characters/JKJZ/Right 3.png",
+					"region": {
+						"x": 896,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
 					"filename": "Characters/JKJZ/Side 2.png",
 					"region": {
 						"x": 896,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
+					"filename": "Characters/JKJZ/Left 5.png",
+					"region": {
+						"x": 928,
+						"y": 1568,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": -15,
+						"h": -4
+					}
+				},
+				{
+					"filename": "Characters/JKJZ/Right 5.png",
+					"region": {
+						"x": 928,
 						"y": 1568,
 						"w": 32,
 						"h": 32
@@ -24384,21 +24534,6 @@
 					}
 				},
 				{
-					"filename": "tiles/city/ground_city_tiles (140).png",
-					"region": {
-						"x": 176,
-						"y": 1728,
-						"w": 16,
-						"h": 16
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "tiles/city/ground_city_tiles (15).png",
 					"region": {
 						"x": 176,
@@ -24700,6 +24835,21 @@
 				},
 				{
 					"filename": "tiles/city/ground_city_tiles (9).png",
+					"region": {
+						"x": 176,
+						"y": 1728,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/city/ground_city_tiles_140.png",
 					"region": {
 						"x": 176,
 						"y": 1728,
@@ -26084,6 +26234,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:0cc8907afa6491be3f6fd02ddfb3bbaf:c7f5c299424b4d4a0a27f16dc3151ae6:2d062234bdd1ba3eea0e9bf5cbda5cf9$"
+		"smartupdate": "$TexturePacker:SmartUpdate:4f4e7957432c025fe71aaa17b0d39bcb:0e471e71ed685db915011b1fb1a395b0:2d062234bdd1ba3eea0e9bf5cbda5cf9$"
 	}
 }
