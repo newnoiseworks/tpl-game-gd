@@ -116,6 +116,8 @@ character_base = "Characters/Gil/"
 dialogue_file = "Gil"
 dialogue_section = "hello"
 
+[node name="MissionLauncher" type="Node2D" parent="EnvironmentItems" index="26"]
+
 [node name="Sky" parent="." index="3" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 752.148, 48 )

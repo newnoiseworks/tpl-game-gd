@@ -6,6 +6,7 @@ onready var loading_dialog: WindowDialog = get_node("Modals/LoadingDialog")
 onready var tween: Tween = find_node("Tween")
 onready var timer: Timer = Timer.new()
 onready var instructions: TextureRect = find_node("Instructions")
+onready var mission_list = find_node("MissionList")
 
 
 func _ready():

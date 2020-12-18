@@ -212,5 +212,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnvironmentItems/Area2D"]
 shape = SubResource( 1 )
+
+[node name="MissionLauncher" type="Node2D" parent="EnvironmentItems"]
 [connection signal="body_entered" from="EnvironmentItems/Area2D" to="." method="lake_body_enter"]
 [connection signal="body_exited" from="EnvironmentItems/Area2D" to="." method="lake_body_exit"]

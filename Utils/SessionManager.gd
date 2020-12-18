@@ -4,6 +4,8 @@ var session: NakamaSession
 
 var profile_data
 
+var mission_data
+
 var current_avatar
 
 var api_account: NakamaAPI.ApiAccount
@@ -24,6 +26,10 @@ func set_current_avatar(avatar_data):
 	SaveData.current_avatar_key = avatar_data.key
 	Player.user_id = session.user_id
 	Player.avatar_data = avatar_data
+
+
+func load_mission_data():
+	mission_data = yield(SaveData.load("missionData"), "completed")
 
 
 func get_profile_data():

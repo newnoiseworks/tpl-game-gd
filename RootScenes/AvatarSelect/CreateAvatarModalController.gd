@@ -49,6 +49,7 @@ func confirmed():
 	yield(SessionManager.rpc_async("user.on_registration", avatar_data.key), "completed")
 
 	SessionManager.set_current_avatar(avatar_data)
+	yield(SessionManager.load_mission_data(), "completed")
 	yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
 
 	TPLG.set_ui_scene()

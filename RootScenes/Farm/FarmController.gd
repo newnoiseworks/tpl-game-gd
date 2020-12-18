@@ -10,6 +10,10 @@ var farm_grids = []
 var permissions_data = {}
 
 
+func _init():
+	missions = {"introJKJZ": "res://RootScenes/Farm/MissionScenes/introJKJZ.tscn"}
+
+
 func _ready():
 	if user_id_to_join == "":
 		user_id_to_join = TPLG.current_farm.user_id

@@ -16,7 +16,7 @@ func set_data(_avatar_data):
 
 func on_pressed():
 	SessionManager.set_current_avatar(avatar_data)
-
+	yield(SessionManager.load_mission_data(), "completed")
 	yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
 
 	# TPLG.base_change_scene("res://RootScenes/RewriteTest.tscn")

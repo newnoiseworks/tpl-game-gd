@@ -355,7 +355,7 @@ text = "00:00 AM"
 align = 2
 script = ExtResource( 4 )
 
-[node name="Missions" parent="Container/TopRight/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MissionList" parent="Container/TopRight/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 37.0
 margin_right = 104.0
 margin_bottom = 63.0

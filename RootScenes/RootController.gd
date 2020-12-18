@@ -7,10 +7,26 @@ export var scene_name: String
 
 var zoom_offset: float = 3
 
+var missions = {}
+
+onready var mission_launcher_node = find_node("MissionLauncher")
+
 
 func _ready():
 	# add_child(debug_window_scene.instance())
 	window_size_setup()
+	mission_setup()
+
+
+func mission_setup():
+	if mission_launcher_node == null:
+		return
+
+	var current_missions = TPLG.ui.mission_list.current_missions
+	for mission in current_missions:
+		if mission.key in missions.keys():
+			var mission_scene = ResourceLoader.load(missions[mission.key])
+			mission_launcher_node.call_deferred("add_child", mission_scene.instance())
 
 
 func window_size_setup():
@@ -37,25 +53,3 @@ func on_window_resize():
 			camera.offset = Vector2(int((OS.window_size.x - width) / 2) / zoom_offset, 0)
 		else:
 			camera.offset = Vector2()
-
-
-# WELP: Kind of a weird place to put this but need a non static context that exists across scenes
-func join_farm_match(_match_id: String, _match_label: String):
-	var _parts = _match_label.split("//")
-#       string[] parts = matchLabel.Split("//");
-
-#       FarmController.userIdToJoin = parts[1];
-#       FarmController.userAvatarToJoin = parts[2];
-#       FarmController.joinMatchOnReady = true;
-#       TeleporterController.lastScene = null;
-
-#       // WELP: The below line should work without producing a litany of errors...
-#       // GetTree().ChangeScene("res://RootScenes/Farm/Farm.tscn");
-
-#       // WELP: ... but this is the code that doesn't produce a bunch of errors. Go figure, maybe flip and see if it goes away on an upgrade.
-#       TeleporterController tp = (TeleporterController)teleporterScene.Instance();
-#       tp.sceneToLoad = "RootScenes/Farm/Farm.tscn";
-#       tp.exitEnabled = true;
-#       NodeManager.ScheduleAdd(PlayerController.instance, tp);
-#     }
-# }

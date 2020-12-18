@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Shaders/ColorSwap.shader" type="Shader" id=2]
+[ext_resource path="res://Scenes/Character/Character.tscn" type="PackedScene" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/skinColor = Vector3( -1, -1, -1 )
+shader_param/skinChangeColor = Vector3( -1, -1, -1 )
+shader_param/hairColor = Vector3( -1, -1, -1 )
+shader_param/hairChangeColor = Vector3( -1, -1, -1 )
+shader_param/primaryColor = Vector3( -1, -1, -1 )
+shader_param/primaryChangeColor = Vector3( -1, -1, -1 )
+shader_param/secondaryColor = Vector3( -1, -1, -1 )
+shader_param/secondaryChangeColor = Vector3( -1, -1, -1 )
+shader_param/tertiaryColor = Vector3( -1, -1, -1 )
+shader_param/tertiaryChangeColor = Vector3( -1, -1, -1 )
+
+[node name="introJKJZ" type="Node2D"]
+
+[node name="Character" parent="." instance=ExtResource( 3 )]
+material = SubResource( 1 )
+position = Vector2( 134.357, -56.6474 )
+collision_layer = 18
+user_id = "JKJZ"
+character_base = "Characters/JKJZ/"
+dialogue_file = "JKJZ"
+dialogue_section = "introJKJZ"
+
+[node name="Body" parent="Character" index="1"]
+tile_data = PoolIntArray( -65536, 884, 0 )
+
+[editable path="Character"]
