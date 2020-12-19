@@ -21,6 +21,24 @@ func get_completed_mission_keys():
 	return missions
 
 
+func finish_mission(key: String):
+	yield(
+		SessionManager.rpc_async(
+			"missions.complete", JSON.print({"key": key, "avatar": SaveData.current_avatar_key})
+		),
+		"completed"
+	)
+
+
+func start_mission(key: String):
+	yield(
+		SessionManager.rpc_async(
+			"missions.start", JSON.print({"key": key, "avatar": SaveData.current_avatar_key})
+		),
+		"completed"
+	)
+
+
 func reload_missions():
 	yield(SessionManager.load_mission_data(), "completed")
 

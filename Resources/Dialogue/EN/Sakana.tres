@@ -25,13 +25,25 @@ text = "Bye!"
 whom = "Sakana"
 optionText = "Hey you need anything?"
 text = "Hell yeah I do! You got any tomatoes?"
+next = "startTomatoesForSakana"
+
+[startTomatoesForSakana]
+script = "tomatoes_for_sakana_entry"
 
 [tomatoesForSakanaExit]
 whom = "Sakana"
 optionText = "Yo dog I got those tomatoes"
 text = "Thanks so much! I can get heartburn much quicker this way!"
+next = "finishTomatoesForSakana"
+
+[finishTomatoesForSakana]
+script = "tomatoes_for_sakana_exit"
 
 [sayHiToSakanaExit]
 whom = "Sakana"
 optionText = "Hey, it's good to meet you."
 text = "You too!"
+next = "finishSayHiToSakana"
+
+[finishSayHiToSakana]
+script = "say_hi_to_sakana_exit"

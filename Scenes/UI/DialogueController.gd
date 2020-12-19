@@ -93,8 +93,12 @@ func start_step(_dialogue_step):
 
 	if cut_off_bb_code:
 		cut_off_bb_code = false
-	else:
+	elif dialogue_step[I18n.text_key] is String:
 		bbcode = dialogue_step[I18n.text_key].split("")
+	elif dialogue_step[I18n.script_key] is String:
+		hide_dialogs()
+		run_script_from_step()
+		return
 
 	current_text.bbcode_text = ""
 	show()

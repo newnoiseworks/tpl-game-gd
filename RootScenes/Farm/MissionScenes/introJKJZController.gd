@@ -20,20 +20,7 @@ func finish_intro_mission():
 	var pos = exit.position
 	jkjz_character._move_event({"ping": "0", "x": pos.x, "y": pos.y})
 
-	yield(
-		SessionManager.rpc_async(
-			"missions.complete",
-			JSON.print({"key": "introJKJZ", "avatar": SaveData.current_avatar_key})
-		),
-		"completed"
-	)
-
-	yield(
-		SessionManager.rpc_async(
-			"missions.start",
-			JSON.print({"key": "sayHiToSakana", "avatar": SaveData.current_avatar_key})
-		),
-		"completed"
-	)
+	yield(TPLG.ui.mission_list.finish_mission("introJKJZ"), "completed")
+	yield(TPLG.ui.mission_list.start_mission("sayHiToSakana"), "completed")
 
 	TPLG.ui.mission_list.reload_missions()
