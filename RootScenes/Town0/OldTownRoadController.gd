@@ -15,13 +15,7 @@ func _init():
 	mission_dialogue_options = {
 		"Sakana":
 		{
-			"mission_entries":
-			[
-				{
-					"key": "tomatoesForSakana",
-					"prereqs": ["introJKJZ"],
-				}
-			],
+			"mission_entries": ["tomatoesForSakana"],
 			"mission_exits": ["sayHiToSakana", "tomatoesForSakana"],
 		}
 	}

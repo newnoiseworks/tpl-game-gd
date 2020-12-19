@@ -178,27 +178,30 @@ func start_options():
 	option_list.clear()
 	option_list.show()
 
-	# Consider moving around the below
+	# Consider moving around the below to an independent method
 	var completed_missions = TPLG.ui.mission_list.get_completed_mission_keys()
+	var current_missions = TPLG.ui.mission_list.get_current_mission_keys()
 
 	for character_key in TPLG.current_root_scene.mission_dialogue_options:
 		if whom == character_key:
 			var character_info = TPLG.current_root_scene.mission_dialogue_options[character_key]
 
-			for mission in character_info.mission_entries:
+			for mission_key in character_info.mission_entries:
+				if mission_key in completed_missions || mission_key in current_missions:
+					continue
+
 				var can_have_mission: bool = true
 
-				for prereq in mission.prereqs:
+				for prereq in MissionList.list[mission_key].prereqs.split(","):
 					if ! (prereq in completed_missions):
 						can_have_mission = false
 
 				if can_have_mission:
-					options.append("%sEntry" % mission.key)
+					options.append("%sEntry" % mission_key)
 
 			for mission_key in character_info.mission_exits:
-				for mission in TPLG.ui.mission_list.current_missions:
-					if mission_key == mission.key:
-						options.append("%sExit" % mission.key)
+				if mission_key in current_missions:
+					options.append("%sExit" % mission_key)
 
 	for key in options:
 		var dialogue_option = I18n.get_dialogue_step(dialogue_filename, key)

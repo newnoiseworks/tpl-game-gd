@@ -21,6 +21,16 @@ func get_completed_mission_keys():
 	return missions
 
 
+func get_current_mission_keys():
+	var missions = []
+
+	for mission_status in SessionManager.mission_data.missions:
+		if mission_status.finished == 0:
+			missions.append(mission_status.key)
+
+	return missions
+
+
 func finish_mission(key: String):
 	yield(
 		SessionManager.rpc_async(
