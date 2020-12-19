@@ -169,9 +169,32 @@ func update_speaker():
 
 func start_options():
 	var options: PoolStringArray = dialogue_step[I18n.options_key].replace(" ", "").split(',')
+	var whom: String = dialogue_step[I18n.whom_key]
 	dialogue_options = []
 	option_list.clear()
 	option_list.show()
+
+	# Consider moving around the below
+	var completed_missions = TPLG.ui.mission_list.get_completed_mission_keys()
+
+	for character_key in TPLG.current_root_scene.mission_dialogue_options:
+		if whom == character_key:
+			var character_info = TPLG.current_root_scene.mission_dialogue_options[character_key]
+
+			for mission in character_info.mission_entries:
+				var can_have_mission: bool = true
+
+				for prereq in mission.prereqs:
+					if ! (prereq in completed_missions):
+						can_have_mission = false
+
+				if can_have_mission:
+					options.append("%sEntry" % mission.key)
+
+			for mission_key in character_info.mission_exits:
+				for mission in TPLG.ui.mission_list.current_missions:
+					if mission_key == mission.key:
+						options.append("%sExit" % mission.key)
 
 	for key in options:
 		var dialogue_option = I18n.get_dialogue_step(dialogue_filename, key)

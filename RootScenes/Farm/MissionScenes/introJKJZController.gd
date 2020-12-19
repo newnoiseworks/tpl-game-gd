@@ -28,4 +28,12 @@ func finish_intro_mission():
 		"completed"
 	)
 
+	yield(
+		SessionManager.rpc_async(
+			"missions.start",
+			JSON.print({"key": "sayHiToSakana", "avatar": SaveData.current_avatar_key})
+		),
+		"completed"
+	)
+
 	TPLG.ui.mission_list.reload_missions()

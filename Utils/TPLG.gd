@@ -4,6 +4,8 @@ signal ui_message_dialog(message)
 
 signal base_change_scene(scene_path, args, reset_vp)
 
+var current_root_scene
+
 var current_farm_grids = []
 
 var current_farm = {"user_id": "", "user_avatar": ""}

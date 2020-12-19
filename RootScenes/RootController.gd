@@ -7,7 +7,8 @@ export var scene_name: String
 
 var zoom_offset: float = 3
 
-var missions = {}
+var mission_scenes = {}
+var mission_dialogue_options = {}
 
 onready var mission_launcher_node = find_node("MissionLauncher")
 
@@ -16,6 +17,7 @@ func _ready():
 	# add_child(debug_window_scene.instance())
 	window_size_setup()
 	mission_setup()
+	TPLG.current_root_scene = self
 
 
 func mission_setup():
@@ -24,8 +26,8 @@ func mission_setup():
 
 	var current_missions = TPLG.ui.mission_list.current_missions
 	for mission in current_missions:
-		if mission.key in missions.keys():
-			var mission_scene = ResourceLoader.load(missions[mission.key])
+		if mission.key in mission_scenes.keys():
+			var mission_scene = ResourceLoader.load(mission_scenes[mission.key])
 			mission_launcher_node.call_deferred("add_child", mission_scene.instance())
 
 

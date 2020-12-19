@@ -11,7 +11,7 @@ var permissions_data = {}
 
 
 func _init():
-	missions = {"introJKJZ": "res://RootScenes/Farm/MissionScenes/introJKJZ.tscn"}
+	mission_scenes = {"introJKJZ": "res://RootScenes/Farm/MissionScenes/introJKJZ.tscn"}
 
 
 func _ready():

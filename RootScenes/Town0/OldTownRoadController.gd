@@ -7,6 +7,22 @@ var player_context_menu_scene: PackedScene = ResourceLoader.load(
 var town_teleporter
 
 
+func _init():
+	mission_dialogue_options = {
+		"Sakana":
+		{
+			"mission_entries":
+			[
+				{
+					"key": "tomatoesForSakana",
+					"prereqs": ["introJKJZ"],
+				}
+			],
+			"mission_exits": ["sayHiToSakana", "tomatoesForSakana"],
+		}
+	}
+
+
 func _ready():
 	setup_teleporter()
 

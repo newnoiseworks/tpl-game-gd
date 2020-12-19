@@ -3,7 +3,7 @@
 [hello]
 whom = "Sakana"
 text = "Hello, I'm Sakana, I sell the clothes around here."
-#options = "amazing, thanks"
+options = "amazing, thanks"
 
 [amazing]
 whom = "Sakana"
@@ -20,3 +20,18 @@ options = "amazing, thanks"
 whom = "Sakana"
 optionText = "Thanks!"
 text = "Bye!"
+
+[tomatoesForSakanaEntry]
+whom = "Sakana"
+optionText = "Hey you need anything?"
+text = "Hell yeah I do! You got any tomatoes?"
+
+[tomatoesForSakanaExit]
+whom = "Sakana"
+optionText = "Yo dog I got those tomatoes"
+text = "Thanks so much! I can get heartburn much quicker this way!"
+
+[sayHiToSakanaExit]
+whom = "Sakana"
+optionText = "Hey, it's good to meet you."
+text = "You too!"

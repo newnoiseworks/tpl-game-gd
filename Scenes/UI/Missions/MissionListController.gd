@@ -11,6 +11,16 @@ func _ready():
 	_draw_missions()
 
 
+func get_completed_mission_keys():
+	var missions = []
+
+	for mission_status in SessionManager.mission_data.missions:
+		if mission_status.finished == 1:
+			missions.append(mission_status.key)
+
+	return missions
+
+
 func reload_missions():
 	yield(SessionManager.load_mission_data(), "completed")
 
