@@ -204,7 +204,18 @@ func start_options():
 					options.append("%sExit" % mission_key)
 
 	for key in options:
+		var can_have_option: bool = true
+
 		var dialogue_option = I18n.get_dialogue_step(dialogue_filename, key)
+
+		if dialogue_option[I18n.mission_prereqs_key] != null:
+			for prereq in dialogue_option[I18n.mission_prereqs_key].split(","):
+				if ! (prereq in completed_missions):
+					can_have_option = false
+
+		if ! can_have_option:
+			continue
+
 		dialogue_options.append(dialogue_option)
 		option_list.add_item(dialogue_option[I18n.option_text_key])
 

@@ -10,6 +10,7 @@ var script_key: String = "script"
 var options_key: String = "options"
 var option_text_key: String = "optionText"
 var whom_key: String = "whom"
+var mission_prereqs_key: String = "missionPrereqs"
 
 
 func get_line(filename: String, section: String, key: String):
@@ -25,6 +26,7 @@ func get_dialogue_step(filename: String, section: String):
 	step[options_key] = get_key_if_exists_in_file(filename, section, options_key)
 	step[option_text_key] = get_key_if_exists_in_file(filename, section, option_text_key)
 	step[whom_key] = get_key_if_exists_in_file(filename, section, whom_key)
+	step[mission_prereqs_key] = get_key_if_exists_in_file(filename, section, mission_prereqs_key)
 
 	return step
 

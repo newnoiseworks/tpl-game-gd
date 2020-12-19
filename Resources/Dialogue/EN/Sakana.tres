@@ -10,6 +10,7 @@ whom = "Sakana"
 optionText = "I'm ready to look amazing!"
 text = "We're opening soon! Give the developers some money IRL, it'll help!"
 next = "faqReroute"
+missionPrereqs = "sayHiToSakana"
 
 [faqReroute]
 whom = "Sakana"
@@ -20,6 +21,7 @@ options = "amazing, thanks"
 whom = "Sakana"
 optionText = "Thanks!"
 text = "Bye!"
+missionPrereqs = "sayHiToSakana"
 
 [tomatoesForSakanaEntry]
 whom = "Sakana"
