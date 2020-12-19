@@ -1,23 +1,19 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-signal computer_haus_store
-
 
 func _ready():
 	TPLG.dialogue.add_dialogue_script("computer_haus_store", self)
-	connect("computer_haus_store", self, "start_store")
 
 
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("computer_haus_store")
-	disconnect("computer_haus_store", self, "start_store")
 
 
 func interact():
 	TPLG.dialogue.start("ComputerHaus", "hello")
 
 
-func start_store():
+func computer_haus_store():
 	TPLG.store.populate_store(
 		[
 			InventoryItems.CABBAGE_SEEDS,

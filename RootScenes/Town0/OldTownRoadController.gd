@@ -6,10 +6,6 @@ var player_context_menu_scene: PackedScene = ResourceLoader.load(
 
 var town_teleporter
 
-signal tomatoes_for_sakana_entry
-signal tomatoes_for_sakana_exit
-signal say_hi_to_sakana_exit
-
 
 func _init():
 	mission_dialogue_options = {
@@ -28,13 +24,8 @@ func _ready():
 	RealmEvent.connect("change_dungeon", self, "change_dungeon_event_response")
 
 	TPLG.dialogue.add_dialogue_script("tomatoes_for_sakana_entry", self)
-	connect("tomatoes_for_sakana_entry", self, "tomatoes_for_sakana_entry")
-
 	TPLG.dialogue.add_dialogue_script("tomatoes_for_sakana_exit", self)
-	connect("tomatoes_for_sakana_exit", self, "tomatoes_for_sakana_exit")
-
 	TPLG.dialogue.add_dialogue_script("say_hi_to_sakana_exit", self)
-	connect("say_hi_to_sakana_exit", self, "say_hi_to_sakana_exit")
 
 	reload_data_and_redraw()
 
@@ -44,32 +35,23 @@ func _exit_tree():
 	RealmEvent.disconnect("change_dungeon", self, "change_dungeon_event_response")
 
 	TPLG.dialogue.remove_dialogue_script("tomatoes_for_sakana_entry")
-	disconnect("tomatoes_for_sakana_entry", self, "tomatoes_for_sakana_entry")
-
 	TPLG.dialogue.remove_dialogue_script("tomatoes_for_sakana_exit")
-	disconnect("tomatoes_for_sakana_exit", self, "tomatoes_for_sakana_exit")
-
 	TPLG.dialogue.remove_dialogue_script("say_hi_to_sakana_exit")
-	disconnect("say_hi_to_sakana_exit", self, "say_hi_to_sakana_exit")
 
 
 func tomatoes_for_sakana_entry():
 	yield(TPLG.ui.mission_list.start_mission("tomatoesForSakana"), "completed")
-
 	TPLG.ui.mission_list.reload_missions()
-	pass
 
 
 func tomatoes_for_sakana_exit():
 	yield(TPLG.ui.mission_list.finish_mission("tomatoesForSakana"), "completed")
 	TPLG.ui.mission_list.reload_missions()
-	pass
 
 
 func say_hi_to_sakana_exit():
 	yield(TPLG.ui.mission_list.finish_mission("sayHiToSakana"), "completed")
 	TPLG.ui.mission_list.reload_missions()
-	pass
 
 
 func setup_teleporter():

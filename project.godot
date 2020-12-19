@@ -128,7 +128,6 @@ MissionList="*res://Utils/MissionList.gd"
 
 settings/fps/force_fps=60
 gdscript/warnings/incompatible_ternary=false
-gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
 gdscript/warnings/integer_division=false
 gdscript/warnings/unsafe_cast=true

@@ -4,12 +4,12 @@ extends Control
 var dialogue_scripts = {}
 
 
-func add_dialogue_script(signal_path: String, node: Node):
-	dialogue_scripts[signal_path] = node
+func add_dialogue_script(method: String, node: Node):
+	dialogue_scripts[method] = node
 
 
-func remove_dialogue_script(signal_path: String):
-	dialogue_scripts.erase(signal_path)
+func remove_dialogue_script(method: String):
+	dialogue_scripts.erase(method)
 
 
 const TYPEWRITER_SPEED: int = 25
@@ -246,7 +246,7 @@ func run_script_from_step():
 	var script_key: String = dialogue_step[I18n.script_key]
 
 	if dialogue_scripts.has(script_key):
-		dialogue_scripts[script_key].emit_signal(script_key)
+		dialogue_scripts[script_key].call(script_key)
 	else:
 		print_debug(
 			(
