@@ -32,7 +32,7 @@ func get_current_mission_keys():
 
 
 func finish_mission(key: String):
-	yield(
+	return yield(
 		SessionManager.rpc_async(
 			"missions.complete", JSON.print({"key": key, "avatar": SaveData.current_avatar_key})
 		),
@@ -41,7 +41,7 @@ func finish_mission(key: String):
 
 
 func start_mission(key: String):
-	yield(
+	return yield(
 		SessionManager.rpc_async(
 			"missions.start", JSON.print({"key": key, "avatar": SaveData.current_avatar_key})
 		),

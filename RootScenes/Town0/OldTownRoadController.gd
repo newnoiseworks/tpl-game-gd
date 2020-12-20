@@ -27,6 +27,8 @@ func _ready():
 	TPLG.dialogue.add_dialogue_script("tomatoes_for_sakana_exit", self)
 	TPLG.dialogue.add_dialogue_script("say_hi_to_sakana_exit", self)
 
+	finish_intro_mission_as_needed()
+
 	reload_data_and_redraw()
 
 
@@ -45,13 +47,24 @@ func tomatoes_for_sakana_entry():
 
 
 func tomatoes_for_sakana_exit():
-	yield(TPLG.ui.mission_list.finish_mission("tomatoesForSakana"), "completed")
-	TPLG.ui.mission_list.reload_missions()
+	var passed = yield(TPLG.ui.mission_list.finish_mission("tomatoesForSakana"), "completed")
+	if passed.payload == "false":
+		TPLG.dialogue.start("Sakana", "tomatoesForSakanaExitFailed")
+	else:
+		TPLG.dialogue.start("Sakana", "tomatoesForSakanaExitFinished")
+		TPLG.inventory.bag.reload_and_redraw_data({}, {})
+		TPLG.ui.mission_list.reload_missions()
 
 
 func say_hi_to_sakana_exit():
 	yield(TPLG.ui.mission_list.finish_mission("sayHiToSakana"), "completed")
 	TPLG.ui.mission_list.reload_missions()
+
+
+func finish_intro_mission_as_needed():
+	if "visitTown" in TPLG.ui.mission_list.get_current_mission_keys():
+		yield(TPLG.ui.mission_list.finish_mission("visitTown"), "completed")
+		TPLG.ui.mission_list.reload_missions()
 
 
 func setup_teleporter():

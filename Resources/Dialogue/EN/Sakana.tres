@@ -26,7 +26,7 @@ missionPrereqs = "sayHiToSakana"
 [tomatoesForSakanaEntry]
 whom = "Sakana"
 optionText = "Hey you need anything?"
-text = "Hell yeah I do! You got any tomatoes?"
+text = "Hell yeah I do! You got any tomatoes? I need one!"
 next = "startTomatoesForSakana"
 
 [startTomatoesForSakana]
@@ -35,8 +35,16 @@ script = "tomatoes_for_sakana_entry"
 [tomatoesForSakanaExit]
 whom = "Sakana"
 optionText = "Yo dog I got those tomatoes"
-text = "Thanks so much! I can get heartburn much quicker this way!"
+text = "Really?"
 next = "finishTomatoesForSakana"
+
+[tomatoesForSakanaExitFailed]
+whom = "Sakana"
+text= "Hmm... maybe come back when you got that tomato!"
+
+[tomatoesForSakanaExitFinished]
+whom = "Sakana"
+text = "Thanks so much! I can get heartburn much quicker this way!"
 
 [finishTomatoesForSakana]
 script = "tomatoes_for_sakana_exit"
