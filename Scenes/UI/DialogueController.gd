@@ -69,7 +69,7 @@ func _input(event):
 
 func hide_dialogs():
 	TPLG.dialogue.hide()
-	Player.lock_movement = false
+	Player.call_deferred("set", "lock_movement", false)
 
 
 func dialogue_option_selected(index: int):
