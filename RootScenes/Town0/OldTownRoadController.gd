@@ -13,7 +13,13 @@ func _init():
 		{
 			"mission_entries": ["tomatoesForSakana"],
 			"mission_exits": ["sayHiToSakana", "tomatoesForSakana"],
-		}
+		},
+		"York": {"mission_entries": ["pickupYorksHearts"], "mission_exits": ["pickupYorksHearts"]}
+	}
+
+	mission_scenes = {
+		"pickupYorksHearts":
+		"res://RootScenes/Town0/MissionScenes/PickupYorksHearts/PickupYorksHearts.tscn"
 	}
 
 
@@ -25,6 +31,8 @@ func _ready():
 
 	TPLG.dialogue.add_dialogue_script("tomatoes_for_sakana_entry", self)
 	TPLG.dialogue.add_dialogue_script("tomatoes_for_sakana_exit", self)
+	TPLG.dialogue.add_dialogue_script("pickup_yorks_hearts_entry", self)
+	TPLG.dialogue.add_dialogue_script("pickup_yorks_hearts_exit", self)
 	TPLG.dialogue.add_dialogue_script("say_hi_to_sakana_exit", self)
 
 	finish_intro_mission_as_needed()
@@ -38,6 +46,8 @@ func _exit_tree():
 
 	TPLG.dialogue.remove_dialogue_script("tomatoes_for_sakana_entry")
 	TPLG.dialogue.remove_dialogue_script("tomatoes_for_sakana_exit")
+	TPLG.dialogue.remove_dialogue_script("pickup_yorks_hearts_entry")
+	TPLG.dialogue.remove_dialogue_script("pickup_yorks_hearts_exit")
 	TPLG.dialogue.remove_dialogue_script("say_hi_to_sakana_exit")
 
 
@@ -52,6 +62,25 @@ func tomatoes_for_sakana_exit():
 		TPLG.dialogue.start("Sakana", "tomatoesForSakanaExitFailed")
 	else:
 		TPLG.dialogue.start("Sakana", "tomatoesForSakanaExitFinished")
+		TPLG.inventory.bag.reload_and_redraw_data({}, {})
+		TPLG.ui.mission_list.reload_missions()
+
+
+func pickup_yorks_hearts_entry():
+	yield(TPLG.ui.mission_list.start_mission("pickupYorksHearts"), "completed")
+
+	var pickup_scene = ResourceLoader.load(mission_scenes["pickupYorksHearts"])
+	mission_launcher_node.call_deferred("add_child", pickup_scene.instance())
+
+	TPLG.ui.mission_list.reload_missions()
+
+
+func pickup_yorks_hearts_exit():
+	var passed = yield(TPLG.ui.mission_list.finish_mission("pickupYorksHearts"), "completed")
+	if passed.payload == "false":
+		TPLG.dialogue.start("York", "pickupYorksHeartsExitFailed")
+	else:
+		TPLG.dialogue.start("York", "pickupYorksHeartsExitFinished")
 		TPLG.inventory.bag.reload_and_redraw_data({}, {})
 		TPLG.ui.mission_list.reload_missions()
 

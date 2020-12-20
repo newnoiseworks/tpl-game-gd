@@ -13,3 +13,41 @@ next = "yorkCorrects"
 [yorkCorrects]
 whom = "York"
 text = "Oh! Right!"
+options = "goodbye"
+
+[pickupYorksHeartsEntry]
+whom = "York"
+optionText = "So, what's up?"
+text = "Oh no! I lost my heart!"
+options = "yorkHeartResponse"
+
+[yorkHeartResponse]
+whom = "York"
+optionText = "Bummer... we've all been there"
+text = "What? No not that heart. My red heart emojis! They're scattered across town! I lost five of them -- do you think you could try and find them?"
+next = "startPickupYorksHearts"
+
+[startPickupYorksHearts]
+script = "pickup_yorks_hearts_entry"
+
+[pickupYorksHeartsExit]
+whom = "York"
+optionText = "Got those hearts you lost"
+text = "Let's see..."
+next = "finishPickupYorksHearts"
+
+[finishPickupYorksHearts]
+script = "pickup_yorks_hearts_exit"
+
+[pickupYorksHeartsExitFailed]
+whom = "York"
+text = "Hmmm... count seems low here..."
+
+[pickupYorksHeartsExitFinished]
+whom = "York"
+text = "Phew! Always better when your hearts are in the right place, yeah?"
+
+[goodbye]
+whom = "York"
+optionText = "Later!"
+text = "Peace"

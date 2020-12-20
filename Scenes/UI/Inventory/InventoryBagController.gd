@@ -54,6 +54,8 @@ var equiptable_item_scenes = {
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/TurnipSeedPack.tscn"),
 	InventoryItems.TURNIP:
 	ResourceLoader.load("res://Scenes/Items/EnvironmentItems/Plants/Turnip.tscn"),
+	InventoryItems.YORK_HEART:
+	ResourceLoader.load("res://RootScenes/Town0/MissionScenes/PickupYorksHearts/YorkHeart.tscn"),
 }
 
 var data: Dictionary

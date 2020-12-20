@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://RootScenes/Town0/MissionScenes/PickupYorksHearts/PickupYorksHeartsController.gd" type="Script" id=1]
+[ext_resource path="res://RootScenes/Town0/MissionScenes/PickupYorksHearts/YorkHeart.tscn" type="PackedScene" id=2]
+
+[node name="PickupYorksHearts" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="YorkHeart1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 517.089, 616 )
+mission_context_meta = "1"
+
+[node name="YorkHeart2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 361.611, 400 )
+mission_context_meta = "2"
+
+[node name="YorkHeart3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 501.556, 408 )
+mission_context_meta = "3"
+
+[node name="YorkHeart4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 888, 248 )
+mission_context_meta = "4"
+
+[node name="YorkHeart5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1024, 397.592 )
+mission_context_meta = "5"
