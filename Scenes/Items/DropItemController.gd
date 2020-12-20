@@ -1,6 +1,11 @@
 extends "res://Scenes/Items/ItemController.gd"
 
 export var inventory_item_type: String
+
+# TODO: See below comments on making this separate classes
+export var mission_key: String
+export var mission_context_meta: String
+
 var forage_item_data
 var farm_owner_id
 var farm_owner_avatar
@@ -30,19 +35,22 @@ func on_body_enter(body):
 
 	tween.start()
 
-	TPLG.inventory.bag.add_item(
-		type,
-		JSON.print(
-			{
-				"farm_owner_id": farm_owner_id,
-				"farm_owner_avatar": farm_owner_avatar,
-				"farm_owner_collection": farm_owner_collection,
-				"x": forage_item_data.x,
-				"y": forage_item_data.y,
-				"forage_item_type": forage_item_data.type
-			}
-		)
-	)
+	var context = {}
+
+	# TODO: Break this out into three classes; DropItem as a parent, then ForageDropItem and MissionDropItem as children  
+	if forage_item_data != null:
+		context = {
+			"farm_owner_id": farm_owner_id,
+			"farm_owner_avatar": farm_owner_avatar,
+			"farm_owner_collection": farm_owner_collection,
+			"x": forage_item_data.x,
+			"y": forage_item_data.y,
+			"forage_item_type": forage_item_data.type
+		}
+	elif mission_key != null:
+		context = {"mission_key": mission_key, "meta": mission_context_meta}
+
+	TPLG.inventory.bag.add_item(type, JSON.print(context))
 
 
 func on_tween_complete(_arg1, _arg2):

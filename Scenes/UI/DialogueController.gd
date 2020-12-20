@@ -186,22 +186,25 @@ func start_options():
 		if whom == character_key:
 			var character_info = TPLG.current_root_scene.mission_dialogue_options[character_key]
 
-			for mission_key in character_info.mission_entries:
-				if mission_key in completed_missions || mission_key in current_missions:
-					continue
+			if "mission_entries" in character_info:
+				for mission_key in character_info.mission_entries:
+					if mission_key in completed_missions || mission_key in current_missions:
+						continue
 
-				var can_have_mission: bool = true
+					var can_have_mission: bool = true
 
-				for prereq in MissionList.list[mission_key].prereqs.split(","):
-					if ! (prereq in completed_missions):
-						can_have_mission = false
+					if "prereqs" in MissionList.list[mission_key]:
+						for prereq in MissionList.list[mission_key].prereqs.split(","):
+							if ! (prereq in completed_missions):
+								can_have_mission = false
 
-				if can_have_mission:
-					options.append("%sEntry" % mission_key)
+					if can_have_mission:
+						options.append("%sEntry" % mission_key)
 
-			for mission_key in character_info.mission_exits:
-				if mission_key in current_missions:
-					options.append("%sExit" % mission_key)
+			if "mission_exits" in character_info:
+				for mission_key in character_info.mission_exits:
+					if mission_key in current_missions:
+						options.append("%sExit" % mission_key)
 
 	for key in options:
 		var can_have_option: bool = true

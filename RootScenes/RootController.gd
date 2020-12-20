@@ -24,11 +24,14 @@ func mission_setup():
 	if mission_launcher_node == null:
 		return
 
+	yield(TPLG.ui.mission_list.reload_missions(), "completed")
+
 	var current_missions = TPLG.ui.mission_list.current_missions
 	for mission in current_missions:
 		if mission.key in mission_scenes.keys():
 			var mission_scene = ResourceLoader.load(mission_scenes[mission.key])
-			mission_launcher_node.call_deferred("add_child", mission_scene.instance())
+			var instance = mission_scene.instance()
+			mission_launcher_node.call_deferred("add_child", instance)
 
 
 func window_size_setup():
