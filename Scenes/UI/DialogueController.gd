@@ -12,7 +12,7 @@ func remove_dialogue_script(method: String):
 	dialogue_scripts.erase(method)
 
 
-const TYPEWRITER_SPEED: int = 25
+const TYPEWRITER_SPEED: float = .025
 const MAX_DIALOGUE_CHARS: int = 90
 const MAX_DIALOGUE_CHARS_WITH_AVATAR: int = 75
 const ELIPSES: String = "..."
@@ -25,9 +25,9 @@ onready var whomst: TextEdit = find_node("WhomstContainer")
 
 var text: RichTextLabel
 var avatar_tile: Vector2 = Vector2(0, 0)
-var type_timer: Timer = Timer.new()
+var type_timer: Timer
 var next_char_pos: int
-var bbcode: PoolStringArray = []
+var bbcode: String
 var is_typing: bool
 var dialogue_step = {}
 var dialogue_options: Array = []
@@ -39,6 +39,7 @@ var dialogue_filename: String
 func _ready():
 	TPLG.set_dialogue(self)
 	text = current_text
+	type_timer = Timer.new()
 	type_timer.wait_time = TYPEWRITER_SPEED
 	type_timer.autostart = false
 	type_timer.connect("timeout", self, "type_timer_elapsed")
@@ -94,7 +95,7 @@ func start_step(_dialogue_step):
 	if cut_off_bb_code:
 		cut_off_bb_code = false
 	elif dialogue_step[I18n.text_key] is String:
-		bbcode = dialogue_step[I18n.text_key].split("")
+		bbcode = dialogue_step[I18n.text_key]
 	elif dialogue_step[I18n.script_key] is String:
 		hide_dialogs()
 		run_script_from_step()
@@ -115,11 +116,11 @@ func typewrite():
 		)
 	):
 		is_typing = false
-		bbcode = bbcode.join("").replace(current_text.bbcode_text, "... ").split("")
+		bbcode = bbcode.replace(current_text.bbcode_text, "... ")
 		current_text.bbcode_text += ELIPSES
 		cut_off_bb_code = true
 		return
-	elif next_char_pos >= bbcode.size():
+	elif next_char_pos >= bbcode.length():
 		is_typing = false
 		return
 
