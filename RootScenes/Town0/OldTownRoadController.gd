@@ -53,7 +53,8 @@ func _exit_tree():
 
 func tomatoes_for_sakana_entry():
 	yield(TPLG.ui.mission_list.start_mission("tomatoesForSakana"), "completed")
-	TPLG.ui.mission_list.reload_missions()
+	yield(TPLG.ui.mission_list.reload_missions(), "completed")
+	mission_character_highlight_setup()
 
 
 func tomatoes_for_sakana_exit():
@@ -64,7 +65,8 @@ func tomatoes_for_sakana_exit():
 		TPLG.dialogue.start("Sakana", "tomatoesForSakanaExitFinished")
 		TPLG.inventory.bag.reload_and_redraw_data({}, {})
 		TPLG.wallet.sync_with_wallet()
-		TPLG.ui.mission_list.reload_missions()
+		yield(TPLG.ui.mission_list.reload_missions(), "completed")
+		mission_character_highlight_setup()
 
 
 func pickup_yorks_hearts_entry():
@@ -73,7 +75,8 @@ func pickup_yorks_hearts_entry():
 	var pickup_scene = ResourceLoader.load(mission_scenes["pickupYorksHearts"])
 	mission_launcher_node.call_deferred("add_child", pickup_scene.instance())
 
-	TPLG.ui.mission_list.reload_missions()
+	yield(TPLG.ui.mission_list.reload_missions(), "completed")
+	mission_character_highlight_setup()
 
 
 func pickup_yorks_hearts_exit():
@@ -84,20 +87,23 @@ func pickup_yorks_hearts_exit():
 		TPLG.dialogue.start("York", "pickupYorksHeartsExitFinished")
 		TPLG.wallet.sync_with_wallet()
 		TPLG.inventory.bag.reload_and_redraw_data({}, {})
-		TPLG.ui.mission_list.reload_missions()
+		yield(TPLG.ui.mission_list.reload_missions(), "completed")
+		mission_character_highlight_setup()
 
 
 func say_hi_to_sakana_exit():
 	yield(TPLG.ui.mission_list.finish_mission("sayHiToSakana"), "completed")
 	TPLG.wallet.sync_with_wallet()
-	TPLG.ui.mission_list.reload_missions()
+	yield(TPLG.ui.mission_list.reload_missions(), "completed")
+	mission_character_highlight_setup()
 
 
 func finish_intro_mission_as_needed():
 	if "visitTown" in TPLG.ui.mission_list.get_current_mission_keys():
 		yield(TPLG.ui.mission_list.finish_mission("visitTown"), "completed")
-		TPLG.ui.mission_list.reload_missions()
 		TPLG.wallet.sync_with_wallet()
+		yield(TPLG.ui.mission_list.reload_missions(), "completed")
+		mission_character_highlight_setup()
 
 
 func setup_teleporter():

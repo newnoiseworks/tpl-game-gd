@@ -180,6 +180,9 @@ func _add_item(type: int, context: String = ""):
 	if add_item_call.payload != "false":
 		add_item_locally(type)
 
+	if "mission_key" in context:
+		TPLG.current_root_scene.mission_character_highlight_setup()
+
 
 func remove_item_locally(item_type, quantity: int = 1):
 	var item
@@ -232,17 +235,15 @@ func add_item_locally(item_type: int):
 	add_item_scene_or_update_quantity(item)
 
 
-func has_item(type):
+func has_item(type, minimum = 1) -> bool:
 	if type is String:
 		type = InventoryItems.get_int_from_hash(type)
 
-	var item
+	for item in data.bag:
+		if InventoryItems.get_int_from_hash(item.itemTypeId) == type && item.quantity >= minimum:
+			return true
 
-	for _item in data.bag:
-		if InventoryItems.get_int_from_hash(_item.itemTypeId) == type:
-			item = _item
-
-	return item != null
+	return false
 
 
 func has_item_at(slot: int):

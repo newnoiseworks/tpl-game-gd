@@ -20,6 +20,7 @@ func _ready():
 	TPLG.current_root_scene = self
 
 
+# TODO: consider moving the mission stuff into an isolated node, perhaps the mission_launcher_node itself
 func mission_setup():
 	if mission_launcher_node == null:
 		return
@@ -32,6 +33,100 @@ func mission_setup():
 			var mission_scene = ResourceLoader.load(mission_scenes[mission.key])
 			var instance = mission_scene.instance()
 			mission_launcher_node.call_deferred("add_child", instance)
+
+	mission_character_highlight_setup()
+
+
+func mission_character_highlight_setup():
+	for character_key in mission_dialogue_options:
+		character_highlight(character_key, false)
+
+	var current_missions = TPLG.ui.mission_list.current_missions
+	var current_mission_keys = TPLG.ui.mission_list.get_current_mission_keys()
+	var completed_missions = TPLG.ui.mission_list.get_completed_mission_keys()
+
+	for character_key in mission_dialogue_options:
+		if "mission_entries" in mission_dialogue_options[character_key]:
+			var entries = mission_dialogue_options[character_key]["mission_entries"]
+
+			for mission_key in entries:
+				var mission_data = MissionList.list[mission_key]
+				var has_passed = true
+
+				if mission_key in current_mission_keys || mission_key in completed_missions:
+					has_passed = false
+
+				if has_passed && "prereqs" in mission_data:
+					# highlight characters in scene if they enter a mission AND the user matches those prereqs
+
+					for req in mission_data.prereqs.split(","):
+						if ! req in completed_missions:
+							has_passed = false
+							break
+
+				if has_passed == true:
+					print_debug(
+						(
+							"highlighting character %s based on mission_entry of mission %s"
+							% [character_key, mission_key]
+						)
+					)
+					character_highlight(character_key)
+
+	# highlight characters in scene if they exit a mission AND the user matches those reqs
+	for mission in current_missions:
+		for character_key in mission_dialogue_options:
+			if "mission_exits" in mission_dialogue_options[character_key]:
+				var exits = mission_dialogue_options[character_key]["mission_exits"]
+
+				for mission_key in exits:
+					var mission_data = MissionList.list[mission_key]
+
+					if "reqs" in mission_data || "prereqs" in mission_data:
+						var can_pass = true
+
+						if mission_key in completed_missions:
+							can_pass = false
+
+						if can_pass && "reqs" in mission_data:
+							for item_key in mission_data.reqs:
+								if (
+									TPLG.inventory.bag.has_item(
+										item_key, mission_data.reqs[item_key]
+									)
+									== false
+								):
+									can_pass = false
+									break
+
+						if can_pass && "prereqs" in mission_data:
+							for req in mission_data.prereqs.split(","):
+								if ! req in completed_missions:
+									can_pass = false
+									break
+
+						if can_pass == true:
+							print_debug(
+								(
+									"highlighting character %s based on mission_exit of mission %s"
+									% [character_key, mission_key]
+								)
+							)
+							character_highlight(character_key)
+					elif ! mission_key in completed_missions:
+						print_debug(
+							(
+								"highlighting character %s based on mission_exit of mission %s"
+								% [character_key, mission_key]
+							)
+						)
+						character_highlight(character_key)
+
+
+func character_highlight(character_key: String, on: bool = true):
+	var character = find_node(character_key)
+	if character != null:
+		character.highlight(on)
 
 
 func window_size_setup():
