@@ -8,6 +8,8 @@ var colliding_characters = []
 var tile_map: TileMap
 var tile_map_node: Node
 
+var highlight_material = preload("res://Shaders/SimpleHighlightShader.tres")
+
 onready var base_z_index: int = z_index
 onready var interaction_area: Area2D = find_node("InteractionArea")
 onready var tween: Tween = $Tween
@@ -23,6 +25,13 @@ func _ready():
 		tile_map_node = get_node("TileMap")
 
 	tile_map = tile_map_node
+
+
+func highlight(on: bool = true):
+	if on:
+		material = highlight_material
+	else:
+		material = null
 
 
 func on_body_enter(body: PhysicsBody2D):

@@ -25,16 +25,18 @@ func _enter_tree():
 		&& data.waterHistory.size() > current_growth_stage
 		&& data.waterHistory[current_growth_stage] > 0
 	):
-		call_deferred("Water")
+		call_deferred("water")
 
 	var growth_stage
 
 	if is_harvestable():
 		growth_stage = find_node("Stage%s" % [growth_stages.size()])
+		highlight()
 	else:
 		growth_stage = find_node("Stage%s" % [current_growth_stage])
 
 	if growth_stage != null:
+		growth_stage.use_parent_material = true
 		growth_stage.call_deferred("show")
 
 
@@ -137,6 +139,7 @@ func ready_for_inventory():
 			node.hide()
 
 	var inventory_tile = find_node("InventoryTile")
+	highlight(false)
 	inventory_tile.show()
 
 
@@ -180,8 +183,11 @@ func dry_water_and_grow_plant_if_needed():
 
 	if ! is_harvestable() && current_stage != null && next_stage != null:
 		current_stage.hide()
+		next_stage.use_parent_material = true
 		next_stage.show()
 	elif is_harvestable() && last_stage != null:
+		highlight()
 		last_stage.show()
+		last_stage.use_parent_material = true
 
 	current_growth_stage = growth_stage

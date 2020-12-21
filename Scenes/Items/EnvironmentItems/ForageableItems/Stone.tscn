@@ -3,10 +3,10 @@
 [ext_resource path="res://Scenes/Items/CollidableItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.60573, 8.6635 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 1.36323, 1.42101 )
 
 [node name="Stone" instance=ExtResource( 1 )]
@@ -16,15 +16,17 @@ collision_layer = 0
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
 position = Vector2( 8, 8.09921 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 position = Vector2( 8.39685, 7.80158 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Variants" type="Node2D" parent="." index="2"]
+use_parent_material = true
 
 [node name="TileMap" type="TileMap" parent="Variants" index="0"]
+use_parent_material = true
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -32,6 +34,7 @@ tile_data = PoolIntArray( 0, 536871868, 0 )
 
 [node name="FlippedTileMap" type="TileMap" parent="Variants" index="1"]
 visible = false
+use_parent_material = true
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -39,6 +42,7 @@ tile_data = PoolIntArray( 0, 956, 0 )
 
 [node name="TileMap2" type="TileMap" parent="Variants" index="2"]
 visible = false
+use_parent_material = true
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -46,6 +50,7 @@ tile_data = PoolIntArray( 0, 957, 0 )
 
 [node name="FlippedTileMap2" type="TileMap" parent="Variants" index="3"]
 visible = false
+use_parent_material = true
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -53,6 +58,7 @@ tile_data = PoolIntArray( 0, 536871869, 0 )
 
 [node name="TileMap3" type="TileMap" parent="Variants" index="4"]
 visible = false
+use_parent_material = true
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -60,6 +66,7 @@ tile_data = PoolIntArray( 0, 954, 0 )
 
 [node name="FlippedTileMap3" type="TileMap" parent="Variants" index="5"]
 visible = false
+use_parent_material = true
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1

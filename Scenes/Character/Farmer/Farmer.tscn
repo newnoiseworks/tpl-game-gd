@@ -290,6 +290,14 @@ __meta__ = {
 [node name="CharacterInteractItem" parent="." index="7"]
 position = Vector2( -7.86111, 16 )
 
+[node name="UsernameLabel" parent="." index="8"]
+visible = true
+margin_left = -14.4108
+margin_top = -24.2649
+margin_right = 23.5892
+margin_bottom = -8.26486
+rect_scale = Vector2( 0.75, 0.75 )
+
 [node name="VisibilityNotifier2D" parent="." index="9"]
 position = Vector2( 0.121838, 0.314087 )
 

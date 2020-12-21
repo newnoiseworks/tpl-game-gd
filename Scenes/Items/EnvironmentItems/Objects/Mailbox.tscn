@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Items/CollidableItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Items/EnvironmentItems/Objects/MailboxController.gd" type="Script" id=2]
@@ -9,6 +9,9 @@ extents = Vector2( 12.4421, 21.7741 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6.28651, 6.54705 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.0784314, 0.831373, 0.831373, 0.466667 )
 
 [node name="MailBox" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -25,12 +28,13 @@ shape = SubResource( 2 )
 tile_data = PoolIntArray( 0, 1025, 0 )
 
 [node name="Label" type="Label" parent="." index="4"]
-margin_left = -25.0
-margin_top = -24.0
-margin_right = 97.0
-margin_bottom = 31.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -18.0
+margin_top = -22.0
+margin_right = 104.0
+margin_bottom = 4.0
+rect_scale = Vector2( 0.375, 0.375 )
 theme = ExtResource( 3 )
+custom_styles/normal = SubResource( 3 )
 text = "uesrs' farm"
 align = 1
 autowrap = true
