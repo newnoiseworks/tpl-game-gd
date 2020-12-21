@@ -6,6 +6,7 @@ onready var exit: Node2D = $Exit
 
 func _ready():
 	TPLG.dialogue.add_dialogue_script("intro_jkjz_finish", self)
+	jkjz_character.highlight()
 
 
 func _exit_tree():

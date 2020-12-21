@@ -19,6 +19,7 @@ var direction: Vector2
 var velocity: Vector2
 var player_position_at_start: Vector2
 var pause_physics_process: bool = false
+var highlight_material = preload("res://Shaders/SimpleHighlightShader.tres")
 
 onready var position_comparator_timer: Timer = $PositionComparator
 onready var body_tile_map: TileMap = find_node("Body")
@@ -89,6 +90,13 @@ func set_idle():
 	walk_animation.stop()
 	current_tile = "1"
 	update_current_tile()
+
+
+func highlight(on: bool = true):
+	if on:
+		material = highlight_material
+	else:
+		material = null
 
 
 func update_current_tile():

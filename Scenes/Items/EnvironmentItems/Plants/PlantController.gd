@@ -181,8 +181,10 @@ func dry_water_and_grow_plant_if_needed():
 	var next_stage: Node2D = find_node("Stage%s" % growth_stage)
 	var last_stage: Node2D = find_node("Stage%s" % growth_stages.size())
 
-	if ! is_harvestable() && current_stage != null && next_stage != null:
+	if current_stage != null:
 		current_stage.hide()
+
+	if ! is_harvestable() && next_stage != null:
 		next_stage.use_parent_material = true
 		next_stage.show()
 	elif is_harvestable() && last_stage != null:
