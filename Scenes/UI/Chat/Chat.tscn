@@ -1,38 +1,63 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/UI/Chat/ChatController.gd" type="Script" id=2]
 
-[node name="Chat" type="VBoxContainer"]
-margin_right = 388.0
-margin_bottom = 185.0
-theme = ExtResource( 1 )
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.0470588, 0.913725, 0.913725, 0.380392 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[node name="Chat" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
 script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+margin_right = 387.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Log" type="RichTextLabel" parent="."]
-margin_right = 387.0
-margin_bottom = 147.0
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_right = 388.0
+margin_bottom = 185.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Log" type="RichTextLabel" parent="VBox"]
+margin_right = 388.0
+margin_bottom = 148.0
 size_flags_vertical = 3
-custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_styles/normal = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0.639216, 0.231373, 0.231373, 1 )
 custom_colors/font_color_selected = Color( 0.619608, 0.486275, 0.203922, 1 )
 bbcode_enabled = true
-bbcode_text = "
-Realm Chat"
-text = "
-Realm Chat"
+bbcode_text = "Realm Chat"
+text = "Realm Chat"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_top = 151.0
-margin_right = 387.0
-margin_bottom = 184.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox"]
+margin_top = 152.0
+margin_right = 388.0
+margin_bottom = 185.0
 rect_min_size = Vector2( 0, 32 )
 
-[node name="Postbox" type="LineEdit" parent="HBoxContainer"]
-margin_right = 387.0
+[node name="Postbox" type="LineEdit" parent="VBox/HBoxContainer"]
+margin_right = 388.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+caret_blink = true
+caret_blink_speed = 0.5

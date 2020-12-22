@@ -518,9 +518,6 @@ margin_right = 948.0
 margin_bottom = 533.0
 rect_min_size = Vector2( 840, 480 )
 
-[node name="DialogContainer" parent="." instance=ExtResource( 14 )]
-margin_bottom = 6.10352e-05
-
 [node name="Instructions" type="TextureRect" parent="."]
 visible = false
 anchor_left = 0.5
@@ -547,4 +544,7 @@ margin_left = 15.8919
 margin_top = -259.501
 margin_right = 403.891
 margin_bottom = -74.5015
+
+[node name="DialogContainer" parent="." instance=ExtResource( 14 )]
+margin_bottom = 6.10352e-05
 [connection signal="pressed" from="Container2/VBoxContainer/HBoxContainer/MainMenuButton" to="Modals/MainMenu" method="popup_centered"]

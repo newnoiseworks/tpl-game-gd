@@ -1,6 +1,7 @@
-extends VBoxContainer
+extends Control
 
-onready var chat_log: RichTextLabel = $Log
+onready var panel: Panel = find_node("Panel")
+onready var chat_log: RichTextLabel = find_node("Log")
 onready var postbox: LineEdit = find_node("Postbox")
 
 
@@ -22,11 +23,13 @@ func _on_channel_message(msg: NakamaAPI.ApiChannelMessage):
 
 
 func show_postbox():
+	panel.show()
 	postbox.show()
 	postbox.grab_focus()
 
 
 func hide_postbox():
+	panel.hide()
 	postbox.hide()
 
 
