@@ -15,9 +15,9 @@ cull_mode = 2
 polygon = PoolVector2Array( 158.175, 50.3854, 150.602, 35.6856, 134.566, 17.1994, 109.844, 3.16778, 87.1257, -0.84126, 70.4214, -0.84126, 46.5898, 2.49961, 20.0856, 13.8586, 1.37674, 34.3492, -9.53677, 52.3899, -10.4277, 81.3441, -7.0868, 100.276, -2.63231, 108.294, 15.8538, 113.194, 48.5944, 119.207, 100.266, 119.207, 117.639, 116.535, 130.334, 114.307, 151.939, 109.185, 156.17, 101.389, 161.516, 82.9032, 160.625, 62.858, 158.62, 50.3854 )
 
 [sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( 121.683, 53.604, 123.07, 165.115, -10.3545, 165.115, -9.52234, 53.8814 )
+vertices = PoolVector2Array( 162.249, 54.2973, 163.249, 170.797, -11.251, 170.797, -9.52234, 53.8814 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -9.52234, 53.8814, -10.3545, 165.115, 123.07, 165.115, 121.683, 53.604 ) ]
+outlines = [ PoolVector2Array( -9.52234, 53.8814, -11.251, 170.797, 163.249, 170.797, 162.249, 54.2973 ) ]
 
 [node name="Cottage" instance=ExtResource( 1 )]
 
@@ -52,5 +52,5 @@ position = Vector2( 11.751, -72.0496 )
 occluder = SubResource( 3 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]
-position = Vector2( 1.52972, -79.2973 )
+position = Vector2( 11.751, -128.797 )
 navpoly = SubResource( 4 )
