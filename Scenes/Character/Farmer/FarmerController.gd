@@ -159,11 +159,6 @@ func reposition_and_set_tile(
 		else:
 			back_tool_tile_map.clear()
 
-		if is_left:
-			map.position = Vector2(-8, 20)
-		else:
-			map.position = Vector2(-24, 20)
-
 	if map.get_cell(0, -1) != tile:
 		map.set_cell(0, -1, tile, is_left, false)
 

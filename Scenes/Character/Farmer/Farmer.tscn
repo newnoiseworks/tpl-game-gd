@@ -231,7 +231,6 @@ tracks/1/keys = {
 material = SubResource( 1 )
 collision_layer = 40
 script = ExtResource( 3 )
-current_tile = "till 0"
 is_animation_playing = true
 current_tool_tile = "till 0"
 
