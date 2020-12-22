@@ -2,6 +2,7 @@ extends Node
 
 var socket: NakamaSocket
 var realm_match: NakamaRTAPI.Match
+var chat_channel: NakamaRTAPI.Channel
 
 var user_ids: Array = []
 var user_id_to_avatar_map: Dictionary = {}
@@ -25,6 +26,8 @@ func find_or_create_realm(label: String):
 	var realm_id = response.payload.replace('"', "")
 
 	realm_match = yield(_join_realm(realm_id), "completed")
+
+	yield(_join_realm_chat(realm_id), "completed")
 
 	return realm_match
 
@@ -102,3 +105,13 @@ func _change_dungeon_event_response(msg: String, presence):
 func _on_socket_disconnect():
 	TPLG.show_message("Connection to server lost. Could indicate an update in progress.")
 	TPLG.base_change_scene("res://RootScenes/Authentication/Authentication.tscn", {}, true)
+
+
+func _join_realm_chat(realm_id: String):
+	var persistence = true
+	var hidden = false
+	var type = NakamaSocket.ChannelType.Room
+	chat_channel = yield(socket.join_chat_async(realm_id, type, persistence, hidden), "completed")
+
+	if chat_channel.is_exception():
+		print("An error occured connecting to chat channel: %s" % chat_channel)
