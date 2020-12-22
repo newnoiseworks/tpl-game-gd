@@ -7,6 +7,7 @@ onready var tween: Tween = find_node("Tween")
 onready var timer: Timer = Timer.new()
 onready var instructions: TextureRect = find_node("Instructions")
 onready var mission_list = find_node("MissionList")
+onready var chat = find_node("Chat")
 
 
 func _ready():

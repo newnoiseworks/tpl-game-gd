@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/UI/Chat/ChatController.gd" type="Script" id=2]
+
+[node name="Chat" type="VBoxContainer"]
+margin_right = 388.0
+margin_bottom = 185.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Log" type="RichTextLabel" parent="."]
+margin_right = 387.0
+margin_bottom = 147.0
+size_flags_vertical = 3
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_colors/selection_color = Color( 0.639216, 0.231373, 0.231373, 1 )
+custom_colors/font_color_selected = Color( 0.619608, 0.486275, 0.203922, 1 )
+bbcode_enabled = true
+bbcode_text = "
+Realm Chat"
+text = "
+Realm Chat"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 151.0
+margin_right = 387.0
+margin_bottom = 184.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="Postbox" type="LineEdit" parent="HBoxContainer"]
+margin_right = 387.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scenes/UI/UIController.gd" type="Script" id=1]
 [ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Scenes/UI/Dialogue.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/UI/FarmPermissions/FarmPermissions.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/UI/Missions/MissionList.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/UI/Chat/Chat.tscn" type="PackedScene" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -538,4 +539,12 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Chat" parent="." instance=ExtResource( 17 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 15.8919
+margin_top = -259.501
+margin_right = 403.891
+margin_bottom = -74.5015
 [connection signal="pressed" from="Container2/VBoxContainer/HBoxContainer/MainMenuButton" to="Modals/MainMenu" method="popup_centered"]

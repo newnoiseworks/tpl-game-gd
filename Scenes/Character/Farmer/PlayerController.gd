@@ -95,6 +95,20 @@ func was_moving():
 
 
 func _unhandled_input(event: InputEvent):
+	if event.is_action_released("escape"):
+		if TPLG.ui.chat.postbox.visible:
+			lock_movement = false
+			TPLG.ui.chat.hide_postbox()
+		else:
+			TPLG.ui.toggle_instructions()
+
+	if event.is_action_released("chat"):
+		if TPLG.ui.chat.postbox.visible:
+			TPLG.ui.chat.post_text()
+		else:
+			lock_movement = true
+			TPLG.ui.chat.show_postbox()
+
 	if lock_movement:
 		return
 
@@ -130,11 +144,8 @@ func _unhandled_input(event: InputEvent):
 	if event.is_action_released("action_five"):
 		TPLG.inventory.shift_equipped_item()
 
-	if event.is_action_released("action_six"):
-		MatchEvent.heart()
-
-	if event.is_action_released("escape"):
-		TPLG.ui.toggle_instructions()
+	# if event.is_action_released("action_six"):
+	# 	MatchEvent.heart()
 
 
 func restrict_camera_to_tile_map(map: TileMap):
