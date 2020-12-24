@@ -3,6 +3,8 @@ extends Control
 onready var panel: Panel = find_node("Panel")
 onready var chat_log: RichTextLabel = find_node("Log")
 onready var postbox: LineEdit = find_node("Postbox")
+onready var enter_label: Label = find_node("EnterToChatLabel")
+onready var escape_label: Label = find_node("EscapeToLeave")
 
 
 func _ready():
@@ -25,10 +27,14 @@ func _on_channel_message(msg: NakamaAPI.ApiChannelMessage):
 func show_postbox():
 	panel.show()
 	postbox.show()
+	enter_label.hide()
+	escape_label.show()
 	postbox.grab_focus()
 
 
 func hide_postbox():
+	enter_label.show()
+	escape_label.hide()
 	panel.hide()
 	postbox.hide()
 

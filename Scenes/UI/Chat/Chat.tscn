@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/UI/Chat/ChatController.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.0470588, 0.913725, 0.913725, 0.380392 )
+bg_color = Color( 0, 0.282353, 0.992157, 0.682353 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.247059, 0.0941176, 0.8, 0.733333 )
 
 [sub_resource type="StyleBoxEmpty" id=2]
 content_margin_left = 5.0
@@ -12,52 +15,90 @@ content_margin_right = 5.0
 content_margin_bottom = 5.0
 
 [node name="Chat" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 617.0
+margin_bottom = 188.0
+mouse_filter = 2
+theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EscapeToLeave" type="Label" parent="."]
+visible = false
+margin_left = 2.04706
+margin_top = -27.4061
+margin_right = 208.047
+margin_bottom = -1.40613
+custom_styles/normal = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "(press escape to leave chat)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
-margin_right = 387.0
-margin_bottom = 150.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBox" type="VBoxContainer" parent="."]
-margin_right = 388.0
-margin_bottom = 185.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Log" type="RichTextLabel" parent="VBox"]
-margin_right = 388.0
-margin_bottom = 148.0
+margin_right = 617.0
+margin_bottom = 152.0
+mouse_filter = 2
 size_flags_vertical = 3
 custom_styles/normal = SubResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/selection_color = Color( 0.639216, 0.231373, 0.231373, 1 )
 custom_colors/font_color_selected = Color( 0.619608, 0.486275, 0.203922, 1 )
 bbcode_enabled = true
-bbcode_text = "Realm Chat"
-text = "Realm Chat"
+bbcode_text = "
+
+
+"
+text = "
+
+
+"
+scroll_active = false
+scroll_following = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBox"]
-margin_top = 152.0
-margin_right = 388.0
-margin_bottom = 185.0
+margin_top = 156.0
+margin_right = 617.0
+margin_bottom = 188.0
 rect_min_size = Vector2( 0, 32 )
 
 [node name="Postbox" type="LineEdit" parent="VBox/HBoxContainer"]
-margin_right = 388.0
+visible = false
+margin_right = 407.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 caret_blink = true
 caret_blink_speed = 0.5
+
+[node name="EnterToChatLabel" type="Label" parent="VBox/HBoxContainer"]
+margin_top = 3.0
+margin_right = 206.0
+margin_bottom = 29.0
+custom_styles/normal = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "press enter to chat"

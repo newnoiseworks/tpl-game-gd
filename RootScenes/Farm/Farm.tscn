@@ -46,9 +46,6 @@ tile_data = PoolIntArray( -327659, 536871367, 0, -327658, 536871367, 0, -262123,
 scene_to_load = "RootScenes/Town0/OldTownRoad.tscn"
 exit_enabled = true
 
-[node name="Lamp" parent="LeftEntry" instance=ExtResource( 7 )]
-position = Vector2( -29.9611, -16.6474 )
-
 [node name="TopEntry" type="Node2D" parent="."]
 visible = false
 position = Vector2( 224, -160 )
@@ -71,8 +68,11 @@ position = Vector2( -32, -65.1555 )
 [node name="EnvironmentItems" type="YSort" parent="."]
 z_as_relative = false
 
+[node name="Lamp2" parent="EnvironmentItems" instance=ExtResource( 7 )]
+position = Vector2( 2.0389, -32.8635 )
+
 [node name="Lamp" parent="EnvironmentItems" instance=ExtResource( 7 )]
-position = Vector2( 243.897, -119.821 )
+position = Vector2( 98.7507, -80.8159 )
 
 [node name="Tree" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 130.383, -240 )
@@ -81,7 +81,7 @@ position = Vector2( 130.383, -240 )
 position = Vector2( 581.177, -177.784 )
 
 [node name="Tree4" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 16.6757, -196.519 )
+position = Vector2( 24.8609, -225.156 )
 
 [node name="Tree5" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 342.314, -240 )
@@ -96,7 +96,7 @@ position = Vector2( 256, -80.8159 )
 position = Vector2( 673.856, -225.156 )
 
 [node name="Lamp3" parent="EnvironmentItems" instance=ExtResource( 7 )]
-position = Vector2( 192, -70.6995 )
+position = Vector2( 199.858, -80.8159 )
 
 [node name="Reatomizer" parent="EnvironmentItems" instance=ExtResource( 9 )]
 position = Vector2( 473.541, -127.821 )
@@ -213,6 +213,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnvironmentItems/Area2D"]
 shape = SubResource( 1 )
 
-[node name="MissionLauncher" type="Node2D" parent="EnvironmentItems"]
+[node name="MissionLauncher" type="YSort" parent="EnvironmentItems"]
 [connection signal="body_entered" from="EnvironmentItems/Area2D" to="." method="lake_body_enter"]
 [connection signal="body_exited" from="EnvironmentItems/Area2D" to="." method="lake_body_exit"]

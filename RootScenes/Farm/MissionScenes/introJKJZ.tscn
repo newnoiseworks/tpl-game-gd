@@ -17,12 +17,12 @@ shader_param/secondaryChangeColor = Vector3( -1, -1, -1 )
 shader_param/tertiaryColor = Vector3( -1, -1, -1 )
 shader_param/tertiaryChangeColor = Vector3( -1, -1, -1 )
 
-[node name="introJKJZ" type="Node2D"]
+[node name="introJKJZ" type="YSort"]
 script = ExtResource( 1 )
 
 [node name="JKJZ" parent="." instance=ExtResource( 3 )]
 material = SubResource( 1 )
-position = Vector2( 127.427, -56.6474 )
+position = Vector2( 133.097, -59.174 )
 collision_layer = 18
 user_id = "JKJZ"
 character_base = "Characters/JKJZ/"

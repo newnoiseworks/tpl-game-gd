@@ -11,7 +11,7 @@ var plant_type_id: String
 var water_tile: TileMap
 
 
-func _enter_tree():
+func _ready():
 	if water_tile == null:
 		water_tile = find_node("WaterTile")
 
@@ -185,11 +185,11 @@ func dry_water_and_grow_plant_if_needed():
 		current_stage.hide()
 
 	if ! is_harvestable() && next_stage != null:
-		next_stage.use_parent_material = true
 		next_stage.show()
+		next_stage.use_parent_material = true
 	elif is_harvestable() && last_stage != null:
-		highlight()
 		last_stage.show()
 		last_stage.use_parent_material = true
+		call_deferred("highlight")
 
 	current_growth_stage = growth_stage

@@ -75,48 +75,66 @@ position = Vector2( 605.318, 514.085 )
 position = Vector2( 888, 520 )
 
 [node name="Lamp2" parent="EnvironmentItems" index="16" instance=ExtResource( 15 )]
-position = Vector2( 1023.04, 547.745 )
+position = Vector2( 1021.85, 640 )
 
 [node name="Lamp3" parent="EnvironmentItems" index="17" instance=ExtResource( 15 )]
-position = Vector2( 389, 547.745 )
+position = Vector2( 336, 640 )
 
 [node name="Lamp4" parent="EnvironmentItems" index="18" instance=ExtResource( 15 )]
-position = Vector2( 384, 184 )
+position = Vector2( 336, 170.161 )
 
-[node name="Lamp5" parent="EnvironmentItems" index="19" instance=ExtResource( 15 )]
+[node name="Lamp6" parent="EnvironmentItems" index="19" instance=ExtResource( 15 )]
+position = Vector2( 335.108, 312 )
+
+[node name="Lamp7" parent="EnvironmentItems" index="20" instance=ExtResource( 15 )]
+position = Vector2( 1072, 447 )
+
+[node name="Lamp9" parent="EnvironmentItems" index="21" instance=ExtResource( 15 )]
+position = Vector2( 1071.11, 560 )
+
+[node name="Lamp10" parent="EnvironmentItems" index="22" instance=ExtResource( 15 )]
+position = Vector2( 726.903, 640 )
+
+[node name="Lamp11" parent="EnvironmentItems" index="23" instance=ExtResource( 15 )]
+position = Vector2( 1072, 168 )
+
+[node name="Lamp8" parent="EnvironmentItems" index="24" instance=ExtResource( 15 )]
+position = Vector2( 1072, 312 )
+
+[node name="Lamp5" parent="EnvironmentItems" index="25" instance=ExtResource( 15 )]
 position = Vector2( 664, 184 )
 
-[node name="Lamp" parent="EnvironmentItems" index="20" instance=ExtResource( 15 )]
+[node name="Lamp" parent="EnvironmentItems" index="26" instance=ExtResource( 15 )]
 position = Vector2( 623.044, 312 )
 
-[node name="ComputerHaus" parent="EnvironmentItems" index="21" instance=ExtResource( 14 )]
+[node name="ComputerHaus" parent="EnvironmentItems" index="27" instance=ExtResource( 14 )]
 position = Vector2( 693.496, 248 )
 
-[node name="Sakana" parent="EnvironmentItems" index="22" instance=ExtResource( 16 )]
+[node name="Sakana" parent="EnvironmentItems" index="28" instance=ExtResource( 16 )]
 position = Vector2( 984, 592 )
 character_base = "Characters/Sakana/"
 dialogue_file = "Sakana"
 dialogue_section = "hello"
 
-[node name="Baph" parent="EnvironmentItems" index="23" instance=ExtResource( 16 )]
+[node name="Baph" parent="EnvironmentItems" index="29" instance=ExtResource( 16 )]
 position = Vector2( 632, 592 )
 character_base = "Characters/Baph/"
 dialogue_file = "Baph"
 dialogue_section = "hello"
 
-[node name="York" parent="EnvironmentItems" index="24" instance=ExtResource( 16 )]
+[node name="York" parent="EnvironmentItems" index="30" instance=ExtResource( 16 )]
 position = Vector2( 664, 595.631 )
 character_base = "Characters/York/"
 dialogue_file = "York"
 dialogue_section = "hello"
 
-[node name="Gil" parent="EnvironmentItems" index="25" instance=ExtResource( 16 )]
+[node name="Gil" parent="EnvironmentItems" index="31" instance=ExtResource( 16 )]
 position = Vector2( 440, 592 )
 character_base = "Characters/Gil/"
 dialogue_file = "Gil"
 dialogue_section = "hello"
 
-[node name="MissionLauncher" type="Node2D" parent="EnvironmentItems" index="26"]
+[node name="MissionLauncher" type="YSort" parent="EnvironmentItems" index="32"]
 
 [node name="Sky" parent="." index="3" instance=ExtResource( 6 )]
 visible = false

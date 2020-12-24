@@ -13,8 +13,6 @@ extents = Vector2( 10.2233, 13.8053 )
 
 [node name="Lamp" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-is_crafted = true
-crafted_item_type = "Lamp"
 
 [node name="InteractionArea" parent="." index="0"]
 position = Vector2( 0.61171, -37.7094 )
@@ -23,7 +21,7 @@ position = Vector2( 0.61171, -37.7094 )
 position = Vector2( 7.18437, 46.5385 )
 
 [node name="TileMap" parent="." index="1"]
-position = Vector2( 0.61171, -37.7094 )
+position = Vector2( -0.25, -42.9594 )
 tile_data = PoolIntArray( 0, 802, 0 )
 
 [node name="Inventory" type="TileMap" parent="." index="2"]

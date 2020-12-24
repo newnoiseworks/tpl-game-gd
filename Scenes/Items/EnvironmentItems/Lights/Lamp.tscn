@@ -18,19 +18,29 @@ outlines = [ PoolVector2Array( -12.9028, 25.4312, -12.9028, 69.8525, 26.8792, 69
 [node name="Lamp" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="InteractionArea" parent="." index="0"]
+position = Vector2( -0.141663, -37.6357 )
+
 [node name="TileMap" parent="." index="1"]
+position = Vector2( -0.891663, -43.8857 )
 tile_data = PoolIntArray( 0, 802, 0 )
+
+[node name="StaticBody2D" parent="." index="2"]
+position = Vector2( -0.141663, -37.6357 )
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
 position = Vector2( 7.04447, 47.3714 )
 shape = SubResource( 1 )
+
+[node name="WalkBehindTrigger" parent="." index="3"]
+position = Vector2( -0.141663, -37.6357 )
 
 [node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
 position = Vector2( 7.04883, 17.1655 )
 shape = SubResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="." index="5"]
-position = Vector2( 7.25124, 8.44158 )
+position = Vector2( 7.10957, -29.1941 )
 scale = Vector2( 0.462386, 0.467667 )
 z_index = -1
 z_as_relative = false
@@ -45,4 +55,5 @@ shadow_color = Color( 0.321569, 0.278431, 0.278431, 0 )
 shadow_filter = 1
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]
+visible = false
 navpoly = SubResource( 3 )

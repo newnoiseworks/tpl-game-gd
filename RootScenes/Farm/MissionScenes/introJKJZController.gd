@@ -1,4 +1,4 @@
-extends Node2D
+extends YSort
 
 onready var jkjz_character = $JKJZ
 onready var exit: Node2D = $Exit
