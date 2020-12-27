@@ -36,3 +36,7 @@ position = Vector2( 0, 0 )
 scale = Vector2( 1, 1 )
 
 [node name="MovementPing" type="Timer" parent="." index="18"]
+
+[node name="Audio" parent="." index="21"]
+attenuation = 1.0
+bus = "Player SFX"

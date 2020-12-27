@@ -87,7 +87,7 @@ func _set_username(_username: String):
 
 
 func set_idle():
-	walk_animation.stop()
+	# walk_animation.stop()
 	current_tile = "1"
 	update_current_tile()
 

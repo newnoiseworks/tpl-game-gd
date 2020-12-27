@@ -1,10 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/Character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shaders/ColorSwap.shader" type="Shader" id=2]
 [ext_resource path="res://Scenes/Character/Farmer/FarmerController.gd" type="Script" id=3]
 [ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=4]
 [ext_resource path="res://Resources/Images/heart.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Audio/Sfx/zapsplat_foley_footstep_boot_single_soft_gentle_on_concrete_008_60290.wav" type="AudioStream" id=6]
+[ext_resource path="res://Resources/Audio/Sfx/zapsplat_food_apple_chop_knife_wooden_chopping_board_004_29201.wav" type="AudioStream" id=7]
+[ext_resource path="res://Resources/Audio/Sfx/zapsplat_industrial_axe_hit_tree_stump_001_14137.wav" type="AudioStream" id=8]
+[ext_resource path="res://Resources/Audio/Sfx/PM_DESIGNED_BONE_BREAKS_2_9.wav" type="AudioStream" id=9]
+[ext_resource path="res://Resources/Audio/Sfx/zapsplat_foley_fern_pull_from_ground_18385.wav" type="AudioStream" id=10]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -19,10 +24,12 @@ shader_param/secondaryChangeColor = Vector3( -1, -1, -1 )
 shader_param/tertiaryColor = Vector3( -1, -1, -1 )
 shader_param/tertiaryChangeColor = Vector3( -1, -1, -1 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "WalkAnim"
+[sub_resource type="AudioStreamRandomPitch" id=2]
+audio_stream = ExtResource( 6 )
+random_pitch = 2.09
+
+[sub_resource type="Animation" id=3]
 length = 0.72
-loop = true
 step = 0.18
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:current_tile")
@@ -36,8 +43,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [ "walk 0", "walk 1", "walk 2", "walk 3" ]
 }
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Audio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource( 2 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource( 2 )
+} ],
+"times": PoolRealArray( 0, 0.36 )
+}
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="AudioStreamRandomPitch" id=4]
+audio_stream = ExtResource( 7 )
+random_pitch = 1.38
+
+[sub_resource type="Animation" id=5]
 length = 0.56
 step = 0.07
 tracks/0/type = "value"
@@ -76,9 +105,25 @@ tracks/2/keys = {
 "update": 1,
 "values": [ "till 0", "till 1", "till 2", "till 3", "till 4", "till 5", "till 6", "till 7", "" ]
 }
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Audio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
-[sub_resource type="Animation" id=4]
-resource_name = "Till"
+[sub_resource type="AudioStreamRandomPitch" id=6]
+audio_stream = ExtResource( 7 )
+
+[sub_resource type="Animation" id=7]
 length = 0.56
 step = 0.07
 tracks/0/type = "value"
@@ -117,9 +162,26 @@ tracks/2/keys = {
 "update": 1,
 "values": [ "scythe 0", "scythe 1", "scythe 2", "scythe 3", "scythe 4", "scythe 5", "scythe 6", "scythe 7", "" ]
 }
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Audio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource( 6 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
-[sub_resource type="Animation" id=5]
-resource_name = "Till"
+[sub_resource type="AudioStreamRandomPitch" id=11]
+audio_stream = ExtResource( 8 )
+random_pitch = 2.09
+
+[sub_resource type="Animation" id=8]
 length = 0.56
 step = 0.07
 tracks/0/type = "value"
@@ -158,8 +220,26 @@ tracks/2/keys = {
 "update": 1,
 "values": [ "axe 0", "axe 1", "axe 2", "axe 3", "axe 4", "axe 5", "axe 6", "axe 7", "" ]
 }
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Audio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource( 11 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="AudioStreamRandomPitch" id=12]
+audio_stream = ExtResource( 9 )
+random_pitch = 1.52
+
+[sub_resource type="Animation" id=9]
 length = 0.56
 step = 0.07
 tracks/0/type = "value"
@@ -198,8 +278,26 @@ tracks/2/keys = {
 "update": 1,
 "values": [ "strike 0", "strike 1", "strike 2", "strike 3", "strike 4", "strike 5", "strike 6", "strike 7", "" ]
 }
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Audio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource( 12 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="AudioStreamRandomPitch" id=13]
+audio_stream = ExtResource( 10 )
+random_pitch = 1.67
+
+[sub_resource type="Animation" id=10]
 length = 0.155
 step = 0.15
 tracks/0/type = "value"
@@ -226,13 +324,27 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/2/type = "audio"
+tracks/2/path = NodePath("Audio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource( 13 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [node name="Farmer" instance=ExtResource( 1 )]
 material = SubResource( 1 )
 collision_layer = 40
 script = ExtResource( 3 )
 is_animation_playing = true
-current_tool_tile = "till 0"
+current_tool_tile = "strike 0"
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( 0, 8.15302 )
@@ -301,22 +413,22 @@ rect_scale = Vector2( 0.75, 0.75 )
 position = Vector2( 0.121838, 0.314087 )
 
 [node name="Walk" parent="." index="10"]
-anims/Main = SubResource( 2 )
-
-[node name="Till" type="AnimationPlayer" parent="." index="11"]
 anims/Main = SubResource( 3 )
 
-[node name="Scythe" type="AnimationPlayer" parent="." index="12"]
-anims/Main = SubResource( 4 )
-
-[node name="Axe" type="AnimationPlayer" parent="." index="13"]
+[node name="Till" type="AnimationPlayer" parent="." index="11"]
 anims/Main = SubResource( 5 )
 
+[node name="Scythe" type="AnimationPlayer" parent="." index="12"]
+anims/Main = SubResource( 7 )
+
+[node name="Axe" type="AnimationPlayer" parent="." index="13"]
+anims/Main = SubResource( 8 )
+
 [node name="Strike" type="AnimationPlayer" parent="." index="14"]
-anims/Main = SubResource( 6 )
+anims/Main = SubResource( 9 )
 
 [node name="Pickup" type="AnimationPlayer" parent="." index="15"]
-anims/Main = SubResource( 7 )
+anims/Main = SubResource( 10 )
 
 [node name="HeartTweener" type="Tween" parent="." index="17"]
 
@@ -325,3 +437,6 @@ visible = false
 position = Vector2( 0.13889, -26.3469 )
 scale = Vector2( 0.2914, 0.2914 )
 texture = ExtResource( 5 )
+
+[node name="Audio" parent="." index="19"]
+bus = "Farmer SFX"

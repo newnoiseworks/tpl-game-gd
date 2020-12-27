@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_food_apple_chop_knife_wooden_chopping_board_004_29201.wav-68ed5ec99d4101a47e8cfd5ccb9fc6d2.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/Sfx/zapsplat_food_apple_chop_knife_wooden_chopping_board_004_29201.wav"
+dest_files=[ "res://.import/zapsplat_food_apple_chop_knife_wooden_chopping_board_004_29201.wav-68ed5ec99d4101a47e8cfd5ccb9fc6d2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

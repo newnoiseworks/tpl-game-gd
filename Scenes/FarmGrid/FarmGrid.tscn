@@ -29,7 +29,7 @@ format = 1
 [node name="Tween" type="Tween" parent="Base"]
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 64
 collision_mask = 36
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -40,4 +40,3 @@ shape = SubResource( 1 )
 script = ExtResource( 3 )
 [connection signal="body_entered" from="Area2D" to="." method="on_body_enter"]
 [connection signal="body_exited" from="Area2D" to="." method="on_body_exit"]
-[connection signal="input_event" from="Area2D" to="." method="input_event"]
