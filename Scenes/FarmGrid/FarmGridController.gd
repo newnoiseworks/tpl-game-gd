@@ -11,6 +11,9 @@ var farm_permissions: Dictionary
 var plant_scenes: Dictionary = {}
 var forage_item_scenes = {}
 var crafted_item_scenes = {}
+var tree_break_sound = ResourceLoader.load(
+	"res://Scenes/Items/EnvironmentItems/ForageableItems/TreeBreakSound.tscn"
+)
 
 onready var ground_map: TileMap = find_node("Ground")
 onready var tweener: Tween = find_node("Tween")
@@ -294,6 +297,9 @@ func forage_item(farm_event: Dictionary):
 			spawn_drops(forage_item, item)
 			forage_item.queue_free()
 			forage_item_scenes.erase(farm_event.position)
+			var sound = tree_break_sound.instance()
+			call_deferred("add_child", sound)
+
 			# TPLNavigation2DController.instance.SetupNav();
 		else:
 			tweener.interpolate_property(

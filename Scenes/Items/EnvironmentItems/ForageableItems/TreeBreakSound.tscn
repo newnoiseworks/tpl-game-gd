@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/Audio/Sfx/zapsplat_foley_bark_piece_fall_off_tree_trunk_hit_ground_001_23118.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scenes/Items/EnvironmentItems/ForageableItems/TreeBreakSoundController.gd" type="Script" id=2]
+
+[sub_resource type="AudioStreamRandomPitch" id=1]
+audio_stream = ExtResource( 1 )
+random_pitch = 1.85
+
+[node name="TreeBreakSound" type="AudioStreamPlayer2D"]
+stream = SubResource( 1 )
+autoplay = true
+script = ExtResource( 2 )
+[connection signal="finished" from="." to="." method="queue_free"]
