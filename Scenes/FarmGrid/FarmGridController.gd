@@ -295,8 +295,10 @@ func forage_item(farm_event: Dictionary):
 			spawn_drops(forage_item, item)
 			forage_item.queue_free()
 			forage_item_scenes.erase(farm_event.position)
-			var sound = tree_break_sound.instance()
-			call_deferred("add_child", sound)
+
+			if item.type == ForageItems.TREE:
+				var sound = tree_break_sound.instance()
+				call_deferred("add_child", sound)
 
 			# TPLNavigation2DController.instance.SetupNav();
 		else:
