@@ -10,6 +10,7 @@ var forage_item_data
 var farm_owner_id
 var farm_owner_avatar
 var farm_owner_collection
+var drop_item_pickup_sound = ResourceLoader.load("res://Scenes/Audio/SFX/DropItemPickup.tscn")
 
 onready var type = InventoryItems.get_int_from_name(inventory_item_type)
 
@@ -54,4 +55,7 @@ func on_body_enter(body):
 
 
 func on_tween_complete(_arg1, _arg2):
+	var sound = drop_item_pickup_sound.instance()
+	sound.position = position
+	get_parent().call_deferred("add_child", sound)
 	queue_free()

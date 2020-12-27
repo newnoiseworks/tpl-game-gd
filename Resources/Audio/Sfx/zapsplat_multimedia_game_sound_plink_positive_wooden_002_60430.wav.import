@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_multimedia_game_sound_plink_positive_wooden_002_60430.wav-54c3b5070cde3b865ff0cd1c4e9be638.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/Sfx/zapsplat_multimedia_game_sound_plink_positive_wooden_002_60430.wav"
+dest_files=[ "res://.import/zapsplat_multimedia_game_sound_plink_positive_wooden_002_60430.wav-54c3b5070cde3b865ff0cd1c4e9be638.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

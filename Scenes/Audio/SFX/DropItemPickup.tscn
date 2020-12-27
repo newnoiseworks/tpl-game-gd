@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/Audio/Sfx/zapsplat_multimedia_game_sound_plink_positive_wooden_002_60430.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scenes/Audio/SFX/OneTimeAudioController.gd" type="Script" id=2]
+
+[sub_resource type="AudioStreamRandomPitch" id=1]
+audio_stream = ExtResource( 1 )
+
+[node name="DropItemPickup" type="AudioStreamPlayer2D"]
+stream = SubResource( 1 )
+autoplay = true
+script = ExtResource( 2 )
+[connection signal="finished" from="." to="." method="queue_free"]

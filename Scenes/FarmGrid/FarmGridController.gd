@@ -11,9 +11,7 @@ var farm_permissions: Dictionary
 var plant_scenes: Dictionary = {}
 var forage_item_scenes = {}
 var crafted_item_scenes = {}
-var tree_break_sound = ResourceLoader.load(
-	"res://Scenes/Items/EnvironmentItems/ForageableItems/TreeBreakSound.tscn"
-)
+var tree_break_sound = ResourceLoader.load("res://Scenes/Audio/SFX/TreeBreakSound.tscn")
 
 onready var ground_map: TileMap = find_node("Ground")
 onready var tweener: Tween = find_node("Tween")
