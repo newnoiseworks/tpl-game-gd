@@ -37,6 +37,8 @@ func _ready():
 
 	setup_grid()
 
+	position.x = columns * -20  # feels awful magical
+
 	bag = inventory_bag_scene.instance()
 	bag.position = bag_slot_to_position(0)
 	add_child(bag)
