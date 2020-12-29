@@ -4,20 +4,20 @@ export var is_animation_playing: bool
 export var current_tool_tile: String
 
 var avatar_data
-var hearts = []
+
+var is_fishing: bool = false
 
 onready var till_animation: AnimationPlayer = $Till
 onready var strike_animation: AnimationPlayer = $Strike
 onready var scythe_animation: AnimationPlayer = $Scythe
 onready var axe_animation: AnimationPlayer = $Axe
 onready var pickup_animation: AnimationPlayer = $Pickup
+onready var fishing_lure_animation: AnimationPlayer = $FishingLure
 onready var tool_tile_map: TileMap = find_node("ToolTile")
 onready var back_tool_tile_map: TileMap = find_node("BackToolTile")
 onready var hair_tile_map: TileMap = find_node("Hair")
 onready var top_tile_map: TileMap = find_node("Top")
 onready var bottom_tile_map: TileMap = find_node("Bottom")
-onready var heart_sprite: Sprite = find_node("Heart")
-onready var heart_tweener: Tween = find_node("HeartTweener")
 
 
 func _enter_tree():
@@ -29,10 +29,7 @@ func _enter_tree():
 	if user_id != "":
 		MatchEvent.connect("farming", self, "handle_farming_event")
 		MatchEvent.connect("avatar_update", self, "handle_avatar_update_event")
-		MatchEvent.connect("heart", self, "handle_heart")
-
-	if hearts.size() > 0:
-		clear_hearts()
+		MatchEvent.connect("fishing_lure", self, "handle_fishing_lure")
 
 
 func _ready():
@@ -40,14 +37,13 @@ func _ready():
 	tool_tile_map.clear()
 	back_tool_tile_map.clear()
 	current_tool_tile = ""
-	heart_tweener.connect("tween_all_completed", self, "clear_hearts")
 
 
 func _exit_tree():
 	if user_id != "":
 		MatchEvent.disconnect("farming", self, "handle_farming_event")
 		MatchEvent.disconnect("avatar_update", self, "handle_avatar_update_event")
-		MatchEvent.disconnect("heart", self, "handle_heart")
+		MatchEvent.disconnect("fishing_lure", self, "handle_fishing_lure")
 
 
 func _physics_process(_delta: float):
@@ -58,33 +54,17 @@ func _physics_process(_delta: float):
 		pause_physics_process = false
 
 
-func handle_heart(_msg, presence):
-	if presence.user_id != user_id:
-		return
+func handle_fishing_lure(_msg, _presence):
+	if is_fishing == false:
+		is_fishing = true
+		stop_all_animations()
+		fishing_lure_animation.play("Main")
+	else:
+		current_tool_tile = ""
+		is_fishing = false
 
-	var heart = heart_sprite.duplicate()
-	heart.show()
-	hearts.append(heart)
-	call_deferred("add_child", heart)
-	heart_tweener.interpolate_property(
-		heart, "position", Vector2(0, 0), Vector2(0, -24), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
-	)
-	heart_tweener.interpolate_property(
-		heart,
-		"modulate",
-		Color(1, 1, 1, 1),
-		Color(1, 1, 1, 0),
-		3,
-		Tween.TRANS_BOUNCE,
-		Tween.EASE_IN
-	)
-	heart_tweener.call_deferred("start")
-
-
-func clear_hearts():
-	for heart in hearts:
-		if heart != null:
-			heart.queue_free()
+	if has_method("player_handle_fishing_lure"):
+		call("player_handle_fishing_lure")
 
 
 func stop_all_animations():
@@ -94,6 +74,7 @@ func stop_all_animations():
 	scythe_animation.stop()
 	axe_animation.stop()
 	pickup_animation.stop()
+	fishing_lure_animation.stop()
 
 
 func set_idle():

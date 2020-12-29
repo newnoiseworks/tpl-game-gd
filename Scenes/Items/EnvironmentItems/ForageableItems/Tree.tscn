@@ -57,7 +57,7 @@ position = Vector2( -3.5, 2 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 59, 0, 65536, 607, 0 )
+tile_data = PoolIntArray( 65536, 2580, 0 )
 
 [node name="FlippedTileMap" type="TileMap" parent="Variants" index="1"]
 visible = false
@@ -66,7 +66,7 @@ position = Vector2( -3.75, 1.25 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 59, 0, 65536, 536871519, 0 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 536873492, 0 )
 
 [node name="TileMap2" type="TileMap" parent="Variants" index="2"]
 visible = false
@@ -75,7 +75,7 @@ position = Vector2( -4.25, 1.75 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 59, 0, 65536, 536871863, 0 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 536873489, 0 )
 
 [node name="FlippedTileMap2" type="TileMap" parent="Variants" index="3"]
 visible = false
@@ -84,7 +84,7 @@ position = Vector2( -3, 1.5 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 59, 0, 65536, 951, 0 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 2577, 0 )
 
 [node name="TileMap3" type="TileMap" parent="Variants" index="4"]
 visible = false
@@ -93,7 +93,7 @@ position = Vector2( -2.75, 1.25 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 59, 0, 65536, 952, 0 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 2579, 0 )
 
 [node name="FlippedTileMap3" type="TileMap" parent="Variants" index="5"]
 visible = false
@@ -102,58 +102,40 @@ position = Vector2( -3.75, 1.75 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 59, 0, 65536, 536871864, 0 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 536873491, 0 )
 
 [node name="TileMap4" type="TileMap" parent="Variants" index="6"]
 visible = false
 use_parent_material = true
-position = Vector2( -13.75, 1.5 )
+position = Vector2( -2.75, 1.25 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 973, 0 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 536873493, 0 )
 
 [node name="FlippedTileMap4" type="TileMap" parent="Variants" index="7"]
 visible = false
 use_parent_material = true
-position = Vector2( -10, 0 )
+position = Vector2( -3.75, 1.75 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 536871885, 0 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 2581, 0 )
 
 [node name="TileMap5" type="TileMap" parent="Variants" index="8"]
 visible = false
 use_parent_material = true
-position = Vector2( -10, -8 )
+position = Vector2( -2.75, 1.25 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 536871884, 0 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 2578, 0 )
 
 [node name="FlippedTileMap5" type="TileMap" parent="Variants" index="9"]
 visible = false
 use_parent_material = true
-position = Vector2( -15, -8.5 )
+position = Vector2( -3.75, 1.75 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 972, 0 )
-
-[node name="TileMap6" type="TileMap" parent="Variants" index="10"]
-visible = false
-use_parent_material = true
-position = Vector2( -14.25, -7.5 )
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( 0, 971, 0 )
-
-[node name="FlippedTileMap6" type="TileMap" parent="Variants" index="11"]
-visible = false
-use_parent_material = true
-position = Vector2( -10, -6 )
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( 0, 536871883, 0 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 536873490, 0 )

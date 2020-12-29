@@ -76,6 +76,13 @@ func _physics_process(delta: float):
 		use_equipped_item()
 
 
+func player_handle_fishing_lure():
+	if is_fishing:
+		lock_movement = true
+	else:
+		lock_movement = false
+
+
 func is_moving():
 	return (
 		Input.is_action_pressed("move_down")
