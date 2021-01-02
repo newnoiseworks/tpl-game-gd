@@ -54,7 +54,13 @@ func _physics_process(_delta: float):
 		pause_physics_process = false
 
 
-func handle_fishing_lure(_msg, _presence):
+func handle_fishing_lure(msg, presence):
+	if msg == null:
+		return
+
+	if presence.user_id != user_id:
+		return
+
 	if is_fishing == false:
 		is_fishing = true
 		stop_all_animations()

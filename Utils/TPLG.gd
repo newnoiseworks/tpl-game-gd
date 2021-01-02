@@ -28,6 +28,8 @@ var reatomizer
 
 var ui_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/UI.tscn")
 
+onready var rng = RandomNumberGenerator.new()
+
 
 func set_ui_scene():
 	get_node("/root/BaseViewports/UIViewportContainer/UIViewport").call_deferred(

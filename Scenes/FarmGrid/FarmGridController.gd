@@ -313,7 +313,7 @@ func forage_item(farm_event: Dictionary):
 
 
 func spawn_drops(forage_item, forage_item_data):
-	var rng = RandomNumberGenerator.new()
+	var rng = TPLG.rng
 	rng.randomize()
 
 	for drop_item in forage_item_data.dropItems:

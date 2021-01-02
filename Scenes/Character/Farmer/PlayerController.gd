@@ -8,6 +8,7 @@ var area_to_use_equipped_item: Vector2
 var last_move_counter: float
 var map_constraints: Dictionary = {}
 var last_movement_from_mouse: bool = false
+var fishing_game_scene = ResourceLoader.load("res://Scenes/Fishing/Game.tscn")
 
 const MOVE_POSITION_FROM_BUTTON: int = 32
 const MOVE_DELAY_MINIMUM: float = .25
@@ -76,13 +77,6 @@ func _physics_process(delta: float):
 		use_equipped_item()
 
 
-func player_handle_fishing_lure():
-	if is_fishing:
-		lock_movement = true
-	else:
-		lock_movement = false
-
-
 func is_moving():
 	return (
 		Input.is_action_pressed("move_down")
@@ -115,6 +109,9 @@ func _unhandled_input(event: InputEvent):
 		else:
 			lock_movement = true
 			TPLG.ui.chat.show_postbox()
+
+	# if is_fishing:
+	# 	_handle_input_for_fishing(event)
 
 	if lock_movement:
 		return
@@ -153,6 +150,14 @@ func _unhandled_input(event: InputEvent):
 
 	# if event.is_action_released("action_six"):
 	# 	MatchEvent.heart()
+
+
+func player_handle_fishing_lure():
+	if is_fishing:
+		get_node("/root/BaseViewports").call_deferred("add_child", fishing_game_scene.instance())
+		lock_movement = true
+	else:
+		lock_movement = false
 
 
 func restrict_camera_to_tile_map(map: TileMap):

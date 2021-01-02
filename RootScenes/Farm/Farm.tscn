@@ -11,7 +11,7 @@
 [ext_resource path="res://Scenes/MovementGrid/Teleporter.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32.467, 31.204 )
+extents = Vector2( 27.0422, 24.7452 )
 
 [node name="Farm" type="Node2D"]
 script = ExtResource( 1 )
@@ -29,7 +29,7 @@ position = Vector2( 386.669, -80.8159 )
 scale = Vector2( 1.3289, 1.24145 )
 
 [node name="PlayerEntry" type="Node2D" parent="."]
-position = Vector2( 92.1497, -47.4819 )
+position = Vector2( 648, -40 )
 
 [node name="LeftEntry" type="Node2D" parent="."]
 position = Vector2( 32, -48 )
@@ -76,13 +76,16 @@ position = Vector2( 2.0389, -32.8635 )
 position = Vector2( 175.639, -80.8159 )
 
 [node name="Tree" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 130.383, -240 )
+position = Vector2( 144, -216 )
+
+[node name="Tree7" parent="EnvironmentItems" instance=ExtResource( 5 )]
+position = Vector2( 80, -240 )
 
 [node name="Tree2" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 581.177, -177.784 )
 
 [node name="Tree4" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 41.8123, -232.043 )
+position = Vector2( 16, -224 )
 
 [node name="Tree5" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 447.264, -232.043 )
@@ -91,7 +94,7 @@ position = Vector2( 447.264, -232.043 )
 position = Vector2( 799.077, -184 )
 
 [node name="House" parent="EnvironmentItems" instance=ExtResource( 6 )]
-position = Vector2( 213.368, -130 )
+position = Vector2( 213.838, -128 )
 
 [node name="Tree3" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 673.856, -225.156 )
@@ -100,7 +103,7 @@ position = Vector2( 673.856, -225.156 )
 position = Vector2( 366.774, -32.8635 )
 
 [node name="Reatomizer" parent="EnvironmentItems" instance=ExtResource( 9 )]
-position = Vector2( 473.541, -127.821 )
+position = Vector2( 456.743, -117.838 )
 
 [node name="FarmGrid-1-1" parent="EnvironmentItems" instance=ExtResource( 10 )]
 tile_width = 16
