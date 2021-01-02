@@ -29,7 +29,7 @@ position = Vector2( 386.669, -80.8159 )
 scale = Vector2( 1.3289, 1.24145 )
 
 [node name="PlayerEntry" type="Node2D" parent="."]
-position = Vector2( 648, -40 )
+position = Vector2( 92.0081, -48 )
 
 [node name="LeftEntry" type="Node2D" parent="."]
 position = Vector2( 32, -48 )
