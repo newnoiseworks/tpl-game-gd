@@ -483,3 +483,6 @@ texture = ExtResource( 5 )
 
 [node name="Audio" parent="." index="20"]
 bus = "Farmer SFX"
+
+[node name="LessAudio" parent="." index="21"]
+bus = "Farmer SFX"

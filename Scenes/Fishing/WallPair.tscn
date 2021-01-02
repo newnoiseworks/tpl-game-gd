@@ -10,7 +10,6 @@ polygon = PoolVector2Array( -0.20108, -100.486, 20.489, -99.8188, 20.489, 100.07
 extents = Vector2( 10, 80 )
 
 [node name="WallPair" type="Node2D"]
-position = Vector2( 192, 0 )
 
 [node name="UpperWall" type="StaticBody2D" parent="."]
 position = Vector2( 0, 0.327248 )

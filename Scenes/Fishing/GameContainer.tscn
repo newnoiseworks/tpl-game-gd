@@ -20,6 +20,14 @@ extents = Vector2( 1185.25, 10 )
 
 [node name="GameContainer" type="Node2D"]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1276.0
+margin_bottom = 712.0
+color = Color( 0.227451, 0.360784, 0.756863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Fish" type="KinematicBody2D" parent="."]
 position = Vector2( 100, 150 )
 scale = Vector2( 3, 3 )

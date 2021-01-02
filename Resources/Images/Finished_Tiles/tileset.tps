@@ -104,11 +104,11 @@
             <key>algorithm</key>
             <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
-            <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Good</enum>
+            <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Fast</enum>
             <key>sizeConstraints</key>
             <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
-            <false/>
+            <true/>
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
@@ -142,7 +142,7 @@
         <key>outputFormat</key>
         <enum type="SettingsBase::OutputFormat">RGBA8888</enum>
         <key>alphaHandling</key>
-        <enum type="SettingsBase::AlphaHandling">KeepTransparentPixels</enum>
+        <enum type="SettingsBase::AlphaHandling">ClearTransparentPixels</enum>
         <key>contentProtection</key>
         <struct type="ContentProtection">
             <key>key</key>
@@ -1222,6 +1222,8 @@
             <key type="filename">Environment/Objects/Fence Right 1 Top.png</key>
             <key type="filename">Environment/Tilled Dirt/Corretive Corners.png</key>
             <key type="filename">Environment/Water/Corrective Corners.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_17-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_17-.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1260,40 +1262,6 @@
             <key type="filename">Avatars/tools/#backB_till 1.png</key>
             <key type="filename">Avatars/tools/#backB_till 2.png</key>
             <key type="filename">Avatars/tools/#backB_till 3.png</key>
-            <key type="filename">Avatars/tools/#back_fishing 0.png</key>
-            <key type="filename">Avatars/tools/#back_fishing 1.png</key>
-            <key type="filename">Avatars/tools/#front_axe 0.png</key>
-            <key type="filename">Avatars/tools/#front_axe 1.png</key>
-            <key type="filename">Avatars/tools/#front_fishing 0.png</key>
-            <key type="filename">Avatars/tools/#front_fishing 1.png</key>
-            <key type="filename">Avatars/tools/#front_fishing 2.png</key>
-            <key type="filename">Avatars/tools/#front_fishing 3.png</key>
-            <key type="filename">Avatars/tools/#front_fishing 4.png</key>
-            <key type="filename">Avatars/tools/#front_fishing 5.png</key>
-            <key type="filename">Avatars/tools/#front_fishing 6.png</key>
-            <key type="filename">Avatars/tools/#front_fishing 7.png</key>
-            <key type="filename">Avatars/tools/#side_fishing 0.png</key>
-            <key type="filename">Avatars/tools/#side_fishing 1.png</key>
-            <key type="filename">Avatars/tools/#side_fishing 2.png</key>
-            <key type="filename">Avatars/tools/#side_fishing 3.png</key>
-            <key type="filename">Avatars/tools/#side_fishing 4.png</key>
-            <key type="filename">Avatars/tools/#side_fishing 5.png</key>
-            <key type="filename">Avatars/tools/#side_fishing 6.png</key>
-            <key type="filename">Avatars/tools/#side_fishing 7.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>12,12,24,24</rect>
-                <key>scale9Paddings</key>
-                <rect>12,12,24,24</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">Avatars/tools/#back_axe 0.png</key>
             <key type="filename">Avatars/tools/#back_axe 1.png</key>
             <key type="filename">Avatars/tools/#back_axe 2.png</key>
@@ -1302,14 +1270,26 @@
             <key type="filename">Avatars/tools/#back_axe 5.png</key>
             <key type="filename">Avatars/tools/#back_axe 6.png</key>
             <key type="filename">Avatars/tools/#back_axe 7.png</key>
+            <key type="filename">Avatars/tools/#back_fishing 0.png</key>
+            <key type="filename">Avatars/tools/#back_fishing 1.png</key>
             <key type="filename">Avatars/tools/#back_strike 0.png</key>
             <key type="filename">Avatars/tools/#back_strike 1.png</key>
+            <key type="filename">Avatars/tools/#front_axe 0.png</key>
+            <key type="filename">Avatars/tools/#front_axe 1.png</key>
             <key type="filename">Avatars/tools/#front_axe 2.png</key>
             <key type="filename">Avatars/tools/#front_axe 3.png</key>
             <key type="filename">Avatars/tools/#front_axe 4.png</key>
             <key type="filename">Avatars/tools/#front_axe 5.png</key>
             <key type="filename">Avatars/tools/#front_axe 6.png</key>
             <key type="filename">Avatars/tools/#front_axe 7.png</key>
+            <key type="filename">Avatars/tools/#front_fishing 0.png</key>
+            <key type="filename">Avatars/tools/#front_fishing 1.png</key>
+            <key type="filename">Avatars/tools/#front_fishing 2.png</key>
+            <key type="filename">Avatars/tools/#front_fishing 3.png</key>
+            <key type="filename">Avatars/tools/#front_fishing 4.png</key>
+            <key type="filename">Avatars/tools/#front_fishing 5.png</key>
+            <key type="filename">Avatars/tools/#front_fishing 6.png</key>
+            <key type="filename">Avatars/tools/#front_fishing 7.png</key>
             <key type="filename">Avatars/tools/#front_scythe 0.png</key>
             <key type="filename">Avatars/tools/#front_scythe 1.png</key>
             <key type="filename">Avatars/tools/#front_scythe 2.png</key>
@@ -1358,6 +1338,14 @@
             <key type="filename">Avatars/tools/#sideR_till 1.png</key>
             <key type="filename">Avatars/tools/#sideR_till 2.png</key>
             <key type="filename">Avatars/tools/#sideR_till 3.png</key>
+            <key type="filename">Avatars/tools/#side_fishing 0.png</key>
+            <key type="filename">Avatars/tools/#side_fishing 1.png</key>
+            <key type="filename">Avatars/tools/#side_fishing 2.png</key>
+            <key type="filename">Avatars/tools/#side_fishing 3.png</key>
+            <key type="filename">Avatars/tools/#side_fishing 4.png</key>
+            <key type="filename">Avatars/tools/#side_fishing 5.png</key>
+            <key type="filename">Avatars/tools/#side_fishing 6.png</key>
+            <key type="filename">Avatars/tools/#side_fishing 7.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1366,9 +1354,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>10,10,20,19</rect>
+                <rect>12,12,24,24</rect>
                 <key>scale9Paddings</key>
-                <rect>10,10,20,19</rect>
+                <rect>12,12,24,24</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -1497,6 +1485,7 @@
                 <false/>
             </struct>
             <key type="filename">Buildings/Town House 1.png</key>
+            <key type="filename">Buildings/Town House 2.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -2726,7 +2715,187 @@
             <key type="filename">tiles/city/ground_city_tiles (97).png</key>
             <key type="filename">tiles/city/ground_city_tiles (98).png</key>
             <key type="filename">tiles/city/ground_city_tiles (99).png</key>
+            <key type="filename">tiles/city/ground_city_tiles_01-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_02-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_03-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_04-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_05-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_06-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_07-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_08-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_09-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_10-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_100-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_101-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_102-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_103-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_104-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_105-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_106-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_107-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_108-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_109-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_11-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_110-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_111-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_112-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_113-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_114-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_115-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_116-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_117-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_118-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_119-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_12-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_120-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_121-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_122-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_123-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_124-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_125-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_126-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_127-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_128-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_129-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_13-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_130-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_131-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_132-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_133-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_134-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_135-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_136-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_137-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_138-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_139-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_14-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_140-.png</key>
             <key type="filename">tiles/city/ground_city_tiles_140.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_15-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_16-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_17-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_18-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_19-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_20-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_21-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_22-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_23-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_24-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_25-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_26-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_27-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_28-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_29-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_30-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_31-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_32-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_33-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_34-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_35-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_36-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_37-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_38-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_39-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_40-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_41-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_42-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_43-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_44-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_45-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_46-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_47-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_48-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_49-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_50-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_51-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_52-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_53-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_54-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_55-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_56-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_57-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_58-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_59-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_60-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_61-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_62-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_63-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_64-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_65-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_66-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_67-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_68-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_69-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_70-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_71-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_72-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_73-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_74-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_75-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_76-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_77-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_78-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_79-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_80-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_81-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_82-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_83-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_84-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_85-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_86-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_87-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_88-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_89-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_90-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_91-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_92-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_93-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_94-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_95-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_96-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_97-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_98-.png</key>
+            <key type="filename">tiles/city/ground_city_tiles_99-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_01-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_02-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_03-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_04-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_05-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_06-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_07-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_08-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_09-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_10-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_11-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_12-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_13-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_14-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_15-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_16-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_18-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_19-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_20-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_21-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_01-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_02-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_03-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_04-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_05-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_06-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_07-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_08-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_09-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_10-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_11-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_12-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_13-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_14-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_15-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_16-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_18-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_19-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_20-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_21-.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
