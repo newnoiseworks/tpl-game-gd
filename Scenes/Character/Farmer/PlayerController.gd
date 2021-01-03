@@ -8,7 +8,7 @@ var area_to_use_equipped_item: Vector2
 var last_move_counter: float
 var map_constraints: Dictionary = {}
 var last_movement_from_mouse: bool = false
-var fishing_game_scene = ResourceLoader.load("res://Scenes/Fishing/Game.tscn")
+var fishing_game_scene = ResourceLoader.load("res://Scenes/Fishing/GameContainer.tscn")
 
 const MOVE_POSITION_FROM_BUTTON: int = 32
 const MOVE_DELAY_MINIMUM: float = .25
@@ -16,6 +16,7 @@ const MOVEMENT_PING_TIMER_INTERVAL: float = .30
 
 onready var camera: Camera2D = $Camera2D
 onready var movement_ping_timer: Timer = $MovementPing
+onready var fishing_timer: Timer = $FishingTimer
 
 
 func _ready():
@@ -153,11 +154,24 @@ func _unhandled_input(event: InputEvent):
 
 
 func player_handle_fishing_lure():
-	if is_fishing:
-		get_node("/root/BaseViewports").call_deferred("add_child", fishing_game_scene.instance())
-		lock_movement = true
-	else:
-		lock_movement = false
+	if ! is_fishing:
+		return
+
+	lock_movement = true
+	var response: NakamaAPI.ApiRpc = yield(
+		SessionManager.rpc_async("fishing.cast_lure", SaveData.current_avatar_key), "completed"
+	)
+
+	if response.payload:
+		var lure_cast_info = JSON.parse(response.payload).result
+		fishing_timer.wait_time = lure_cast_info.timeDelay
+		fishing_timer.connect("timeout", self, "fishing_timer_ready")
+		fishing_timer.start()
+
+
+func fishing_timer_ready():
+	fishing_timer.disconnect("timeout", self, "fishing_timer_ready")
+	get_node("/root/BaseViewports").call_deferred("add_child", fishing_game_scene.instance())
 
 
 func restrict_camera_to_tile_map(map: TileMap):

@@ -1,25 +1,66 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/Fishing/GameContainer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Images/Finished_Tiles/Environment/Water/Fish/Blue Fish.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Fishing/FishController.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Fishing/WallGroupController.gd" type="Script" id=3]
 
-[node name="FishingGameViewportContainer" type="ViewportContainer"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -482.022
-margin_top = 122.348
-margin_right = -156.022
-margin_bottom = 431.348
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.24624
+height = 5.23272
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 5.74738
+height = 4.0704
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 296 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1185.25, 10 )
+
+[node name="GameContainer" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1276.0
+margin_bottom = 712.0
+color = Color( 0.227451, 0.360784, 0.756863, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 326, 329 )
-size_override_stretch = true
-transparent_bg = true
-handle_input_locally = false
-render_target_update_mode = 3
-audio_listener_enable_2d = true
-gui_disable_input = true
+[node name="Fish" type="KinematicBody2D" parent="."]
+position = Vector2( 100, 150 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 2 )
 
-[node name="GameContainer" parent="Viewport" instance=ExtResource( 1 )]
+[node name="Sprite" type="Sprite" parent="Fish"]
+texture = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="Fish"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish/Area2D"]
+position = Vector2( -0.264866, -0.794598 )
+rotation = 0.790731
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish"]
+position = Vector2( -0.132431, -0.662167 )
+rotation = 0.784707
+shape = SubResource( 2 )
+
+[node name="WallGroup" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="FinishBar" type="StaticBody2D" parent="WallGroup"]
+position = Vector2( 488, 192 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallGroup/FinishBar"]
+shape = SubResource( 3 )
+
+[node name="FinishBar2" type="StaticBody2D" parent="WallGroup"]
+position = Vector2( 243.788, 365.087 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallGroup/FinishBar2"]
+position = Vector2( 808.661, 0 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Fish/Area2D" to="Fish" method="_on_body_enter"]
