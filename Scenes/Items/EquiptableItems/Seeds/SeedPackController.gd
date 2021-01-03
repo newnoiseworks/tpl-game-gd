@@ -76,5 +76,5 @@ func can_add_plant_to(farm_grid):
 	if tilename == "" || tilename == null:
 		return false
 
-	return "Environment/Tilled Dirt/Tilled Dirt" in tilename
+	return "tiles/tilled/slice_ground_tilled" in tilename
 #       return tilename.Contains(TileAdjuster.searchString);
