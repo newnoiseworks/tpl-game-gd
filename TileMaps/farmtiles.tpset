@@ -23934,6 +23934,21 @@
 					}
 				},
 				{
+					"filename": "tiles/grass/slice_ground_grass_17-.png",
+					"region": {
+						"x": 928,
+						"y": 1824,
+						"w": 32,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "tiles/tilled/slice_ground_tilled_17-.png",
 					"region": {
 						"x": 928,
@@ -31164,7 +31179,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_01-.png",
+					"filename": "tiles/grass/slice_ground_grass_01-.png",
 					"region": {
 						"x": 1472,
 						"y": 1872,
@@ -31179,7 +31194,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_02-.png",
+					"filename": "tiles/grass/slice_ground_grass_02-.png",
 					"region": {
 						"x": 1488,
 						"y": 1872,
@@ -31194,7 +31209,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_03-.png",
+					"filename": "tiles/grass/slice_ground_grass_03-.png",
 					"region": {
 						"x": 1504,
 						"y": 1872,
@@ -31209,7 +31224,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_04-.png",
+					"filename": "tiles/grass/slice_ground_grass_04-.png",
 					"region": {
 						"x": 1520,
 						"y": 1872,
@@ -31224,7 +31239,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_05-.png",
+					"filename": "tiles/grass/slice_ground_grass_05-.png",
 					"region": {
 						"x": 1536,
 						"y": 1872,
@@ -31239,7 +31254,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_06-.png",
+					"filename": "tiles/grass/slice_ground_grass_06-.png",
 					"region": {
 						"x": 1552,
 						"y": 1872,
@@ -31254,7 +31269,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_07-.png",
+					"filename": "tiles/grass/slice_ground_grass_07-.png",
 					"region": {
 						"x": 1568,
 						"y": 1872,
@@ -31269,7 +31284,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_08-.png",
+					"filename": "tiles/grass/slice_ground_grass_08-.png",
 					"region": {
 						"x": 1584,
 						"y": 1872,
@@ -31284,7 +31299,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_09-.png",
+					"filename": "tiles/grass/slice_ground_grass_09-.png",
 					"region": {
 						"x": 1600,
 						"y": 1872,
@@ -31299,7 +31314,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_10-.png",
+					"filename": "tiles/grass/slice_ground_grass_10-.png",
 					"region": {
 						"x": 1616,
 						"y": 1872,
@@ -31314,7 +31329,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_11-.png",
+					"filename": "tiles/grass/slice_ground_grass_11-.png",
 					"region": {
 						"x": 1632,
 						"y": 1872,
@@ -31329,7 +31344,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_12-.png",
+					"filename": "tiles/grass/slice_ground_grass_12-.png",
 					"region": {
 						"x": 1648,
 						"y": 1872,
@@ -31344,7 +31359,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_13-.png",
+					"filename": "tiles/grass/slice_ground_grass_13-.png",
 					"region": {
 						"x": 1664,
 						"y": 1872,
@@ -31359,7 +31374,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_14-.png",
+					"filename": "tiles/grass/slice_ground_grass_14-.png",
 					"region": {
 						"x": 1680,
 						"y": 1872,
@@ -31374,7 +31389,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_15-.png",
+					"filename": "tiles/grass/slice_ground_grass_15-.png",
 					"region": {
 						"x": 1696,
 						"y": 1872,
@@ -31389,7 +31404,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_16-.png",
+					"filename": "tiles/grass/slice_ground_grass_16-.png",
 					"region": {
 						"x": 1712,
 						"y": 1872,
@@ -31404,7 +31419,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_18-.png",
+					"filename": "tiles/grass/slice_ground_grass_18-.png",
 					"region": {
 						"x": 1728,
 						"y": 1872,
@@ -31419,7 +31434,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_19-.png",
+					"filename": "tiles/grass/slice_ground_grass_19-.png",
 					"region": {
 						"x": 1744,
 						"y": 1872,
@@ -31434,7 +31449,7 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_20-.png",
+					"filename": "tiles/grass/slice_ground_grass_20-.png",
 					"region": {
 						"x": 1760,
 						"y": 1872,
@@ -31449,10 +31464,310 @@
 					}
 				},
 				{
-					"filename": "tiles/tilled/slice_ground_tilled_21-.png",
+					"filename": "tiles/grass/slice_ground_grass_21-.png",
 					"region": {
 						"x": 1776,
 						"y": 1872,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_01-.png",
+					"region": {
+						"x": 1792,
+						"y": 1872,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_02-.png",
+					"region": {
+						"x": 1808,
+						"y": 1872,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_03-.png",
+					"region": {
+						"x": 1824,
+						"y": 1872,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_04-.png",
+					"region": {
+						"x": 1840,
+						"y": 1872,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_05-.png",
+					"region": {
+						"x": 1856,
+						"y": 1872,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_06-.png",
+					"region": {
+						"x": 1872,
+						"y": 1872,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_07-.png",
+					"region": {
+						"x": 1888,
+						"y": 1872,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_08-.png",
+					"region": {
+						"x": 0,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_09-.png",
+					"region": {
+						"x": 16,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_10-.png",
+					"region": {
+						"x": 32,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_11-.png",
+					"region": {
+						"x": 48,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_12-.png",
+					"region": {
+						"x": 64,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_13-.png",
+					"region": {
+						"x": 80,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_14-.png",
+					"region": {
+						"x": 96,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_15-.png",
+					"region": {
+						"x": 112,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_16-.png",
+					"region": {
+						"x": 128,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_18-.png",
+					"region": {
+						"x": 144,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_19-.png",
+					"region": {
+						"x": 160,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_20-.png",
+					"region": {
+						"x": 176,
+						"y": 1888,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tiles/tilled/slice_ground_tilled_21-.png",
+					"region": {
+						"x": 192,
+						"y": 1888,
 						"w": 16,
 						"h": 16
 					},
@@ -31469,6 +31784,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:a06ca2e432521de60713c8b910c3d9fb:38be66c9d6e53e62500d8d3bb996b064:2d062234bdd1ba3eea0e9bf5cbda5cf9$"
+		"smartupdate": "$TexturePacker:SmartUpdate:d3d213d9cdb17a442980b4230ae046ef:3d5cd27be5995e9bab15b37b5288ab1a:2d062234bdd1ba3eea0e9bf5cbda5cf9$"
 	}
 }

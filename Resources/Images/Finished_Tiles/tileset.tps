@@ -1223,6 +1223,7 @@
             <key type="filename">Environment/Tilled Dirt/Corretive Corners.png</key>
             <key type="filename">Environment/Water/Corrective Corners.png</key>
             <key type="filename">tiles/dirt/slice_ground_dirt_17-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_17-.png</key>
             <key type="filename">tiles/tilled/slice_ground_tilled_17-.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -2876,6 +2877,26 @@
             <key type="filename">tiles/dirt/slice_ground_dirt_19-.png</key>
             <key type="filename">tiles/dirt/slice_ground_dirt_20-.png</key>
             <key type="filename">tiles/dirt/slice_ground_dirt_21-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_01-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_02-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_03-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_04-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_05-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_06-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_07-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_08-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_09-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_10-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_11-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_12-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_13-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_14-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_15-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_16-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_18-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_19-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_20-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_21-.png</key>
             <key type="filename">tiles/tilled/slice_ground_tilled_01-.png</key>
             <key type="filename">tiles/tilled/slice_ground_tilled_02-.png</key>
             <key type="filename">tiles/tilled/slice_ground_tilled_03-.png</key>

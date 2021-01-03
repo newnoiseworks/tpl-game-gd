@@ -1,25 +1,25 @@
 extends Node
 
 const tile_connector_map = {
-	"TTTT": "Environment/Tilled Dirt/Tilled Dirt 9",
-	"FTTT": "Environment/Tilled Dirt/Tilled Dirt 2",
-	"TFTT": "Environment/Tilled Dirt/Tilled Dirt 6",
-	"TTFT": "Environment/Tilled Dirt/Tilled Dirt 8",
-	"TTTF": "Environment/Tilled Dirt/Tilled Dirt 5",
-	"FTTF": "Environment/Tilled Dirt/Tilled Dirt 1",
-	"TTFF": "Environment/Tilled Dirt/Tilled Dirt 7",
-	"FFTT": "Environment/Tilled Dirt/Tilled Dirt 4",
-	"TFFT": "Environment/Tilled Dirt/Tilled Dirt 14",  # needs correction
-	"FTFT": "Environment/Tilled Dirt/Tilled Dirt 15",
-	"TFTF": "Environment/Tilled Dirt/Tilled Dirt 18",
-	"FFFT": "Environment/Tilled Dirt/Tilled Dirt 17",
-	"TFFF": "Environment/Tilled Dirt/Tilled Dirt 20",
-	"FFTF": "Environment/Tilled Dirt/Tilled Dirt 19",
-	"FTFF": "Environment/Tilled Dirt/Tilled Dirt 16",
-	"FFFF": "Environment/Tilled Dirt/Tilled Dirt 21",
+	"TTTT": "tiles/tilled/slice_ground_tilled_09-",
+	"FTTT": "tiles/tilled/slice_ground_tilled_02-",
+	"TFTT": "tiles/tilled/slice_ground_tilled_10-",
+	"TTFT": "tiles/tilled/slice_ground_tilled_19-",
+	"TTTF": "tiles/tilled/slice_ground_tilled_07-",
+	"FTTF": "tiles/tilled/slice_ground_tilled_01-",
+	"TTFF": "tiles/tilled/slice_ground_tilled_18-",
+	"FFTT": "tiles/tilled/slice_ground_tilled_04-",
+	"TFFT": "tiles/tilled/slice_ground_tilled_21-",  # needs correction
+	"FTFT": "tiles/tilled/slice_ground_tilled_15-",
+	"TFTF": "tiles/tilled/slice_ground_tilled_14-",
+	"FFFT": "tiles/tilled/slice_ground_tilled_14-",
+	"TFFF": "tiles/tilled/slice_ground_tilled_14-",
+	"FFTF": "tiles/tilled/slice_ground_tilled_14-",
+	"FTFF": "tiles/tilled/slice_ground_tilled_14-",
+	"FFFF": "tiles/tilled/slice_ground_tilled_14-",
 }
 
-const search_string = "Environment/Tilled Dirt/Tilled Dirt"
+const search_string = "tiles/tilled/slice_ground_tilled"
 
 
 func till_tiled_dirt(
