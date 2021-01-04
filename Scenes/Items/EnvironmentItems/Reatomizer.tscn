@@ -3,8 +3,8 @@
 [ext_resource path="res://Scenes/Items/CollidableItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Items/EnvironmentItems/ReatomizerController.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 36.6118, 35.1928 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 22.9317, 21.5562 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 30.8427, 18.5929 )
@@ -21,8 +21,8 @@ script = ExtResource( 2 )
 position = Vector2( 0.707108, -41.8961 )
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
-position = Vector2( 31.951, 57.3005 )
-shape = SubResource( 1 )
+position = Vector2( 21.1676, 64.5483 )
+shape = SubResource( 4 )
 
 [node name="StaticBody2D" parent="." index="1"]
 position = Vector2( 0.707108, -41.8961 )

@@ -78,6 +78,11 @@ func _physics_process(delta: float):
 		use_equipped_item()
 
 
+func _on_collision(_collision: KinematicCollision2D):
+	orient_target_to_position_on_button_up(position)
+	set_idle()
+
+
 func is_moving():
 	return (
 		Input.is_action_pressed("move_down")

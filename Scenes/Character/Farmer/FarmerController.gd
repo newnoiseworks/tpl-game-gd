@@ -165,7 +165,7 @@ func assemble_and_return_tilename(map: TileMap, part: String, dir_str: String, o
 	return map.tile_set.find_tile_by_name(tilename)
 
 
-func on_collision(collision: KinematicCollision2D):
+func _on_collision(collision: KinematicCollision2D):
 	movement_target = position
 
 	if collision.collider.user_id != null:
