@@ -15,9 +15,10 @@ extents = Vector2( 10, 80 )
 position = Vector2( 0, 0.327248 )
 
 [node name="ColorRect" type="ColorRect" parent="UpperWall"]
-margin_top = -100.0
+margin_top = -96.3272
 margin_right = 20.0
-margin_bottom = 100.0
+margin_bottom = 103.673
+color = Color( 0, 0.0313726, 0.270588, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -40,9 +41,10 @@ shape = SubResource( 3 )
 position = Vector2( 0, 359.921 )
 
 [node name="ColorRect" type="ColorRect" parent="LowerWall"]
-margin_top = -100.0
+margin_top = -96.3273
 margin_right = 20.0
-margin_bottom = 100.0
+margin_bottom = 103.673
+color = Color( 0, 0.0313726, 0.270588, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

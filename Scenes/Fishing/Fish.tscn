@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Fishing/FishController.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Images/Finished_Tiles/Environment/Water/Fish/Blue Fish.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Images/light.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.24624
+height = 5.23272
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 5.74738
+height = 4.0704
+
+[node name="Fish" type="KinematicBody2D"]
+position = Vector2( 100, 150 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.264866, -0.794598 )
+rotation = 0.790731
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.132431, -0.662167 )
+rotation = 0.784707
+shape = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 9.27
+color = Color( 0.768627, 0.901961, 0.105882, 0.866667 )
+energy = 0.99
+shadow_enabled = true
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_enter"]

@@ -2877,6 +2877,13 @@
             <key type="filename">tiles/dirt/slice_ground_dirt_19-.png</key>
             <key type="filename">tiles/dirt/slice_ground_dirt_20-.png</key>
             <key type="filename">tiles/dirt/slice_ground_dirt_21-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_22-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_23-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_24-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_25-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_26-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_27-.png</key>
+            <key type="filename">tiles/dirt/slice_ground_dirt_28-.png</key>
             <key type="filename">tiles/grass/slice_ground_grass_01-.png</key>
             <key type="filename">tiles/grass/slice_ground_grass_02-.png</key>
             <key type="filename">tiles/grass/slice_ground_grass_03-.png</key>
@@ -2897,6 +2904,13 @@
             <key type="filename">tiles/grass/slice_ground_grass_19-.png</key>
             <key type="filename">tiles/grass/slice_ground_grass_20-.png</key>
             <key type="filename">tiles/grass/slice_ground_grass_21-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_22-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_23-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_24-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_25-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_26-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_27-.png</key>
+            <key type="filename">tiles/grass/slice_ground_grass_28-.png</key>
             <key type="filename">tiles/tilled/slice_ground_tilled_01-.png</key>
             <key type="filename">tiles/tilled/slice_ground_tilled_02-.png</key>
             <key type="filename">tiles/tilled/slice_ground_tilled_03-.png</key>
@@ -2917,6 +2931,40 @@
             <key type="filename">tiles/tilled/slice_ground_tilled_19-.png</key>
             <key type="filename">tiles/tilled/slice_ground_tilled_20-.png</key>
             <key type="filename">tiles/tilled/slice_ground_tilled_21-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_22-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_23-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_24-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_25-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_26-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_27-.png</key>
+            <key type="filename">tiles/tilled/slice_ground_tilled_28-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_01-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_02-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_03-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_04-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_05-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_06-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_07-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_08-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_09-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_10-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_11-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_12-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_13-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_14-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_15-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_16-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_17-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_19-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_20-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_21-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_22-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_23-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_24-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_25-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_26-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_27-.png</key>
+            <key type="filename">tiles/water/slice_ground_water_28-.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -3093,6 +3141,7 @@
                 <false/>
             </struct>
             <key type="filename">Environment/Crops/WeedsBushes/Tall Grass.png</key>
+            <key type="filename">tiles/water/slice_ground_water_18-.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
