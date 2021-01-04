@@ -7,7 +7,7 @@
 extents = Vector2( 36.6118, 35.1928 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 30.8427, 20.7143 )
+extents = Vector2( 30.8427, 18.5929 )
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 48.1677, 11.1396, 80.1606, 19.706, 80.1606, 102.398, -16.1677, 102.573, -16.1677, 20.2304, 15.8252, 12.5382 )
@@ -28,7 +28,7 @@ shape = SubResource( 1 )
 position = Vector2( 0.707108, -41.8961 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 31.9949, 62.8225 )
+position = Vector2( 31.8181, 65.6509 )
 shape = SubResource( 2 )
 
 [node name="TileMap" parent="." index="2"]
