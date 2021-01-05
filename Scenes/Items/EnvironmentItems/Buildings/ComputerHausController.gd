@@ -34,5 +34,6 @@ func computer_haus_store():
 			InventoryItems.TURNIP,
 			InventoryItems.POTATO,
 			InventoryItems.TURNIP,
+			InventoryItems.FISH
 		]
 	)

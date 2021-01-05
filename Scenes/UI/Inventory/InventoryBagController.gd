@@ -8,6 +8,7 @@ var equiptable_item_scenes = {
 	InventoryItems.AXE: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Axe.tscn"),
 	InventoryItems.FISHPOLE:
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/FishingPole.tscn"),
+	InventoryItems.FISH: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Fish.tscn"),
 	InventoryItems.STONE:
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Stone.tscn"),
 	InventoryItems.FERN: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Fern.tscn"),

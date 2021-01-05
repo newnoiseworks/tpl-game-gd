@@ -34,6 +34,7 @@ func loss():
 
 
 func win():
+	TPLG.inventory.bag.add_item(InventoryItems.FISH)
 	win_audio.connect("finished", self, "_destroy_after_timer")
 	win_audio.play()
 

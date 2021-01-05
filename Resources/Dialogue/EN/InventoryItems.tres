@@ -1,5 +1,10 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
+[Fish]
+label = "Robo Fish"
+description = "An edible, sellable, catchable robot fish"
+image = "Resources/Images/Finished_Tiles/Environment/Water/Fish/Blue Fish.png"
+
 [CabbageSeeds]
 label = "Cabbage Seeds"
 description = "5 days to harvest"
