@@ -170,13 +170,15 @@ func player_handle_fishing_lure():
 	if response.payload:
 		var lure_cast_info = JSON.parse(response.payload).result
 		fishing_timer.wait_time = lure_cast_info.timeDelay
-		fishing_timer.connect("timeout", self, "fishing_timer_ready")
+		fishing_timer.connect("timeout", self, "fishing_timer_ready", [lure_cast_info.weight])
 		fishing_timer.start()
 
 
-func fishing_timer_ready():
+func fishing_timer_ready(weight: int):
 	fishing_timer.disconnect("timeout", self, "fishing_timer_ready")
-	get_node("/root/BaseViewports").call_deferred("add_child", fishing_game_scene.instance())
+	var game = fishing_game_scene.instance()
+	game.weight = weight
+	get_node("/root/BaseViewports").call_deferred("add_child", game)
 
 
 func restrict_camera_to_tile_map(map: TileMap):

@@ -18,6 +18,7 @@ onready var back_tool_tile_map: TileMap = find_node("BackToolTile")
 onready var hair_tile_map: TileMap = find_node("Hair")
 onready var top_tile_map: TileMap = find_node("Top")
 onready var bottom_tile_map: TileMap = find_node("Bottom")
+onready var fish_alert: Node2D = find_node("FishVictoryAlert")
 
 
 func _enter_tree():
@@ -30,6 +31,7 @@ func _enter_tree():
 		MatchEvent.connect("farming", self, "handle_farming_event")
 		MatchEvent.connect("avatar_update", self, "handle_avatar_update_event")
 		MatchEvent.connect("fishing_lure", self, "handle_fishing_lure")
+		MatchEvent.connect("fishing_victory", self, "handle_fishing_victory")
 
 
 func _ready():
@@ -44,6 +46,7 @@ func _exit_tree():
 		MatchEvent.disconnect("farming", self, "handle_farming_event")
 		MatchEvent.disconnect("avatar_update", self, "handle_avatar_update_event")
 		MatchEvent.disconnect("fishing_lure", self, "handle_fishing_lure")
+		MatchEvent.disconnect("fishing_victory", self, "handle_fishing_victory")
 
 
 func _physics_process(_delta: float):
@@ -71,6 +74,18 @@ func handle_fishing_lure(msg, presence):
 
 	if has_method("player_handle_fishing_lure"):
 		call("player_handle_fishing_lure")
+
+
+func handle_fishing_victory(msg, presence):
+	if msg == null:
+		return
+
+	if presence.user_id != user_id:
+		return
+
+	var context = JSON.parse(msg).result
+
+	fish_alert.appear(context.weight)
 
 
 func stop_all_animations():

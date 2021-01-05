@@ -2,6 +2,7 @@ extends ViewportContainer
 
 var game_scene = ResourceLoader.load("res://Scenes/Fishing/Game.tscn")
 var game_started: bool = false
+var weight: int
 
 onready var vp: Viewport = $Viewport
 onready var timer: Timer = $EntryTimer
@@ -34,6 +35,7 @@ func loss():
 
 
 func win():
+	MatchEvent.fishing_victory({"weight": weight})
 	TPLG.inventory.bag.add_item(InventoryItems.FISH)
 	win_audio.connect("finished", self, "_destroy_after_timer")
 	win_audio.play()
