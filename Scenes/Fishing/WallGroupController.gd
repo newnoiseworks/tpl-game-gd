@@ -1,10 +1,10 @@
 extends Node2D
 
 var wall_pair_scene = ResourceLoader.load("res://Scenes/Fishing/WallPair.tscn")
-
-onready var finish = find_node("FinishBar")
-
 var distance_between_walls = 128
+
+onready var fish: KinematicBody2D = get_parent().find_node("Fish")
+onready var finish = find_node("FinishBar")
 
 
 func _ready():
@@ -22,4 +22,5 @@ func _ready():
 
 
 func _physics_process(_delta):
-	position += Vector2(-2, 0)
+	if fish.playing:
+		position += Vector2(-2, 0)

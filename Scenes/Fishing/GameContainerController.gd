@@ -6,6 +6,8 @@ var game_started: bool = false
 onready var vp: Viewport = $Viewport
 onready var timer: Timer = $EntryTimer
 onready var label: Label = $Label
+onready var loss_audio: AudioStreamPlayer = $LossAudio
+onready var win_audio: AudioStreamPlayer = $WinAudio
 
 
 func _physics_process(_delta):
@@ -26,7 +28,17 @@ func _physics_process(_delta):
 		timer.queue_free()
 
 
-func destroy_after_timer():
+func loss():
+	loss_audio.connect("finished", self, "_destroy_after_timer")
+	loss_audio.play()
+
+
+func win():
+	win_audio.connect("finished", self, "_destroy_after_timer")
+	win_audio.play()
+
+
+func _destroy_after_timer():
 	queue_free()
 	Player.is_fishing = false
 	Player.lock_movement = false

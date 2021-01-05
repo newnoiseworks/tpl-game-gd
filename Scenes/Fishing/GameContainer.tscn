@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/Fishing/GameContainerController.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Audio/Sfx/co_cartoon_descend_knocks_wood_delicate_tip_toes_002_027.wav" type="AudioStream" id=3]
+[ext_resource path="res://Resources/Audio/Sfx/little_robot_sound_factory_Jingle_Win_Synth_00.wav" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.360784, 0.356863, 0.160784, 1 )
@@ -42,4 +44,12 @@ theme = ExtResource( 1 )
 custom_styles/normal = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 1, 0.235294, 0.235294, 1 )
 text = "FISH"
+
+[node name="LossAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 1.33
+
+[node name="WinAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+pitch_scale = 1.33
 [connection signal="timeout" from="EntryTimer" to="." method="destroy_after_timer"]

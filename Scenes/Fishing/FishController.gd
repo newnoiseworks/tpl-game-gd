@@ -6,9 +6,13 @@ const MAX_FALL_SPEED = 200
 const GRAVITY = 10
 
 var velocity = Vector2()
+var playing: bool = true
 
 
 func _physics_process(_delta):
+	if ! playing:
+		return
+
 	velocity.y += GRAVITY
 
 	if velocity.y > MAX_FALL_SPEED:
@@ -28,14 +32,9 @@ func _physics_process(_delta):
 
 func _on_body_enter(body: Node):
 	if body.name == "UpperWall" || body.name == "LowerWall":
-		exit_game()
+		playing = false
+		get_viewport().get_parent().call("loss")
 
 	if body.name == "FinishBar":
-		exit_game()
-
-
-func exit_game():
-	get_viewport().get_parent().queue_free()
-	Player.is_fishing = false
-	Player.lock_movement = false
-	Player.current_tool_tile = ""
+		playing = false
+		get_viewport().get_parent().call("win")
