@@ -4,10 +4,11 @@ enum {
 	MOVEMENT = 0,
 	FARMING = 1,
 	FARM_PERMISSION_UPDATE = 2,
-	HEART = 3,
+	FISHING_LURE = 3,
 	DATA_RESET = 4,
 	AVATAR_UPDATE = 5,
-	MATCH_JOIN = 6
+	MATCH_JOIN = 6,
+	FISHING_VICTORY = 7
 }
 
 signal movement(state, presence)
@@ -16,7 +17,8 @@ signal farm_permission_update(state, presence)
 signal data_reset(state)
 signal avatar_update(state, presence)
 signal match_join(state, presence)
-signal heart(state, presence)
+signal fishing_lure(state, presence)
+signal fishing_victory(state, presence)
 
 var signal_map = {
 	MOVEMENT: "movement",
@@ -25,7 +27,8 @@ var signal_map = {
 	DATA_RESET: "data_reset",
 	AVATAR_UPDATE: "avatar_update",
 	MATCH_JOIN: "match_join",
-	HEART: "heart"
+	FISHING_LURE: "fishing_lure",
+	FISHING_VICTORY: "fishing_victory"
 }
 
 
@@ -46,8 +49,10 @@ func handle_match_state_update(state: NakamaRTAPI.MatchData):
 			emit_signal("avatar_update", state.data, state.presence)
 		MATCH_JOIN:
 			emit_signal("match_join", state.data, state.presence)
-		HEART:
-			emit_signal("heart", state.data, state.presence)
+		FISHING_LURE:
+			emit_signal("fishing_lure", state.data, state.presence)
+		FISHING_VICTORY:
+			emit_signal("fishing_victory", state.data, state.presence)
 
 
 func emit(op_code: int, payload: String):
@@ -80,5 +85,9 @@ func match_join(payload):
 	emit(MATCH_JOIN, JSON.print(payload))
 
 
-func heart():
-	emit(HEART, "heart")
+func fishing_lure():
+	emit(FISHING_LURE, "fishing_lure")
+
+
+func fishing_victory(payload):
+	emit(FISHING_VICTORY, JSON.print(payload))

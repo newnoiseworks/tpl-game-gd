@@ -59,7 +59,7 @@ func shift_equipped_item(up: bool = true):
 
 	if next_slot >= columns:
 		next_slot = 0
-	elif next_slot < 1:
+	elif next_slot < 0:
 		next_slot = columns - 1
 
 	on_equip_item(next_slot)

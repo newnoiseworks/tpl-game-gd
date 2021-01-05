@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/co_cartoon_descend_knocks_wood_delicate_tip_toes_002_027.wav-5151db1056c7b17bf8e9513c3610e09d.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/Sfx/co_cartoon_descend_knocks_wood_delicate_tip_toes_002_027.wav"
+dest_files=[ "res://.import/co_cartoon_descend_knocks_wood_delicate_tip_toes_002_027.wav-5151db1056c7b17bf8e9513c3610e09d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

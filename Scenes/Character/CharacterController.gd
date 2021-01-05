@@ -87,7 +87,7 @@ func _set_username(_username: String):
 
 
 func set_idle():
-	# walk_animation.stop()
+	walk_animation.stop()
 	current_tile = "1"
 	update_current_tile()
 
@@ -167,14 +167,13 @@ func _physics_loop():
 	var collision: KinematicCollision2D = move_and_collide(velocity)
 
 	if collision != null:
-		_on_collision(collision)
+		call("_on_collision", collision)
 
 	update_current_tile()
 
 
 func _on_collision(_collision: KinematicCollision2D):
-	# print_debug("character collision")
-	pass
+	print_debug("character collision")
 
 
 func _server_position_check():

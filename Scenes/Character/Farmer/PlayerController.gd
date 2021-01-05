@@ -8,6 +8,7 @@ var area_to_use_equipped_item: Vector2
 var last_move_counter: float
 var map_constraints: Dictionary = {}
 var last_movement_from_mouse: bool = false
+var fishing_game_scene = ResourceLoader.load("res://Scenes/Fishing/GameContainer.tscn")
 
 const MOVE_POSITION_FROM_BUTTON: int = 32
 const MOVE_DELAY_MINIMUM: float = .25
@@ -15,6 +16,7 @@ const MOVEMENT_PING_TIMER_INTERVAL: float = .30
 
 onready var camera: Camera2D = $Camera2D
 onready var movement_ping_timer: Timer = $MovementPing
+onready var fishing_timer: Timer = $FishingTimer
 
 
 func _ready():
@@ -76,6 +78,11 @@ func _physics_process(delta: float):
 		use_equipped_item()
 
 
+func _on_collision(_collision: KinematicCollision2D):
+	orient_target_to_position_on_button_up(position)
+	set_idle()
+
+
 func is_moving():
 	return (
 		Input.is_action_pressed("move_down")
@@ -108,6 +115,9 @@ func _unhandled_input(event: InputEvent):
 		else:
 			lock_movement = true
 			TPLG.ui.chat.show_postbox()
+
+	# if is_fishing:
+	# 	_handle_input_for_fishing(event)
 
 	if lock_movement:
 		return
@@ -146,6 +156,29 @@ func _unhandled_input(event: InputEvent):
 
 	# if event.is_action_released("action_six"):
 	# 	MatchEvent.heart()
+
+
+func player_handle_fishing_lure():
+	if ! is_fishing:
+		return
+
+	lock_movement = true
+	var response: NakamaAPI.ApiRpc = yield(
+		SessionManager.rpc_async("fishing.cast_lure", SaveData.current_avatar_key), "completed"
+	)
+
+	if response.payload:
+		var lure_cast_info = JSON.parse(response.payload).result
+		fishing_timer.wait_time = lure_cast_info.timeDelay
+		fishing_timer.connect("timeout", self, "fishing_timer_ready", [lure_cast_info.weight])
+		fishing_timer.start()
+
+
+func fishing_timer_ready(weight: int):
+	fishing_timer.disconnect("timeout", self, "fishing_timer_ready")
+	var game = fishing_game_scene.instance()
+	game.weight = weight
+	get_node("/root/BaseViewports").call_deferred("add_child", game)
 
 
 func restrict_camera_to_tile_map(map: TileMap):
