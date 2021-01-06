@@ -98,24 +98,6 @@ func set_in_game_time_of_day():
 
 
 func get_percentage_of_day_complete():
-# 	var unix_epoch_from_client = get_current_timestamp()
-
-# 	var current_time = unix_epoch_from_client + client_server_diff
-# 	var start_of_day = OS.get_datetime_from_unix_time(current_time)
-# 	start_of_day.hour = 0
-# 	start_of_day.minute = 0
-# 	start_of_day.second = 0
-# #       //DateTime endOfDay = startOfDay.AddDays(1).AddTicks(-1);
-
-# 	var second_of_day = current_time - OS.get_unix_time_from_datetime(start_of_day)
-# 	var in_game_second_of_day = second_of_day % (REAL_WORLD_SECONDS_PER_GAME_DAY)
-# 	var percentage_of_day_complete = (
-# 		float(in_game_second_of_day)
-# 		/ float(REAL_WORLD_SECONDS_PER_GAME_DAY)
-# 	)
-
-# 	return percentage_of_day_complete
-
 	var unix_epoch_from_client = OS.get_system_time_msecs()
 
 	var current_time = unix_epoch_from_client + client_server_diff
