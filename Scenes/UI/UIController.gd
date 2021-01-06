@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 onready var saving_label: Label = get_node("Container/TopLeft/SavingLabel")
-onready var toast_label: Label = find_node("AlertLabel")
+onready var toast_label: Label = find_node("ToastLabel")
 onready var loading_dialog: WindowDialog = get_node("Modals/LoadingDialog")
 onready var tween: Tween = find_node("Tween")
 onready var timer: Timer = Timer.new()
@@ -53,19 +53,14 @@ func show_toast(message: String):
 
 
 func _show_toast():
-	toast_label.show()
-	var starting_point = toast_label.rect_position + Vector2(800, 0)
-	var original_position = toast_label.rect_position
-	toast_label.rect_position = starting_point
-
 	tween.interpolate_property(
 		toast_label,
-		"rect_position",
-		starting_point,
-		original_position,
-		1.5,
-		Tween.TRANS_QUINT,
-		Tween.EASE_OUT
+		"modulate",
+		Color(1, 1, 1, 0),
+		Color(1, 1, 1, 1),
+		.5,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN
 	)
 
 	tween.start()
@@ -73,4 +68,14 @@ func _show_toast():
 
 
 func hide_label():
-	toast_label.hide()
+	tween.interpolate_property(
+		toast_label,
+		"modulate",
+		Color(1, 1, 1, 1),
+		Color(1, 1, 1, 0),
+		2.0,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN
+	)
+
+	tween.start()

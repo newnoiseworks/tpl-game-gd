@@ -400,14 +400,6 @@ margin_right = 1248.0
 margin_bottom = 26.0
 grow_horizontal = 0
 
-[node name="AlertLabel" type="Label" parent="Container2/VBoxContainer/HBoxContainer2"]
-visible = false
-margin_left = 1872.0
-margin_right = 1888.0
-margin_bottom = 34.0
-grow_horizontal = 0
-theme = SubResource( 16 )
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Container2/VBoxContainer"]
 margin_top = 30.0
 margin_right = 1248.0
@@ -517,6 +509,15 @@ margin_top = 53.0
 margin_right = 948.0
 margin_bottom = 533.0
 rect_min_size = Vector2( 840, 480 )
+
+[node name="ToastLabel" type="Label" parent="Modals"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 520.0
+margin_top = 276.0
+margin_right = 536.0
+margin_bottom = 310.0
+grow_horizontal = 0
+theme = SubResource( 16 )
 
 [node name="Instructions" type="TextureRect" parent="."]
 visible = false

@@ -28,6 +28,7 @@ func interact():
 func setup_store():
 	if data.blueprints.size() == 0:
 		TPLG.ui.show_toast("Get some blueprints from Violine in town!")
+		return
 
 	var craftable_items = []
 
