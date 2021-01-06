@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13.7547, 103.921 )
+extents = Vector2( 10.6609, 100.355 )
 
 [sub_resource type="OccluderPolygon2D" id=2]
-polygon = PoolVector2Array( -0.20108, -100.486, 20.489, -99.8188, 20.489, 100.073, 0.132629, 100.073 )
+polygon = PoolVector2Array( -0.499512, -96.4898, 20.3116, -96.4898, 20.3116, 103, 0.0950928, 103 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 80 )
@@ -24,7 +24,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UpperWall"]
-position = Vector2( 10.2453, 0 )
+position = Vector2( 10.2453, 3.27032 )
 shape = SubResource( 1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="UpperWall"]
@@ -50,7 +50,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LowerWall"]
-position = Vector2( 10.2453, 0 )
+position = Vector2( 10.2453, 3.56763 )
 shape = SubResource( 1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="LowerWall"]
