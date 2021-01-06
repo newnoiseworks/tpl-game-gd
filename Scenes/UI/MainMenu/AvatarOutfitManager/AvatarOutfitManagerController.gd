@@ -11,8 +11,14 @@ onready var mannequin = find_node("Farmer")
 
 
 func _ready():
+	TPLG.rng.randomize()
 	if is_creating:
-		mannequin.avatar_data = {"topType": 1, "hairType": 1, "bottomType": 1, "baseType": 1}
+		mannequin.avatar_data = {
+			"topType": TPLG.rng.randi_range(1, 3),
+			"hairType": TPLG.rng.randi_range(1, 3),
+			"bottomType": TPLG.rng.randi_range(1, 3),
+			"baseType": TPLG.rng.randi_range(1, 6)
+		}
 	else:
 		var avatar_data = Player.avatar_data
 		mannequin.avatar_data = {
