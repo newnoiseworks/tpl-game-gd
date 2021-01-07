@@ -385,7 +385,7 @@ func add_plant_from_event(farm_event: Dictionary):
 	var plant_to_add = {
 		"x": farm_event.position.x,
 		"y": farm_event.position.y,
-		"createdAt": GameTime.get_current_timestamp() * 1000,
+		"createdAt": GameTime.get_current_timestamp(),
 		"plantType": plant_hash_id,
 		"waterHistory": initial_water_history
 	}
