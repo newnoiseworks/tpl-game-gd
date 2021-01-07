@@ -248,13 +248,13 @@ func has_item(type, minimum = 1) -> bool:
 
 
 func has_item_at(slot: int):
-	var item
+	var has_item = false
 
 	for _item in data.bag:
 		if _item.bagPosition == slot:
-			item = _item
+			has_item = true
 
-	return item != null
+	return has_item
 
 
 func has_empty_slot():

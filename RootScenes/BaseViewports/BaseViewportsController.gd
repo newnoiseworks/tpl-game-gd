@@ -8,7 +8,8 @@ func _ready():
 
 
 func change_scene(scene_path: String, args: Dictionary, reset_vp: bool = false):
-	TPLG.inventory.bag.reload_and_redraw_data()
+	if TPLG.inventory:
+		TPLG.inventory.bag.reload_and_redraw_data()
 
 	for child in game_viewport.get_children():
 		game_viewport.call_deferred("remove_child", child)
