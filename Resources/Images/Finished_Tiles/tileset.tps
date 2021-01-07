@@ -2126,6 +2126,7 @@
             <key type="filename">Environment/Objects/Fence Peice 3.png</key>
             <key type="filename">Environment/Objects/Fence Peice 4.png</key>
             <key type="filename">Environment/Objects/Fence Right 1.png</key>
+            <key type="filename">envir/plants/weed4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -2577,6 +2578,9 @@
             <key type="filename">Items/Tools/Pickaxe.png</key>
             <key type="filename">Items/Tools/Scythe.png</key>
             <key type="filename">Items/Tools/Shovel.png</key>
+            <key type="filename">envir/plants/weed1.png</key>
+            <key type="filename">envir/plants/weed2.png</key>
+            <key type="filename">envir/plants/weed3.png</key>
             <key type="filename">tiles/city/ground_city_tiles (1).png</key>
             <key type="filename">tiles/city/ground_city_tiles (10).png</key>
             <key type="filename">tiles/city/ground_city_tiles (100).png</key>
@@ -3739,6 +3743,21 @@
             <key type="filename">Environment/Trees/tree3C.png</key>
             <key type="filename">Environment/Trees/tree3D.png</key>
             <key type="filename">Environment/Trees/tree3E.png</key>
+            <key type="filename">envir/plants/tree1A.png</key>
+            <key type="filename">envir/plants/tree1B.png</key>
+            <key type="filename">envir/plants/tree1C.png</key>
+            <key type="filename">envir/plants/tree1D.png</key>
+            <key type="filename">envir/plants/tree1E.png</key>
+            <key type="filename">envir/plants/tree2A.png</key>
+            <key type="filename">envir/plants/tree2B.png</key>
+            <key type="filename">envir/plants/tree2C.png</key>
+            <key type="filename">envir/plants/tree2D.png</key>
+            <key type="filename">envir/plants/tree2E.png</key>
+            <key type="filename">envir/plants/tree3A.png</key>
+            <key type="filename">envir/plants/tree3B.png</key>
+            <key type="filename">envir/plants/tree3C.png</key>
+            <key type="filename">envir/plants/tree3D.png</key>
+            <key type="filename">envir/plants/tree3E.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

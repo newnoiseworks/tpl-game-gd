@@ -4,8 +4,8 @@ export var plant_type: String
 
 var created_at: int
 var data: Dictionary
-
-var current_growth_stage: int
+var is_inventory: bool = false
+var current_growth_stage: int = -1
 
 onready var water_tile: TileMap = find_node("WaterTile")
 onready var plant_type_id: String = InventoryItems.get_hash_from_int(
@@ -20,8 +20,8 @@ func _ready():
 
 	if (
 		! data.empty()
-		&& data.waterHistory.size() > current_growth_stage
-		&& data.waterHistory[current_growth_stage] > 0
+		&& data.waterHistory.size() > current_growth_stage - 1
+		&& data.waterHistory[current_growth_stage - 1] > 0
 	):
 		call_deferred("water")
 
@@ -36,6 +36,12 @@ func _ready():
 	if growth_stage != null:
 		growth_stage.use_parent_material = true
 		growth_stage.show()
+
+
+func _enter_tree():
+	if current_growth_stage != -1 && is_harvestable():
+		find_node("Stage%s" % [growth_stages.size()]).show()
+		highlight()
 
 
 func exit_tree():
@@ -110,7 +116,11 @@ func determine_harvest_quantity():
 	for g in growth_stages:
 		max_stages += g
 
-	return ceil(InventoryItems.plant_max_yields[plant_type_id] * float(times_watered / max_stages))
+	return clamp(
+		ceil(InventoryItems.plant_max_yields[plant_type_id] * float(times_watered / max_stages)),
+		1,
+		InventoryItems.plant_max_yields[plant_type_id]
+	)
 
 
 func water():
@@ -147,6 +157,8 @@ func dry():
 
 
 func ready_for_inventory():
+	is_inventory = true
+
 	for i in range(7):
 		var node = find_node("Stage%s" % (i + 1))
 		if node != null:
@@ -158,11 +170,11 @@ func ready_for_inventory():
 
 
 func is_harvestable():
-	return current_growth_stage == growth_stages.size()
+	return current_growth_stage >= growth_stages.size()
 
 
 func determine_growth_stage():
-	var growth_stage_idx = 0
+	var growth_stage_idx = 1
 	var day_counter = 0
 	var days_passed_since_created_at = GameTime.number_of_game_days_from_daybreak_from_unix_timestamp(
 		created_at
@@ -172,7 +184,7 @@ func determine_growth_stage():
 		day_counter += growth_stages[i]
 
 		if days_passed_since_created_at >= day_counter:
-			growth_stage_idx = i
+			growth_stage_idx = i + 1
 		else:
 			break
 
@@ -183,25 +195,30 @@ func determine_growth_stage():
 	return growth_stage_idx
 
 
+# FUCK: This method sucks! refactor it! maybe refactor this whole file??
 func dry_water_and_grow_plant_if_needed():
+	if is_inventory:
+		return
+
 	dry()
 
 	var growth_stage: int = determine_growth_stage()
+
+	var last_stage: Node2D = find_node("Stage%s" % growth_stages.size())
 
 	if current_growth_stage >= growth_stage:
 		return
 
 	var current_stage: Node2D = find_node("Stage%s" % current_growth_stage)
 	var next_stage: Node2D = find_node("Stage%s" % growth_stage)
-	var last_stage: Node2D = find_node("Stage%s" % growth_stages.size())
 
 	if current_stage != null:
 		current_stage.hide()
+
+	current_growth_stage = growth_stage
 
 	if ! is_harvestable() && next_stage != null:
 		next_stage.show()
 	elif is_harvestable() && last_stage != null:
 		last_stage.show()
 		highlight()
-
-	current_growth_stage = growth_stage
