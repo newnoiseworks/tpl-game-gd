@@ -19,7 +19,7 @@ visible = false
 
 [node name="Variants" type="Node2D" parent="." index="2"]
 use_parent_material = true
-position = Vector2( 0.21022, 2.94313 )
+position = Vector2( 8.82941, 2.52268 )
 
 [node name="TileMap" type="TileMap" parent="Variants" index="0"]
 use_parent_material = true
@@ -27,15 +27,16 @@ position = Vector2( -7.53418, -15.8863 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 536871886, 0 )
+tile_data = PoolIntArray( 0, 2872, 0 )
 
 [node name="FlippedTileMap" type="TileMap" parent="Variants" index="1"]
+visible = false
 use_parent_material = true
 position = Vector2( -8.72717, -16.9374 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 974, 0 )
+tile_data = PoolIntArray( 0, 536873784, 0 )
 
 [node name="TileMap" parent="." index="3"]
 visible = false
