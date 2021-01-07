@@ -48,18 +48,20 @@ func is_night():
 
 func number_of_game_days_from_daybreak_from_unix_timestamp(timestamp):
 	var current_time = get_current_timestamp()
-	return (
+	return floor(
 		(
-			current_time
-			- unix_timestamp_start_of_game_day_from_seconds(timestamp)
-			- (REAL_WORLD_SECONDS_PER_GAME_DAY / 4)
+			float(current_time - unix_timestamp_start_of_game_day_from_seconds(timestamp))
+			/ REAL_WORLD_SECONDS_PER_GAME_DAY
 		)
-		/ REAL_WORLD_SECONDS_PER_GAME_DAY
 	)
 
 
 func unix_timestamp_start_of_game_day_from_seconds(seconds):
-	return seconds - int(seconds % REAL_WORLD_SECONDS_PER_GAME_DAY)
+	return (
+		seconds
+		- int(seconds % REAL_WORLD_SECONDS_PER_GAME_DAY)
+		+ (REAL_WORLD_SECONDS_PER_GAME_DAY / 4)
+	)
 
 
 func get_current_timestamp():
