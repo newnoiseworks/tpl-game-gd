@@ -4,10 +4,10 @@
 [ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1.91594, 0.223457 )
+extents = Vector2( 3.3812, 2.5214 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 24, 35 )
+extents = Vector2( 24, 26.5 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 21, 22, 17.1898, 45.6145, 18.229, 64.2247, 18, 79, 17.8511, 99.6503, 19.75, 104.75, 32.25, 106, 28.6205, 89.5422, 29.4707, 62.4298, 31.549, 53.3609, 34.1941, 41.4579, 33, 27, 25, 18 )
@@ -33,11 +33,11 @@ position = Vector2( -19.25, -100 )
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 23.8688, 94.7714 )
+position = Vector2( 23.8688, 95.7714 )
 shape = SubResource( 1 )
 
 [node name="WalkBehindTrigger" parent="." index="3"]
-position = Vector2( -19.25, -100 )
+position = Vector2( -17.5, -79.25 )
 
 [node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
 position = Vector2( 24, 37 )

@@ -5,39 +5,37 @@
 
 [node name="Tomato" instance=ExtResource( 1 )]
 plant_type = "Tomato"
-growth_stages = [ 0, 1, 1, 1, 1 ]
 
-[node name="Stage1" parent="." index="1"]
+[node name="Stage1" parent="." index="2"]
 tile_data = PoolIntArray( 0, 709, 0 )
 
-[node name="Stage2" parent="." index="2"]
+[node name="Stage2" parent="." index="3"]
 tile_data = PoolIntArray( 0, 710, 0 )
 
-[node name="Stage3" type="TileMap" parent="." index="3"]
+[node name="Stage3" type="TileMap" parent="." index="4"]
 visible = false
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 0, 711, 0 )
 
-[node name="Stage4" type="TileMap" parent="." index="4"]
+[node name="Stage4" type="TileMap" parent="." index="5"]
 visible = false
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -65536, 659, 0 )
 
-[node name="Stage5" type="TileMap" parent="." index="5"]
+[node name="Stage5" type="TileMap" parent="." index="6"]
 visible = false
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -65536, 658, 0 )
 
-[node name="InventoryTile" type="TileMap" parent="." index="6"]
+[node name="InventoryTile" type="TileMap" parent="." index="7"]
 visible = false
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 0, 715, 0 )
-

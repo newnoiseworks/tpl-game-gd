@@ -1,22 +1,20 @@
 extends "res://Scenes/Items/ItemController.gd"
 
 export var plant_type: String
-export var growth_stages: Array = []
 
 var created_at: int
 var data: Dictionary
 
 var current_growth_stage: int
-var plant_type_id: String
-var water_tile: TileMap
+
+onready var water_tile: TileMap = find_node("WaterTile")
+onready var plant_type_id: String = InventoryItems.get_hash_from_int(
+	PlantData.plant_item_type_map[plant_type]
+)
+onready var growth_stages: Array = InventoryItems.plant_growth_stages[plant_type_id]
 
 
 func _ready():
-	if water_tile == null:
-		water_tile = find_node("WaterTile")
-
-	plant_type_id = InventoryItems.get_hash_from_int(PlantData.plant_item_type_map[plant_type])
-	growth_stages = InventoryItems.plant_growth_stages[plant_type_id]
 	GameTime.connect("daybreak_event", self, "dry_water_and_grow_plant_if_needed")
 	current_growth_stage = determine_growth_stage()
 
@@ -37,7 +35,7 @@ func _ready():
 
 	if growth_stage != null:
 		growth_stage.use_parent_material = true
-		growth_stage.call_deferred("show")
+		growth_stage.show()
 
 
 func exit_tree():
@@ -80,7 +78,9 @@ func interact():
 		print_debug("TODO: Need to implement multi row inventory")
 		return
 
-	bag.add_item_locally(PlantData.plant_item_type_map[plant_type])
+	var quantity = determine_harvest_quantity()
+
+	bag.add_item_locally(PlantData.plant_item_type_map[plant_type], quantity)
 
 	MatchEvent.farming(
 		{
@@ -100,7 +100,21 @@ func interact():
 # }
 
 
+func determine_harvest_quantity():
+	var times_watered = 0
+	var max_stages = 0
+
+	for w in data.waterHistory:
+		times_watered += w
+
+	for g in growth_stages:
+		max_stages += g
+
+	return ceil(InventoryItems.plant_max_yields[plant_type_id] * float(times_watered / max_stages))
+
+
 func water():
+	data.waterHistory[current_growth_stage - 1] = 1
 	water_tile.show()
 
 
@@ -186,10 +200,8 @@ func dry_water_and_grow_plant_if_needed():
 
 	if ! is_harvestable() && next_stage != null:
 		next_stage.show()
-		next_stage.use_parent_material = true
 	elif is_harvestable() && last_stage != null:
 		last_stage.show()
-		last_stage.use_parent_material = true
-		call_deferred("highlight")
+		highlight()
 
 	current_growth_stage = growth_stage
