@@ -110,6 +110,8 @@ func redraw_bag():
 	equippable_items.clear()
 	draw_items_from_data()
 
+	inventory.equipped_item = get_item_action(inventory.current_equipped_slot)
+
 
 func draw_items_from_data():
 	for item_data in data.bag:
