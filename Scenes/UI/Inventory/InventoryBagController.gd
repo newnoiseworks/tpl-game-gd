@@ -95,7 +95,7 @@ func load_data():
 	data = yield(SaveData.load("inventoryBag"), "completed")
 
 
-func reload_and_redraw_data(_args, _presence):
+func reload_and_redraw_data(_args = {}, _presence = {}):
 	yield(load_data(), "completed")
 	redraw_bag()
 
@@ -206,7 +206,7 @@ func remove_item_locally(item_type, quantity: int = 1):
 		equippable_items[int(item.bagPosition)] = null
 
 
-func add_item_locally(item_type: int):
+func add_item_locally(item_type: int, quantity = 1):
 	var bag_position: int = get_first_empty_bag_position()
 
 	var has_item
@@ -220,10 +220,8 @@ func add_item_locally(item_type: int):
 		print_debug("TODO: Need to implement multi row inventory")
 		return
 
-	var quantity = 1
-
 	if has_item != null:
-		has_item.quantity += 1
+		has_item.quantity += quantity
 		quantity = has_item.quantity
 
 	var item = {
