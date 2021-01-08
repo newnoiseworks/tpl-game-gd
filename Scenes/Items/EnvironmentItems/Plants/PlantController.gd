@@ -204,8 +204,10 @@ func position_seeds_under_players():
 
 	if current_growth_stage == 1:
 		current_stage.position = current_stage.position + Vector2(0, 32)
+		water_tile.position = current_stage.position
 		position = original_position - Vector2(0, 32)
 	else:
+		water_tile.position = Vector2(0, 0)
 		position = original_position
 
 
