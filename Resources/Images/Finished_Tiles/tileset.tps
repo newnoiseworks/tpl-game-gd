@@ -104,7 +104,7 @@
             <key>algorithm</key>
             <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
-            <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Fast</enum>
+            <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
             <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
@@ -117,7 +117,7 @@
             <key>basic</key>
             <struct type="AlgorithmBasicSettings">
                 <key>sortBy</key>
-                <enum type="AlgorithmBasicSettings::SortBy">Best</enum>
+                <enum type="AlgorithmBasicSettings::SortBy">Name</enum>
                 <key>order</key>
                 <enum type="AlgorithmBasicSettings::Order">Descending</enum>
             </struct>
@@ -169,7 +169,7 @@
             <key>trimMargin</key>
             <uint>0</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">None</enum>
+            <enum type="SpriteSettings::TrimMode">CropKeepPos</enum>
             <key>tracerTolerance</key>
             <int>200</int>
             <key>heuristicMask</key>
