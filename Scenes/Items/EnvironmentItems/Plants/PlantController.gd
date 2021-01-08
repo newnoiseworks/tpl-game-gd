@@ -6,6 +6,7 @@ var created_at: int
 var data: Dictionary
 var is_inventory: bool = false
 var current_growth_stage: int = -1
+var original_position: Vector2
 
 onready var water_tile: TileMap = find_node("WaterTile")
 onready var plant_type_id: String = InventoryItems.get_hash_from_int(
@@ -36,6 +37,9 @@ func _ready():
 	if growth_stage != null:
 		growth_stage.use_parent_material = true
 		growth_stage.show()
+
+	set_deferred("original_position", position)
+	call_deferred("position_seeds_under_players")
 
 
 func _enter_tree():
@@ -195,7 +199,16 @@ func determine_growth_stage():
 	return growth_stage_idx
 
 
-# FUCK: This method sucks! refactor it! maybe refactor this whole file??
+func position_seeds_under_players():
+	var current_stage: Node2D = find_node("Stage%s" % current_growth_stage)
+
+	if current_growth_stage == 1:
+		current_stage.position = current_stage.position + Vector2(0, 32)
+		position = original_position - Vector2(0, 32)
+	else:
+		position = original_position
+
+
 func dry_water_and_grow_plant_if_needed():
 	if is_inventory:
 		return
@@ -222,3 +235,5 @@ func dry_water_and_grow_plant_if_needed():
 	elif is_harvestable() && last_stage != null:
 		last_stage.show()
 		highlight()
+
+	position_seeds_under_players()
