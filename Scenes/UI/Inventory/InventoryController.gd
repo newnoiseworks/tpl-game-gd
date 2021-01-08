@@ -7,7 +7,7 @@ var bag: Node2D
 var tiles: Array
 var equipped_item_highlight: Sprite
 
-const columns: int = 12
+const columns: int = 14
 const rows: int = 1
 const bag_size: int = columns * rows
 const box_size: int = 16
