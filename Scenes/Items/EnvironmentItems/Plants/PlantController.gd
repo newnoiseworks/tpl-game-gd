@@ -26,6 +26,11 @@ func _ready():
 	):
 		call_deferred("water")
 
+	for growth_stage in range(growth_stages.size()):
+		var stage_node = find_node("Stage%s" % [growth_stage + 1])
+		stage_node.use_parent_material = true
+		stage_node.hide()
+
 	var growth_stage
 
 	if is_harvestable():
@@ -35,7 +40,6 @@ func _ready():
 		growth_stage = find_node("Stage%s" % [current_growth_stage])
 
 	if growth_stage != null:
-		growth_stage.use_parent_material = true
 		growth_stage.show()
 
 	set_deferred("original_position", position)
