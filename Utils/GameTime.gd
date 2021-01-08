@@ -126,9 +126,9 @@ func handle_nightfall_and_daybreak():
 	if is_day() && was_night_at_last_check:
 		was_night_at_last_check = false
 		was_day_at_last_check = true
-		emit_signal("daybreak_event")
+		call_deferred("emit_signal", "daybreak_event")
 
 	if is_night() && was_day_at_last_check:
 		was_night_at_last_check = true
 		was_day_at_last_check = false
-		emit_signal("nightfall_event")
+		call_deferred("emit_signal", "nightfall_event")
