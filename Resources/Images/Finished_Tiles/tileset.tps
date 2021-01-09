@@ -169,7 +169,7 @@
             <key>trimMargin</key>
             <uint>0</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">CropKeepPos</enum>
+            <enum type="SpriteSettings::TrimMode">None</enum>
             <key>tracerTolerance</key>
             <int>200</int>
             <key>heuristicMask</key>
@@ -2126,6 +2126,7 @@
             <key type="filename">Environment/Objects/Fence Peice 3.png</key>
             <key type="filename">Environment/Objects/Fence Peice 4.png</key>
             <key type="filename">Environment/Objects/Fence Right 1.png</key>
+            <key type="filename">Environment/Trees/weed4.png</key>
             <key type="filename">envir/plants/weed4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -2547,6 +2548,9 @@
             <key type="filename">Environment/Tilled Dirt/Tilled Dirt 7.png</key>
             <key type="filename">Environment/Tilled Dirt/Tilled Dirt 8.png</key>
             <key type="filename">Environment/Tilled Dirt/Tilled Dirt 9.png</key>
+            <key type="filename">Environment/Trees/weed1.png</key>
+            <key type="filename">Environment/Trees/weed2.png</key>
+            <key type="filename">Environment/Trees/weed3.png</key>
             <key type="filename">Environment/Water/Fish/Blue Fish.png</key>
             <key type="filename">Environment/Water/Fish/Garden Snake.png</key>
             <key type="filename">Environment/Water/Fish/Green Fish.png</key>
