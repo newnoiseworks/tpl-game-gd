@@ -268,7 +268,7 @@ $GODOT_HEAD_INCLUDE
 			} else {
 				setStatusMode('indeterminate');
 				engine.setCanvas(canvas);
-				engine.setGDNativeLibraries(GDNATIVE_LIBS);
+				// engine.setGDNativeLibraries(GDNATIVE_LIBS);
 				engine.startGame(EXECUTABLE_NAME, MAIN_PACK, EXTRA_ARGS).then(() => {
 					setStatusMode('hidden');
 					initializing = false;
