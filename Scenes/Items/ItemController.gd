@@ -36,7 +36,10 @@ func highlight(on: bool = true):
 
 func on_body_enter(body: PhysicsBody2D):
 	if body == MoveTarget:
-		Player.item_under_target = self
+		if Player.last_movement_from_mouse && Player.position.distance_to(position) < 32:
+			interact()
+		else:
+			Player.item_under_target = self
 
 	if body == Player && Player.item_under_target == self && Player.last_movement_from_mouse:
 		interact()
