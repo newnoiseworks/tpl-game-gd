@@ -12,4 +12,3 @@ crafted_item_type = "WoodPath"
 
 [node name="TileMap" parent="." index="1"]
 tile_data = PoolIntArray( 0, 975, 0 )
-
