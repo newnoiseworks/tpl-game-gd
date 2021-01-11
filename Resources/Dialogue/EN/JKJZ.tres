@@ -13,8 +13,25 @@ options = "introWhat"
 optionText = "What?"
 whom = "JKJZ"
 text = "Oh, you heard that? Sorry. Anyway, welcome to your new farm!"
-options = "introFinish"
+options = "isTheHouseFree, howDidIGetHere, introFinish"
+
+[isTheHouseFree]
+whom = "JKJZ"
+optionText = "Wait, is this free? Do I owe?"
+text = "Huh? What? Where else would you live? Don't be weird."
+options = "howDidIGetHere, introFinish"
+
+[howDidIGetHere]
+whom = "JKJZ"
+optionText = "How did I get here?"
+text = "Look buddy, you show up, and I'm here. That's all I know."
+options = "isTheHouseFree, introFinish"
 
 [introFinish]
-optionText = "Let's finish this"
+whom = "JKJZ"
+optionText = "Let's head to town."
+text = "Cool; you go ahead and say hi to Sakana and Baph. Then when you're ready meet me in the center of town. I can explain economics to you then!"
+next = "introExit"
+
+[introExit]
 script = "intro_jkjz_finish"
