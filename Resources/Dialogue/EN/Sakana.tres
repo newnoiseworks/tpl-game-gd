@@ -2,7 +2,7 @@
 
 [hello]
 whom = "Sakana"
-text = "Hello, I'm Sakana, I sell the clothes around here."
+text = "Hello! Ready to buy some clothes?"
 options = "amazing, thanks"
 
 [amazing]
@@ -51,9 +51,26 @@ script = "tomatoes_for_sakana_exit"
 
 [sayHiToSakanaExit]
 whom = "Sakana"
-optionText = "Hey, it's good to meet you."
-text = "You too!"
+optionText = "Hey, I'm new, nice to meet you."
+text = "You too! I'm Sakana, I sell clothes I make for gold coins! Come back once you've earned enough of a surplus."
+options = "sayHiToSakanaThanks, sayHiToSakanaSurplus"
+
+[sayHiToSakanaMenu]
+whom = "Sakana"
+text = "Anything else?"
+options = "sayHiToSakanaThanks, sayHiToSakanaSurplus"
+
+[sayHiToSakanaThanks]
+whom = "Sakana"
+optionText = "Cool, thanks!"
+text = "See you around!"
 next = "finishSayHiToSakana"
+
+[sayHiToSakanaSurplus]
+whom = "Sakana"
+optionText = "Surplus?"
+text = "Talk to JKJZ to find out more about that kind of stuff. Not really my bag!"
+next = "sayHiToSakanaMenu"
 
 [finishSayHiToSakana]
 script = "say_hi_to_sakana_exit"

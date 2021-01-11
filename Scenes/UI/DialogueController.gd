@@ -31,9 +31,11 @@ var bbcode: String
 var is_typing: bool
 var dialogue_step = {}
 var dialogue_options: Array = []
+var dialogue_options_keys: Array = []
 var next_dialogue_option_index: int = -1
 var cut_off_bb_code: bool
 var dialogue_filename: String
+var current_section_key: String
 
 
 func _ready():
@@ -56,10 +58,12 @@ func _input(event):
 		elif cut_off_bb_code:
 			continue_bb_code()
 		elif next_dialogue_option_index > -1:
+			current_section_key = dialogue_options_keys[next_dialogue_option_index]
 			handle_option_selection()
 		elif dialogue_step[I18n.options_key] != null:
 			start_options()
 		elif dialogue_step[I18n.next_key] != null:
+			current_section_key = dialogue_step[I18n.next_key]
 			start_step(I18n.get_dialogue_step(dialogue_filename, dialogue_step[I18n.next_key]))
 		elif dialogue_step[I18n.script_key] != null:
 			run_script(dialogue_step)
@@ -80,6 +84,7 @@ func dialogue_option_selected(index: int):
 # WELP: It would be really nice if, as a precautionary measure, we checked the Dialogue file for any "script" references, and then make sure that DialogueController.dialogueScripts contains delegates for every corresponding key before starting.
 func start(_dialogue_filename: String, section: String):
 	dialogue_filename = _dialogue_filename
+	current_section_key = section
 	start_step(I18n.get_dialogue_step(dialogue_filename, section))
 
 
@@ -176,6 +181,7 @@ func start_options():
 	var options: PoolStringArray = dialogue_step[I18n.options_key].replace(" ", "").split(',')
 	var whom: String = dialogue_step[I18n.whom_key]
 	dialogue_options = []
+	dialogue_options_keys = []
 	option_list.clear()
 	option_list.show()
 
@@ -189,7 +195,7 @@ func start_options():
 
 			if "mission_entries" in character_info:
 				for mission_key in character_info.mission_entries:
-					if mission_key in completed_missions || mission_key in current_missions:
+					if mission_key in completed_missions || mission_key in current_missions || mission_key in current_section_key:
 						continue
 
 					var can_have_mission: bool = true
@@ -204,7 +210,7 @@ func start_options():
 
 			if "mission_exits" in character_info:
 				for mission_key in character_info.mission_exits:
-					if mission_key in current_missions:
+					if mission_key in current_missions && ! mission_key in current_section_key:
 						options.append("%sExit" % mission_key)
 
 	for key in options:
@@ -221,6 +227,7 @@ func start_options():
 			continue
 
 		dialogue_options.append(dialogue_option)
+		dialogue_options_keys.append(key)
 		option_list.add_item(dialogue_option[I18n.option_text_key])
 
 
