@@ -2,7 +2,18 @@
 
 [hello]
 whom = "Baph"
-text = "Hey there! I'm training York on the ways of the Carta Police."
+text = "Wooooahhh there partner. You look... new."
+options = "sayHiToBaphExit"
+
+[helloPostHi]
+whom = "Baph"
+text = "Hey there, sup? You need a referesher?"
+options = "whatsCartaPolice, whosYork, pigsOrNo, exit"
+
+[sayHiToBaphExit]
+whom = "Baph"
+text = "Well looks like I was right! I'm training York on the ways of the Carta Police."
+optionText = "I am new, hey!"
 options = "whatsCartaPolice, whosYork, pigsOrNo, exit"
 
 [whatsCartaPolice]
@@ -37,3 +48,7 @@ next = "faqReroute"
 whom = "Baph"
 optionText = "Thanks!"
 text = "See you around!"
+next = "finishSayHiToBaphIfNeeded"
+
+[finishSayHiToBaphIfNeeded]
+script = "say_hi_to_baph_exit"

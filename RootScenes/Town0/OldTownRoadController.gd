@@ -14,6 +14,9 @@ func _init():
 			"mission_entries": ["tomatoesForSakana"],
 			"mission_exits": ["sayHiToSakana", "tomatoesForSakana"],
 		},
+		"Baph": {
+			"mission_exits": ["sayHiToBaph"],
+		},
 		"York": {"mission_entries": ["pickupYorksHearts"], "mission_exits": ["pickupYorksHearts"]}
 	}
 
@@ -34,8 +37,11 @@ func _ready():
 	TPLG.dialogue.add_dialogue_script("pickup_yorks_hearts_entry", self)
 	TPLG.dialogue.add_dialogue_script("pickup_yorks_hearts_exit", self)
 	TPLG.dialogue.add_dialogue_script("say_hi_to_sakana_exit", self)
+	TPLG.dialogue.add_dialogue_script("say_hi_to_baph_exit", self)
 
-	finish_intro_mission_as_needed()
+	yield(finish_intro_mission_as_needed(), "completed")
+
+	baph_setup()
 
 	reload_data_and_redraw()
 
@@ -49,6 +55,11 @@ func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("pickup_yorks_hearts_entry")
 	TPLG.dialogue.remove_dialogue_script("pickup_yorks_hearts_exit")
 	TPLG.dialogue.remove_dialogue_script("say_hi_to_sakana_exit")
+	TPLG.dialogue.remove_dialogue_script("say_hi_to_baph_exit")
+
+func baph_setup():
+	if ! "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
+		find_node("Baph").dialogue_section = "helloPostHi"
 
 
 func tomatoes_for_sakana_entry():
@@ -96,6 +107,14 @@ func say_hi_to_sakana_exit():
 	TPLG.wallet.sync_with_wallet()
 	yield(TPLG.ui.mission_list.reload_missions(), "completed")
 	mission_character_highlight_setup()
+
+func say_hi_to_baph_exit():
+	if "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
+		yield(TPLG.ui.mission_list.finish_mission("sayHiToBaph"), "completed")
+		TPLG.wallet.sync_with_wallet()
+		yield(TPLG.ui.mission_list.reload_missions(), "completed")
+		mission_character_highlight_setup()
+
 
 
 func finish_intro_mission_as_needed():
