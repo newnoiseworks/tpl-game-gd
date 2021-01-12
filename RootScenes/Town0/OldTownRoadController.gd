@@ -76,6 +76,7 @@ func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("forage_for_vio_start")
 	TPLG.dialogue.remove_dialogue_script("forage_for_vio_exit")
 
+
 func baph_setup():
 	if ! "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
 		find_node("Baph").dialogue_section = "helloPostHi"
@@ -86,24 +87,15 @@ func catch_gil_a_fish_entry():
 
 
 func catch_gil_a_fish_exit():
-	var passed = yield(_finish_mission("catchGilAFish", true), "completed")
+	yield(_finish_mission("catchGilAFish", true, "Gil"), "completed")
 
-	if ! passed:
-		TPLG.dialogue.start("Gil", "catchGilAFishExitFailed")
-	else:
-		TPLG.dialogue.start("Gil", "catchGilAFishExitFinished")
 
 func forage_for_vio_start():
 	_start_mission("forageForVio")
 
 
 func forage_for_vio_exit():
-	var passed = yield(_finish_mission("forageForVio", true), "completed")
-
-	if ! passed:
-		TPLG.dialogue.start("Violine", "forageForVioExitFailed")
-	else:
-		TPLG.dialogue.start("Violine", "forageForVioExitFinished")
+	yield(_finish_mission("forageForVio", true, "Violine"), "completed")
 
 
 func tomatoes_for_sakana_entry():
@@ -111,12 +103,7 @@ func tomatoes_for_sakana_entry():
 
 
 func tomatoes_for_sakana_exit():
-	var passed = yield(_finish_mission("tomatoesForSakana", true), "completed")
-
-	if ! passed:
-		TPLG.dialogue.start("Sakana", "tomatoesForSakanaExitFailed")
-	else:
-		TPLG.dialogue.start("Sakana", "tomatoesForSakanaExitFinished")
+	yield(_finish_mission("tomatoesForSakana", true, "Sakana"), "completed")
 
 
 func pickup_yorks_hearts_entry():
@@ -126,12 +113,7 @@ func pickup_yorks_hearts_entry():
 
 
 func pickup_yorks_hearts_exit():
-	var passed = yield(_finish_mission("pickupYorksHearts", true), "completed")
-
-	if ! passed:
-		TPLG.dialogue.start("York", "pickupYorksHeartsExitFailed")
-	else:
-		TPLG.dialogue.start("York", "pickupYorksHeartsExitFinished")
+	yield(_finish_mission("pickupYorksHearts", true, "York"), "completed")
 
 
 func say_hi_to_sakana_exit():
