@@ -35,3 +35,29 @@ next = "sigh"
 [sigh]
 whom = "Gil"
 text = "Sigh... I'd get away with a whole lot more if it weren't for those meddling Carta Police and this ungrateful community..."
+
+[catchGilAFishEntry]
+whom = "Gil"
+optionText = "So... you like fish?"
+text = "Hell yeah I do! Can you get me one?"
+next = "startCatchGilAFish"
+
+[startCatchGilAFish]
+script = "catch_gil_a_fish_entry"
+
+[catchGilAFishExit]
+whom = "Gil"
+optionText = "Yo dog I got that fishy fish"
+text = "Really?"
+next = "finishCatchGilAFish"
+
+[catchGilAFishExitFailed]
+whom = "Gil"
+text= "Hmm... maybe come back when you got that fish!"
+
+[catchGilAFishExitFinished]
+whom = "Gil"
+text = "Hmm. So it does as told. Interesting, noted."
+
+[finishCatchGilAFish]
+script = "catch_gil_a_fish_exit"

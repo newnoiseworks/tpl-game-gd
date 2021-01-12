@@ -17,7 +17,8 @@ func _init():
 		"Baph": {
 			"mission_exits": ["sayHiToBaph"],
 		},
-		"York": {"mission_entries": ["pickupYorksHearts"], "mission_exits": ["pickupYorksHearts"]}
+		"York": {"mission_entries": ["pickupYorksHearts"], "mission_exits": ["pickupYorksHearts"]},
+		"Gil": {"mission_entries": ["catchGilAFish"], "mission_exits": ["catchGilAFish"]}
 	}
 
 	mission_scenes = {
@@ -38,8 +39,10 @@ func _ready():
 	TPLG.dialogue.add_dialogue_script("pickup_yorks_hearts_exit", self)
 	TPLG.dialogue.add_dialogue_script("say_hi_to_sakana_exit", self)
 	TPLG.dialogue.add_dialogue_script("say_hi_to_baph_exit", self)
+	TPLG.dialogue.add_dialogue_script("catch_gil_a_fish_exit", self)
+	TPLG.dialogue.add_dialogue_script("catch_gil_a_fish_entry", self)
 
-	yield(finish_intro_mission_as_needed(), "completed")
+	finish_intro_mission_as_needed()
 
 	baph_setup()
 
@@ -56,73 +59,89 @@ func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("pickup_yorks_hearts_exit")
 	TPLG.dialogue.remove_dialogue_script("say_hi_to_sakana_exit")
 	TPLG.dialogue.remove_dialogue_script("say_hi_to_baph_exit")
+	TPLG.dialogue.remove_dialogue_script("catch_gil_a_fish_exit")
+	TPLG.dialogue.remove_dialogue_script("catch_gil_a_fish_entry")
 
 func baph_setup():
 	if ! "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
 		find_node("Baph").dialogue_section = "helloPostHi"
 
+func _finish_mission(mission_key: String, update_inventory: bool = false) -> bool:
+	var passed = yield(TPLG.ui.mission_list.finish_mission(mission_key), "completed")
 
-func tomatoes_for_sakana_entry():
-	yield(TPLG.ui.mission_list.start_mission("tomatoesForSakana"), "completed")
+	if passed.payload == "false":
+		return false
+	else:
+		if update_inventory:
+			TPLG.inventory.bag.reload_and_redraw_data({}, {})
+		TPLG.wallet.sync_with_wallet()
+		yield(TPLG.ui.mission_list.reload_missions(), "completed")
+		mission_character_highlight_setup()
+		
+	return true
+
+
+func _start_mission(mission_key: String):
+	yield(TPLG.ui.mission_list.start_mission(mission_key), "completed")
 	yield(TPLG.ui.mission_list.reload_missions(), "completed")
 	mission_character_highlight_setup()
+	
+
+func catch_gil_a_fish_entry():
+	_start_mission("catchGilAFish")
+
+
+func catch_gil_a_fish_exit():
+	var passed = yield(_finish_mission("catchGilAFish", true), "completed")
+
+	if ! passed:
+		TPLG.dialogue.start("Gil", "catchGilAFishExitFailed")
+	else:
+		TPLG.dialogue.start("Gil", "catchGilAFishExitFinished")
+
+
+func tomatoes_for_sakana_entry():
+	_start_mission("tomatoesForSakana")
 
 
 func tomatoes_for_sakana_exit():
-	var passed = yield(TPLG.ui.mission_list.finish_mission("tomatoesForSakana"), "completed")
-	if passed.payload == "false":
+	var passed = yield(_finish_mission("tomatoesForSakana", true), "completed")
+
+	if ! passed:
 		TPLG.dialogue.start("Sakana", "tomatoesForSakanaExitFailed")
 	else:
 		TPLG.dialogue.start("Sakana", "tomatoesForSakanaExitFinished")
-		TPLG.inventory.bag.reload_and_redraw_data({}, {})
-		TPLG.wallet.sync_with_wallet()
-		yield(TPLG.ui.mission_list.reload_missions(), "completed")
-		mission_character_highlight_setup()
 
 
 func pickup_yorks_hearts_entry():
-	yield(TPLG.ui.mission_list.start_mission("pickupYorksHearts"), "completed")
-
+	_start_mission("pickupYorksHearts")
 	var pickup_scene = ResourceLoader.load(mission_scenes["pickupYorksHearts"])
 	mission_launcher_node.call_deferred("add_child", pickup_scene.instance())
 
-	yield(TPLG.ui.mission_list.reload_missions(), "completed")
-	mission_character_highlight_setup()
-
 
 func pickup_yorks_hearts_exit():
-	var passed = yield(TPLG.ui.mission_list.finish_mission("pickupYorksHearts"), "completed")
-	if passed.payload == "false":
+	var passed = yield(_finish_mission("pickupYorksHearts", true), "completed")
+
+	if ! passed:
 		TPLG.dialogue.start("York", "pickupYorksHeartsExitFailed")
 	else:
 		TPLG.dialogue.start("York", "pickupYorksHeartsExitFinished")
-		TPLG.wallet.sync_with_wallet()
-		TPLG.inventory.bag.reload_and_redraw_data({}, {})
-		yield(TPLG.ui.mission_list.reload_missions(), "completed")
-		mission_character_highlight_setup()
 
 
 func say_hi_to_sakana_exit():
-	yield(TPLG.ui.mission_list.finish_mission("sayHiToSakana"), "completed")
-	TPLG.wallet.sync_with_wallet()
-	yield(TPLG.ui.mission_list.reload_missions(), "completed")
-	mission_character_highlight_setup()
+	yield(_finish_mission("sayHiToSakana"), "completed")
 
 func say_hi_to_baph_exit():
 	if "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
-		yield(TPLG.ui.mission_list.finish_mission("sayHiToBaph"), "completed")
-		TPLG.wallet.sync_with_wallet()
-		yield(TPLG.ui.mission_list.reload_missions(), "completed")
-		mission_character_highlight_setup()
+		yield(_finish_mission("sayHiToBaph"), "completed")
 
 
 
 func finish_intro_mission_as_needed():
 	if "visitTown" in TPLG.ui.mission_list.get_current_mission_keys():
-		yield(TPLG.ui.mission_list.finish_mission("visitTown"), "completed")
-		TPLG.wallet.sync_with_wallet()
-		yield(TPLG.ui.mission_list.reload_missions(), "completed")
-		mission_character_highlight_setup()
+		yield(_finish_mission("visitTown"), "completed")
+	else:
+		yield()
 
 
 func setup_teleporter():
