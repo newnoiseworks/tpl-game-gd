@@ -8,3 +8,41 @@ options = "storeScript"
 [storeScript]
 optionText = "So whatchu got"
 script = "violine_store"
+
+[forageForVioEntry]
+whom = "Violine"
+optionText = "You need anything?"
+text = "Yeah, I don't have enough stones to make a path for my home. Mind if you got me a few?"
+options = "forageForVioHow, startForageForVio"
+
+[forageForVioFaq]
+whom = "Violine"
+text = "So you can get those stones?"
+options = "forageForVioHow, startForageForVio"
+
+[forageForVioHow]
+whom = "Violine"
+optionText = "How do I do that?"
+text = "Go to your farm and use your pickaxe on rocks."
+next = "forageForVioFaq"
+
+[startForageForVio]
+optionText = "Sure thing!"
+script = "forage_for_vio_start"
+
+[forageForVioExit]
+whom = "Violine"
+optionText = "Got those stones."
+text = "Really?"
+next = "finishForageForVio"
+
+[forageForVioExitFailed]
+whom = "Violine"
+text= "I think you need a few more! Come back when you have 'em all."
+
+[forageForVioExitFinished]
+whom = "Violine"
+text = "Thanks! This will really help me out, I appreciate it!"
+
+[finishForageForVio]
+script = "forage_for_vio_exit"

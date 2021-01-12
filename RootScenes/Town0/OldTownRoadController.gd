@@ -17,8 +17,18 @@ func _init():
 		"Baph": {
 			"mission_exits": ["sayHiToBaph"],
 		},
-		"York": {"mission_entries": ["pickupYorksHearts"], "mission_exits": ["pickupYorksHearts"]},
-		"Gil": {"mission_entries": ["catchGilAFish"], "mission_exits": ["catchGilAFish"]}
+		"York": {
+			"mission_entries": ["pickupYorksHearts"],
+			"mission_exits": ["pickupYorksHearts"]
+		},
+		"Gil": {
+			"mission_entries": ["catchGilAFish"],
+			"mission_exits": ["catchGilAFish"]
+		},
+		"Violine": {
+			"mission_entries": ["forageForVio"],
+			"mission_exits": ["forageForVio"]
+		}
 	}
 
 	mission_scenes = {
@@ -41,6 +51,8 @@ func _ready():
 	TPLG.dialogue.add_dialogue_script("say_hi_to_baph_exit", self)
 	TPLG.dialogue.add_dialogue_script("catch_gil_a_fish_exit", self)
 	TPLG.dialogue.add_dialogue_script("catch_gil_a_fish_entry", self)
+	TPLG.dialogue.add_dialogue_script("forage_for_vio_start", self)
+	TPLG.dialogue.add_dialogue_script("forage_for_vio_exit", self)
 
 	finish_intro_mission_as_needed()
 
@@ -61,10 +73,13 @@ func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("say_hi_to_baph_exit")
 	TPLG.dialogue.remove_dialogue_script("catch_gil_a_fish_exit")
 	TPLG.dialogue.remove_dialogue_script("catch_gil_a_fish_entry")
+	TPLG.dialogue.remove_dialogue_script("forage_for_vio_start")
+	TPLG.dialogue.remove_dialogue_script("forage_for_vio_exit")
 
 func baph_setup():
 	if ! "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
 		find_node("Baph").dialogue_section = "helloPostHi"
+
 
 func catch_gil_a_fish_entry():
 	_start_mission("catchGilAFish")
@@ -77,6 +92,18 @@ func catch_gil_a_fish_exit():
 		TPLG.dialogue.start("Gil", "catchGilAFishExitFailed")
 	else:
 		TPLG.dialogue.start("Gil", "catchGilAFishExitFinished")
+
+func forage_for_vio_start():
+	_start_mission("forageForVio")
+
+
+func forage_for_vio_exit():
+	var passed = yield(_finish_mission("forageForVio", true), "completed")
+
+	if ! passed:
+		TPLG.dialogue.start("Violine", "forageForVioExitFailed")
+	else:
+		TPLG.dialogue.start("Violine", "forageForVioExitFinished")
 
 
 func tomatoes_for_sakana_entry():
@@ -110,10 +137,12 @@ func pickup_yorks_hearts_exit():
 func say_hi_to_sakana_exit():
 	yield(_finish_mission("sayHiToSakana"), "completed")
 
+
 func say_hi_to_baph_exit():
 	if "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
 		yield(_finish_mission("sayHiToBaph"), "completed")
-
+	else:
+		yield()
 
 
 func finish_intro_mission_as_needed():
