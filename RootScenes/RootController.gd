@@ -37,6 +37,26 @@ func mission_setup():
 	mission_character_highlight_setup()
 
 
+func _finish_mission(mission_key: String, update_inventory: bool = false) -> bool:
+	var passed = yield(TPLG.ui.mission_list.finish_mission(mission_key), "completed")
+
+	if passed.payload == "false":
+		return false
+	else:
+		if update_inventory:
+			TPLG.inventory.bag.reload_and_redraw_data({}, {})
+		TPLG.wallet.sync_with_wallet()
+		yield(TPLG.ui.mission_list.reload_missions(), "completed")
+		mission_character_highlight_setup()
+		
+	return true
+
+
+func _start_mission(mission_key: String):
+	yield(TPLG.ui.mission_list.start_mission(mission_key), "completed")
+	yield(TPLG.ui.mission_list.reload_missions(), "completed")
+	mission_character_highlight_setup()
+
 func mission_character_highlight_setup():
 	for character_key in mission_dialogue_options:
 		character_highlight(character_key, false)

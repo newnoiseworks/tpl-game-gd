@@ -66,27 +66,6 @@ func baph_setup():
 	if ! "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
 		find_node("Baph").dialogue_section = "helloPostHi"
 
-func _finish_mission(mission_key: String, update_inventory: bool = false) -> bool:
-	var passed = yield(TPLG.ui.mission_list.finish_mission(mission_key), "completed")
-
-	if passed.payload == "false":
-		return false
-	else:
-		if update_inventory:
-			TPLG.inventory.bag.reload_and_redraw_data({}, {})
-		TPLG.wallet.sync_with_wallet()
-		yield(TPLG.ui.mission_list.reload_missions(), "completed")
-		mission_character_highlight_setup()
-		
-	return true
-
-
-func _start_mission(mission_key: String):
-	yield(TPLG.ui.mission_list.start_mission(mission_key), "completed")
-	yield(TPLG.ui.mission_list.reload_missions(), "completed")
-	mission_character_highlight_setup()
-	
-
 func catch_gil_a_fish_entry():
 	_start_mission("catchGilAFish")
 
