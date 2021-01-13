@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scenes/UI/UIController.gd" type="Script" id=1]
 [ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Scenes/UI/FarmPermissions/FarmPermissions.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/UI/Missions/MissionList.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/UI/Chat/Chat.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/UI/NewMissionPopup.tscn" type="PackedScene" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -518,6 +519,13 @@ margin_right = 536.0
 margin_bottom = 310.0
 grow_horizontal = 0
 theme = SubResource( 16 )
+
+[node name="NewMissionPopup" parent="Modals" instance=ExtResource( 18 )]
+visible = false
+margin_left = 520.0
+margin_top = 285.0
+margin_right = 536.0
+margin_bottom = 301.0
 
 [node name="Instructions" type="TextureRect" parent="."]
 visible = false
