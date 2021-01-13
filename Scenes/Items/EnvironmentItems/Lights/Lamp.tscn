@@ -5,7 +5,7 @@
 [ext_resource path="res://Resources/Images/light.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4.65906, 4.39032 )
+extents = Vector2( 1.569, 1.56075 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10.2233, 13.8869 )
@@ -22,8 +22,8 @@ script = ExtResource( 2 )
 position = Vector2( -0.141663, -37.6357 )
 
 [node name="TileMap" parent="." index="1"]
-position = Vector2( -0.891663, -43.8857 )
-tile_data = PoolIntArray( 0, 802, 0 )
+position = Vector2( -0.891663, -48 )
+tile_data = PoolIntArray( -65536, 2893, 0 )
 
 [node name="StaticBody2D" parent="." index="2"]
 position = Vector2( -0.141663, -37.6357 )
@@ -40,7 +40,7 @@ position = Vector2( 7.04883, 17.1655 )
 shape = SubResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="." index="5"]
-position = Vector2( 7.10957, -29.1941 )
+position = Vector2( 6.90281, -55 )
 scale = Vector2( 0.462386, 0.467667 )
 z_index = -1
 z_as_relative = false

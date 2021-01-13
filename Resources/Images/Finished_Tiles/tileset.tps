@@ -2127,6 +2127,10 @@
             <key type="filename">Environment/Objects/Fence Peice 4.png</key>
             <key type="filename">Environment/Objects/Fence Right 1.png</key>
             <key type="filename">Environment/Trees/weed4.png</key>
+            <key type="filename">envir/craft/gnome_stand1.png</key>
+            <key type="filename">envir/craft/gnome_stand2.png</key>
+            <key type="filename">envir/craft/modern_statue1.png</key>
+            <key type="filename">envir/craft/scarecrow.png</key>
             <key type="filename">envir/plants/weed4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -2582,6 +2586,12 @@
             <key type="filename">Items/Tools/Pickaxe.png</key>
             <key type="filename">Items/Tools/Scythe.png</key>
             <key type="filename">Items/Tools/Shovel.png</key>
+            <key type="filename">envir/craft/flamingo.png</key>
+            <key type="filename">envir/craft/gnome_sit1.png</key>
+            <key type="filename">envir/craft/gnome_sit2.png</key>
+            <key type="filename">envir/craft/spook1.png</key>
+            <key type="filename">envir/craft/spook2.png</key>
+            <key type="filename">envir/craft/stone_pile.png</key>
             <key type="filename">envir/plants/weed1.png</key>
             <key type="filename">envir/plants/weed2.png</key>
             <key type="filename">envir/plants/weed3.png</key>
@@ -3924,6 +3934,39 @@
                 <rect>57,56,113,112</rect>
                 <key>scale9Paddings</key>
                 <rect>57,56,113,112</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/lamp_post1.png</key>
+            <key type="filename">envir/city/lamp_post2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,20,8,40</rect>
+                <key>scale9Paddings</key>
+                <rect>4,20,8,40</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">envir/city/lamp_post3.png</key>
+            <key type="filename">envir/city/lamp_post3b.png</key>
+            <key type="filename">envir/city/lamp_post3c.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,16,8,32</rect>
+                <key>scale9Paddings</key>
+                <rect>4,16,8,32</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

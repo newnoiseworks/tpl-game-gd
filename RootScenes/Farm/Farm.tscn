@@ -70,22 +70,22 @@ position = Vector2( -32, -65.1555 )
 z_as_relative = false
 
 [node name="Lamp2" parent="EnvironmentItems" instance=ExtResource( 7 )]
-position = Vector2( 2.0389, -32.8635 )
+position = Vector2( 0.540594, -35.111 )
 
 [node name="Lamp" parent="EnvironmentItems" instance=ExtResource( 7 )]
-position = Vector2( 175.639, -80.8159 )
+position = Vector2( 173.392, -82.3142 )
 
 [node name="Tree" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 144, -216 )
+position = Vector2( 115.03, -231.269 )
 
 [node name="Tree7" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 80, -240 )
+position = Vector2( 517.562, -213.159 )
 
 [node name="Tree2" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 581.177, -177.784 )
 
 [node name="Tree4" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 16, -224 )
+position = Vector2( 21.5559, -215.269 )
 
 [node name="Tree5" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 447.264, -232.043 )
@@ -94,13 +94,13 @@ position = Vector2( 447.264, -232.043 )
 position = Vector2( 799.077, -184 )
 
 [node name="House" parent="EnvironmentItems" instance=ExtResource( 6 )]
-position = Vector2( 213.838, -128 )
+position = Vector2( 202.726, -130.778 )
 
 [node name="Tree3" parent="EnvironmentItems" instance=ExtResource( 5 )]
 position = Vector2( 673.856, -225.156 )
 
 [node name="Lamp3" parent="EnvironmentItems" instance=ExtResource( 7 )]
-position = Vector2( 366.774, -32.8635 )
+position = Vector2( 368.397, -35.2446 )
 
 [node name="Reatomizer" parent="EnvironmentItems" instance=ExtResource( 9 )]
 position = Vector2( 447.264, -71.0802 )

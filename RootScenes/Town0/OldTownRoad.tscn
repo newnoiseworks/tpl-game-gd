@@ -63,7 +63,7 @@ position = Vector2( 400, 480 )
 position = Vector2( 784, 280 )
 
 [node name="BuildingType4" parent="EnvironmentItems" index="12" instance=ExtResource( 10 )]
-position = Vector2( 424, 368 )
+position = Vector2( 400.481, 293.288 )
 
 [node name="BuildingType5" parent="EnvironmentItems" index="13" instance=ExtResource( 12 )]
 position = Vector2( 663.301, 168 )
@@ -75,37 +75,37 @@ position = Vector2( 605.318, 514.085 )
 position = Vector2( 888, 520 )
 
 [node name="Lamp2" parent="EnvironmentItems" index="16" instance=ExtResource( 15 )]
-position = Vector2( 1021.85, 640 )
+position = Vector2( 1025.02, 444.353 )
 
 [node name="Lamp3" parent="EnvironmentItems" index="17" instance=ExtResource( 15 )]
-position = Vector2( 336, 640 )
+position = Vector2( 336.794, 637.619 )
 
 [node name="Lamp4" parent="EnvironmentItems" index="18" instance=ExtResource( 15 )]
-position = Vector2( 336, 170.161 )
+position = Vector2( 384.772, 109.616 )
 
 [node name="Lamp6" parent="EnvironmentItems" index="19" instance=ExtResource( 15 )]
-position = Vector2( 335.108, 312 )
+position = Vector2( 383.039, 351.522 )
 
 [node name="Lamp7" parent="EnvironmentItems" index="20" instance=ExtResource( 15 )]
-position = Vector2( 1072, 447 )
+position = Vector2( 1073.19, 349.772 )
 
 [node name="Lamp9" parent="EnvironmentItems" index="21" instance=ExtResource( 15 )]
-position = Vector2( 1071.11, 560 )
+position = Vector2( 1071.9, 589.367 )
 
 [node name="Lamp10" parent="EnvironmentItems" index="22" instance=ExtResource( 15 )]
-position = Vector2( 726.903, 640 )
+position = Vector2( 817.782, 636.825 )
 
 [node name="Lamp11" parent="EnvironmentItems" index="23" instance=ExtResource( 15 )]
-position = Vector2( 1072, 168 )
+position = Vector2( 1025.57, 109.663 )
 
 [node name="Lamp8" parent="EnvironmentItems" index="24" instance=ExtResource( 15 )]
-position = Vector2( 1072, 312 )
+position = Vector2( 1072.79, 221.518 )
 
 [node name="Lamp5" parent="EnvironmentItems" index="25" instance=ExtResource( 15 )]
-position = Vector2( 664, 184 )
+position = Vector2( 384.822, 588.471 )
 
 [node name="Lamp" parent="EnvironmentItems" index="26" instance=ExtResource( 15 )]
-position = Vector2( 623.044, 312 )
+position = Vector2( 626.852, 269.372 )
 
 [node name="ComputerHaus" parent="EnvironmentItems" index="27" instance=ExtResource( 14 )]
 position = Vector2( 693.496, 248 )

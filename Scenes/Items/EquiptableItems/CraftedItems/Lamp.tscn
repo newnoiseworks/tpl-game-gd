@@ -6,15 +6,13 @@
 [ext_resource path="res://Resources/Images/light.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4.65906, 4.39032 )
+extents = Vector2( 2.34382, 2.162 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10.2233, 13.8053 )
 
 [node name="Lamp" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-is_crafted = true
-crafted_item_type = "Lamp"
 
 [node name="InteractionArea" parent="." index="0"]
 position = Vector2( 0.61171, -37.7094 )
@@ -23,8 +21,8 @@ position = Vector2( 0.61171, -37.7094 )
 position = Vector2( 7.18437, 46.5385 )
 
 [node name="TileMap" parent="." index="1"]
-position = Vector2( -0.25, -42.9594 )
-tile_data = PoolIntArray( 0, 802, 0 )
+position = Vector2( -0.25, -47.4594 )
+tile_data = PoolIntArray( -65536, 2894, 0 )
 
 [node name="Inventory" type="TileMap" parent="." index="2"]
 visible = false
@@ -51,7 +49,7 @@ position = Vector2( 6.82267, 16.9104 )
 shape = SubResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="." index="6"]
-position = Vector2( 10.7177, -30.9125 )
+position = Vector2( 7.2177, -54.4125 )
 scale = Vector2( 0.462386, 0.467667 )
 z_index = -1
 z_as_relative = false
