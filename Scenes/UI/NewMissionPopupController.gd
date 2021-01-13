@@ -6,6 +6,7 @@ var is_animating: bool = false
 onready var tween = $Tween
 onready var timer = $Timer
 onready var title = find_node("MissionTitle")
+onready var audio = $AudioStreamPlayer
 
 
 func _ready():
@@ -21,6 +22,8 @@ func _process(_delta):
 	is_animating = true
 
 	popup_centered()
+
+	audio.play()
 
 	tween.interpolate_property(
 		self,
