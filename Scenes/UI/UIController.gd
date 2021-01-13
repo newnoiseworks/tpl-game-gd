@@ -8,7 +8,7 @@ onready var timer: Timer = Timer.new()
 onready var instructions: TextureRect = find_node("Instructions")
 onready var mission_list = find_node("MissionList")
 onready var chat = find_node("Chat")
-onready var new_mission_popup = find_node("NewMissionPopup")
+onready var mission_update_popup = find_node("MissionUpdatePopup")
 
 
 func _ready():

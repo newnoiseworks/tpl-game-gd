@@ -6,7 +6,10 @@ var is_animating: bool = false
 onready var tween = $Tween
 onready var timer = $Timer
 onready var title = find_node("MissionTitle")
-onready var audio = $AudioStreamPlayer
+onready var new_audio = $NewAudio
+onready var complete_audio = $CompleteAudio
+onready var new_mission_label: Label = find_node("NewMissionLabel")
+onready var complete_mission_label: Label = find_node("CompleteMissionLabel")
 
 
 func _ready():
@@ -17,13 +20,22 @@ func _process(_delta):
 	if mission_queue.empty() || is_animating:
 		return
 
-	title.text = mission_queue.pop_back()
+	var mission = mission_queue.pop_front()
+
+	title.text = '"' + mission.title + '"'
+
+	if mission.complete:
+		complete_audio.play()
+		new_mission_label.hide()
+		complete_mission_label.show()
+	else:
+		new_audio.play()
+		new_mission_label.show()
+		complete_mission_label.hide()
 
 	is_animating = true
 
 	popup_centered()
-
-	audio.play()
 
 	tween.interpolate_property(
 		self,
@@ -63,4 +75,10 @@ func _on_fadeout_tween_complete():
 func show_new_mission(mission_key: String):
 	var mission = MissionList.list[mission_key]
 
-	mission_queue.append(mission.title)
+	mission_queue.append({"title": mission.title, "complete": false})
+
+
+func show_completed_mission(mission_key: String):
+	var mission = MissionList.list[mission_key]
+
+	mission_queue.append({"title": mission.title, "complete": true})

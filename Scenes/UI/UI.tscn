@@ -17,7 +17,7 @@
 [ext_resource path="res://Scenes/UI/FarmPermissions/FarmPermissions.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/UI/Missions/MissionList.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/UI/Chat/Chat.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/UI/NewMissionPopup.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/UI/MissionUpdatePopup.tscn" type="PackedScene" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -520,7 +520,7 @@ margin_bottom = 310.0
 grow_horizontal = 0
 theme = SubResource( 16 )
 
-[node name="NewMissionPopup" parent="Modals" instance=ExtResource( 18 )]
+[node name="MissionUpdatePopup" parent="Modals" instance=ExtResource( 18 )]
 visible = false
 margin_left = 520.0
 margin_top = 285.0

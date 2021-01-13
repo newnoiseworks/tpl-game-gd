@@ -32,12 +32,17 @@ func get_current_mission_keys():
 
 
 func finish_mission(key: String):
-	return yield(
+	var out = yield(
 		SessionManager.rpc_async(
 			"missions.complete", JSON.print({"key": key, "avatar": SaveData.current_avatar_key})
 		),
 		"completed"
 	)
+
+	if out.payload != "false":
+		TPLG.ui.mission_update_popup.show_completed_mission(key)
+
+	return out
 
 
 func start_mission(key: String):
@@ -49,7 +54,7 @@ func start_mission(key: String):
 	)
 
 	if out.payload != "false":
-		TPLG.ui.new_mission_popup.show_new_mission(key)
+		TPLG.ui.mission_update_popup.show_new_mission(key)
 
 	return out
 

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_cartoon_rise_climb_ascend_magical_discordant_002_42846.wav-297f009f3f3e781f3dbf5f8724e84503.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/Sfx/zapsplat_cartoon_rise_climb_ascend_magical_discordant_002_42846.wav"
+dest_files=[ "res://.import/zapsplat_cartoon_rise_climb_ascend_magical_discordant_002_42846.wav-297f009f3f3e781f3dbf5f8724e84503.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
