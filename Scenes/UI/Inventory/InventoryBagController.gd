@@ -78,7 +78,10 @@ func get_at_slot(slot: int):
 
 
 func get_item_action(slot: int):
-	return equippable_items[slot]
+	if equippable_items.has(slot):
+		return equippable_items[slot]
+	else:
+		return null
 
 
 func _ready():
