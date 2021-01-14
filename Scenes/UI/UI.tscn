@@ -521,7 +521,6 @@ grow_horizontal = 0
 theme = SubResource( 16 )
 
 [node name="MissionUpdatePopup" parent="Modals" instance=ExtResource( 18 )]
-visible = false
 margin_left = 520.0
 margin_top = 285.0
 margin_right = 536.0

@@ -40,15 +40,13 @@ func mission_setup():
 func _finish_mission(
 	mission_key: String, update_inventory: bool = false, exit_dialog_avatar: String = ""
 ) -> bool:
-	var passed = yield(TPLG.ui.mission_list.finish_mission(mission_key), "completed")
+	var passed = yield(
+		TPLG.ui.mission_list.finish_mission(mission_key, update_inventory), "completed"
+	)
 
 	if passed.payload == "false":
 		return false
 	else:
-		if update_inventory:
-			TPLG.inventory.bag.reload_and_redraw_data({}, {})
-
-		yield(TPLG.ui.mission_list.reload_missions(), "completed")
 		mission_character_highlight_setup()
 
 	if exit_dialog_avatar != "":

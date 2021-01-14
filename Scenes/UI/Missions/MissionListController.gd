@@ -31,7 +31,7 @@ func get_current_mission_keys():
 	return missions
 
 
-func finish_mission(key: String):
+func finish_mission(key: String, update_inventory: bool = false):
 	var out = yield(
 		SessionManager.rpc_async(
 			"missions.complete", JSON.print({"key": key, "avatar": SaveData.current_avatar_key})
@@ -41,7 +41,16 @@ func finish_mission(key: String):
 
 	if out.payload != "false":
 		TPLG.ui.mission_update_popup.show_completed_mission(key)
-		TPLG.wallet.sync_with_wallet()
+
+		if update_inventory:
+			# TODO: remove requirements / distribute awards locally
+			TPLG.inventory.bag.reload_and_redraw_data({}, {})
+
+		reload_missions()
+		yield(TPLG.wallet.sync_with_wallet(), "completed")
+
+		# TODO: distribute experience awards locally
+		# print(SessionManager.wallet_data["ExperienceCoin-" + SessionManager.current_avatar.key])
 
 	return out
 
