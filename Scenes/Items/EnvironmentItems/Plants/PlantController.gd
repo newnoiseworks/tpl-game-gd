@@ -132,7 +132,7 @@ func determine_harvest_quantity():
 
 
 func water():
-	data.waterHistory[current_growth_stage - 1] = 1
+	data.waterHistory[determine_growth_stage() - 1] = 1
 	water_tile.show()
 
 
