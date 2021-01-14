@@ -46,7 +46,7 @@ func finish_mission(key: String, update_inventory: bool = false):
 			# TODO: remove requirements / distribute awards locally
 			TPLG.inventory.bag.reload_and_redraw_data({}, {})
 
-		reload_missions()
+		yield(reload_missions(), "completed")
 		yield(TPLG.wallet.sync_with_wallet(), "completed")
 		TPLG.ui.level_control.set_exp(
 			SessionManager.wallet_data["ExperienceCoin-" + SessionManager.current_avatar.key]

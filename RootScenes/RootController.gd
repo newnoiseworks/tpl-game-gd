@@ -92,12 +92,12 @@ func mission_character_highlight_setup():
 							break
 
 				if has_passed == true:
-					print_debug(
-						(
-							"highlighting character %s based on mission_entry of mission %s"
-							% [character_key, mission_key]
-						)
-					)
+					# print_debug(
+					# 	(
+					# 		"highlighting character %s based on mission_entry of mission %s"
+					# 		% [character_key, mission_key]
+					# 	)
+					# )
 					character_highlight(character_key)
 
 	# highlight characters in scene if they exit a mission AND the user matches those reqs
@@ -133,20 +133,20 @@ func mission_character_highlight_setup():
 									break
 
 						if can_pass == true:
-							print_debug(
-								(
-									"highlighting character %s based on mission_exit of mission %s"
-									% [character_key, mission_key]
-								)
-							)
+							# print_debug(
+							# 	(
+							# 		"highlighting character %s based on mission_exit of mission %s"
+							# 		% [character_key, mission_key]
+							# 	)
+							# )
 							character_highlight(character_key)
 					elif ! mission_key in completed_missions:
-						print_debug(
-							(
-								"highlighting character %s based on mission_exit of mission %s"
-								% [character_key, mission_key]
-							)
-						)
+						# print_debug(
+						# 	(
+						# 		"highlighting character %s based on mission_exit of mission %s"
+						# 		% [character_key, mission_key]
+						# 	)
+						# )
 						character_highlight(character_key)
 
 

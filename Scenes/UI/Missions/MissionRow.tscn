@@ -6,6 +6,7 @@
 margin_top = 30.0
 margin_right = 381.0
 margin_bottom = 56.0
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -15,6 +16,7 @@ __meta__ = {
 margin_right = 26.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 26, 0 )
+mouse_filter = 2
 color = Color( 0.847059, 0.768627, 0.117647, 1 )
 
 [node name="Label" type="Label" parent="."]
