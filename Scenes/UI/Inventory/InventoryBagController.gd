@@ -208,7 +208,8 @@ func remove_item_locally(item_type, quantity: int = 1):
 	elif item.quantity == quantity:
 		inventory.tiles[item.bagPosition].update_quantity(0)
 		equippable_items[int(item.bagPosition)].queue_free()
-		equippable_items[int(item.bagPosition)] = null
+		equippable_items.erase(int(item.bagPosition))
+		data.bag.erase(item)
 
 
 func add_item_locally(item_type: int, quantity = 1):
