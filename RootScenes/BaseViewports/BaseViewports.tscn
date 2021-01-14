@@ -49,3 +49,4 @@ size = Vector2( 1279, 720 )
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
+audio_listener_enable_2d = true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_foley_cash_register_ka_ching_002_44083.wav-56d1f19596fe59c4528c238de9a519af.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/Sfx/zapsplat_foley_cash_register_ka_ching_002_44083.wav"
+dest_files=[ "res://.import/zapsplat_foley_cash_register_ka_ching_002_44083.wav-56d1f19596fe59c4528c238de9a519af.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

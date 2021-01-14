@@ -14,6 +14,8 @@ var coin_scene_paths = [
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CommunityCoin.tscn", "")
 ]
 
+onready var surplus_box = $SurplusBox
+
 
 func bag_slot_to_position(id: int):
 	var x = id % width
@@ -58,6 +60,9 @@ func setup_grid():
 
 
 func sync_with_wallet():
+	var current_corpus = SessionManager.get_corpus_coin()
+	var current_commco = SessionManager.get_community_coin()
+
 	yield(SessionManager.load_api_account(), "completed")
 
 	for _row in range(height):
@@ -69,6 +74,14 @@ func sync_with_wallet():
 					else SessionManager.get_community_coin()
 				)
 			)
+
+	if current_commco > -1 && current_commco < SessionManager.get_community_coin():
+		var diff = SessionManager.get_community_coin() - current_commco
+		surplus_box.add_community_coin(diff, current_corpus == 100)
+
+	if current_corpus > -1 && current_corpus < SessionManager.get_corpus_coin():
+		var diff = SessionManager.get_corpus_coin() - current_corpus
+		surplus_box.add_corpus_coin(diff)
 
 # TODO: The below also need to update local data store
 

@@ -6,7 +6,6 @@
 [ext_resource path="res://Resources/Audio/Sfx/zapsplat_cartoon_rise_climb_ascend_magical_discordant_002_42846.wav" type="AudioStream" id=4]
 
 [node name="NewMissionPopup" type="PopupPanel"]
-visible = true
 margin_left = 417.0
 margin_top = 253.0
 margin_right = 639.0

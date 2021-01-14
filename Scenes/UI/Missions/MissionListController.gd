@@ -41,6 +41,7 @@ func finish_mission(key: String):
 
 	if out.payload != "false":
 		TPLG.ui.mission_update_popup.show_completed_mission(key)
+		TPLG.wallet.sync_with_wallet()
 
 	return out
 

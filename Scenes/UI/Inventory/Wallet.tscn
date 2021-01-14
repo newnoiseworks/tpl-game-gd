@@ -1,7 +1,98 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/UI/Inventory/WalletController.gd" type="Script" id=1]
+[ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Resources/Images/Finished_Tiles/Coins/silvercoin.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Images/Finished_Tiles/Coins/goldcoin.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/UI/Inventory/SurplusBoxController.gd" type="Script" id=5]
+[ext_resource path="res://Resources/Audio/Sfx/zapsplat_foley_cash_register_ka_ching_002_44083.wav" type="AudioStream" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color( 0.0666667, 0.47451, 0.541176, 1 )
 
 [node name="Wallet" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="SurplusBox" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="SilverCoin" type="Panel" parent="SurplusBox"]
+margin_left = 37.0831
+margin_top = 30.0
+margin_right = 109.083
+margin_bottom = 72.0
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SilverCoinLabel" type="Label" parent="SurplusBox/SilverCoin"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 64.0
+margin_bottom = 34.0
+theme = ExtResource( 2 )
+text = "  +10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="silvercoin" type="Sprite" parent="SurplusBox/SilverCoin/SilverCoinLabel"]
+position = Vector2( 6.74904, 14.5777 )
+scale = Vector2( 1.64, 1.64 )
+texture = ExtResource( 3 )
+
+[node name="GoldCoin" type="Panel" parent="SurplusBox"]
+margin_left = 37.0
+margin_top = 30.0
+margin_right = 119.0
+margin_bottom = 72.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoldCoinLabel" type="Label" parent="SurplusBox/GoldCoin"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 64.0
+margin_bottom = 34.0
+theme = ExtResource( 2 )
+text = "  +10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="goldcoin" type="Sprite" parent="SurplusBox/GoldCoin/GoldCoinLabel"]
+position = Vector2( 6.74904, 14.5777 )
+scale = Vector2( 1.64, 1.64 )
+texture = ExtResource( 4 )
+
+[node name="SurplusLabel" type="Label" parent="SurplusBox/GoldCoin"]
+margin_left = 92.1459
+margin_top = 8.98984
+margin_right = 184.146
+margin_bottom = 34.9898
+custom_styles/normal = SubResource( 1 )
+custom_colors/font_color = Color( 0.0666667, 0.729412, 0.0941176, 1 )
+custom_colors/font_color_shadow = Color( 0.921569, 0.47451, 0.0784314, 1 )
+text = "Surplus!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="SurplusBox"]
+
+[node name="Timer" type="Timer" parent="SurplusBox"]
+wait_time = 1.5
+one_shot = true
+
+[node name="SilverAudio" type="AudioStreamPlayer2D" parent="SurplusBox"]
+stream = ExtResource( 6 )
+volume_db = -7.466
+attenuation = 2.2974
+bus = "SFX Main"
+[connection signal="timeout" from="SurplusBox/Timer" to="SurplusBox" method="_on_timer_timeout"]

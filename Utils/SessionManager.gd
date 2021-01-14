@@ -88,8 +88,18 @@ func load_api_account():
 
 
 func get_corpus_coin():
-	return wallet_data["CorpusCoin-" + current_avatar.key]
+	var key = "CorpusCoin-" + current_avatar.key
+
+	if wallet_data.has(key):
+		return wallet_data[key]
+	else:
+		return -1
 
 
 func get_community_coin():
-	return wallet_data["CommunityCoin-" + current_avatar.key]
+	var key = "CommunityCoin-" + current_avatar.key
+
+	if wallet_data.has(key):
+		return wallet_data[key]
+	else:
+		return -1
