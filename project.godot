@@ -139,6 +139,10 @@ window/size/width=1280
 window/size/height=720
 window/stretch/shrink="1"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "radial_progress" )
+
 [gui]
 
 theme/custom="res://Resources/ui_theme.tres"

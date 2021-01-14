@@ -48,6 +48,9 @@ func finish_mission(key: String, update_inventory: bool = false):
 
 		reload_missions()
 		yield(TPLG.wallet.sync_with_wallet(), "completed")
+		TPLG.ui.level_control.set_exp(
+			SessionManager.wallet_data["ExperienceCoin-" + SessionManager.current_avatar.key]
+		)
 
 		# TODO: distribute experience awards locally
 		# print(SessionManager.wallet_data["ExperienceCoin-" + SessionManager.current_avatar.key])

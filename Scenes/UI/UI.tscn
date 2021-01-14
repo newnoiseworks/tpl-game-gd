@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scenes/UI/UIController.gd" type="Script" id=1]
 [ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=2]
@@ -18,10 +18,8 @@
 [ext_resource path="res://Scenes/UI/Missions/MissionList.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/UI/Chat/Chat.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/UI/MissionUpdatePopup.tscn" type="PackedScene" id=18]
-
-[sub_resource type="DynamicFont" id=1]
-size = 32
-font_data = ExtResource( 3 )
+[ext_resource path="res://addons/radial_progress/RadialProgressBar.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/UI/LvlControlController.gd" type="Script" id=20]
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
@@ -327,12 +325,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SavingLabel" type="Label" parent="Container/TopLeft"]
-visible = false
-margin_right = 117.0
+[node name="LvlControl" type="Node2D" parent="Container/TopLeft"]
+position = Vector2( 50, 46 )
+script = ExtResource( 20 )
+
+[node name="RadialProgressBar" type="Control" parent="Container/TopLeft/LvlControl"]
 margin_bottom = 33.0
-custom_fonts/font = SubResource( 1 )
-text = "Saving..."
+rect_scale = Vector2( 0.4, 0.4 )
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+max_value = 100
+radius = 120
+progress = 0
+thickness = 20
+bg_color = Color( 0.501961, 0.501961, 0.501961, 0.537255 )
+bar_color = Color( 0.2, 0.603922, 0.901961, 1 )
+
+[node name="Label" type="Label" parent="Container/TopLeft/LvlControl"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -29.0
+margin_top = -13.0
+margin_right = 29.0
+margin_bottom = 13.0
+text = "Lv 0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Container/TopLeft/LvlControl"]
 
 [node name="TopRight" type="HBoxContainer" parent="Container"]
 anchor_right = 1.0

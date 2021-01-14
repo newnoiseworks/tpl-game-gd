@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-onready var saving_label: Label = get_node("Container/TopLeft/SavingLabel")
 onready var toast_label: Label = find_node("ToastLabel")
 onready var loading_dialog: WindowDialog = get_node("Modals/LoadingDialog")
 onready var tween: Tween = find_node("Tween")
@@ -9,6 +8,7 @@ onready var instructions: TextureRect = find_node("Instructions")
 onready var mission_list = find_node("MissionList")
 onready var chat = find_node("Chat")
 onready var mission_update_popup = find_node("MissionUpdatePopup")
+onready var level_control = find_node("LvlControl")
 
 
 func _ready():
@@ -28,14 +28,6 @@ func toggle_instructions():
 		instructions.hide()
 	else:
 		instructions.show()
-
-
-func show_saving_indicator():
-	saving_label.show()
-
-
-func hide_saving_indicator():
-	saving_label.hide()
 
 
 func show_loading_dialog():
