@@ -10,6 +10,7 @@ _data = {
 
 [node name="Sky" type="Node2D"]
 script = ExtResource( 1 )
+night_sky_negative = Color( 0.894118, 0.721569, 0.0352941, 1 )
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2( -193, -266 )

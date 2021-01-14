@@ -1,5 +1,7 @@
 extends Node2D
 
+export var night_sky_negative: Color
+
 onready var path_follow: PathFollow2D = find_node("SunPathFollow2D")
 onready var timer: Timer = Timer.new()
 onready var sun: Light2D = find_node("Sun")
@@ -60,9 +62,9 @@ func setup_night_sky():
 
 	var color = night_sky.color
 
-	color.r = 1 - ((1 - 0.17) * current_night_intensity_percentage)
-	color.g = 1 - ((1 - 0.03) * current_night_intensity_percentage)
-	color.b = 1 - ((1 - 0.38) * current_night_intensity_percentage)
+	color.r = 1 - (night_sky_negative.r * current_night_intensity_percentage)
+	color.g = 1 - (night_sky_negative.g * current_night_intensity_percentage)
+	color.b = 1 - (night_sky_negative.b * current_night_intensity_percentage)
 
 	night_sky.color = color
 

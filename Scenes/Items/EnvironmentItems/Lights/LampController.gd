@@ -14,8 +14,11 @@ func _ready():
 
 
 func _exit_tree():
-	GameTime.disconnect("daybreak_event", self, "turn_lamp_off")
-	GameTime.disconnect("nightfall_event", self, "turn_lamp_on")
+	if GameTime.is_connected("daybreak_event", self, "turn_lamp_off"):
+		GameTime.disconnect("daybreak_event", self, "turn_lamp_off")
+
+	if GameTime.is_connected("nightfall_event", self, "turn_lamp_on"):
+		GameTime.disconnect("nightfall_event", self, "turn_lamp_on")
 
 
 func turn_lamp_off():
