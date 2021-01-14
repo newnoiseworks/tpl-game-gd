@@ -1,6 +1,6 @@
 extends "res://Scenes/Items/ItemController.gd"
 
-const MAX_POURS: int = 10
+const MAX_POURS: int = 16
 const FULL_PAIL_TILE_NAME: String = "Items/Tools/Bucket Full"
 const EMPTY_PAIL_TILE_NAME: String = "Items/Tools/Bucket Empty"
 
