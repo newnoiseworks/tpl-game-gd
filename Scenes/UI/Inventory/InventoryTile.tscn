@@ -29,6 +29,7 @@ __meta__ = {
 }
 
 [node name="QuantityCount" type="Label" parent="."]
+visible = false
 margin_left = -0.339625
 margin_top = 12.7936
 margin_right = 13.6603
@@ -43,6 +44,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 0.410375
 margin_top = -21.2064
 margin_right = 43.4104
@@ -57,3 +59,5 @@ text = "Pickaxe"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="."]

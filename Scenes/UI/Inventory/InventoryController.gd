@@ -93,6 +93,8 @@ func on_equip_item(slot: int):
 
 	equipped_item = bag.get_item_action(slot)
 
+	tiles[slot].flash_title()
+
 
 func on_select_slot(slot: int):
 	if slot == current_equipped_slot:

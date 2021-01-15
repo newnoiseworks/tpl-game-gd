@@ -145,7 +145,12 @@ func add_item_scene_or_update_quantity(item_data: Dictionary):
 		if inventory.equipped_item == null:
 			inventory.equipped_item = item_node
 
-	inventory.tiles[item_data.bagPosition].update_quantity(item_data.quantity)
+	var tile = inventory.tiles[item_data.bagPosition]
+	tile.update_quantity(item_data.quantity)
+	var tile_text = InventoryItems.get_label_from_int(InventoryItems.get_int_from_hash(item_data.itemTypeId)).replace("_", ": ").replace(
+		"/([A-Z])([A-Z])([a-z])|([a-z])([A-Z])/g", '$1$4 $2$3$5'
+	)
+	tile.title_label.text = tile_text
 
 
 func move_item(_old_bag_position: int, _bag_position: int):
