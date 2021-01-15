@@ -2,7 +2,7 @@ extends Node2D
 
 export var on_ground: bool
 export var is_crafted: bool
-export var crafted_item_type: String
+export var crafted_item_type: String = ""
 
 var colliding_characters = []
 var tile_map: TileMap

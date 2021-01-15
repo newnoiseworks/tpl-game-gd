@@ -19,4 +19,3 @@ color = Color( 0, 0.298039, 1, 1 )
 position = Vector2( 4, 4 )
 scale = Vector2( 0.66, 0.66 )
 tile_data = PoolIntArray( 0, 977, 0 )
-
