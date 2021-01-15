@@ -46,12 +46,12 @@ __meta__ = {
 [node name="Title" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 0.410375
-margin_top = -21.2064
-margin_right = 43.4104
-margin_bottom = -0.2064
+margin_top = -17.2064
+margin_right = 86.4104
+margin_bottom = 16.7936
+rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 4 )
 custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.921569, 0.921569, 0.921569, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )

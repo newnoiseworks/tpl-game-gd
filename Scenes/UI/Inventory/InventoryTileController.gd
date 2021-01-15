@@ -9,6 +9,9 @@ onready var tween: Tween = $Tween
 
 
 func flash_title():
+	for tile in TPLG.inventory.tiles:
+		tile.hide_title()
+
 	tween.interpolate_property(
 		title_label,
 		"modulate",
@@ -28,6 +31,25 @@ func flash_title():
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN,
 		2
+	)
+
+	tween.start()
+
+
+func hide_title():
+	if title_label.modulate == Color(1, 1, 1, 0):
+		return
+
+	tween.stop(title_label, "modulate")
+
+	tween.interpolate_property(
+		title_label,
+		"modulate",
+		title_label.modulate,
+		Color(1, 1, 1, 0),
+		.5,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN
 	)
 
 	tween.start()
