@@ -14,21 +14,13 @@ func _init():
 			"mission_entries": ["tomatoesForSakana"],
 			"mission_exits": ["sayHiToSakana", "tomatoesForSakana"],
 		},
-		"Baph": {
+		"Baph":
+		{
 			"mission_exits": ["sayHiToBaph"],
 		},
-		"York": {
-			"mission_entries": ["pickupYorksHearts"],
-			"mission_exits": ["pickupYorksHearts"]
-		},
-		"Gil": {
-			"mission_entries": ["catchGilAFish"],
-			"mission_exits": ["catchGilAFish"]
-		},
-		"Violine": {
-			"mission_entries": ["forageForVio"],
-			"mission_exits": ["forageForVio"]
-		}
+		"York": {"mission_entries": ["pickupYorksHearts"], "mission_exits": ["pickupYorksHearts"]},
+		"Gil": {"mission_entries": ["catchGilAFish"], "mission_exits": ["catchGilAFish"]},
+		"Violine": {"mission_entries": ["forageForVio"], "mission_exits": ["forageForVio"]}
 	}
 
 	mission_scenes = {
@@ -138,7 +130,7 @@ func setup_teleporter():
 	town_teleporter = find_node("TownTeleporter")
 
 	match TPLG.last_scene:
-		"town0":
+		"Town0/FishingHole":
 			town_teleporter.exit_enabled = false
 			player_entry_node = town_teleporter
 		_:  # default

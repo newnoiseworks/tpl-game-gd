@@ -77,4 +77,8 @@ func base_change_scene(scene_path: String, args: Dictionary = {}, reset_vp: bool
 		MoveTarget.get_parent().call_deferred("remove_child", MoveTarget)
 
 	emit_signal("base_change_scene", scene_path, args, reset_vp)
-	TPLG.last_scene = scene_path.replace("res://", "")
+
+	if current_root_scene != null:
+		TPLG.last_scene = current_root_scene.filename.replace("res://", "").replace(".tscn", "").replace(
+			"RootScenes/", ""
+		)
