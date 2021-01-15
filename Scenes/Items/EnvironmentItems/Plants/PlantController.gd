@@ -92,6 +92,9 @@ func interact():
 		print_debug("TODO: Need to implement multi row inventory")
 		return
 
+	if ! farm_grid.plant_scenes.has(Vector2(data.x, data.y)):
+		return
+
 	var quantity = determine_harvest_quantity()
 
 	bag.add_item_locally(PlantData.plant_item_type_map[plant_type], quantity)
