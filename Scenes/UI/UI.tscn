@@ -21,14 +21,14 @@
 [ext_resource path="res://addons/radial_progress/RadialProgressBar.gd" type="Script" id=19]
 [ext_resource path="res://Scenes/UI/LvlControlController.gd" type="Script" id=20]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 10 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 content_margin_left = 16.0
 content_margin_right = 16.0
 content_margin_top = 1.0
@@ -40,7 +40,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.12549, 0.596078, 0.756863, 0.878431 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 16.0
 content_margin_right = 16.0
 content_margin_top = 1.0
@@ -52,7 +52,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.556863, 0.843137, 0.843137, 0.439216 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 16.0
 content_margin_right = 16.0
 content_margin_top = 1.0
@@ -64,7 +64,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.556863, 0.843137, 0.843137, 0.439216 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=6]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 8.0
@@ -80,20 +80,20 @@ expand_margin_right = 1.0
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=7]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0.462745, 0.796078, 0.831373, 1 )
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=8]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 2.0
 content_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=9]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 8.0
@@ -109,11 +109,11 @@ expand_margin_right = 1.0
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=10]
 size = 32
 font_data = ExtResource( 10 )
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=11]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 5.0
@@ -129,7 +129,7 @@ expand_margin_right = 1.0
 expand_margin_top = 1.0
 expand_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=12]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 5.0
@@ -145,7 +145,7 @@ expand_margin_right = 1.0
 expand_margin_top = 1.0
 expand_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=13]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 8.0
@@ -161,24 +161,24 @@ expand_margin_right = 1.0
 expand_margin_top = 24.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=14]
 size = 32
 font_data = ExtResource( 10 )
 
-[sub_resource type="Theme" id=16]
-default_font = SubResource( 15 )
+[sub_resource type="Theme" id=15]
+default_font = SubResource( 14 )
 Button/colors/font_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 Button/colors/font_color_disabled = Color( 0, 0, 0, 0.2 )
 Button/colors/font_color_hover = Color( 0.129412, 0.129412, 0.129412, 1 )
 Button/colors/font_color_pressed = Color( 0.160784, 0.160784, 0.160784, 1 )
 Button/constants/hseparation = 2
-Button/fonts/GameOverlayButton = SubResource( 3 )
+Button/fonts/GameOverlayButton = SubResource( 2 )
 Button/fonts/font = null
 Button/styles/disabled = null
-Button/styles/focus = SubResource( 4 )
-Button/styles/hover = SubResource( 5 )
-Button/styles/normal = SubResource( 6 )
-Button/styles/pressed = SubResource( 5 )
+Button/styles/focus = SubResource( 3 )
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 5 )
+Button/styles/pressed = SubResource( 4 )
 Dialogs/constants/button_margin = 32
 Dialogs/constants/margin = 8
 Fonts/fonts/large = null
@@ -191,7 +191,7 @@ ItemList/constants/icon_margin = 4
 ItemList/constants/line_separation = 2
 ItemList/constants/vseparation = 2
 ItemList/fonts/font = null
-ItemList/styles/bg = SubResource( 7 )
+ItemList/styles/bg = SubResource( 6 )
 ItemList/styles/bg_focus = null
 ItemList/styles/cursor = null
 ItemList/styles/cursor_unfocused = null
@@ -205,7 +205,7 @@ Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/fonts/font = null
-Label/styles/normal = SubResource( 8 )
+Label/styles/normal = SubResource( 7 )
 LineEdit/colors/clear_button_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
 LineEdit/colors/cursor_color = Color( 0.129412, 0.109804, 0.109804, 1 )
@@ -215,14 +215,14 @@ LineEdit/colors/selection_color = Color( 0.490196, 0.490196, 0.490196, 1 )
 LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
-LineEdit/styles/focus = SubResource( 9 )
-LineEdit/styles/normal = SubResource( 9 )
-LineEdit/styles/read_only = SubResource( 9 )
-Panel/styles/panel = SubResource( 7 )
-Panel/styles/panelf = SubResource( 7 )
-Panel/styles/panelnc = SubResource( 7 )
+LineEdit/styles/focus = SubResource( 8 )
+LineEdit/styles/normal = SubResource( 8 )
+LineEdit/styles/read_only = SubResource( 8 )
+Panel/styles/panel = SubResource( 6 )
+Panel/styles/panelf = SubResource( 6 )
+Panel/styles/panelnc = SubResource( 6 )
 PanelContainer/styles/panel = null
-PopupPanel/styles/panel = SubResource( 10 )
+PopupPanel/styles/panel = SubResource( 9 )
 RichTextLabel/colors/default_color = Color( 0.2, 0.2, 0.2, 1 )
 RichTextLabel/colors/font_color_selected = Color( 0.0901961, 0.027451, 0.027451, 1 )
 RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
@@ -248,17 +248,17 @@ TabContainer/constants/label_valign_bg = 2
 TabContainer/constants/label_valign_fg = 0
 TabContainer/constants/side_margin = 8
 TabContainer/constants/top_margin = 24
-TabContainer/fonts/font = SubResource( 11 )
+TabContainer/fonts/font = SubResource( 10 )
 TabContainer/icons/decrement = null
 TabContainer/icons/decrement_highlight = null
 TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = SubResource( 7 )
-TabContainer/styles/tab_bg = SubResource( 12 )
+TabContainer/styles/panel = SubResource( 6 )
+TabContainer/styles/tab_bg = SubResource( 11 )
 TabContainer/styles/tab_disabled = null
-TabContainer/styles/tab_fg = SubResource( 13 )
+TabContainer/styles/tab_fg = SubResource( 12 )
 TextEdit/colors/background_color = Color( 0, 0, 0, 0 )
 TextEdit/colors/brace_mismatch_color = Color( 1, 0.2, 0.2, 1 )
 TextEdit/colors/breakpoint_color = Color( 0.8, 0.8, 0.4, 0.2 )
@@ -288,10 +288,10 @@ TextEdit/constants/completion_scroll_width = 3
 TextEdit/constants/line_spacing = 4
 TextEdit/fonts/font = null
 TextEdit/icons/tab = null
-TextEdit/styles/completion = SubResource( 7 )
-TextEdit/styles/focus = SubResource( 7 )
-TextEdit/styles/normal = SubResource( 7 )
-TextEdit/styles/read_only = SubResource( 7 )
+TextEdit/styles/completion = SubResource( 6 )
+TextEdit/styles/focus = SubResource( 6 )
+TextEdit/styles/normal = SubResource( 6 )
+TextEdit/styles/read_only = SubResource( 6 )
 WindowDialog/colors/title_color = Color( 1, 0.654902, 0, 1 )
 WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
@@ -300,7 +300,7 @@ WindowDialog/constants/title_height = 20
 WindowDialog/fonts/title_font = null
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 14 )
+WindowDialog/styles/panel = SubResource( 13 )
 
 [node name="UI" type="CanvasLayer"]
 layer = 2
@@ -330,7 +330,10 @@ position = Vector2( 50, 46 )
 script = ExtResource( 20 )
 
 [node name="RadialProgressBar" type="Control" parent="Container/TopLeft/LvlControl"]
-margin_bottom = 33.0
+margin_left = 11.3265
+margin_top = 2.83163
+margin_right = 11.3265
+margin_bottom = 35.8316
 rect_scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 19 )
 __meta__ = {
@@ -348,11 +351,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -29.0
-margin_top = -13.0
-margin_right = 29.0
-margin_bottom = 13.0
+margin_left = -17.6735
+margin_top = -10.1684
+margin_right = 40.3265
+margin_bottom = 15.8316
 text = "Lv 0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Container/TopLeft/LvlControl"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = 52.0
+margin_right = 82.0
+margin_bottom = 84.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Wow"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -379,7 +398,7 @@ mouse_filter = 2
 [node name="GameTime" type="Label" parent="Container/TopRight/VBoxContainer"]
 margin_right = 104.0
 margin_bottom = 33.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "00:00 AM"
 align = 2
@@ -389,7 +408,6 @@ script = ExtResource( 4 )
 margin_top = 37.0
 margin_right = 104.0
 margin_bottom = 67.0
-mouse_filter = 2
 
 [node name="Container2" type="Control" parent="."]
 anchor_top = 1.0
@@ -544,7 +562,7 @@ margin_top = 276.0
 margin_right = 536.0
 margin_bottom = 310.0
 grow_horizontal = 0
-theme = SubResource( 16 )
+theme = SubResource( 15 )
 
 [node name="MissionUpdatePopup" parent="Modals" instance=ExtResource( 18 )]
 margin_left = 520.0

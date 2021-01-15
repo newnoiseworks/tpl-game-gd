@@ -2,12 +2,15 @@ extends Node2D
 
 onready var radial = find_node("RadialProgressBar")
 onready var label: Label = $Label
+onready var name_label: Label = $Name
 onready var tween: Tween = $Tween
 
 
 func _ready():
 	if SessionManager.wallet_data.has("ExperienceCoin-" + SessionManager.current_avatar.key):
 		set_exp(SessionManager.wallet_data["ExperienceCoin-" + SessionManager.current_avatar.key])
+
+	name_label.text = SessionManager.current_avatar.name
 
 
 func _exp_required_at_level(lvl: int):
