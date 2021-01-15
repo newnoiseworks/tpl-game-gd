@@ -60,8 +60,7 @@ scene_to_load = "RootScenes/Town0/OldTownRoad.tscn"
 exit_enabled = true
 
 [node name="TopEntry" type="Node2D" parent="."]
-visible = false
-position = Vector2( 224, -160 )
+position = Vector2( 206.471, -542.821 )
 
 [node name="RoadGround" type="TileMap" parent="TopEntry"]
 tile_set = ExtResource( 3 )
