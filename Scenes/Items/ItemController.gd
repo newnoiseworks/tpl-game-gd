@@ -194,6 +194,9 @@ func remove_crafted_item_on_farm_grid():
 		TPLG.ui.show_toast("You can't steal crafted items. Tsk!")
 		return
 
+	if ! farm_grid.crafted_item_scenes.has(grid_position):
+		return
+
 	TPLG.inventory.bag.add_item_locally(item_int)
 
 	MatchEvent.farming(

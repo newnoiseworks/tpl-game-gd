@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Items/CraftedItemController.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10.75, 10.75 )
+extents = Vector2( 16.25, 16 )
 
 [node name="StonePath" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

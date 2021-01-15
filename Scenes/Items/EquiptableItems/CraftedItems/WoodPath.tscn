@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Items/CraftedItemController.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10.5, 11.25 )
+extents = Vector2( 16.5, 17.25 )
 
 [node name="WoodPath" instance=ExtResource( 1 )]
 z_as_relative = false

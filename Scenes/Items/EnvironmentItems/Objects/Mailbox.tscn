@@ -8,7 +8,7 @@
 extents = Vector2( 12.4421, 21.7741 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6.28651, 6.54705 )
+extents = Vector2( 1.33961, 2.07972 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.0784314, 0.831373, 0.831373, 0.466667 )
@@ -21,7 +21,7 @@ position = Vector2( 5.19484, 16.0291 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 5.19484, 23.8856 )
+position = Vector2( 7.71753, 22.8345 )
 shape = SubResource( 2 )
 
 [node name="TileMap" parent="." index="2"]
