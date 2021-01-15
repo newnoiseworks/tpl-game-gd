@@ -107,8 +107,8 @@ image = "Resources/Images/Finished_Tiles/Environment/Farm/Stone Path.png"
 
 [Blueprint_Lamp]
 label = "Lamp Blueprint"
-description = "Farm lighting? With RGB? We say, sure, Y not!"
-image = "Resources/Images/Finished_Tiles/Environment/Objects/Street Lamp.png"
+description = "Farm lighting? You gotta see it to believe it!"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post1.png"
 
 [Wood]
 label = "Wood"

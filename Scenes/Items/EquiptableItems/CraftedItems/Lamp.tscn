@@ -6,7 +6,7 @@
 [ext_resource path="res://Resources/Images/light.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2.34382, 2.162 )
+extents = Vector2( 1.62903, 1.25764 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10.2233, 13.8053 )
@@ -20,7 +20,7 @@ crafted_item_type = "Lamp"
 position = Vector2( 0.61171, -37.7094 )
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
-position = Vector2( 7.18437, 46.5385 )
+position = Vector2( 7.26311, 46.5385 )
 
 [node name="TileMap" parent="." index="1"]
 position = Vector2( -0.25, -47.4594 )
@@ -40,14 +40,14 @@ collision_layer = 2
 collision_mask = 33
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 7.04447, 47.3714 )
+position = Vector2( 7.2807, 46.5052 )
 shape = SubResource( 1 )
 
 [node name="WalkBehindTrigger" parent="." index="4"]
 position = Vector2( 0.61171, -37.7094 )
 
 [node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
-position = Vector2( 6.82267, 16.9104 )
+position = Vector2( 6.98016, 16.8317 )
 shape = SubResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="." index="6"]
