@@ -57,3 +57,11 @@ func add_blueprint(type):
 	if valid_call:
 		TPLG.inventory.bag.remove_item_locally(type)
 		load_data()
+
+
+func has_blueprint(type):
+	for blueprint in data.blueprints:
+		if blueprint == InventoryItems.get_hash_from_int(type):
+			return true
+
+	return false

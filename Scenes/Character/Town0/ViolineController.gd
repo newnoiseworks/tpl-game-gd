@@ -10,12 +10,20 @@ func _exit_tree():
 
 
 func violine_store():
+	var blueprints = [
+		InventoryItems.BLUEPRINT__WOOD_PATH,
+		InventoryItems.BLUEPRINT__STONE_PATH,
+		InventoryItems.BLUEPRINT__LAMP,
+	]
+
+	var final_blueprints = []
+
+	for blueprint in blueprints:
+		if ! TPLG.reatomizer.has_blueprint(blueprint):
+			final_blueprints.append(blueprint)
+
 	TPLG.store.populate_store(
-		[
-			InventoryItems.BLUEPRINT__WOOD_PATH,
-			InventoryItems.BLUEPRINT__STONE_PATH,
-			InventoryItems.BLUEPRINT__LAMP,
-		],
+		final_blueprints,
 		[
 			InventoryItems.WOOD,
 			InventoryItems.STONE,
