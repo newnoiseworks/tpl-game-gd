@@ -109,12 +109,12 @@ func pickup_yorks_hearts_exit():
 
 
 func say_hi_to_sakana_exit():
-	yield(_finish_mission("sayHiToSakana"), "completed")
+	yield(_finish_mission("sayHiToSakana", false, "Sakana"), "completed")
 
 
 func say_hi_to_baph_exit():
 	if "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
-		yield(_finish_mission("sayHiToBaph"), "completed")
+		yield(_finish_mission("sayHiToBaph", false, "Baph"), "completed")
 	else:
 		yield()
 
