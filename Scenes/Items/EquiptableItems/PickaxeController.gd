@@ -17,6 +17,9 @@ func primary_action():
 		if position == grid_position && i.type == ForageItems.STONE:
 			stone = i
 
+	if stone != null && stone.has("health") && stone.health <= 0:
+		return
+
 	if stone != null:
 		if (
 			farm_grid.is_user_owner() == false

@@ -25,7 +25,7 @@ func primary_action():
 		):
 			weed_or_grass = i
 
-	if weed_or_grass == null:
+	if weed_or_grass == null || weed_or_grass.has("health") && weed_or_grass.health <= 0:
 		return
 
 	MatchEvent.farming(

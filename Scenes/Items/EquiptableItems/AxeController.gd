@@ -30,7 +30,7 @@ func primary_action():
 		):
 			tree = i
 
-	if tree == null:
+	if tree == null || tree.has("health") && tree.health <= 0:
 		return
 
 	MatchEvent.farming(
