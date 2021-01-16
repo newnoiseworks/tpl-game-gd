@@ -416,6 +416,7 @@ func add_crafted_item_to_grid(item: Dictionary):
 	)]
 	var instanced_item = item_scene.instance()
 	instanced_item.position = Vector2(item.x, item.y) * 16
+	instanced_item.connected_farm_grid = self
 
 	if instanced_item.on_ground:
 		find_node("GroundedItems").call_deferred("add_child", instanced_item)

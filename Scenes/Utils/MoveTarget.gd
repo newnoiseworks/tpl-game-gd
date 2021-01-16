@@ -7,8 +7,11 @@ func _ready():
 	get_parent().call_deferred("remove_child", self)
 
 
-func get_current_farm_grid_tile():
-	return world_to_map(position) - world_to_map(Player.current_farm_grid.position)
+func get_current_farm_grid_tile(grid_position = null):
+	if grid_position == null:
+		grid_position = Player.current_farm_grid.position
+
+	return world_to_map(position) - world_to_map(grid_position)
 
 
 func get_tile_position():

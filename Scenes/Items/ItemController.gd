@@ -7,6 +7,7 @@ export var crafted_item_type: String = ""
 var colliding_characters = []
 var tile_map: TileMap
 var tile_map_node: Node
+var connected_farm_grid: YSort
 
 var highlight_material = preload("res://Shaders/SimpleHighlightShader.tres")
 
@@ -132,12 +133,12 @@ func on_walk_behind_trigger_exit(body):
 
 
 func place_crafted_item_on_farm_grid():
-	var farm_grid = Player.current_farm_grid
+	var farm_grid = connected_farm_grid
 
 	if is_crafted == false || farm_grid == null:
 		return
 
-	var grid_position = MoveTarget.get_current_farm_grid_tile()
+	var grid_position = MoveTarget.get_current_farm_grid_tile(farm_grid.position)
 
 	if farm_grid.is_user_owner() == false:
 		TPLG.ui.show_toast("You can't put crafted items on someone else's farm.")
@@ -181,11 +182,12 @@ func place_crafted_item_on_farm_grid():
 
 
 func remove_crafted_item_on_farm_grid():
-	if is_crafted == false || Player.current_farm_grid == null:
+	var farm_grid = connected_farm_grid
+
+	if is_crafted == false || farm_grid == null:
 		return
 
-	var grid_position = MoveTarget.get_current_farm_grid_tile()
-	var farm_grid = Player.current_farm_grid
+	var grid_position = MoveTarget.get_current_farm_grid_tile(farm_grid.position)
 
 	var item_int = InventoryItems.get_int_from_name("Crafted_%s" % [crafted_item_type])
 	var item_hash = InventoryItems.get_hash_from_int(item_int)
