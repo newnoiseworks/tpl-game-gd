@@ -152,7 +152,7 @@ func mission_character_highlight_setup():
 
 func character_highlight(character_key: String, on: bool = true):
 	var character = find_node(character_key)
-	if character != null:
+	if character != null && character.has_method("highlight"):
 		character.highlight(on)
 
 

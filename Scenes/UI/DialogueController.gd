@@ -13,8 +13,8 @@ func remove_dialogue_script(method: String):
 
 
 const TYPEWRITER_SPEED: float = .025
-const MAX_DIALOGUE_CHARS: int = 90
-const MAX_DIALOGUE_CHARS_WITH_AVATAR: int = 75
+const MAX_DIALOGUE_CHARS: int = 120
+const MAX_DIALOGUE_CHARS_WITH_AVATAR: int = 100
 const ELIPSES: String = "..."
 
 onready var current_text: RichTextLabel = find_node("Dialogue")
