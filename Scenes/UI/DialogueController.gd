@@ -181,7 +181,11 @@ func update_speaker():
 
 func start_options():
 	var options: PoolStringArray = dialogue_step[I18n.options_key].replace(" ", "").split(',')
-	var whom: String = dialogue_step[I18n.whom_key]
+	var whom: String = ""
+
+	if dialogue_step.has(I18n.whom_key) && dialogue_step[I18n.whom_key] != null:
+		whom = dialogue_step[I18n.whom_key]
+
 	dialogue_options = []
 	dialogue_options_keys = []
 	option_list.clear()
