@@ -18,6 +18,10 @@ func violine_store():
 		InventoryItems.BLUEPRINT__LAMP3,
 		InventoryItems.BLUEPRINT__LAMP4,
 		InventoryItems.BLUEPRINT__LAMP5,
+		InventoryItems.BLUEPRINT__SITTING_GNOME,
+		InventoryItems.BLUEPRINT__SITTING_GNOME2,
+		InventoryItems.BLUEPRINT__STANDING_GNOME,
+		InventoryItems.BLUEPRINT__STANDING_GNOME2,
 	]
 
 	var final_blueprints = []

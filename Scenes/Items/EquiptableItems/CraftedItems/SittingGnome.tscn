@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Items/WalkBehindable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Items/CraftedItemController.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Images/light.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1.62903, 1.25764 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 0.915638, 0.753761 )
+
+[node name="SittingGnome" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+is_crafted = true
+crafted_item_type = "SittingGnome"
+
+[node name="InteractionArea" parent="." index="0"]
+position = Vector2( 0.61171, -37.7094 )
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0"]
+position = Vector2( 7.26311, 46.5385 )
+
+[node name="TileMap" parent="." index="1"]
+position = Vector2( -0.25, -47.4594 )
+tile_data = PoolIntArray( 196608, 2888, 0 )
+
+[node name="StaticBody2D" parent="." index="2"]
+position = Vector2( 0.61171, -37.7094 )
+collision_layer = 2
+collision_mask = 33
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2( 7.2807, 46.5052 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
+position = Vector2( 7.82265, 8.98779 )
+shape = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="." index="5"]
+position = Vector2( 7.2177, -54.4125 )
+scale = Vector2( 0.462386, 0.467667 )
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 4 )
+texture_scale = 0.35
+color = Color( 0.972549, 0.890196, 0.34902, 1 )
+energy = 0.55
+range_height = -90.3
+range_z_max = 0
+shadow_enabled = true
+shadow_color = Color( 0.321569, 0.278431, 0.278431, 0 )
+shadow_filter = 1

@@ -105,6 +105,26 @@ label = "Stone Path Blueprint"
 description = "Nothing says home sweet home like rocks and stones on dirt or grass."
 image = "Resources/Images/Finished_Tiles/Environment/Farm/Stone Path.png"
 
+[Blueprint_StandingGnome]
+label = "Gnome - Standing"
+description = "A Gnome, with a red cap, sitting"
+image = "Resources/Images/Finished_Tiles/envir/craft/gnome_stand1.png"
+
+[Blueprint_StandingGnome2]
+label = "Gnome - Standing, green"
+description = "A Gnome, with a green cap, sitting"
+image = "Resources/Images/Finished_Tiles/envir/craft/gnome_stand2.png"
+
+[Blueprint_SittingGnome]
+label = "Gnome - Sitting"
+description = "A Gnome, with a red cap, sitting"
+image = "Resources/Images/Finished_Tiles/envir/craft/gnome_sit1.png"
+
+[Blueprint_SittingGnome2]
+label = "Gnome - Sitting, green"
+description = "A Gnome, with a green cap, sitting"
+image = "Resources/Images/Finished_Tiles/envir/craft/gnome_sit2.png"
+
 [Blueprint_Lamp]
 label = "Lamp Blueprint"
 description = "Farm lighting? You gotta see it to believe it!"
@@ -179,3 +199,23 @@ image = "Resources/Images/Finished_Tiles/envir/city/lamp_post4.png"
 label = "Lamp #5"
 description = "Farm lighting? With RGB? We say, sure, Y not!"
 image = "Resources/Images/Finished_Tiles/envir/city/lamp_post5.png"
+
+[Crafted_StandingGnome]
+label = "Gnome - Standing"
+description = "A Gnome, with a red cap, sitting"
+image = "Resources/Images/Finished_Tiles/envir/craft/gnome_stand1.png"
+
+[Crafted_StandingGnome2]
+label = "Gnome - Standing, green"
+description = "A Gnome, with a green cap, sitting"
+image = "Resources/Images/Finished_Tiles/envir/craft/gnome_stand2.png"
+
+[Crafted_SittingGnome]
+label = "Gnome - Sitting"
+description = "A Gnome, with a red cap, sitting"
+image = "Resources/Images/Finished_Tiles/envir/craft/gnome_sit1.png"
+
+[Crafted_SittingGnome2]
+label = "Gnome - Sitting, green"
+description = "A Gnome, with a green cap, sitting"
+image = "Resources/Images/Finished_Tiles/envir/craft/gnome_sit2.png"

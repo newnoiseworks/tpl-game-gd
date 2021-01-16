@@ -21,6 +21,22 @@ var equiptable_item_scenes = {
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/StonePath.tscn"),
 	InventoryItems.CRAFTED__STONE_PATH:
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/StonePath.tscn"),
+	InventoryItems.BLUEPRINT__SITTING_GNOME:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/SittingGnome.tscn"),
+	InventoryItems.CRAFTED__SITTING_GNOME:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/SittingGnome.tscn"),
+	InventoryItems.BLUEPRINT__SITTING_GNOME2:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/SittingGnome2.tscn"),
+	InventoryItems.CRAFTED__SITTING_GNOME2:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/SittingGnome2.tscn"),
+	InventoryItems.BLUEPRINT__STANDING_GNOME:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/StandingGnome.tscn"),
+	InventoryItems.CRAFTED__STANDING_GNOME:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/StandingGnome.tscn"),
+	InventoryItems.BLUEPRINT__STANDING_GNOME2:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/StandingGnome2.tscn"),
+	InventoryItems.CRAFTED__STANDING_GNOME2:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/StandingGnome2.tscn"),
 	InventoryItems.BLUEPRINT__LAMP:
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Lamp.tscn"),
 	InventoryItems.CRAFTED__LAMP:
