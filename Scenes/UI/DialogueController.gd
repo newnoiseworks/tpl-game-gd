@@ -218,7 +218,14 @@ func start_options():
 			if "mission_exits" in character_info:
 				for mission_key in character_info.mission_exits:
 					if mission_key in current_missions && ! mission_key in current_section_key:
-						options.append("%sExit" % mission_key)
+						var should_add = true
+
+						for option in options:
+							if option == "%sExit" % mission_key:
+								should_add = false
+
+						if should_add:
+							options.append("%sExit" % mission_key)
 
 	for key in options:
 		var can_have_option: bool = true
