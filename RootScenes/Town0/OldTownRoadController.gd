@@ -20,7 +20,8 @@ func _init():
 		},
 		"York": {"mission_entries": ["pickupYorksHearts"], "mission_exits": ["pickupYorksHearts"]},
 		"Gil": {"mission_entries": ["catchGilAFish"], "mission_exits": ["catchGilAFish"]},
-		"Violine": {"mission_entries": ["forageForVio"], "mission_exits": ["forageForVio"]}
+		"Violine": {"mission_entries": ["forageForVio"], "mission_exits": ["forageForVio"]},
+		"JKJZ": {"mission_exits": ["learnEconFromJKJZ"]}
 	}
 
 	mission_scenes = {
@@ -45,6 +46,7 @@ func _ready():
 	TPLG.dialogue.add_dialogue_script("catch_gil_a_fish_entry", self)
 	TPLG.dialogue.add_dialogue_script("forage_for_vio_start", self)
 	TPLG.dialogue.add_dialogue_script("forage_for_vio_exit", self)
+	TPLG.dialogue.add_dialogue_script("learn_econ_from_JKJZ_exit", self)
 
 	finish_intro_mission_as_needed()
 
@@ -67,6 +69,7 @@ func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("catch_gil_a_fish_entry")
 	TPLG.dialogue.remove_dialogue_script("forage_for_vio_start")
 	TPLG.dialogue.remove_dialogue_script("forage_for_vio_exit")
+	TPLG.dialogue.remove_dialogue_script("learn_econ_from_JKJZ_exit")
 
 
 func baph_setup():
@@ -115,6 +118,13 @@ func say_hi_to_sakana_exit():
 func say_hi_to_baph_exit():
 	if "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
 		yield(_finish_mission("sayHiToBaph", false, "Baph"), "completed")
+	else:
+		yield()
+
+
+func learn_econ_from_JKJZ_exit():
+	if "learnEconFromJKJZ" in TPLG.ui.mission_list.get_current_mission_keys():
+		yield(_finish_mission("learnEconFromJKJZ"), "completed")
 	else:
 		yield()
 

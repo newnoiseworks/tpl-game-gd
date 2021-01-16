@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/UI/DialogueController.gd" type="Script" id=2]
@@ -7,6 +7,12 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+outline_size = 4
+outline_color = Color( 0.745098, 0.67451, 0.968627, 0.843137 )
 font_data = ExtResource( 3 )
 
 [node name="Dialogue" type="Control"]
@@ -52,9 +58,13 @@ margin_right = -192.0
 margin_bottom = -8.0
 grow_vertical = 0
 theme = ExtResource( 1 )
+custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="WhomstContainer" type="TextEdit" parent="."]
 anchor_top = 1.0

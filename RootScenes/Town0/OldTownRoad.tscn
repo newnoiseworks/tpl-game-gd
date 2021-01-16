@@ -28,6 +28,11 @@ tile_data = PoolIntArray( 14, 536873714, 0, 15, 536873713, 0, 16, 536873713, 0, 
 
 [node name="Violine" parent="EnvironmentItems" index="0" instance=ExtResource( 17 )]
 position = Vector2( 1011.86, 359.371 )
+user_id = ""
+character_base = ""
+dialogue_file = ""
+dialogue_section = ""
+current_tile = ""
 
 [node name="MailBox0" parent="EnvironmentItems" index="1" instance=ExtResource( 4 )]
 position = Vector2( 947.622, 668.099 )
@@ -134,7 +139,13 @@ character_base = "Characters/Gil/"
 dialogue_file = "Gil"
 dialogue_section = "hello"
 
-[node name="MissionLauncher" type="YSort" parent="EnvironmentItems" index="32"]
+[node name="JKJZ" parent="EnvironmentItems" index="32" instance=ExtResource( 16 )]
+position = Vector2( 616.98, 365.655 )
+character_base = "Characters/JKJZ/"
+dialogue_file = "JKJZ"
+dialogue_section = "hello"
+
+[node name="MissionLauncher" type="YSort" parent="EnvironmentItems" index="33"]
 
 [node name="Sky" parent="." index="3" instance=ExtResource( 6 )]
 visible = false

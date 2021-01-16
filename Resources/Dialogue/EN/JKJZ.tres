@@ -2,7 +2,53 @@
 
 [hello]
 whom = "JKJZ"
-text = "Talk to the Computer Haus over here for some plants."
+text = "Yo. Remember that time we met? Crazy."
+options = "learnEconNoMission"
+
+[learnEconNoMission]
+whom = "JKJZ"
+optionText = "Can we go over money and stuff again?"
+text = "Sure thing - money's a lie and you shouldn't believe it!"
+missionPrereqs = "learnEconFromJKJZ"
+next = "learnEconFromJKJZMenu"
+
+[learnEconFromJKJZExit]
+whom = "JKJZ"
+optionText = "So uhm... teach me economics?"
+text = "Economics? What? Huh? Them's just lies."
+options = "learnEconFromJKJZUhm, learnEconFromJKJZHowMoney"
+
+[learnEconFromJKJZUhm]
+whom = "JKJZ"
+optionText = "Uhm..."
+text = "What you want to know about is the two types of [b]coins[/b] and how they work with [b]stuff[/b]."
+next = "learnEconFromJKJZHowMoney"
+
+[learnEconFromJKJZHowMoney]
+whom = "JKJZ"
+optionText = "How do the two coin types work?"
+text = "So, there are two types: [b]silver coins[/b] and [b]gold surplus coins[/b]. The silver help you make stuff that we all need; make [b]over 100[/b] silver coins and you'll trigger a surplus -- all [b]silver coin[/b] transactions will now become [b]gold surplus coins[/b]."
+next = "learnEconFromJKJZMenu"
+
+[learnEconFromJKJZMenu]
+whom = "JKJZ"
+text = "Anything else?"
+options = "learnEconFromJKJZThanks, learnEconFromJKJZHowMoney, learnEconFromJKJZSurplus"
+
+[learnEconFromJKJZSurplus]
+whom = "JKJZ"
+optionText = "Surplus?"
+text = "Surplus -- it's yours!"
+next = "learnEconFromJKJZMenu"
+
+[learnEconFromJKJZThanks]
+whom = "JKJZ"
+optionText = "Thanks"
+text = "No problemo -- if you have more questions ask!"
+next = "finishLearnEconFromJKJZ"
+
+[finishLearnEconFromJKJZ]
+script = "learn_econ_from_JKJZ_exit"
 
 [introJKJZ]
 whom = "JKJZ"
@@ -18,19 +64,19 @@ options = "isTheHouseFree, howDidIGetHere, introFinish"
 [isTheHouseFree]
 whom = "JKJZ"
 optionText = "Wait, is this free? Do I owe?"
-text = "Huh? What? Where else would you live? Don't be weird."
+text = "Huh? What? Where else would you live? Don't be [b]weird[/b]."
 options = "howDidIGetHere, introFinish"
 
 [howDidIGetHere]
 whom = "JKJZ"
 optionText = "How did I get here?"
-text = "Look buddy, you show up, and I'm here. That's all I know."
+text = "Look buddy, you show up, and I'm here. Then, the days go by, something about water - that's all I know."
 options = "isTheHouseFree, introFinish"
 
 [introFinish]
 whom = "JKJZ"
 optionText = "Let's head to town."
-text = "Cool; you go ahead and say hi to Sakana and Baph. Then when you're ready meet me in the center of town. I can explain economics to you then!"
+text = "Cool; you go ahead and say hi to [b]Sakana[/b] and [b]Baph[/b]. Then when you're ready meet me in the center of town. I can explain economics to you then!"
 next = "introExit"
 
 [introExit]
