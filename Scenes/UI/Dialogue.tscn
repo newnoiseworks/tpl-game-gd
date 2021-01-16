@@ -69,12 +69,32 @@ custom_colors/font_color_readonly = Color( 0, 0, 0, 1 )
 text = "ComputerHaus"
 readonly = true
 context_menu_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Options" type="ItemList" parent="."]
+[node name="OptionLabel" type="TextEdit" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 33.0
+margin_top = -712.0
+margin_right = 440.0
+margin_bottom = -639.0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_readonly = Color( 0, 0, 0, 1 )
+text = "(choose response)"
+readonly = true
+context_menu_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsList" type="ItemList" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 33.0
-margin_top = 15.0
+margin_top = 64.0
 margin_right = -51.0
 margin_bottom = -344.0
 grow_vertical = 0
@@ -83,6 +103,9 @@ custom_fonts/font = SubResource( 1 )
 max_text_lines = 6
 auto_height = true
 same_column_width = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Control" type="Control" parent="."]
 anchor_left = 1.0
@@ -103,4 +126,4 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 0, 880, 0, 131096, 606, 0 )
-[connection signal="item_selected" from="Options" to="." method="dialogue_option_selected"]
+[connection signal="item_selected" from="OptionsList" to="." method="dialogue_option_selected"]

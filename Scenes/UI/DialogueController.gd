@@ -20,7 +20,8 @@ const ELIPSES: String = "..."
 onready var current_text: RichTextLabel = find_node("Dialogue")
 onready var dialogue_text: RichTextLabel = find_node("AvatarDialogue")
 onready var avatar_tilemap: TileMap = find_node("TileMap")
-onready var option_list: ItemList = find_node("Options")
+onready var option_list: ItemList = find_node("OptionsList")
+onready var option_label: TextEdit = find_node("OptionLabel")
 onready var whomst: TextEdit = find_node("WhomstContainer")
 
 var text: RichTextLabel
@@ -93,6 +94,7 @@ func start_step(_dialogue_step):
 	dialogue_step = _dialogue_step
 	update_speaker()
 	option_list.hide()
+	option_label.hide()
 	next_dialogue_option_index = -1
 	next_char_pos = 0
 	is_typing = true
@@ -184,6 +186,7 @@ func start_options():
 	dialogue_options_keys = []
 	option_list.clear()
 	option_list.show()
+	option_label.show()
 
 	# Consider moving around the below to an independent method
 	var completed_missions = TPLG.ui.mission_list.get_completed_mission_keys()
@@ -195,7 +198,11 @@ func start_options():
 
 			if "mission_entries" in character_info:
 				for mission_key in character_info.mission_entries:
-					if mission_key in completed_missions || mission_key in current_missions || mission_key in current_section_key:
+					if (
+						mission_key in completed_missions
+						|| mission_key in current_missions
+						|| mission_key in current_section_key
+					):
 						continue
 
 					var can_have_mission: bool = true
@@ -247,6 +254,7 @@ func continue_bb_code():
 func run_script(_dialogue_step):
 	dialogue_step = _dialogue_step
 	option_list.hide()
+	option_label.hide()
 	next_dialogue_option_index = -1
 	call_deferred("hide_dialogs")
 
