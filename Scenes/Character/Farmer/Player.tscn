@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Character/Farmer/PlayerController.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12.7282, 11.6076 )
+extents = Vector2( 16.499, 14.0095 )
 
 [node name="Player" instance=ExtResource( 1 )]
 z_as_relative = true
@@ -23,7 +23,7 @@ limit_right = 600
 limit_bottom = 400
 
 [node name="CharacterInteractItem" parent="." index="8"]
-position = Vector2( -7.5812, 16 )
+position = Vector2( -5.89751, 16.5612 )
 
 [node name="UsernameLabel" parent="." index="9"]
 margin_left = -18.6021

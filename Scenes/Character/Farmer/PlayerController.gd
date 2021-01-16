@@ -207,6 +207,12 @@ func use_equipped_item():
 
 
 func secondary_action_on_cursor_item():
+	if item_under_target == null && current_farm_grid:
+		var target = MoveTarget.get_current_farm_grid_tile(current_farm_grid.position)
+
+		if current_farm_grid.crafted_item_scenes.has(target):
+			item_under_target = current_farm_grid.crafted_item_scenes[target]
+
 	if item_under_target != null && item_under_target.has_method("secondary_action"):
 		item_under_target.secondary_action()
 	elif item_under_target != null:

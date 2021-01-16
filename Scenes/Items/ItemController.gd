@@ -62,7 +62,7 @@ func set_collision_mask_on_interaction_area(mask: int):
 
 
 func interact():
-	print("base interact with item")
+	print_debug("base interact with item")
 
 
 func on_walk_behind_trigger_enter(body: PhysicsBody2D):
