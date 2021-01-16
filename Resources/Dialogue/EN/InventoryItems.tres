@@ -110,6 +110,26 @@ label = "Lamp Blueprint"
 description = "Farm lighting? You gotta see it to believe it!"
 image = "Resources/Images/Finished_Tiles/envir/city/lamp_post1.png"
 
+[Blueprint_Lamp2]
+label = "Lamp #2 Blueprint"
+description = "Farm lighting? You gotta see it to believe it!"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post2.png"
+
+[Blueprint_Lamp3]
+label = "Lamp #3 Blueprint"
+description = "Farm lighting? You gotta see it to believe it!"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post3.png"
+
+[Blueprint_Lamp4]
+label = "Lamp #4 Blueprint"
+description = "Farm lighting? You gotta see it to believe it!"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post4.png"
+
+[Blueprint_Lamp5]
+label = "Lamp #5 Blueprint"
+description = "Farm lighting? You gotta see it to believe it!"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post5.png"
+
 [Wood]
 label = "Wood"
 description = "Wood, it's good for building things."
@@ -138,4 +158,24 @@ image = "Resources/Images/Finished_Tiles/Environment/Farm/Stone Path.png"
 [Crafted_Lamp]
 label = "Lamp"
 description = "Farm lighting? With RGB? We say, sure, Y not!"
-image = "Resources/Images/Finished_Tiles/Environment/Objects/Street Lamp.png"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post1.png"
+
+[Crafted_Lamp2]
+label = "Lamp #2"
+description = "Farm lighting? With RGB? We say, sure, Y not!"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post2.png"
+
+[Crafted_Lamp3]
+label = "Lamp #3"
+description = "Farm lighting? With RGB? We say, sure, Y not!"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post3.png"
+
+[Crafted_Lamp4]
+label = "Lamp #4"
+description = "Farm lighting? With RGB? We say, sure, Y not!"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post4.png"
+
+[Crafted_Lamp5]
+label = "Lamp #5"
+description = "Farm lighting? With RGB? We say, sure, Y not!"
+image = "Resources/Images/Finished_Tiles/envir/city/lamp_post5.png"

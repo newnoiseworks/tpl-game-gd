@@ -5,7 +5,11 @@ var data
 var blueprint_to_items: Dictionary = {
 	InventoryItems.BLUEPRINT__STONE_PATH: InventoryItems.CRAFTED__STONE_PATH,
 	InventoryItems.BLUEPRINT__WOOD_PATH: InventoryItems.CRAFTED__WOOD_PATH,
-	InventoryItems.BLUEPRINT__LAMP: InventoryItems.CRAFTED__LAMP
+	InventoryItems.BLUEPRINT__LAMP: InventoryItems.CRAFTED__LAMP,
+	InventoryItems.BLUEPRINT__LAMP2: InventoryItems.CRAFTED__LAMP2,
+	InventoryItems.BLUEPRINT__LAMP3: InventoryItems.CRAFTED__LAMP3,
+	InventoryItems.BLUEPRINT__LAMP4: InventoryItems.CRAFTED__LAMP4,
+	InventoryItems.BLUEPRINT__LAMP5: InventoryItems.CRAFTED__LAMP5,
 }
 
 

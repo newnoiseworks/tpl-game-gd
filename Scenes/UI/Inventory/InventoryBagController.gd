@@ -25,6 +25,22 @@ var equiptable_item_scenes = {
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Lamp.tscn"),
 	InventoryItems.CRAFTED__LAMP:
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Lamp.tscn"),
+	InventoryItems.BLUEPRINT__LAMP2:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Lamp2.tscn"),
+	InventoryItems.CRAFTED__LAMP2:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Lamp2.tscn"),
+	InventoryItems.BLUEPRINT__LAMP3:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Lamp3.tscn"),
+	InventoryItems.CRAFTED__LAMP3:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Lamp3.tscn"),
+	InventoryItems.BLUEPRINT__LAMP4:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Lamp4.tscn"),
+	InventoryItems.CRAFTED__LAMP4:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Lamp4.tscn"),
+	InventoryItems.BLUEPRINT__LAMP5:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Lamp5.tscn"),
+	InventoryItems.CRAFTED__LAMP5:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Lamp5.tscn"),
 	InventoryItems.CABBAGE_SEEDS:
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Seeds/CabbageSeedPack.tscn"),
 	InventoryItems.CABBAGE:

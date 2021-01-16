@@ -14,6 +14,10 @@ func violine_store():
 		InventoryItems.BLUEPRINT__WOOD_PATH,
 		InventoryItems.BLUEPRINT__STONE_PATH,
 		InventoryItems.BLUEPRINT__LAMP,
+		InventoryItems.BLUEPRINT__LAMP2,
+		InventoryItems.BLUEPRINT__LAMP3,
+		InventoryItems.BLUEPRINT__LAMP4,
+		InventoryItems.BLUEPRINT__LAMP5,
 	]
 
 	var final_blueprints = []

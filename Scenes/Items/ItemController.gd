@@ -135,6 +135,9 @@ func on_walk_behind_trigger_exit(body):
 func place_crafted_item_on_farm_grid():
 	var farm_grid = connected_farm_grid
 
+	if farm_grid == null:
+		farm_grid = Player.current_farm_grid
+
 	if is_crafted == false || farm_grid == null:
 		return
 

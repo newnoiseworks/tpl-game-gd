@@ -30878,7 +30878,7 @@
 
 [node name="Blueprint_Lamp" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-blueprint_type = "Lamp"
+blueprint_type = "Lamp3"
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 margin_left = 2.0
@@ -30889,7 +30889,7 @@ mouse_filter = 2
 color = Color( 0, 0.298039, 1, 1 )
 
 [node name="TileMap" parent="." index="2"]
-position = Vector2( 9, 2.66516 )
-scale = Vector2( 0.14, 0.14 )
+position = Vector2( 9, 2.28974 )
+scale = Vector2( 0.18, 0.18 )
 tile_set = SubResource( 1 )
-tile_data = PoolIntArray( 0, 2894, 0 )
+tile_data = PoolIntArray( 0, 2892, 0 )
