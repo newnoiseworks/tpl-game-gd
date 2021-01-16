@@ -13,6 +13,26 @@ var equiptable_item_scenes = {
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Stone.tscn"),
 	InventoryItems.FERN: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Fern.tscn"),
 	InventoryItems.WOOD: ResourceLoader.load("res://Scenes/Items/EquiptableItems/Drops/Wood.tscn"),
+	InventoryItems.BLUEPRINT__STONE_PILE:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/StonePile.tscn"),
+	InventoryItems.CRAFTED__STONE_PILE:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/StonePile.tscn"),
+	InventoryItems.BLUEPRINT__MODERN_STATUE:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/ModernStatue.tscn"),
+	InventoryItems.CRAFTED__MODERN_STATUE:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/ModernStatue.tscn"),
+	InventoryItems.BLUEPRINT__SCARECROW:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Scarecrow.tscn"),
+	InventoryItems.CRAFTED__SCARECROW:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Scarecrow.tscn"),
+	InventoryItems.BLUEPRINT__SPOOK:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Spook.tscn"),
+	InventoryItems.CRAFTED__SPOOK:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Spook.tscn"),
+	InventoryItems.BLUEPRINT__SPOOK2:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Spook2.tscn"),
+	InventoryItems.CRAFTED__SPOOK2:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Spook2.tscn"),
 	InventoryItems.BLUEPRINT__WOOD_PATH:
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/WoodPath.tscn"),
 	InventoryItems.CRAFTED__WOOD_PATH:
@@ -21,6 +41,10 @@ var equiptable_item_scenes = {
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/StonePath.tscn"),
 	InventoryItems.CRAFTED__STONE_PATH:
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/StonePath.tscn"),
+	InventoryItems.BLUEPRINT__FLAMINGO:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/Flamingo.tscn"),
+	InventoryItems.CRAFTED__FLAMINGO:
+	ResourceLoader.load("res://Scenes/Items/EquiptableItems/CraftedItems/Flamingo.tscn"),
 	InventoryItems.BLUEPRINT__SITTING_GNOME:
 	ResourceLoader.load("res://Scenes/Items/EquiptableItems/Blueprints/SittingGnome.tscn"),
 	InventoryItems.CRAFTED__SITTING_GNOME:

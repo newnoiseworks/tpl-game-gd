@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Items/CollidableItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Items/CraftedItemController.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 0.292418, 0.75775 )
+
+[node name="CollidableItem" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+is_crafted = true
+crafted_item_type = "Flamingo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2( 7.59312, 7.91081 )
+shape = SubResource( 1 )
+
+[node name="TileMap" parent="." index="2"]
+tile_data = PoolIntArray( 0, 2889, 0 )

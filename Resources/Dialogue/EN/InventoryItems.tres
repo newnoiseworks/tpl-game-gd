@@ -125,6 +125,36 @@ label = "Gnome - Sitting, green"
 description = "A Gnome, with a green cap, sitting"
 image = "Resources/Images/Finished_Tiles/envir/craft/gnome_sit2.png"
 
+[Blueprint_StonePile]
+label = "Stone Pile"
+description = "An artful pile of stones"
+image = "Resources/Images/Finished_Tiles/envir/craft/stone_pile.png"
+
+[Blueprint_Scarecrow]
+label = "Scarecrow"
+description = "Scare those birds away, maybe"
+image = "Resources/Images/Finished_Tiles/envir/craft/scarecrow.png"
+
+[Blueprint_Spook]
+label = "Spooky Sculpture"
+description = "A spooky sculpture"
+image = "Resources/Images/Finished_Tiles/envir/craft/spook1.png"
+
+[Blueprint_Spook2]
+label = "Spooky Sculpture 2"
+description = "Another spooky sculpture"
+image = "Resources/Images/Finished_Tiles/envir/craft/spook1.png"
+
+[Blueprint_ModernStatue]
+label = "Modern Statue"
+description = "A statue for modern times"
+image = "Resources/Images/Finished_Tiles/envir/craft/modern_statue1.png"
+
+[Blueprint_Flamingo]
+label = "Flamingo"
+description = "Truly; a classic"
+image = "Resources/Images/Finished_Tiles/envir/craft/flamingo.png"
+
 [Blueprint_Lamp]
 label = "Lamp Blueprint"
 description = "Farm lighting? You gotta see it to believe it!"
@@ -219,3 +249,33 @@ image = "Resources/Images/Finished_Tiles/envir/craft/gnome_sit1.png"
 label = "Gnome - Sitting, green"
 description = "A Gnome, with a green cap, sitting"
 image = "Resources/Images/Finished_Tiles/envir/craft/gnome_sit2.png"
+
+[Crafted_StonePile]
+label = "Stone Pile"
+description = "An artful pile of stones"
+image = "Resources/Images/Finished_Tiles/envir/craft/stone_pile.png"
+
+[Crafted_Scarecrow]
+label = "Scarecrow"
+description = "Scare those birds away, maybe"
+image = "Resources/Images/Finished_Tiles/envir/craft/scarecrow.png"
+
+[Crafted_Spook]
+label = "Spooky Sculpture"
+description = "A spooky sculpture"
+image = "Resources/Images/Finished_Tiles/envir/craft/spook1.png"
+
+[Crafted_Spook2]
+label = "Spooky Sculpture 2"
+description = "Another spooky sculpture"
+image = "Resources/Images/Finished_Tiles/envir/craft/spook1.png"
+
+[Crafted_ModernStatue]
+label = "Modern Statue"
+description = "A statue for modern times"
+image = "Resources/Images/Finished_Tiles/envir/craft/modern_statue1.png"
+
+[Crafted_Flamingo]
+label = "Flamingo"
+description = "Truly; a classic"
+image = "Resources/Images/Finished_Tiles/envir/craft/flamingo.png"

@@ -14,6 +14,12 @@ var blueprint_to_items: Dictionary = {
 	InventoryItems.BLUEPRINT__STANDING_GNOME2: InventoryItems.CRAFTED__STANDING_GNOME2,
 	InventoryItems.BLUEPRINT__SITTING_GNOME: InventoryItems.CRAFTED__SITTING_GNOME,
 	InventoryItems.BLUEPRINT__SITTING_GNOME2: InventoryItems.CRAFTED__SITTING_GNOME2,
+	InventoryItems.BLUEPRINT__STONE_PILE: InventoryItems.CRAFTED__STONE_PILE,
+	InventoryItems.BLUEPRINT__MODERN_STATUE: InventoryItems.CRAFTED__MODERN_STATUE,
+	InventoryItems.BLUEPRINT__SCARECROW: InventoryItems.CRAFTED__SCARECROW,
+	InventoryItems.BLUEPRINT__SPOOK: InventoryItems.CRAFTED__SPOOK,
+	InventoryItems.BLUEPRINT__SPOOK2: InventoryItems.CRAFTED__SPOOK2,
+	InventoryItems.BLUEPRINT__FLAMINGO: InventoryItems.CRAFTED__FLAMINGO
 }
 
 
