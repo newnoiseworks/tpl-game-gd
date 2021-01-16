@@ -78,5 +78,5 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FishHookAlert" index="2"]
 stream = ExtResource( 5 )
-volume_db = -4.267
+volume_db = -3.5
 bus = "SFX Main"
