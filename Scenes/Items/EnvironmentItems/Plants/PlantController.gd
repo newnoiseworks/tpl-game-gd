@@ -16,7 +16,7 @@ onready var growth_stages: Array = InventoryItems.plant_growth_stages[plant_type
 
 
 func _ready():
-	GameTime.connect("daybreak_event", self, "dry_water_and_grow_plant_if_needed")
+	original_position = position
 	current_growth_stage = determine_growth_stage()
 
 	if (
@@ -29,6 +29,15 @@ func _ready():
 	for growth_stage in range(growth_stages.size()):
 		var stage_node = find_node("Stage%s" % [growth_stage + 1])
 		stage_node.use_parent_material = true
+
+	setup_growth_stage()
+
+	GameTime.connect("daybreak_event", self, "dry_water_and_grow_plant_if_needed")
+
+
+func setup_growth_stage():
+	for growth_stage in range(growth_stages.size()):
+		var stage_node = find_node("Stage%s" % [growth_stage + 1])
 		stage_node.hide()
 
 	var growth_stage
@@ -42,7 +51,6 @@ func _ready():
 	if growth_stage != null:
 		growth_stage.show()
 
-	set_deferred("original_position", position)
 	call_deferred("position_seeds_under_players")
 
 
@@ -92,7 +100,8 @@ func interact():
 		print_debug("TODO: Need to implement multi row inventory")
 		return
 
-	if ! farm_grid.plant_scenes.has(Vector2(data.x, data.y)):
+	if ! farm_grid.plant_scenes.has(Vector2(int(data.x), int(data.y))):
+		print_debug("Can't find plant scene, not allowing harvest")
 		return
 
 	var quantity = determine_harvest_quantity()
@@ -209,7 +218,7 @@ func determine_growth_stage():
 func position_seeds_under_players():
 	var current_stage: Node2D = find_node("Stage%s" % current_growth_stage)
 
-	if current_growth_stage == 1:
+	if current_growth_stage == 1 && position == original_position:
 		current_stage.position = current_stage.position + Vector2(0, 32)
 		water_tile.position = current_stage.position
 		position = original_position - Vector2(0, 32)
@@ -224,25 +233,6 @@ func dry_water_and_grow_plant_if_needed():
 
 	dry()
 
-	var growth_stage: int = determine_growth_stage()
+	current_growth_stage = determine_growth_stage()
 
-	var last_stage: Node2D = find_node("Stage%s" % growth_stages.size())
-
-	if current_growth_stage >= growth_stage:
-		return
-
-	var current_stage: Node2D = find_node("Stage%s" % current_growth_stage)
-	var next_stage: Node2D = find_node("Stage%s" % growth_stage)
-
-	if current_stage != null:
-		current_stage.hide()
-
-	current_growth_stage = growth_stage
-
-	if ! is_harvestable() && next_stage != null:
-		next_stage.show()
-	elif is_harvestable() && last_stage != null:
-		last_stage.show()
-		highlight()
-
-	position_seeds_under_players()
+	setup_growth_stage()
