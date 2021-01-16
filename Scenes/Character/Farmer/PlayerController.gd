@@ -17,6 +17,7 @@ const MOVEMENT_PING_TIMER_INTERVAL: float = .30
 onready var camera: Camera2D = $Camera2D
 onready var movement_ping_timer: Timer = $MovementPing
 onready var fishing_timer: Timer = $FishingTimer
+onready var fish_hook_alert = $FishHookAlert
 
 
 func _ready():
@@ -29,6 +30,9 @@ func _ready():
 func _enter_tree():
 	if movement_ping_timer != null:
 		movement_ping_timer.connect("timeout", self, "_send_movement_ping_update")
+
+	if fish_hook_alert != null:
+		fish_hook_alert.reset()
 
 	navigation_points = []
 	current_nav_index = 0
@@ -178,6 +182,7 @@ func fishing_timer_ready(weight: int):
 	fishing_timer.disconnect("timeout", self, "fishing_timer_ready")
 	var game = fishing_game_scene.instance()
 	game.weight = weight
+	fish_hook_alert.appear()
 	get_node("/root/BaseViewports").call_deferred("add_child", game)
 
 

@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Character/Farmer/Farmer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Character/Farmer/PlayerController.gd" type="Script" id=2]
+[ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Scenes/Character/Farmer/FishHookAlertController.gd" type="Script" id=4]
+[ext_resource path="res://Resources/Audio/Sfx/zapsplat_multimedia_alert_bell_chime_ping_notification_simple_001_57858.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.499, 14.0095 )
@@ -32,7 +35,7 @@ margin_right = 19.3979
 margin_bottom = -10.4372
 
 [node name="VisibilityNotifier2D" parent="." index="10"]
-position = Vector2( 0, 0 )
+position = Vector2( -0.264866, 0.0662155 )
 scale = Vector2( 1, 1 )
 
 [node name="MovementPing" type="Timer" parent="." index="18"]
@@ -47,3 +50,33 @@ bus = "Player SFX"
 [node name="LessAudio" parent="." index="24"]
 attenuation = 1.0
 bus = "Player SFX"
+
+[node name="FishHookAlert" type="Node2D" parent="." index="25"]
+visible = false
+position = Vector2( 0.796276, -10.3407 )
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="FishHookAlert" index="0"]
+margin_left = -26.2199
+margin_top = -12.8878
+margin_right = 25.7801
+margin_bottom = 13.1122
+rect_scale = Vector2( 0.15, 0.15 )
+rect_pivot_offset = Vector2( 26, 13 )
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 0.890196, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0.133333, 0.0235294, 1 )
+custom_colors/font_color_shadow = Color( 0.788235, 0.0352941, 1, 1 )
+text = "FISH!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="FishHookAlert" index="1"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FishHookAlert" index="2"]
+stream = ExtResource( 5 )
+volume_db = -4.267
+bus = "SFX Main"
