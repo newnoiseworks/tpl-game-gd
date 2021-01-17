@@ -25,6 +25,7 @@ func _physics_process(_delta):
 		game_started = true
 		start_game()
 		label.queue_free()
+		Player.fish_hook_alert.reset()
 		timer.stop()
 		timer.queue_free()
 

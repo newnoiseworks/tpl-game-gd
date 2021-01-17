@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zapsplat_multimedia_alert_bell_chime_ping_notification_simple_001_57858.wav-c6c63c4f701489da45383e76f5065f56.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/Sfx/zapsplat_multimedia_alert_bell_chime_ping_notification_simple_001_57858.wav"
+dest_files=[ "res://.import/zapsplat_multimedia_alert_bell_chime_ping_notification_simple_001_57858.wav-c6c63c4f701489da45383e76f5065f56.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

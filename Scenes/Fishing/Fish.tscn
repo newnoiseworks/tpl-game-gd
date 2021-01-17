@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Fishing/FishController.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Images/Finished_Tiles/Environment/Water/Fish/Blue Fish.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Images/light.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Audio/Sfx/zapsplat_cartoon_pop_mouth_015_46678.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.14938
@@ -38,4 +39,8 @@ texture_scale = 9.27
 color = Color( 0.768627, 0.901961, 0.105882, 0.866667 )
 energy = 0.99
 shadow_enabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -4.267
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_enter"]

@@ -41,9 +41,19 @@ func hide_postbox():
 
 func post_text():
 	if postbox.text != null && postbox.text != "" && postbox.text.length() > 0:
-		var msg = _format_message(postbox.text)
-		_post_message(msg)
-		_post_message_online(msg)
+		if postbox.text == "/moneycrimes":
+			hide_postbox()
+			Player.lock_movement = false
+			yield(
+				SessionManager.rpc_async("wallet.cheat_money", SaveData.current_avatar_key),
+				"completed"
+			)
+			TPLG.wallet.sync_with_wallet()
+		else:
+			var msg = _format_message(postbox.text)
+			_post_message(msg)
+			_post_message_online(msg)
+
 		postbox.clear()
 
 

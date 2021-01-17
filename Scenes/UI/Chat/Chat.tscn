@@ -3,13 +3,13 @@
 [ext_resource path="res://Resources/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/UI/Chat/ChatController.gd" type="Script" id=2]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.282353, 0.992157, 0.682353 )
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.247059, 0.0941176, 0.8, 0.733333 )
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id=3]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
@@ -30,7 +30,7 @@ margin_left = 2.04706
 margin_top = -27.4061
 margin_right = 208.047
 margin_bottom = -1.40613
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "(press escape to leave chat)"
 __meta__ = {
@@ -45,7 +45,7 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -64,7 +64,7 @@ margin_right = 617.0
 margin_bottom = 152.0
 mouse_filter = 2
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/selection_color = Color( 0.639216, 0.231373, 0.231373, 1 )
 custom_colors/font_color_selected = Color( 0.619608, 0.486275, 0.203922, 1 )
@@ -99,6 +99,6 @@ caret_blink_speed = 0.5
 margin_top = 3.0
 margin_right = 206.0
 margin_bottom = 29.0
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "press enter to chat"

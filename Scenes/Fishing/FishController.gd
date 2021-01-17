@@ -8,6 +8,8 @@ const GRAVITY = 10
 var velocity = Vector2()
 var playing: bool = true
 
+onready var audio: AudioStreamPlayer = $AudioStreamPlayer
+
 
 func _physics_process(_delta):
 	if ! playing:
@@ -25,6 +27,7 @@ func _physics_process(_delta):
 		|| Input.is_action_just_pressed("action_four")
 		|| Input.is_action_just_pressed("action_five")
 	):
+		audio.play()
 		velocity.y = -FLAP
 
 	move_and_slide(velocity, UP)

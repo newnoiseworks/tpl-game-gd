@@ -9,6 +9,10 @@ func _ready():
 	tween.connect("tween_all_completed", self, "reset")
 
 
+func _exit_tree():
+	tween.reset(label, "rect_scale")
+
+
 func appear(weight):
 	label.text = "%s lbs!" % weight
 

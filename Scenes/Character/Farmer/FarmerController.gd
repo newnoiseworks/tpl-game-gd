@@ -27,6 +27,9 @@ func _enter_tree():
 	is_animation_playing = false
 	current_tool_tile = ""
 
+	if fish_alert != null:
+		fish_alert.reset()
+
 	if user_id != "":
 		MatchEvent.connect("farming", self, "handle_farming_event")
 		MatchEvent.connect("avatar_update", self, "handle_avatar_update_event")

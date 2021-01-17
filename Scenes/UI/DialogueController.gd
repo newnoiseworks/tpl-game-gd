@@ -13,8 +13,8 @@ func remove_dialogue_script(method: String):
 
 
 const TYPEWRITER_SPEED: float = .025
-const MAX_DIALOGUE_CHARS: int = 90
-const MAX_DIALOGUE_CHARS_WITH_AVATAR: int = 75
+const MAX_DIALOGUE_CHARS: int = 120
+const MAX_DIALOGUE_CHARS_WITH_AVATAR: int = 100
 const ELIPSES: String = "..."
 
 onready var current_text: RichTextLabel = find_node("Dialogue")
@@ -181,7 +181,11 @@ func update_speaker():
 
 func start_options():
 	var options: PoolStringArray = dialogue_step[I18n.options_key].replace(" ", "").split(',')
-	var whom: String = dialogue_step[I18n.whom_key]
+	var whom: String = ""
+
+	if dialogue_step.has(I18n.whom_key) && dialogue_step[I18n.whom_key] != null:
+		whom = dialogue_step[I18n.whom_key]
+
 	dialogue_options = []
 	dialogue_options_keys = []
 	option_list.clear()
