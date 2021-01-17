@@ -13,8 +13,8 @@ func remove_dialogue_script(method: String):
 
 
 const TYPEWRITER_SPEED: float = .025
-const MAX_DIALOGUE_CHARS: int = 120
-const MAX_DIALOGUE_CHARS_WITH_AVATAR: int = 100
+const MAX_DIALOGUE_CHARS: int = 140
+const MAX_DIALOGUE_CHARS_WITH_AVATAR: int = 115
 const ELIPSES: String = "..."
 
 onready var current_text: RichTextLabel = find_node("Dialogue")
@@ -235,6 +235,9 @@ func start_options():
 		var can_have_option: bool = true
 
 		var dialogue_option = I18n.get_dialogue_step(dialogue_filename, key)
+
+		if dialogue_option[I18n.option_text_key] == null:
+			continue
 
 		if dialogue_option[I18n.mission_prereqs_key] != null:
 			for prereq in dialogue_option[I18n.mission_prereqs_key].split(","):

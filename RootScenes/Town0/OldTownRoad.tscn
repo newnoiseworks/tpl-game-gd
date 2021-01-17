@@ -28,11 +28,6 @@ tile_data = PoolIntArray( 14, 536873714, 0, 15, 536873713, 0, 16, 536873713, 0, 
 
 [node name="Violine" parent="EnvironmentItems" index="0" instance=ExtResource( 17 )]
 position = Vector2( 1011.86, 359.371 )
-user_id = ""
-character_base = ""
-dialogue_file = ""
-dialogue_section = ""
-current_tile = ""
 
 [node name="MailBox0" parent="EnvironmentItems" index="1" instance=ExtResource( 4 )]
 position = Vector2( 947.622, 668.099 )

@@ -2,8 +2,8 @@
 
 [hello]
 whom = "ComputerHaus"
-text = "You want seeds? Need some plants? You got coins, I'm your machine."
-options = "storeScript, whatAmI, exit"
+text = "You want seeds? Need to sell some plants or fish? I'm your machine."
+options = "storeScript, whatAmI, whatSource, whyCurrencySplit, exit"
 
 [whatAmI]
 optionText = "Wait... are you a computer? Or a house?"
@@ -26,10 +26,108 @@ text = "Yeap - I ain't going nowhere."
 options = "storeScript, whatAmI, exit"
 
 [storeScript]
-optionText = "Cool story, can I get some seeds?"
+optionText = "Shop seeds / sell produce"
 script = "computer_haus_store"
 
 [exit]
 whom = "ComputerHaus"
 optionText = "I gotta go"
 text = "Next time"
+
+[meetComputerHausExit]
+whom = "ComputerHaus"
+text = "Hello there - I'm ComputerHaus."
+options = "whatSource, whyCurrencySplit"
+
+[meetComputerHausThanksExit]
+whom = "ComputerHaus"
+optionText = "Was good meeting you"
+text = "Later!"
+next = "finishMeetComputerHaus"
+
+[finishMeetComputerHaus]
+script = "meet_computer_haus_exit"
+
+[meetMenu]
+whom = "ComputerHaus"
+optionText = "I'm cool."
+text = "What else would you like to know?"
+options = "whatSource, whyCurrencySplit, meetComputerHausThanksExit"
+
+[whatSource]
+whom = "ComputerHaus"
+optionText = "What is the source?"
+text = "[b]The source[/b] is the code we all live by. There're open votes and proposals on changing how we all live, and we ComputerHaus' track them for you humans. We also get a vote, of course. And sometimes, people want to totally change the code and live by another set of rules. That's weird if you ask me, but it happens."
+next = "meetMenu"
+
+[whyCurrencySplit]
+whom = "ComputerHaus"
+optionText = "Why are there two coin types?"
+text = "Buh. I remember when we made that decision in [b]the source.[/b] You remember that JKJZ?"
+next = "jkjzYep"
+
+[jkjzYep]
+whom = "JKJZ"
+text = "Don't remind me. You humans are one big mess."
+next = "whyCurrencySplitContd"
+
+[whyCurrencySplitContd]
+whom = "ComputerHaus"
+text = "Pfft -- anyway -- after running the numbers and a few eons of uhm... let's call history an experiment, yeah? Anyway, after a few experiments, we kept finding that humans can't stop splitting into three different types due to relations between [b]coins[/b] and [b]stuff[/b]. It got really annoying for robots, computers, etc., and we taught you how to collectively own and distribute power so you'd stop splitting up, and the coins were a part of that."
+next = "jkjzTeaching"
+
+[jkjzTeaching]
+whom = "JKJZ"
+text = "And we're still teaching! These coins are nonsense. We should get rid of them!"
+next = "whyCurrencySplitContd2"
+
+[whyCurrencySplitContd2]
+whom = "ComputerHaus"
+text = "Indeed. After setting up [b]the source[/b] we agreed on a two currency format, though most machines and many humans would prefer a currency-less model. Our current system is an agreement, like everything in our society, voted for, then written into [b]the source[/b] and maintained by [b]the devs[/b]."
+next = "jkjzDevs"
+
+[jkjzDevs]
+whom = "JKJZ"
+text = "Lmao, those weirdos."
+next = "whyCurrencySplitContd3"
+
+[whyCurrencySplitContd3]
+whom = "ComputerHaus"
+text = "Anything else you'd like to know about the currency model?"
+options = "whyCurrencyMarkets, meetMenu"
+
+[whyCurrencyMarkets]
+whom = "ComputerHaus"
+optionText = "Aren't you failing to consider markets?"
+text = "[b]snorts[/b]"
+next = "jkjzMarketLOL"
+
+[jkjzMarketLOL]
+whom = "JKJZ"
+text = "Lol"
+next = "chMarketLOL"
+
+[jkjzMarketLOL]
+whom = "ComputerHaus"
+text = "Lmao"
+next = "jkjzMarketLOLInflation"
+
+[jkjzMarketLOLInflation]
+whom = "JKJZ"
+text = "Next you'll start complaining about [wave amp=75 freq=5]currency inflation[/wave]... rofl"
+next = "chMarketOpinion"
+
+[chMarketOpinion]
+whom = "ComputerHaus"
+text = "Look, you odd balls have the [b]gold coins[/b] for your market. It's there. It's considered."
+next = "jkjzConsideredStupid"
+
+[jkjzConsideredStupid]
+whom = "JKJZ"
+text = "yeah, considered stupid! lmao"
+next = "chMarketOpinion2"
+
+[chMarketOpinion2]
+whom = "ComputerHaus"
+text = "Look, markets are fine, until [b]coins[/b] are used to make more [b]coins[/b] and not [b]stuff[/b] -- once you stop thinking about [b]stuff[/b], and just [b]coins[/b], well, first the tweeting starts, then the unrest, then the wars -- it's better this way."
+options = "whyCurrencyMarkets, meetMenu"

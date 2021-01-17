@@ -10,7 +10,10 @@ func _exit_tree():
 
 
 func interact():
-	TPLG.dialogue.start("ComputerHaus", "hello")
+	if "meetComputerHaus" in TPLG.ui.mission_list.get_current_mission_keys():
+		TPLG.dialogue.start("ComputerHaus", "meetComputerHausExit")
+	else:
+		TPLG.dialogue.start("ComputerHaus", "hello")
 
 
 func computer_haus_store():

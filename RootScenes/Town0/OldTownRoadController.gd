@@ -21,7 +21,9 @@ func _init():
 		"York": {"mission_entries": ["pickupYorksHearts"], "mission_exits": ["pickupYorksHearts"]},
 		"Gil": {"mission_entries": ["catchGilAFish"], "mission_exits": ["catchGilAFish"]},
 		"Violine": {"mission_entries": ["forageForVio"], "mission_exits": ["forageForVio"]},
-		"JKJZ": {"mission_exits": ["learnEconFromJKJZ"]}
+		"JKJZ": {"mission_exits": ["learnEconFromJKJZ"]},
+		"ComputerHaus":
+		{"mission_entries": ["meetComputerHaus"], "mission_exits": ["meetComputerHaus"]}
 	}
 
 	mission_scenes = {
@@ -47,6 +49,7 @@ func _ready():
 	TPLG.dialogue.add_dialogue_script("forage_for_vio_start", self)
 	TPLG.dialogue.add_dialogue_script("forage_for_vio_exit", self)
 	TPLG.dialogue.add_dialogue_script("learn_econ_from_JKJZ_exit", self)
+	TPLG.dialogue.add_dialogue_script("meet_computer_haus_exit", self)
 
 	finish_intro_mission_as_needed()
 
@@ -70,6 +73,7 @@ func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("forage_for_vio_start")
 	TPLG.dialogue.remove_dialogue_script("forage_for_vio_exit")
 	TPLG.dialogue.remove_dialogue_script("learn_econ_from_JKJZ_exit")
+	TPLG.dialogue.remove_dialogue_script("meet_computer_haus_exit")
 
 
 func baph_setup():
@@ -125,6 +129,14 @@ func say_hi_to_baph_exit():
 func learn_econ_from_JKJZ_exit():
 	if "learnEconFromJKJZ" in TPLG.ui.mission_list.get_current_mission_keys():
 		yield(_finish_mission("learnEconFromJKJZ"), "completed")
+		yield(_start_mission("meetComputerHaus"), "completed")
+	else:
+		yield()
+
+
+func meet_computer_haus_exit():
+	if "meetComputerHaus" in TPLG.ui.mission_list.get_current_mission_keys():
+		yield(_finish_mission("meetComputerHaus"), "completed")
 	else:
 		yield()
 

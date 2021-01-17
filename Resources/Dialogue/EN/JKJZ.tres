@@ -50,13 +50,13 @@ next = "learnEconFromJKJZMenu"
 [learnEconFromJKJZHowAreThingsPriced]
 whom = "JKJZ"
 optionText = "How are things priced?"
-text = "All the necessities are voted on and regulated via [b]the source[/b], the surplus stuff is up to you weird humans. Personally I don't see why you do the coin thing. It's weird to me. But anyway, if you wanna know more about that stuff, ask ComputerHaus over here."
+text = "All the necessities are voted on and regulated via [b]the source[/b], the surplus stuff is up to you humans. Personally I don't see why you do the coin thing. It's weird to me. But anyway, if you wanna know more about that stuff, ask ComputerHaus over here."
 next = "learnEconFromJKJZMenu"
 
 [learnEconFromJKJZThanks]
 whom = "JKJZ"
 optionText = "Thanks"
-text = "No problemo -- if you have more questions ask!"
+text = "No problemo, next up meet [b]ComputerHaus[/b] over to my right here and buy some seeds from them so you can get to [b]farming[/b]. Later!"
 next = "finishLearnEconFromJKJZ"
 
 [finishLearnEconFromJKJZ]
@@ -76,7 +76,7 @@ options = "isTheHouseFree, howDidIGetHere, introFinish"
 [isTheHouseFree]
 whom = "JKJZ"
 optionText = "Wait, is this free? Do I owe?"
-text = "Huh? What? Where else would you live? Don't be [b]weird[/b]."
+text = "Huh? What? Where else would you live? Don't be weird."
 options = "howDidIGetHere, introFinish"
 
 [howDidIGetHere]
