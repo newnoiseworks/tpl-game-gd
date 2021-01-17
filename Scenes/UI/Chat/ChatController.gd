@@ -43,6 +43,7 @@ func post_text():
 	if postbox.text != null && postbox.text != "" && postbox.text.length() > 0:
 		if postbox.text == "/moneycrimes":
 			hide_postbox()
+			Player.lock_movement = false
 			yield(
 				SessionManager.rpc_async("wallet.cheat_money", SaveData.current_avatar_key),
 				"completed"
