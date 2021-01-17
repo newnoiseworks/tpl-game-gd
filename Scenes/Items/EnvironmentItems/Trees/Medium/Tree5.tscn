@@ -3,13 +3,13 @@
 [ext_resource path="res://Scenes/Items/WalkBehindable.tscn" type="PackedScene" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 29.5063, 8.14779 )
+extents = Vector2( 27.3269, 6.52676 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4.01497, 2.67114 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 24, 35 )
+extents = Vector2( 22.5971, 24.8266 )
 
 [sub_resource type="OccluderPolygon2D" id=4]
 polygon = PoolVector2Array( 15.5122, 33.0728, 19.9667, 37.3046, 20.8576, 50.8908, 13.0622, 53.7862, 20.6348, 53.7862, 20.6348, 58.6861, 22.6394, 86.304, 27.0939, 86.7494, 31.1029, 54.4544, 38.0074, 52.4499, 31.3256, 50.2226, 29.3211, 39.3091, 32.4393, 30.6228, 23.3075, 27.7274 )
@@ -23,19 +23,19 @@ outlines = [ PoolVector2Array( -4.53751, 59.9638, -4.53751, 100.258, 54.1524, 10
 light_mask = 0
 
 [node name="InteractionArea" parent="." index="0"]
-position = Vector2( -1.33635, -91.7625 )
+position = Vector2( -2.59566, -92.7357 )
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
-position = Vector2( 25.2599, 61.3547 )
+position = Vector2( 24.788, 65.6021 )
 scale = Vector2( 0.812503, 4.73626 )
 shape = SubResource( 1 )
 
 [node name="TileMap" parent="." index="1"]
-position = Vector2( -1.33635, -91.7625 )
-tile_data = PoolIntArray( 0, 59, 0, 65536, 2577, 0 )
+position = Vector2( -2.59566, -92.7357 )
+tile_data = PoolIntArray( 0, 59, 0, 65536, 2586, 0 )
 
 [node name="StaticBody2D" parent="." index="2"]
-position = Vector2( -1.33635, -91.7625 )
+position = Vector2( -2.59566, -92.7357 )
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
@@ -43,16 +43,16 @@ position = Vector2( 24.6382, 92.3864 )
 shape = SubResource( 2 )
 
 [node name="WalkBehindTrigger" parent="." index="3"]
-position = Vector2( -0.70639, -73.4936 )
+position = Vector2( -1.9657, -74.4668 )
 
 [node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
-position = Vector2( 24, 37 )
+position = Vector2( 23.5281, 47.1466 )
 shape = SubResource( 3 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5"]
-position = Vector2( -1.33635, -91.7625 )
+position = Vector2( -2.59566, -76.2179 )
 occluder = SubResource( 4 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="." index="6"]
-position = Vector2( -1.33635, -91.7625 )
+position = Vector2( -2.59566, -92.7357 )
 navpoly = SubResource( 5 )
