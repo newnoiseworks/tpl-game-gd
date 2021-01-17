@@ -33,12 +33,24 @@ next = "learnEconFromJKJZMenu"
 [learnEconFromJKJZMenu]
 whom = "JKJZ"
 text = "Anything else?"
-options = "learnEconFromJKJZThanks, learnEconFromJKJZHowMoney, learnEconFromJKJZSurplus"
+options = "learnEconFromJKJZThanks, learnEconFromJKJZHowMoney, learnEconFromJKJZSurplus, learnEconFromJKJZCoinDifference, learnEconFromJKJZHowAreThingsPriced"
 
 [learnEconFromJKJZSurplus]
 whom = "JKJZ"
 optionText = "Surplus?"
-text = "Surplus -- it's yours!"
+text = "Well, if you got 100 [b]silver coins[/b], it's assumed you've done something to keep the basics of society going, so any further output you produce is thus a [b]surplus[/b], and all further transactions will be in [b]gold surplus coins[b]."
+next = "learnEconFromJKJZMenu"
+
+[learnEconFromJKJZCoinDifference]
+whom = "JKJZ"
+optionText = "What's the difference between coins?"
+text = "The [b]silver coins[/b] are for necessities that need to be produced, like food. You get 5 every morning, in case you get stuck. The [b]gold surplus coins[/b] are for other goods."
+next = "learnEconFromJKJZMenu"
+
+[learnEconFromJKJZHowAreThingsPriced]
+whom = "JKJZ"
+optionText = "How are things priced?"
+text = "All the necessities are voted on and regulated via [b]the source[/b], the surplus stuff is up to you weird humans. Personally I don't see why you do the coin thing. It's weird to me. But anyway, if you wanna know more about that stuff, ask ComputerHaus over here."
 next = "learnEconFromJKJZMenu"
 
 [learnEconFromJKJZThanks]
