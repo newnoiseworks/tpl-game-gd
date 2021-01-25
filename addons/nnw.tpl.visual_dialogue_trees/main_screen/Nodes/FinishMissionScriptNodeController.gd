@@ -8,14 +8,14 @@ onready var dialogue_file_input = find_node("DialogueFileInput")
 func _ready():
 	file.set_value(section, "script", "finish_mission")
 
-	if starting_mission_key != "" && starting_mission_key != null:
-		_args.insert(0, starting_mission_key)
-
 	_set_args()
+
+	if _args[0] == "" && starting_mission_key != "" && starting_mission_key != null:
+		_args.insert(0, starting_mission_key)
 
 	reload_inventory_check.pressed = _args[1] == "true"
 
-	if _args[2]:
+	if _args[2] != "":
 		dialogue_file_input.text = _args[2]
 
 
