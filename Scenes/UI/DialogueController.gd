@@ -279,7 +279,11 @@ func run_script_from_step():
 	var script_key: String = dialogue_step[I18n.script_key]
 
 	if dialogue_scripts.has(script_key):
-		dialogue_scripts[script_key].call(script_key)
+		if dialogue_step[I18n.script_args_key] != null:
+			var args = dialogue_step[I18n.script_args_key].split(",")
+			dialogue_scripts[script_key].callv(script_key, args)
+		else:
+			dialogue_scripts[script_key].call(script_key)
 	else:
 		print_debug(
 			(

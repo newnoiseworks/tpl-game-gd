@@ -7,6 +7,7 @@ var lang: String = "EN"
 var text_key: String = "text"
 var next_key: String = "next"
 var script_key: String = "script"
+var script_args_key: String = "scriptArgs"
 var options_key: String = "options"
 var option_text_key: String = "optionText"
 var whom_key: String = "whom"
@@ -23,6 +24,7 @@ func get_dialogue_step(filename: String, section: String):
 	step[text_key] = get_key_if_exists_in_file(filename, section, text_key)
 	step[next_key] = get_key_if_exists_in_file(filename, section, next_key)
 	step[script_key] = get_key_if_exists_in_file(filename, section, script_key)
+	step[script_args_key] = get_key_if_exists_in_file(filename, section, script_args_key)
 	step[options_key] = get_key_if_exists_in_file(filename, section, options_key)
 	step[option_text_key] = get_key_if_exists_in_file(filename, section, option_text_key)
 	step[whom_key] = get_key_if_exists_in_file(filename, section, whom_key)

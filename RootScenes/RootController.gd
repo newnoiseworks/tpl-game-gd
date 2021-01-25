@@ -18,6 +18,13 @@ func _ready():
 	window_size_setup()
 	mission_setup()
 	TPLG.current_root_scene = self
+	TPLG.dialogue.add_dialogue_script("finish_mission", self)
+	TPLG.dialogue.add_dialogue_script("start_mission", self)
+
+
+func _exit_tree():
+	TPLG.dialogue.remove_dialogue_script("finish_mission")
+	TPLG.dialogue.remove_dialogue_script("start_mission")
 
 
 # TODO: consider moving the mission stuff into an isolated node, perhaps the mission_launcher_node itself
@@ -37,8 +44,31 @@ func mission_setup():
 	mission_character_highlight_setup()
 
 
+func finish_mission(
+	mission_key: String,
+	update_inventory: String = "",
+	exit_dialog_avatar: String = "",
+	mission_exit_failed_key: String = "",
+	mission_exit_finished_key: String = ""
+):
+	return yield(
+		_finish_mission(
+			mission_key,
+			update_inventory == "true",
+			exit_dialog_avatar,
+			mission_exit_failed_key,
+			mission_exit_finished_key
+		),
+		"completed"
+	)
+
+
 func _finish_mission(
-	mission_key: String, update_inventory: bool = false, exit_dialog_avatar: String = ""
+	mission_key: String,
+	update_inventory: bool = false,
+	exit_dialog_avatar: String = "",
+	mission_exit_failed_key: String = "",
+	mission_exit_finished_key: String = ""
 ) -> bool:
 	var passed = yield(
 		TPLG.ui.mission_list.finish_mission(mission_key, update_inventory), "completed"
@@ -51,11 +81,21 @@ func _finish_mission(
 
 	if exit_dialog_avatar != "":
 		if passed.payload == "false":
-			TPLG.dialogue.start(exit_dialog_avatar, "%sExitFailed" % mission_key)
+			if mission_exit_failed_key != "":
+				TPLG.dialogue.start(exit_dialog_avatar, mission_exit_failed_key)
+			else:
+				TPLG.dialogue.start(exit_dialog_avatar, "%sExitFailed" % mission_key)
 		else:
-			TPLG.dialogue.start(exit_dialog_avatar, "%sExitFinished" % mission_key)
+			if mission_exit_finished_key != "":
+				TPLG.dialogue.start(exit_dialog_avatar, mission_exit_finished_key)
+			else:
+				TPLG.dialogue.start(exit_dialog_avatar, "%sExitFinished" % mission_key)
 
 	return true
+
+
+func start_mission(mission_key: String):
+	return yield(_start_mission(mission_key), "completed")
 
 
 func _start_mission(mission_key: String):

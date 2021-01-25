@@ -1,76 +1,133 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
 [hello]
-whom = "Sakana"
-text = "Hello! Ready to buy some clothes?"
-options = "amazing, thanks"
+
+whom="Sakana"
+text="Hello! Ready to buy some clothes?"
+offsetX=-160.0
+offsetY=-128.0
+options="thanks, amazing"
 
 [amazing]
-whom = "Sakana"
-optionText = "I'm ready to look amazing!"
-text = "We're opening soon! Give the developers some money IRL, it'll help!"
-next = "faqReroute"
-missionPrereqs = "sayHiToSakana"
+
+whom="Sakana"
+optionText="I'm ready to look amazing!"
+text="We're opening soon! Give the developers some money IRL, it'll help!"
+missionPrereqs="sayHiToSakana"
+offsetX=304.0
+offsetY=-432.0
+next="faqReroute"
 
 [faqReroute]
-whom = "Sakana"
-text = "What else can I help you with?"
-options = "amazing, thanks"
+
+whom="Sakana"
+text="What else can I help you with?"
+offsetX=304.0
+offsetY=-128.0
+options="thanks, amazing"
 
 [thanks]
-whom = "Sakana"
-optionText = "Thanks!"
-text = "Bye!"
-missionPrereqs = "sayHiToSakana"
+
+whom="Sakana"
+optionText="Thanks!"
+text="Bye!"
+missionPrereqs="sayHiToSakana"
+offsetX=304.0
+offsetY=176.0
 
 [tomatoesForSakanaEntry]
-whom = "Sakana"
-optionText = "Hey you need anything?"
-text = "Hell yeah I do! You got any tomatoes? I need one!"
-next = "startTomatoesForSakana"
 
-[startTomatoesForSakana]
-script = "tomatoes_for_sakana_entry"
+whom="Sakana"
+optionText="Hey you need anything?"
+text="Hell yeah I do! You got any tomatoes? I need one!"
+offsetX=768.0
+offsetY=-432.0
+next="tomatoesForSakanaStartMissionScript"
 
 [tomatoesForSakanaExit]
-whom = "Sakana"
-optionText = "Yo dog I got those tomatoes"
-text = "Really?"
-next = "finishTomatoesForSakana"
+
+whom="Sakana"
+optionText="Hey, you needed a tomato?"
+text="Really?"
+offsetX=768.0
+offsetY=-128.0
+next="tomatoesForSakanaFinishMissionScript"
 
 [tomatoesForSakanaExitFailed]
-whom = "Sakana"
-text= "Hmm... maybe come back when you got that tomato!"
+
+whom="Sakana"
+text="Hmm... maybe come back when you got that tomato!"
+offsetX=768.0
+offsetY=176.0
 
 [tomatoesForSakanaExitFinished]
-whom = "Sakana"
-text = "Thanks so much! I can get heartburn much quicker this way!"
 
-[finishTomatoesForSakana]
-script = "tomatoes_for_sakana_exit"
+whom="Sakana"
+text="Thanks so much! I can get heartburn much quicker this way!"
+offsetX=1232.0
+offsetY=176.0
 
 [sayHiToSakanaExit]
-whom = "Sakana"
-optionText = "Hey, I'm new, nice to meet you."
-text = "You too! I'm Sakana, I sell clothes I make for gold coins! Come back once you've earned enough of a surplus."
-options = "sayHiToSakanaThanks, sayHiToSakanaSurplus"
+
+whom="Sakana"
+optionText="Hey, I'm new, nice to meet you."
+text="You too! I'm Sakana, I sell clothes I make for gold coins! Come back once you've earned enough of a surplus."
+options="sayHiToSakanaThanks, sayHiToSakanaSurplus,helloSakanaAy"
+offsetX=1696.0
+offsetY=-128.0
 
 [sayHiToSakanaMenu]
-whom = "Sakana"
-text = "Anything else?"
-options = "sayHiToSakanaThanks, sayHiToSakanaSurplus"
+
+whom="Sakana"
+text="Anything else?"
+options="sayHiToSakanaThanks, sayHiToSakanaSurplus,helloSakanaAy"
+offsetX=2624.0
+offsetY=-272.0
 
 [sayHiToSakanaThanks]
-whom = "Sakana"
-optionText = "Cool, thanks!"
-text = "See you around!"
-next = "finishSayHiToSakana"
+
+whom="Sakana"
+optionText="Cool, thanks!"
+text="See you around!"
+offsetX=2160.0
+offsetY=176.0
+next="finishSayHiToSakana"
 
 [sayHiToSakanaSurplus]
-whom = "Sakana"
-optionText = "Surplus?"
-text = "Talk to JKJZ to find out more about that kind of stuff. Not really my bag!"
-next = "sayHiToSakanaMenu"
+
+whom="Sakana"
+optionText="Surplus?"
+text="Talk to JKJZ to find out more about that kind of stuff. Not really my bag!"
+offsetX=2160.0
+offsetY=-128.0
+next="sayHiToSakanaMenu"
 
 [finishSayHiToSakana]
-script = "say_hi_to_sakana_exit"
+
+script="say_hi_to_sakana_exit"
+offsetX=2624.0
+offsetY=176.0
+
+[helloSakanaAy]
+
+offsetX=2160.0
+offsetY=-400.0
+text="It's just another thing to say I guess"
+whom="Sakana"
+optionText="Editable? Yes!"
+next="sayHiToSakanaMenu"
+
+[tomatoesForSakanaFinishMissionScript]
+
+script="finish_mission"
+scriptArgs="tomatoesForSakana,,,tomatoesForSakanaExitFailed,tomatoesForSakanaExitFinished"
+offsetX=1216.0
+offsetY=-112.0
+
+[tomatoesForSakanaStartMissionScript]
+
+scriptArgs="tomatoesForSakana"
+offsetX=1216.0
+offsetY=-432.0
+script="start_mission"
+
