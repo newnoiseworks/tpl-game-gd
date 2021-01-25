@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/nnw.tpl.visual_dialogue_trees/main_screen/Nodes/DialogueNode.tscn" type="PackedScene" id=1]
+
+
+[node name="MissionExitNode" instance=ExtResource( 1 )]
+margin_bottom = 62.0
+custom_colors/resizer_color = Color( 1, 0, 0.141176, 1 )
+title = "Mission Exit Failed Node"
+slot/0/left_type = 2
+slot/0/left_color = Color( 1, 0, 0, 1 )
+
+[node name="GridContainer" parent="." index="0"]
+margin_bottom = 141.0
+
+[node name="OptionLabel" parent="GridContainer" index="6"]
+visible = false
+margin_right = 77.0
+
+[node name="OptionText" parent="GridContainer" index="7"]
+visible = false
+margin_left = 0.0
+margin_right = 77.0
+
+[node name="MissionReqsLabel" parent="GridContainer" index="8"]
+visible = false
+margin_top = 149.0
+margin_right = 77.0
+margin_bottom = 163.0
+
+[node name="MissionReqs" parent="GridContainer" index="9"]
+visible = false
+margin_left = 81.0
+
+[node name="ScriptLabel" parent="GridContainer" index="10"]
+margin_top = 173.0
+margin_bottom = 187.0

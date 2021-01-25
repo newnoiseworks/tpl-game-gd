@@ -1,5 +1,3 @@
-[gd_resource type="Resource" load_steps=2 format=2]
-
 [hello]
 
 whom="Sakana"
@@ -120,7 +118,7 @@ next="sayHiToSakanaMenu"
 [tomatoesForSakanaFinishMissionScript]
 
 script="finish_mission"
-scriptArgs="tomatoesForSakana,,,tomatoesForSakanaExitFailed,tomatoesForSakanaExitFinished"
+scriptArgs="tomatoesForSakana,true,Sakana,tomatoesForSakanaExitFailed,tomatoesForSakanaExitFinished"
 offsetX=1216.0
 offsetY=-112.0
 
@@ -130,4 +128,3 @@ scriptArgs="tomatoesForSakana"
 offsetX=1216.0
 offsetY=-432.0
 script="start_mission"
-

@@ -141,7 +141,7 @@ window/stretch/shrink="1"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "radial_progress" )
+enabled=PoolStringArray( "nnw.tpl.visual_dialogue_trees", "radial_progress" )
 
 [gui]
 

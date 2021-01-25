@@ -1,0 +1,120 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/nnw.tpl.visual_dialogue_trees/main_screen/Nodes/DialogueNodeController.gd" type="Script" id=1]
+
+[node name="DialogueNode" type="GraphNode"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -197.0
+margin_top = -87.0
+margin_right = 197.0
+margin_bottom = 84.0
+mouse_filter = 1
+title = "Dialogue Node"
+show_close = true
+resizable = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 378.0
+margin_bottom = 193.0
+columns = 2
+
+[node name="KeyLabel" type="Label" parent="GridContainer"]
+margin_top = 5.0
+margin_right = 83.0
+margin_bottom = 19.0
+text = "Dialogue Key"
+
+[node name="Key" type="LineEdit" parent="GridContainer"]
+margin_left = 87.0
+margin_right = 362.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+editable = false
+
+[node name="OptionLabel" type="Label" parent="GridContainer"]
+margin_top = 33.0
+margin_right = 83.0
+margin_bottom = 47.0
+text = "Option Text"
+
+[node name="OptionText" type="LineEdit" parent="GridContainer"]
+margin_left = 87.0
+margin_top = 28.0
+margin_right = 362.0
+margin_bottom = 52.0
+
+[node name="TextLabel" type="Label" parent="GridContainer"]
+margin_top = 56.0
+margin_right = 83.0
+margin_bottom = 121.0
+text = "Text
+
+
+"
+
+[node name="Text" type="TextEdit" parent="GridContainer"]
+margin_left = 87.0
+margin_top = 56.0
+margin_right = 362.0
+margin_bottom = 121.0
+wrap_enabled = true
+
+[node name="CharacterLabel" type="Label" parent="GridContainer"]
+margin_top = 128.0
+margin_right = 83.0
+margin_bottom = 142.0
+text = "Character"
+
+[node name="CharacterChoice" type="OptionButton" parent="GridContainer"]
+margin_left = 87.0
+margin_top = 125.0
+margin_right = 362.0
+margin_bottom = 145.0
+text = "(choose character)"
+
+[node name="MissionReqsLabel" type="Label" parent="GridContainer"]
+margin_top = 152.0
+margin_right = 83.0
+margin_bottom = 166.0
+text = "Prereqs"
+
+[node name="MissionReqs" type="MenuButton" parent="GridContainer"]
+margin_left = 87.0
+margin_top = 149.0
+margin_right = 362.0
+margin_bottom = 169.0
+text = "(choose prerequisite missions)"
+
+[node name="ScriptLabel" type="Label" parent="GridContainer"]
+visible = false
+margin_top = 178.0
+margin_right = 97.0
+margin_bottom = 192.0
+text = "Function Name"
+
+[node name="Script" type="LineEdit" parent="GridContainer"]
+visible = false
+margin_top = 173.0
+margin_right = 148.0
+margin_bottom = 197.0
+size_flags_horizontal = 3
+[connection signal="close_request" from="." to="." method="_on_DialogueNode_close_request"]
+[connection signal="dragged" from="." to="." method="_on_DialogueNode_dragged"]
+[connection signal="text_changed" from="GridContainer/OptionText" to="." method="_on_OptionText_text_changed"]
+[connection signal="text_changed" from="GridContainer/Text" to="." method="_on_Text_text_changed"]
+[connection signal="item_selected" from="GridContainer/CharacterChoice" to="." method="_on_CharacterChoice_item_selected"]

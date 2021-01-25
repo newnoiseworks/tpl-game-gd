@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/nnw.tpl.visual_dialogue_trees/main_screen/MainScreenController.gd" type="Script" id=1]
+
+
+[node name="MainScreen" type="GraphEdit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+right_disconnects = true
+snap_distance = 16
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSplitContainer" type="GridContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -496.0
+margin_top = 6.0
+margin_right = -16.0
+margin_bottom = 30.0
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetButton" type="Button" parent="HSplitContainer"]
+margin_right = 74.0
+margin_bottom = 24.0
+grow_horizontal = 0
+text = "Open File"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveButton" type="Button" parent="HSplitContainer"]
+margin_left = 78.0
+margin_right = 146.0
+margin_bottom = 24.0
+grow_horizontal = 0
+text = "Save File"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddButton" type="MenuButton" parent="HSplitContainer"]
+margin_left = 150.0
+margin_right = 225.0
+margin_bottom = 24.0
+grow_horizontal = 0
+text = "Add Node"
+flat = false
+expand_icon = true
+items = [ "Dialogue", null, 0, false, false, 0, 0, null, "", false, "Script", null, 0, false, false, 1, 0, null, "", false, "MissionEntry", null, 0, false, false, 2, 0, null, "", false, "MissionExit", null, 0, false, false, 3, 0, null, "", false, "MissionExitFailed", null, 0, false, false, 4, 0, null, "", false, "MissionExitFinished", null, 0, false, false, 5, 0, null, "", false, "StartMissionScript", null, 0, false, false, 6, 0, null, "", false, "FinishMissionScript", null, 0, false, false, 7, 0, null, "", false ]
+
+[node name="NewNodeName" type="LineEdit" parent="HSplitContainer"]
+margin_left = 229.0
+margin_right = 480.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "node name or mission key"
+[connection signal="connection_request" from="." to="." method="_on_MainScreen_connection_request"]
+[connection signal="disconnection_request" from="." to="." method="_on_MainScreen_disconnection_request"]
+[connection signal="pressed" from="HSplitContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="text_changed" from="HSplitContainer/NewNodeName" to="." method="_on_NewNodeName_text_changed"]
