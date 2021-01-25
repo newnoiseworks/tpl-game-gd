@@ -1,54 +1,82 @@
-[gd_resource type="Resource" load_steps=2 format=2]
-
 [hello]
-whom = "Baph"
-text = "Wooooahhh there partner. You look... new."
-options = "sayHiToBaphExit"
+
+whom="Baph"
+text="Wooooahhh there partner. You look... new."
+options="sayHiToBaphExit"
+offsetX=-80.0
+offsetY=-160.0
 
 [helloPostHi]
-whom = "Baph"
-text = "Hey there, sup? You need a referesher?"
-options = "whatsCartaPolice, whosYork, pigsOrNo, exit"
+
+whom="Baph"
+text="Hey there, sup? You need a referesher?"
+options="whatsCartaPolice, whosYork, pigsOrNo, exit"
+offsetX=-80.0
+offsetY=112.0
 
 [sayHiToBaphExit]
-whom = "Baph"
-text = "Well looks like I was right! I'm training York on the ways of the Carta Police."
-optionText = "I am new, hey!"
-options = "whatsCartaPolice, whosYork, pigsOrNo, exit"
+
+whom="Baph"
+text="Well looks like I was right! I'm training York on the ways of the Carta Police."
+optionText="I am new, hey!"
+options="whatsCartaPolice, whosYork, pigsOrNo, exit"
+offsetX=352.0
+offsetY=-144.0
 
 [whatsCartaPolice]
-optionText = "The Carta Police?"
-whom = "Baph"
-text = "The Carta Police are the Promised Land's last line of defense against bad faith shenaniganry. We sort out the messes before they get messy!"
-next = "faqReroute"
+
+optionText="The Carta Police?"
+whom="Baph"
+text="The Carta Police are the Promised Land's last line of defense against bad faith shenaniganry. We sort out the messes before they get messy!"
+next="faqReroute"
+offsetX=784.0
+offsetY=-144.0
 
 [whosYork]
-optionText = "Who's York?"
-whom = "Baph"
-text = "York's my trainee!"
-next = "yorkHi"
+
+optionText="Who's York?"
+whom="Baph"
+text="York's my trainee!"
+next="yorkHi"
+offsetX=784.0
+offsetY=128.0
 
 [yorkHi]
-whom = "York"
-text = "Oi!"
-next = "faqReroute"
+
+whom="York"
+text="Oi!"
+next="faqReroute"
+offsetX=1216.0
+offsetY=128.0
 
 [faqReroute]
-whom = "Baph"
-text = "Anything else I can answer for you?"
-options = "whatsCartaPolice, whosYork, pigsOrNo, exit"
+
+whom="Baph"
+text="Anything else I can answer for you?"
+options="whatsCartaPolice, whosYork, pigsOrNo, exit"
+offsetX=1216.0
+offsetY=-144.0
 
 [pigsOrNo]
-whom = "Baph"
-optionText = "Wait... do you lock people up?"
-text = "Oh, god no. We interrogate and disrupt bad faith dialogue before others blindly follow along. That way society doesn't get schnookered by legal charlatans."
-next = "faqReroute"
+
+whom="Baph"
+optionText="Wait... do you lock people up?"
+text="Oh, god no. We interrogate and disrupt bad faith dialogue before others blindly follow along. That way society doesn't get schnookered by legal charlatans."
+next="faqReroute"
+offsetX=784.0
+offsetY=400.0
 
 [exit]
-whom = "Baph"
-optionText = "Thanks!"
-text = "See you around!"
-next = "finishSayHiToBaphIfNeeded"
+
+whom="Baph"
+optionText="Thanks!"
+text="See you around!"
+next="finishSayHiToBaphIfNeeded"
+offsetX=784.0
+offsetY=-416.0
 
 [finishSayHiToBaphIfNeeded]
-script = "say_hi_to_baph_exit"
+
+script="say_hi_to_baph_exit"
+offsetX=1216.0
+offsetY=-336.0
