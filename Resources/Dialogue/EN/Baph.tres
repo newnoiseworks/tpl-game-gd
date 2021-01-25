@@ -71,12 +71,13 @@ offsetY=400.0
 whom="Baph"
 optionText="Thanks!"
 text="See you around!"
-next="finishSayHiToBaphIfNeeded"
 offsetX=784.0
 offsetY=-416.0
+next="sayHiToBaphFinishMissionScript"
 
-[finishSayHiToBaphIfNeeded]
+[sayHiToBaphFinishMissionScript]
 
-script="say_hi_to_baph_exit"
-offsetX=1216.0
-offsetY=-336.0
+script="finish_mission"
+offsetX=1232.0
+offsetY=-384.0
+scriptArgs="sayHiToBaph,,Baph,,,"
