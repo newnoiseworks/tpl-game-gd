@@ -49,9 +49,9 @@ offsetY=288.0
 whom="Violine"
 optionText="Got those stones."
 text="Really?"
-next="finishForageForVio"
 offsetX=944.0
 offsetY=288.0
+next="forageForVioFinishMissionScript"
 
 [forageForVioExitFailed]
 
@@ -67,8 +67,9 @@ text="Thanks! This will really help me out, I appreciate it!"
 offsetX=1392.0
 offsetY=544.0
 
-[finishForageForVio]
+[forageForVioFinishMissionScript]
 
-script="forage_for_vio_exit"
-offsetX=1408.0
+script="finish_mission"
+offsetX=1392.0
 offsetY=288.0
+scriptArgs="forageForVio,true,Violine,forageForVioExitFailed,forageForVioExitFinished,"
