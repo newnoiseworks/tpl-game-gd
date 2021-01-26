@@ -56,41 +56,43 @@ offsetY=272.0
 whom="Gil"
 optionText="So... you like fish?"
 text="Hell yeah I do! Can you get me one?"
-next="startCatchGilAFish"
 offsetX=0.0
 offsetY=-320.0
-
-[startCatchGilAFish]
-
-script="catch_gil_a_fish_entry"
-offsetX=416.0
-offsetY=-320.0
+next="catchGilAFishStartMissionScript"
 
 [catchGilAFishExit]
 
 whom="Gil"
-optionText="Yo dog I got that fishy fish"
+optionText="Hey Gil, here's that Fish"
 text="Really?"
-next="finishCatchGilAFish"
-offsetX=832.0
-offsetY=-320.0
+offsetX=0.0
+offsetY=-592.0
+next="catchGilAFishFinishMissionScript"
 
 [catchGilAFishExitFailed]
 
 whom="Gil"
 text="Hmm... maybe come back when you got that fish!"
-offsetX=1264.0
-offsetY=-496.0
+offsetX=896.0
+offsetY=-528.0
 
 [catchGilAFishExitFinished]
 
 whom="Gil"
 text="Hmm. So it does as told. Interesting, noted."
-offsetX=1760.0
-offsetY=-544.0
+offsetX=896.0
+offsetY=-736.0
 
-[finishCatchGilAFish]
+[catchGilAFishFinishMissionScript]
 
-script="catch_gil_a_fish_exit"
-offsetX=1296.0
-offsetY=-256.0
+script="finish_mission"
+offsetX=448.0
+offsetY=-592.0
+scriptArgs="catchGilAFish,true,Gil,catchGilAFishExitFailed,catchGilAFishExitFinished,"
+
+[catchGilAFishStartMissionScript]
+
+script="start_mission"
+scriptArgs="catchGilAFish"
+offsetX=448.0
+offsetY=-320.0
