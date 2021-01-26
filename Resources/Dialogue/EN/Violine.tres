@@ -16,17 +16,17 @@ offsetY=0.0
 whom="Violine"
 optionText="You need anything?"
 text="Yeah, I don't have enough stones to make a path for my home. Mind if you got me a few?"
-options="forageForVioHow, startForageForVio"
 offsetX=0.0
 offsetY=288.0
+options="forageForVioHow, forageForVioStartUp"
 
 [forageForVioFaq]
 
 whom="Violine"
 text="So you can get those stones?"
-options="forageForVioHow, startForageForVio"
 offsetX=464.0
-offsetY=688.0
+offsetY=816.0
+options="forageForVioHow, forageForVioStartUp"
 
 [forageForVioHow]
 
@@ -35,14 +35,7 @@ optionText="How do I do that?"
 text="Go to your farm and use your pickaxe on rocks."
 next="forageForVioFaq"
 offsetX=464.0
-offsetY=400.0
-
-[startForageForVio]
-
-optionText="Sure thing!"
-script="forage_for_vio_start"
-offsetX=464.0
-offsetY=288.0
+offsetY=528.0
 
 [forageForVioExit]
 
@@ -73,3 +66,19 @@ script="finish_mission"
 offsetX=1392.0
 offsetY=288.0
 scriptArgs="forageForVio,true,Violine,forageForVioExitFailed,forageForVioExitFinished"
+
+[forageForVioStartMissionScript]
+
+script="start_mission"
+scriptArgs="forageForVio"
+offsetX=464.0
+offsetY=176.0
+
+[forageForVioStartUp]
+
+offsetX=464.0
+offsetY=272.0
+optionText="Sure thing"
+whom="Violine"
+text="Appreciate it!"
+next="forageForVioStartMissionScript"
