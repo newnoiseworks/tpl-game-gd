@@ -12,6 +12,7 @@ func _ready():
 
 	if _args[0] == "" && starting_mission_key != "" && starting_mission_key != null:
 		_args.insert(0, starting_mission_key)
+		_update_args()
 
 	reload_inventory_check.pressed = _args[1] == "true"
 
@@ -33,7 +34,7 @@ func _set_args():
 
 
 func _update_args():
-	file.set_value(section, "scriptArgs", PoolStringArray(_args).join(","))
+	file.set_value(section, "scriptArgs", PoolStringArray(_args.slice(0, 4)).join(","))
 
 
 func _on_MissionChooser_item_selected(index: int):

@@ -53,6 +53,9 @@ func _setup_character_list_on_ready():
 
 
 func _setup_mission_prereqs_on_ready():
+	if mission_reqs.get_popup().get_item_count() > 0:
+		return
+
 	var mission_prereqs = []
 	if file.has_section_key(section, "missionPrereqs"):
 		mission_prereqs = file.get_value(section, "missionPrereqs").replace(" ", "").split(",")
