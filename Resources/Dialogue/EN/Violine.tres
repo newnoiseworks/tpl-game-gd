@@ -1,48 +1,74 @@
-[gd_resource type="Resource" load_steps=2 format=2]
-
 [hello]
-whom = "Violine"
-text = "Yeah, I'm Violine. You need some crafts, maybe blueprints? That'd be me!"
-options = "storeScript"
+
+whom="Violine"
+text="Yeah, I'm Violine. You need some crafts, maybe blueprints? That'd be me!"
+options="storeScript"
 
 [storeScript]
-optionText = "So whatchu got"
-script = "violine_store"
+
+optionText="So whatchu got"
+script="violine_store"
+offsetX=464.0
+offsetY=0.0
 
 [forageForVioEntry]
-whom = "Violine"
-optionText = "You need anything?"
-text = "Yeah, I don't have enough stones to make a path for my home. Mind if you got me a few?"
-options = "forageForVioHow, startForageForVio"
+
+whom="Violine"
+optionText="You need anything?"
+text="Yeah, I don't have enough stones to make a path for my home. Mind if you got me a few?"
+options="forageForVioHow, startForageForVio"
+offsetX=0.0
+offsetY=288.0
 
 [forageForVioFaq]
-whom = "Violine"
-text = "So you can get those stones?"
-options = "forageForVioHow, startForageForVio"
+
+whom="Violine"
+text="So you can get those stones?"
+options="forageForVioHow, startForageForVio"
+offsetX=464.0
+offsetY=688.0
 
 [forageForVioHow]
-whom = "Violine"
-optionText = "How do I do that?"
-text = "Go to your farm and use your pickaxe on rocks."
-next = "forageForVioFaq"
+
+whom="Violine"
+optionText="How do I do that?"
+text="Go to your farm and use your pickaxe on rocks."
+next="forageForVioFaq"
+offsetX=464.0
+offsetY=400.0
 
 [startForageForVio]
-optionText = "Sure thing!"
-script = "forage_for_vio_start"
+
+optionText="Sure thing!"
+script="forage_for_vio_start"
+offsetX=464.0
+offsetY=288.0
 
 [forageForVioExit]
-whom = "Violine"
-optionText = "Got those stones."
-text = "Really?"
-next = "finishForageForVio"
+
+whom="Violine"
+optionText="Got those stones."
+text="Really?"
+next="finishForageForVio"
+offsetX=944.0
+offsetY=288.0
 
 [forageForVioExitFailed]
-whom = "Violine"
-text= "I think you need a few more! Come back when you have 'em all."
+
+whom="Violine"
+text="I think you need a few more! Come back when you have 'em all."
+offsetX=944.0
+offsetY=544.0
 
 [forageForVioExitFinished]
-whom = "Violine"
-text = "Thanks! This will really help me out, I appreciate it!"
+
+whom="Violine"
+text="Thanks! This will really help me out, I appreciate it!"
+offsetX=1392.0
+offsetY=544.0
 
 [finishForageForVio]
-script = "forage_for_vio_exit"
+
+script="forage_for_vio_exit"
+offsetX=1408.0
+offsetY=288.0

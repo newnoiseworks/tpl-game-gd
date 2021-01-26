@@ -2,14 +2,13 @@
 
 [ext_resource path="res://addons/nnw.tpl.visual_dialogue_trees/main_screen/Nodes/DialogueNode.tscn" type="PackedScene" id=1]
 
-
 [node name="DialogueNode" instance=ExtResource( 1 )]
-margin_bottom = -29.0
+margin_bottom = -5.0
 title = "Script Node"
 slot/0/right_enabled = false
 
 [node name="GridContainer" parent="." index="0"]
-margin_bottom = 48.0
+margin_bottom = 76.0
 
 [node name="KeyLabel" parent="GridContainer" index="0"]
 visible = false
@@ -19,26 +18,32 @@ margin_bottom = 14.0
 [node name="Key" parent="GridContainer" index="1"]
 visible = false
 
-[node name="TextLabel" parent="GridContainer" index="2"]
+[node name="OptionLabel" parent="GridContainer" index="2"]
+margin_top = 5.0
+margin_right = 97.0
+margin_bottom = 19.0
+
+[node name="OptionText" parent="GridContainer" index="3"]
+margin_left = 101.0
+margin_top = 0.0
+margin_bottom = 24.0
+
+[node name="TextLabel" parent="GridContainer" index="4"]
+visible = false
+margin_left = 101.0
+margin_top = 0.0
+margin_right = 362.0
+margin_bottom = 65.0
+
+[node name="Text" parent="GridContainer" index="5"]
 visible = false
 
-[node name="Text" parent="GridContainer" index="3"]
-visible = false
-
-[node name="CharacterLabel" parent="GridContainer" index="4"]
+[node name="CharacterLabel" parent="GridContainer" index="6"]
 visible = false
 margin_top = 97.0
 margin_bottom = 111.0
 
-[node name="CharacterChoice" parent="GridContainer" index="5"]
-visible = false
-
-[node name="OptionLabel" parent="GridContainer" index="6"]
-visible = false
-margin_top = 121.0
-margin_bottom = 135.0
-
-[node name="OptionText" parent="GridContainer" index="7"]
+[node name="CharacterChoice" parent="GridContainer" index="7"]
 visible = false
 
 [node name="MissionReqsLabel" parent="GridContainer" index="8"]
@@ -51,13 +56,13 @@ visible = false
 
 [node name="ScriptLabel" parent="GridContainer" index="10"]
 visible = true
-margin_top = 5.0
-margin_bottom = 19.0
+margin_top = 33.0
+margin_bottom = 47.0
 
 [node name="Script" parent="GridContainer" index="11"]
 visible = true
 margin_left = 101.0
-margin_top = 0.0
+margin_top = 28.0
 margin_right = 362.0
-margin_bottom = 24.0
+margin_bottom = 52.0
 [connection signal="text_changed" from="GridContainer/Script" to="." method="_on_Script_text_changed"]

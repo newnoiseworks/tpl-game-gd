@@ -1,95 +1,144 @@
-[gd_resource type="Resource" load_steps=2 format=2]
-
 [hello]
-whom = "JKJZ"
-text = "Yo. Remember that time we met? Crazy."
-options = "learnEconNoMission"
+
+whom="JKJZ"
+text="Yo. Remember that time we met? Crazy."
+options="learnEconNoMission"
+offsetX=-48.0
+offsetY=-176.0
 
 [learnEconNoMission]
-whom = "JKJZ"
-optionText = "Can we go over money and stuff again?"
-text = "Sure thing - money's a lie and you shouldn't believe it!"
-missionPrereqs = "learnEconFromJKJZ"
-next = "learnEconFromJKJZMenu"
+
+whom="JKJZ"
+optionText="Can we go over money and stuff again?"
+text="Sure thing - money's a lie and you shouldn't believe it!"
+missionPrereqs="learnEconFromJKJZ"
+next="learnEconFromJKJZMenu"
+offsetX=-48.0
+offsetY=96.0
 
 [learnEconFromJKJZExit]
-whom = "JKJZ"
-optionText = "So uhm... teach me economics?"
-text = "Economics? What? Huh? Them's just lies."
-options = "learnEconFromJKJZUhm, learnEconFromJKJZHowMoney"
+
+whom="JKJZ"
+optionText="So uhm... teach me economics?"
+text="Economics? What? Huh? Them's just lies."
+options="learnEconFromJKJZUhm, learnEconFromJKJZHowMoney"
+offsetX=-48.0
+offsetY=-416.0
 
 [learnEconFromJKJZUhm]
-whom = "JKJZ"
-optionText = "Uhm..."
-text = "What you want to know about is the two types of [b]coins[/b] and how they work with [b]stuff[/b]."
-next = "learnEconFromJKJZHowMoney"
+
+whom="JKJZ"
+optionText="Uhm..."
+text="What you want to know about is the two types of [b]coins[/b] and how they work with [b]stuff[/b]."
+next="learnEconFromJKJZHowMoney"
+offsetX=400.0
+offsetY=-416.0
 
 [learnEconFromJKJZHowMoney]
-whom = "JKJZ"
-optionText = "How do the two coin types work?"
-text = "So, there are two types: [b]silver coins[/b] and [b]gold surplus coins[/b]. The silver help you make stuff that we all need; make [b]over 100[/b] silver coins and you'll trigger a surplus -- all [b]silver coin[/b] transactions will now become [b]gold surplus coins[/b]."
-next = "learnEconFromJKJZMenu"
+
+whom="JKJZ"
+optionText="How do the two coin types work?"
+text="So, there are two types: [b]silver coins[/b] and [b]gold surplus coins[/b]. The silver help you make stuff that we all need; make [b]over 100[/b] silver coins and you'll trigger a surplus -- all [b]silver coin[/b] transactions will now become [b]gold surplus coins[/b]."
+next="learnEconFromJKJZMenu"
+offsetX=400.0
+offsetY=-144.0
 
 [learnEconFromJKJZMenu]
-whom = "JKJZ"
-text = "Anything else?"
-options = "learnEconFromJKJZThanks, learnEconFromJKJZHowMoney, learnEconFromJKJZSurplus, learnEconFromJKJZCoinDifference, learnEconFromJKJZHowAreThingsPriced"
+
+whom="JKJZ"
+text="Anything else?"
+options="learnEconFromJKJZThanks, learnEconFromJKJZHowMoney, learnEconFromJKJZSurplus, learnEconFromJKJZCoinDifference, learnEconFromJKJZHowAreThingsPriced"
+offsetX=400.0
+offsetY=128.0
 
 [learnEconFromJKJZSurplus]
-whom = "JKJZ"
-optionText = "Surplus?"
-text = "Well, if you got 100 [b]silver coins[/b], it's assumed you've done something to keep the basics of society going, so any further output you produce is thus a [b]surplus[/b], and all further transactions will be in [b]gold surplus coins[b]."
-next = "learnEconFromJKJZMenu"
+
+whom="JKJZ"
+optionText="Surplus?"
+text="Well, if you got 100 [b]silver coins[/b], it's assumed you've done something to keep the basics of society going, so any further output you produce is thus a [b]surplus[/b], and all further transactions will be in [b]gold surplus coins[b]."
+next="learnEconFromJKJZMenu"
+offsetX=848.0
+offsetY=-144.0
 
 [learnEconFromJKJZCoinDifference]
-whom = "JKJZ"
-optionText = "What's the difference between coins?"
-text = "The [b]silver coins[/b] are for necessities that need to be produced, like food. You get 5 every morning, in case you get stuck. The [b]gold surplus coins[/b] are for other goods."
-next = "learnEconFromJKJZMenu"
+
+whom="JKJZ"
+optionText="What's the difference between coins?"
+text="The [b]silver coins[/b] are for necessities that need to be produced, like food. You get 5 every morning, in case you get stuck. The [b]gold surplus coins[/b] are for other goods."
+next="learnEconFromJKJZMenu"
+offsetX=848.0
+offsetY=128.0
 
 [learnEconFromJKJZHowAreThingsPriced]
-whom = "JKJZ"
-optionText = "How are things priced?"
-text = "All the necessities are voted on and regulated via [b]the source[/b], the surplus stuff is up to you humans. Personally I don't see why you do the coin thing. It's weird to me. But anyway, if you wanna know more about that stuff, ask ComputerHaus over here."
-next = "learnEconFromJKJZMenu"
+
+whom="JKJZ"
+optionText="How are things priced?"
+text="All the necessities are voted on and regulated via [b]the source[/b], the surplus stuff is up to you humans. Personally I don't see why you do the coin thing. It's weird to me. But anyway, if you wanna know more about that stuff, ask ComputerHaus over here."
+next="learnEconFromJKJZMenu"
+offsetX=848.0
+offsetY=400.0
 
 [learnEconFromJKJZThanks]
-whom = "JKJZ"
-optionText = "Thanks"
-text = "No problemo, next up meet [b]ComputerHaus[/b] over to my right here and buy some seeds from them so you can get to [b]farming[/b]. Later!"
-next = "finishLearnEconFromJKJZ"
+
+whom="JKJZ"
+optionText="Thanks"
+text="No problemo, next up meet [b]ComputerHaus[/b] over to my right here and buy some seeds from them so you can get to [b]farming[/b]. Later!"
+next="finishLearnEconFromJKJZ"
+offsetX=848.0
+offsetY=-416.0
 
 [finishLearnEconFromJKJZ]
-script = "learn_econ_from_JKJZ_exit"
+
+script="learn_econ_from_JKJZ_exit"
+offsetX=1296.0
+offsetY=-416.0
 
 [introJKJZ]
-whom = "JKJZ"
-text = "\"You landed on what looks to be a utopian, futuristic, ultra chill farm area, with no recollection of how you got there, or why\""
-options = "introWhat"
+
+whom="JKJZ"
+text="\"You landed on what looks to be a utopian, futuristic, ultra chill farm area, with no recollection of how you got there, or why\""
+options="introWhat"
+offsetX=-48.0
+offsetY=-704.0
 
 [introWhat]
-optionText = "What?"
-whom = "JKJZ"
-text = "Oh, you heard that? Sorry. Anyway, welcome to your new farm!"
-options = "isTheHouseFree, howDidIGetHere, introFinish"
+
+optionText="What?"
+whom="JKJZ"
+text="Oh, you heard that? Sorry. Anyway, welcome to your new farm!"
+options="isTheHouseFree, howDidIGetHere, introFinish"
+offsetX=400.0
+offsetY=-704.0
 
 [isTheHouseFree]
-whom = "JKJZ"
-optionText = "Wait, is this free? Do I owe?"
-text = "Huh? What? Where else would you live? Don't be weird."
-options = "howDidIGetHere, introFinish"
+
+whom="JKJZ"
+optionText="Wait, is this free? Do I owe?"
+text="Huh? What? Where else would you live? Don't be weird."
+options="howDidIGetHere, introFinish"
+offsetX=848.0
+offsetY=-1248.0
 
 [howDidIGetHere]
-whom = "JKJZ"
-optionText = "How did I get here?"
-text = "Look buddy, you show up, and I'm here. Then, the days go by, something about water - that's all I know."
-options = "isTheHouseFree, introFinish"
+
+whom="JKJZ"
+optionText="How did I get here?"
+text="Look buddy, you show up, and I'm here. Then, the days go by, something about water - that's all I know."
+options="isTheHouseFree, introFinish"
+offsetX=848.0
+offsetY=-976.0
 
 [introFinish]
-whom = "JKJZ"
-optionText = "Let's head to town."
-text = "Cool; you go ahead and say hi to [b]Sakana[/b] and [b]Baph[/b]. Then when you're ready meet me in the center of town. I can explain economics to you then!"
-next = "introExit"
 
-[introExit]
-script = "intro_jkjz_finish"
+whom="JKJZ"
+optionText="Let's head to town."
+text="Cool; you go ahead and say hi to [b]Sakana[/b] and [b]Baph[/b]. Then when you're ready meet me in the center of town. I can explain economics to you then!"
+offsetX=848.0
+offsetY=-704.0
+next="introJKJZScriptOut"
+
+[introJKJZScriptOut]
+
+offsetX=1296.0
+offsetY=-704.0
+script="intro_jkjz_finish"
