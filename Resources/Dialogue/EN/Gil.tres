@@ -1,63 +1,96 @@
-[gd_resource type="Resource" load_steps=2 format=2]
-
 [hello]
-whom = "Gil"
-text = "Gil Bates' the name, taking other people's work and selling it under my name's my game."
-options = "sucks"
+
+whom="Gil"
+text="Gil Bates' the name, taking other people's work and selling it under my name's my game."
+options="sucks"
 
 [sucks]
-optionText = "Wow that kind of sucks"
-whom = "Gil"
-text = "Well, not for me. And if I try really hard to forget other people exist, it's even better!"
-options = "sick"
+
+optionText="Wow that kind of sucks"
+whom="Gil"
+text="Well, not for me. And if I try really hard to forget other people exist, it's even better!"
+options="sick"
+offsetX=416.0
+offsetY=0.0
 
 [sick]
-optionText = "How does society not fall apart cause of you?"
-whom = "Baph"
-text = "It's cause I'm watching you Gil!"
-next = "cancel"
+
+optionText="How does society not fall apart cause of you?"
+whom="Baph"
+text="It's cause I'm watching you Gil!"
+next="cancel"
+offsetX=832.0
+offsetY=0.0
 
 [cancel]
-whom = "Gil"
-text = "Oh no!! I'm being cancelled!"
-next = "shutup"
+
+whom="Gil"
+text="Oh no!! I'm being cancelled!"
+next="shutup"
 
 [shutup]
-whom = "York"
-text = "Shut up Gil, you're just getting yelled at, you're still here... and so are we!"
-next = "nods"
+
+whom="York"
+text="Shut up Gil, you're just getting yelled at, you're still here... and so are we!"
+next="nods"
+offsetX=0.0
+offsetY=272.0
 
 [nods]
-whom = "Baph"
-text = "*nods approvingly*"
-next = "sigh"
+
+whom="Baph"
+text="*nods approvingly*"
+next="sigh"
+offsetX=416.0
+offsetY=272.0
 
 [sigh]
-whom = "Gil"
-text = "Sigh... I'd get away with a whole lot more if it weren't for those meddling Carta Police and this ungrateful community..."
+
+whom="Gil"
+text="Sigh... I'd get away with a whole lot more if it weren't for those meddling Carta Police and this ungrateful community..."
+offsetX=832.0
+offsetY=272.0
 
 [catchGilAFishEntry]
-whom = "Gil"
-optionText = "So... you like fish?"
-text = "Hell yeah I do! Can you get me one?"
-next = "startCatchGilAFish"
+
+whom="Gil"
+optionText="So... you like fish?"
+text="Hell yeah I do! Can you get me one?"
+next="startCatchGilAFish"
+offsetX=0.0
+offsetY=-320.0
 
 [startCatchGilAFish]
-script = "catch_gil_a_fish_entry"
+
+script="catch_gil_a_fish_entry"
+offsetX=416.0
+offsetY=-320.0
 
 [catchGilAFishExit]
-whom = "Gil"
-optionText = "Yo dog I got that fishy fish"
-text = "Really?"
-next = "finishCatchGilAFish"
+
+whom="Gil"
+optionText="Yo dog I got that fishy fish"
+text="Really?"
+next="finishCatchGilAFish"
+offsetX=832.0
+offsetY=-320.0
 
 [catchGilAFishExitFailed]
-whom = "Gil"
-text= "Hmm... maybe come back when you got that fish!"
+
+whom="Gil"
+text="Hmm... maybe come back when you got that fish!"
+offsetX=1264.0
+offsetY=-496.0
 
 [catchGilAFishExitFinished]
-whom = "Gil"
-text = "Hmm. So it does as told. Interesting, noted."
+
+whom="Gil"
+text="Hmm. So it does as told. Interesting, noted."
+offsetX=1760.0
+offsetY=-544.0
 
 [finishCatchGilAFish]
-script = "catch_gil_a_fish_exit"
+
+script="catch_gil_a_fish_exit"
+offsetX=1296.0
+offsetY=-256.0
