@@ -1,53 +1,83 @@
-[gd_resource type="Resource" load_steps=2 format=2]
-
 [hello]
-whom = "York"
-text = "Oi boy, I'm York. Baph's training me to be the best Carta Cop around!"
-next = "baphIsBest"
+
+whom="York"
+text="Oi boy, I'm York. Baph's training me to be the best Carta Cop around!"
+next="baphIsBest"
 
 [baphIsBest]
-whom = "Baph"
-text = "... second best."
-next = "yorkCorrects"
+
+whom="Baph"
+text="... second best."
+next="yorkCorrects"
+offsetX=416.0
+offsetY=0.0
 
 [yorkCorrects]
-whom = "York"
-text = "Oh! Right!"
-options = "goodbye"
+
+whom="York"
+text="Oh! Right!"
+options="goodbye"
+offsetX=832.0
+offsetY=0.0
 
 [pickupYorksHeartsEntry]
-whom = "York"
-optionText = "So, what's up?"
-text = "Oh no! I lost my heart!"
-options = "yorkHeartResponse"
+
+whom="York"
+optionText="So, what's up?"
+text="Oh no! I lost my heart!"
+options="yorkHeartResponse"
+offsetX=0.0
+offsetY=320.0
 
 [yorkHeartResponse]
-whom = "York"
-optionText = "Bummer... we've all been there"
-text = "What? No not that heart. My red heart emojis! They're scattered across town! I lost five of them -- do you think you could try and find them?"
-next = "startPickupYorksHearts"
+
+whom="York"
+optionText="Bummer... we've all been there"
+text="What? No not that heart. My red heart emojis! They're scattered across town! I lost five of them -- do you think you could try and find them?"
+next="startPickupYorksHearts"
+offsetX=432.0
+offsetY=320.0
 
 [startPickupYorksHearts]
-script = "pickup_yorks_hearts_entry"
+
+script="pickup_yorks_hearts_entry"
+offsetX=864.0
+offsetY=320.0
 
 [pickupYorksHeartsExit]
-whom = "York"
-optionText = "Got those hearts you lost"
-text = "Let's see..."
-next = "finishPickupYorksHearts"
 
-[finishPickupYorksHearts]
-script = "pickup_yorks_hearts_exit"
+whom="York"
+optionText="Got those hearts you lost"
+text="Let's see..."
+offsetX=0.0
+offsetY=608.0
+next="pickupYorksHeartsFinishMissionScript"
 
 [pickupYorksHeartsExitFailed]
-whom = "York"
-text = "Hmmm... count seems low here..."
+
+whom="York"
+text="Hmmm... count seems low here..."
+offsetX=448.0
+offsetY=816.0
 
 [pickupYorksHeartsExitFinished]
-whom = "York"
-text = "Phew! Always better when your hearts are in the right place, yeah?"
+
+whom="York"
+text="Phew! Always better when your hearts are in the right place, yeah?"
+offsetX=864.0
+offsetY=608.0
 
 [goodbye]
-whom = "York"
-optionText = "Later!"
-text = "Peace"
+
+whom="York"
+optionText="Later!"
+text="Peace"
+offsetX=1248.0
+offsetY=0.0
+
+[pickupYorksHeartsFinishMissionScript]
+
+script="finish_mission"
+offsetX=432.0
+offsetY=608.0
+scriptArgs="pickupYorksHearts,true,York,pickupYorksHeartsExitFailed,pickupYorksHeartsExitFinished,"
