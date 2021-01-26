@@ -72,4 +72,4 @@ offsetY=544.0
 script="finish_mission"
 offsetX=1392.0
 offsetY=288.0
-scriptArgs="forageForVio,true,Violine,forageForVioExitFailed,forageForVioExitFinished,"
+scriptArgs="forageForVio,true,Violine,forageForVioExitFailed,forageForVioExitFinished"

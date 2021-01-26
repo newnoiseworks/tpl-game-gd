@@ -89,7 +89,7 @@ optionText="Cool, thanks!"
 text="See you around!"
 offsetX=2160.0
 offsetY=176.0
-next="finishSayHiToSakana"
+next="sayHiToSakanaFinishMissionScript"
 
 [sayHiToSakanaSurplus]
 
@@ -99,12 +99,6 @@ text="Talk to JKJZ to find out more about that kind of stuff. Not really my bag!
 offsetX=2160.0
 offsetY=-128.0
 next="sayHiToSakanaMenu"
-
-[finishSayHiToSakana]
-
-script="say_hi_to_sakana_exit"
-offsetX=2624.0
-offsetY=176.0
 
 [helloSakanaAy]
 
@@ -128,3 +122,10 @@ scriptArgs="tomatoesForSakana"
 offsetX=1216.0
 offsetY=-432.0
 script="start_mission"
+
+[sayHiToSakanaFinishMissionScript]
+
+script="finish_mission"
+scriptArgs="sayHiToSakana,,,,"
+offsetX=2624.0
+offsetY=176.0

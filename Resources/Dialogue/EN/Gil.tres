@@ -88,7 +88,7 @@ offsetY=-736.0
 script="finish_mission"
 offsetX=448.0
 offsetY=-592.0
-scriptArgs="catchGilAFish,true,Gil,catchGilAFishExitFailed,catchGilAFishExitFinished,"
+scriptArgs="catchGilAFish,true,Gil,catchGilAFishExitFailed,catchGilAFishExitFinished"
 
 [catchGilAFishStartMissionScript]
 

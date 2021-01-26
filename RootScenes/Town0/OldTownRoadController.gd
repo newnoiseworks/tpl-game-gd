@@ -38,18 +38,8 @@ func _ready():
 	RealmEvent.connect("realm_join", self, "realm_join_event_response")
 	RealmEvent.connect("change_dungeon", self, "change_dungeon_event_response")
 
-	TPLG.dialogue.add_dialogue_script("tomatoes_for_sakana_entry", self)
-	TPLG.dialogue.add_dialogue_script("tomatoes_for_sakana_exit", self)
 	TPLG.dialogue.add_dialogue_script("pickup_yorks_hearts_entry", self)
-	TPLG.dialogue.add_dialogue_script("pickup_yorks_hearts_exit", self)
-	TPLG.dialogue.add_dialogue_script("say_hi_to_sakana_exit", self)
-	TPLG.dialogue.add_dialogue_script("say_hi_to_baph_exit", self)
-	TPLG.dialogue.add_dialogue_script("catch_gil_a_fish_exit", self)
-	TPLG.dialogue.add_dialogue_script("catch_gil_a_fish_entry", self)
-	TPLG.dialogue.add_dialogue_script("forage_for_vio_start", self)
-	TPLG.dialogue.add_dialogue_script("forage_for_vio_exit", self)
 	TPLG.dialogue.add_dialogue_script("learn_econ_from_JKJZ_exit", self)
-	TPLG.dialogue.add_dialogue_script("meet_computer_haus_exit", self)
 
 	finish_intro_mission_as_needed()
 
@@ -62,47 +52,13 @@ func _exit_tree():
 	RealmEvent.disconnect("realm_join", self, "realm_join_event_response")
 	RealmEvent.disconnect("change_dungeon", self, "change_dungeon_event_response")
 
-	TPLG.dialogue.remove_dialogue_script("tomatoes_for_sakana_entry")
-	TPLG.dialogue.remove_dialogue_script("tomatoes_for_sakana_exit")
 	TPLG.dialogue.remove_dialogue_script("pickup_yorks_hearts_entry")
-	TPLG.dialogue.remove_dialogue_script("pickup_yorks_hearts_exit")
-	TPLG.dialogue.remove_dialogue_script("say_hi_to_sakana_exit")
-	TPLG.dialogue.remove_dialogue_script("say_hi_to_baph_exit")
-	TPLG.dialogue.remove_dialogue_script("catch_gil_a_fish_exit")
-	TPLG.dialogue.remove_dialogue_script("catch_gil_a_fish_entry")
-	TPLG.dialogue.remove_dialogue_script("forage_for_vio_start")
-	TPLG.dialogue.remove_dialogue_script("forage_for_vio_exit")
 	TPLG.dialogue.remove_dialogue_script("learn_econ_from_JKJZ_exit")
-	TPLG.dialogue.remove_dialogue_script("meet_computer_haus_exit")
 
 
 func baph_setup():
 	if ! "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
 		find_node("Baph").dialogue_section = "helloPostHi"
-
-
-func catch_gil_a_fish_entry():
-	_start_mission("catchGilAFish")
-
-
-func catch_gil_a_fish_exit():
-	yield(_finish_mission("catchGilAFish", true, "Gil"), "completed")
-
-
-func forage_for_vio_start():
-	_start_mission("forageForVio")
-
-
-func forage_for_vio_exit():
-	yield(_finish_mission("forageForVio", true, "Violine"), "completed")
-
-
-func tomatoes_for_sakana_entry():
-	_start_mission("tomatoesForSakana")
-
-
-func tomatoes_for_sakana_exit():
-	yield(_finish_mission("tomatoesForSakana", true, "Sakana"), "completed")
 
 
 func pickup_yorks_hearts_entry():
@@ -111,32 +67,10 @@ func pickup_yorks_hearts_entry():
 	mission_launcher_node.call_deferred("add_child", pickup_scene.instance())
 
 
-func pickup_yorks_hearts_exit():
-	yield(_finish_mission("pickupYorksHearts", true, "York"), "completed")
-
-
-func say_hi_to_sakana_exit():
-	yield(_finish_mission("sayHiToSakana", false, "Sakana"), "completed")
-
-
-func say_hi_to_baph_exit():
-	if "sayHiToBaph" in TPLG.ui.mission_list.get_current_mission_keys():
-		yield(_finish_mission("sayHiToBaph", false, "Baph"), "completed")
-	else:
-		yield()
-
-
 func learn_econ_from_JKJZ_exit():
 	if "learnEconFromJKJZ" in TPLG.ui.mission_list.get_current_mission_keys():
 		yield(_finish_mission("learnEconFromJKJZ"), "completed")
 		yield(_start_mission("meetComputerHaus"), "completed")
-	else:
-		yield()
-
-
-func meet_computer_haus_exit():
-	if "meetComputerHaus" in TPLG.ui.mission_list.get_current_mission_keys():
-		yield(_finish_mission("meetComputerHaus"), "completed")
 	else:
 		yield()
 

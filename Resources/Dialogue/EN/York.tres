@@ -80,4 +80,4 @@ offsetY=0.0
 script="finish_mission"
 offsetX=432.0
 offsetY=608.0
-scriptArgs="pickupYorksHearts,true,York,pickupYorksHeartsExitFailed,pickupYorksHeartsExitFinished,"
+scriptArgs="pickupYorksHearts,true,York,pickupYorksHeartsExitFailed,pickupYorksHeartsExitFinished"

@@ -199,4 +199,4 @@ offsetY=-592.0
 script="finish_mission"
 offsetX=2080.0
 offsetY=-880.0
-scriptArgs="meetComputerHaus,,ComputerHaus,,,"
+scriptArgs="meetComputerHaus,,ComputerHaus,,"
