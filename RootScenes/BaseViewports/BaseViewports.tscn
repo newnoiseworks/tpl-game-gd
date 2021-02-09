@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://RootScenes/BaseViewports/BaseViewportsController.gd" type="Script" id=1]
 [ext_resource path="res://RootScenes/Authentication/Authentication.tscn" type="PackedScene" id=2]
+[ext_resource path="res://RootScenes/BaseViewports/Weather.tscn" type="PackedScene" id=3]
 
 [node name="BaseViewports" type="Control"]
 anchor_right = 1.0
@@ -31,6 +32,25 @@ audio_listener_enable_2d = true
 physics_object_picking = true
 
 [node name="Authentication" parent="GameViewportContainer/GameViewport" instance=ExtResource( 2 )]
+
+[node name="WeatherViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeatherViewport" type="Viewport" parent="WeatherViewportContainer"]
+size = Vector2( 1280, 720 )
+transparent_bg = true
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+
+[node name="Weather" parent="WeatherViewportContainer/WeatherViewport" instance=ExtResource( 3 )]
 
 [node name="UIViewportContainer" type="ViewportContainer" parent="."]
 anchor_left = 0.00295296

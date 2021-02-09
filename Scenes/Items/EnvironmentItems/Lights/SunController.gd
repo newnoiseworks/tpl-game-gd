@@ -7,9 +7,12 @@ onready var timer: Timer = Timer.new()
 onready var sun: Light2D = find_node("Sun")
 onready var night_sky: CanvasModulate = find_node("NightSky")
 
+var is_raining: bool = false
+
 
 func _ready():
 	show()
+	TPLG.sky = self
 	timer.wait_time = 1
 	timer.connect("timeout", self, "process_atmosphere")
 	timer.autostart = true
@@ -21,6 +24,10 @@ func _ready():
 
 func _exit_tree():
 	timer.stop()
+
+
+func set_raining(_is_raining: bool = true):
+	is_raining = _is_raining
 
 
 func process_atmosphere():
@@ -86,5 +93,9 @@ func position_sun():
 
 	var energy_of_sun = abs(percentage_of_sun_path_complete - 0.5) + .75
 
-	sun.energy = energy_of_sun
+	if is_raining:
+		sun.energy = .25
+	else:
+		sun.energy = energy_of_sun
+
 	path_follow.unit_offset = percentage_of_sun_path_complete

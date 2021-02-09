@@ -26,6 +26,8 @@ var wallet
 
 var reatomizer
 
+var sky
+
 var ui_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/UI.tscn")
 
 onready var rng = RandomNumberGenerator.new()
@@ -35,6 +37,10 @@ func set_ui_scene():
 	get_node("/root/BaseViewports/UIViewportContainer/UIViewport").call_deferred(
 		"add_child", ui_scene.instance()
 	)
+
+
+func set_sky(_sky):
+	sky = _sky
 
 
 func set_reatomizer(_reatomizer):
