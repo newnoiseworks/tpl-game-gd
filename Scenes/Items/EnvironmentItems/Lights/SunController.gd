@@ -9,10 +9,12 @@ onready var night_sky: CanvasModulate = find_node("NightSky")
 
 var is_raining: bool = false
 
+var sun_intensity_variability: float = 1
+
 
 func _ready():
 	show()
-	TPLG.sky = self
+	TPLG.set_sky(self)
 	timer.wait_time = 1
 	timer.connect("timeout", self, "process_atmosphere")
 	timer.autostart = true
@@ -97,5 +99,7 @@ func position_sun():
 		sun.energy = .25
 	else:
 		sun.energy = energy_of_sun
+
+	sun.energy = sun.energy * sun_intensity_variability
 
 	path_follow.unit_offset = percentage_of_sun_path_complete
