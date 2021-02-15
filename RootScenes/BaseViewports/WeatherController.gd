@@ -4,7 +4,7 @@ onready var rain_particles: CPUParticles2D = $RainParticles
 onready var cloud_particles: CPUParticles2D = $CloudParticles
 
 const rain_particles_base_amount: int = 1800
-const cloud_particles_base_amount: int = 15
+const cloud_particles_base_amount: int = 6
 
 var sky
 var data: Dictionary
@@ -21,7 +21,6 @@ func _ready():
 
 
 func _exit_tree():
-	print("exitr?")
 	RealmEvent.disconnect("weather_change", self, "_handle_server_weather_change")
 
 
@@ -70,7 +69,7 @@ func _setup_rain_particles():
 		OS.window_size.x, rain_particles.emission_rect_extents.y
 	)
 
-	rain_particles.amount = int(
+	var new_amount = int(
 		clamp(
 			(
 				(rain_particles_base_amount * rain_particles_adjustment_percentage)
@@ -82,6 +81,9 @@ func _setup_rain_particles():
 		)
 	)
 
+	if rain_particles.amount != new_amount:
+		rain_particles.amount = new_amount
+
 
 func _setup_cloud_particles():
 	cloud_particles.emission_rect_extents = Vector2(
@@ -90,7 +92,7 @@ func _setup_cloud_particles():
 
 	cloud_particles.position = Vector2(cloud_particles.position.x, OS.window_size.y / 2)
 
-	cloud_particles.amount = int(
+	var new_amount = int(
 		clamp(
 			(
 				(cloud_particles_base_amount * cloud_particles_adjustment_percentage)
@@ -101,6 +103,9 @@ func _setup_cloud_particles():
 			INF
 		)
 	)
+
+	if cloud_particles.amount != new_amount:
+		cloud_particles.amount = new_amount
 
 	_parallax_cloud_position()
 

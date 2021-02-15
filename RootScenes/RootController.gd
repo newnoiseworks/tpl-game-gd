@@ -25,6 +25,7 @@ func _ready():
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("finish_mission")
 	TPLG.dialogue.remove_dialogue_script("start_mission")
+	get_tree().root.disconnect("size_changed", self, "on_window_resize")
 
 
 # TODO: consider moving the mission stuff into an isolated node, perhaps the mission_launcher_node itself
