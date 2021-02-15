@@ -87,6 +87,12 @@ func _realm_join_event_response(msg: String, _presence):
 	user_id_to_dungeon_map = args.dungeonMap
 	user_id_to_username_map = args.usernameMap
 
+	TPLG.weather.data = args.weather
+
+	print_debug(JSON.print(TPLG.weather.data))
+
+	TPLG.weather.execute_weather_change()
+
 	plot_map = args.plotMap
 	user_ids = []
 

@@ -1,13 +1,17 @@
 extends Node
 
-enum { REALM_JOIN = 0, CHANGE_DUNGEON = 1, WALLET_UPDATE = 2 }
+enum { REALM_JOIN = 0, CHANGE_DUNGEON = 1, WALLET_UPDATE = 2, WEATHER_CHANGE = 3 }
 
 signal realm_join(state, presence)
 signal change_dungeon(state, presence)
 signal wallet_update(state, presence)
+signal weather_change(state, presence)
 
 var signal_map = {
-	REALM_JOIN: "realm_join", CHANGE_DUNGEON: "change_dungeon", WALLET_UPDATE: "wallet_update"
+	REALM_JOIN: "realm_join",
+	CHANGE_DUNGEON: "change_dungeon",
+	WALLET_UPDATE: "wallet_update",
+	WEATHER_CHANGE: "weather_change"
 }
 
 
@@ -25,6 +29,10 @@ func handle_match_state_update(state: NakamaRTAPI.MatchData):
 		WALLET_UPDATE:
 			emit_signal(
 				"wallet_update", state.data, state.presence if state.presence != null else {}
+			)
+		WEATHER_CHANGE:
+			emit_signal(
+				"weather_change", state.data, state.presence if state.presence != null else {}
 			)
 
 

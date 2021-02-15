@@ -26,7 +26,7 @@ var wallet
 
 var reatomizer
 
-var sky
+var weather
 
 var ui_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/UI.tscn")
 
@@ -40,7 +40,12 @@ func set_ui_scene():
 
 
 func set_sky(_sky):
-	sky = _sky
+	weather.sky = _sky
+	TPLG.weather.execute_weather_change()
+
+
+func set_weather(_weather):
+	weather = _weather
 
 
 func set_reatomizer(_reatomizer):
