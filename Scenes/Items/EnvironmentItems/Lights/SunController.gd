@@ -93,10 +93,10 @@ func position_sun():
 		(percentage_of_day_complete - 0.25) / (0.83 - 0.25), 0, 0.99
 	)
 
-	var energy_of_sun = abs(percentage_of_sun_path_complete - 0.5) + .75
+	var energy_of_sun = abs(percentage_of_sun_path_complete - 0.5) + 1.25
 
 	if is_raining:
-		sun.energy = .25
+		sun.energy = .5
 	else:
 		sun.energy = energy_of_sun
 
