@@ -4,7 +4,7 @@ onready var rain_particles: CPUParticles2D = $RainParticles
 onready var cloud_particles: CPUParticles2D = $CloudParticles
 
 const rain_particles_base_amount: int = 1800
-const cloud_particles_base_amount: int = 25
+const cloud_particles_base_amount: int = 15
 
 var sky
 var data: Dictionary
@@ -38,7 +38,7 @@ func _handle_server_weather_change(state, _presence):
 
 
 func execute_weather_change():
-	if sky == null:
+	if sky == null || ! data.has("cloudLevel"):
 		return
 
 	cloud_particles_adjustment_percentage = data.cloudLevel
