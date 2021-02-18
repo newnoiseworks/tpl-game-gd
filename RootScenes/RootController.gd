@@ -89,6 +89,16 @@ func _exit_tree():
 func no_children():
 	return get_child_count() == 0
 
+func _add_player_to_scene():
+	Player.position = player_entry_node.position
+	Player.name = SessionManager.session.user_id
+	Player.user_id = SessionManager.session.user_id
+	environment_items.call_deferred("add_child", Player)
+	Player.restrict_camera_to_tile_map(ground)
+	get_tree().root.emit_signal("size_changed")
+	Player.set_idle()
+
+
 # TODO: consider moving the mission stuff into an isolated node, perhaps the mission_launcher_node itself
 func mission_setup():
 	if mission_launcher_node == null:

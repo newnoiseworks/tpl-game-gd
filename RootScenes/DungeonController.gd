@@ -32,21 +32,12 @@ func _exit_tree():
 	if MatchManager.game_match != null:
 		MatchManager.socket.disconnect("received_match_presence", self, "_on_match_presence")
 		MatchEvent.disconnect("match_join", self, "_handle_match_join_event")
+		MatchManager.game_match = null
 
 
 func _join_dungeon():
 	yield(MatchManager.find_or_create_match(dungeon, player_entry_node.position), "completed")
 	TPLG.ui.hide_loading_dialog()
-
-
-func _add_player_to_scene():
-	Player.position = player_entry_node.position
-	Player.name = SessionManager.session.user_id
-	Player.user_id = SessionManager.session.user_id
-	environment_items.call_deferred("add_child", Player)
-	Player.restrict_camera_to_tile_map(ground)
-	get_tree().root.emit_signal("size_changed")
-	Player.set_idle()
 
 
 func _on_match_presence(match_event: NakamaRTAPI.MatchPresenceEvent):
