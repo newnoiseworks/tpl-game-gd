@@ -8,8 +8,6 @@ var farmer_scene: PackedScene = ResourceLoader.load(
 	"res://Scenes/Character/Farmer/Farmer.tscn", "", true
 )
 
-onready var player_entry_node: Node2D = find_node("PlayerEntry")
-
 
 func _ready():
 	if no_children(): 
@@ -45,8 +43,8 @@ func _add_player_to_scene():
 	Player.position = player_entry_node.position
 	Player.name = SessionManager.session.user_id
 	Player.user_id = SessionManager.session.user_id
-	find_node("EnvironmentItems").call_deferred("add_child", Player)
-	Player.restrict_camera_to_tile_map(find_node("Ground"))
+	environment_items.call_deferred("add_child", Player)
+	Player.restrict_camera_to_tile_map(ground)
 	get_tree().root.emit_signal("size_changed")
 	Player.set_idle()
 
@@ -119,4 +117,4 @@ func add_networked_player_to_scene(
 	player_node.movement_target = movement_target
 	player_node.server_derived_position = true
 
-	find_node("EnvironmentItems").add_child(player_node)
+	environment_items.add_child(player_node)

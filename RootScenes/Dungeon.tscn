@@ -1,16 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://RootScenes/DungeonController.gd" type="Script" id=1]
-[ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=2]
+[ext_resource path="res://RootScenes/Root.tscn" type="PackedScene" id=2]
 
-[node name="Dungeon" type="Node2D"]
+[node name="Dungeon" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-
-[node name="Ground" type="TileMap" parent="."]
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 16, 16 )
-format = 1
-
-[node name="PlayerEntry" type="Node2D" parent="."]
-
-[node name="EnvironmentItems" type="YSort" parent="."]
+scene_name = null
+dungeon = null

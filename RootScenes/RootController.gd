@@ -13,6 +13,9 @@ var mission_dialogue_options = {}
 var base_viewports_scene: PackedScene = ResourceLoader.load("res://RootScenes/BaseViewports/BaseViewports.tscn")
 
 onready var mission_launcher_node = find_node("MissionLauncher")
+onready var player_entry_node: Node2D = find_node("PlayerEntry")
+onready var environment_items = find_node("EnvironmentItems")
+onready var ground: TileMap = find_node("Ground")
 
 func _enter_tree():
 	if get_parent() == get_tree().get_root():
