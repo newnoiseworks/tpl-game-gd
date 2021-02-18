@@ -3,13 +3,13 @@
 [ext_resource path="res://Scenes/Items/WalkBehindable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=2]
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 3.3812, 2.5214 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 0.290058, 0.497972 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 26.5 )
 
-[sub_resource type="OccluderPolygon2D" id=4]
+[sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 15.5122, 33.0728, 19.9667, 37.3046, 20.8576, 50.8908, 13.0622, 53.7862, 20.6348, 53.7862, 20.6348, 58.6861, 22.6394, 86.304, 27.0939, 86.7494, 31.1029, 54.4544, 38.0074, 52.4499, 31.3256, 50.2226, 29.3211, 39.3091, 32.4393, 30.6228, 23.3075, 27.7274 )
 
 [node name="Tree" instance=ExtResource( 1 )]
@@ -33,19 +33,19 @@ position = Vector2( -19.25, -100 )
 collision_layer = 2
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2( 23.8688, 95.7714 )
-shape = SubResource( 5 )
+position = Vector2( 26.5971, 99.0454 )
+shape = SubResource( 1 )
 
 [node name="WalkBehindTrigger" parent="." index="3"]
 position = Vector2( -17.5, -79.25 )
 
 [node name="CollisionShape2D" parent="WalkBehindTrigger" index="0"]
 position = Vector2( 24, 37 )
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="4"]
 position = Vector2( -19.25, -100 )
-occluder = SubResource( 4 )
+occluder = SubResource( 3 )
 
 [node name="Variants" type="Node2D" parent="." index="5"]
 use_parent_material = true
