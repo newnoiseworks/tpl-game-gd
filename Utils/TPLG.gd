@@ -81,12 +81,6 @@ func show_message(message: String):
 
 
 func base_change_scene(scene_path: String, args: Dictionary = {}, reset_vp: bool = false):
-	if Player.is_inside_tree():
-		Player.get_parent().call_deferred("remove_child", Player)
-
-	if MoveTarget.is_inside_tree():
-		MoveTarget.get_parent().call_deferred("remove_child", MoveTarget)
-
 	emit_signal("base_change_scene", scene_path, args, reset_vp)
 
 	if current_root_scene != null:
