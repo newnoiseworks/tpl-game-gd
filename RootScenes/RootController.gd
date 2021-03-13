@@ -79,6 +79,11 @@ func _ready():
 	TPLG.dialogue.add_dialogue_script("finish_mission", self)
 	TPLG.dialogue.add_dialogue_script("start_mission", self)
 
+	if ! "dungeon" in self:
+		_add_player_to_scene()
+		add_child(MoveTarget)
+
+
 func _exit_tree():
 	if no_children(): return
 
@@ -86,8 +91,10 @@ func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("start_mission")
 	get_tree().root.disconnect("size_changed", self, "on_window_resize")
 
+
 func no_children():
 	return get_child_count() == 0
+
 
 func _add_player_to_scene():
 	Player.position = player_entry_node.position

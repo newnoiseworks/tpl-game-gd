@@ -3,10 +3,11 @@ extends YSort
 export var tile_width: int
 export var tile_height: int
 export var collection_name: String
+export var is_local: bool = false
 
 var owner_id: String
 var owner_avatar_name: String
-var data: Dictionary
+var data: Dictionary = {groundTiles = {}, forageItems = []}
 var farm_permissions: Dictionary
 var plant_scenes: Dictionary = {}
 var forage_item_scenes = {}
@@ -220,13 +221,17 @@ func on_farming_event(farm_event):
 
 
 func get_permissions(user_id = ""):
+	if is_local:
+		return {"till": 1, "plant": 1, "harvest": 1, "forage": 1}
+
 	if user_id == "":
 		user_id = SessionManager.session.user_id
 
 	if farm_permissions.has("permCollection") && farm_permissions.permCollection.has(user_id):
 		return farm_permissions.permCollection[user_id]
 
-	return farm_permissions.defaultPermissions
+	if "defaultPermissions" in farm_permissions:
+		return farm_permissions.defaultPermissions
 
 
 func has_farm_item(position):

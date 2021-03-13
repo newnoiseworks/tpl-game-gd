@@ -106,7 +106,7 @@ offsetY=-704.0
 optionText="What?"
 whom="JKJZ"
 text="Oh, you heard that? Sorry. Anyway, welcome to your new farm!"
-options="isTheHouseFree, howDidIGetHere, introFinish"
+options="isTheHouseFree, howDidIGetHere, introFinish,startTillTutorial"
 offsetX=400.0
 offsetY=-704.0
 
@@ -115,7 +115,7 @@ offsetY=-704.0
 whom="JKJZ"
 optionText="Wait, is this free? Do I owe?"
 text="Huh? What? Where else would you live? Don't be weird."
-options="howDidIGetHere, introFinish"
+options="howDidIGetHere, introFinish,startTillTutorial"
 offsetX=848.0
 offsetY=-1248.0
 
@@ -124,7 +124,7 @@ offsetY=-1248.0
 whom="JKJZ"
 optionText="How did I get here?"
 text="Look buddy, you show up, and I'm here. Then, the days go by, something about water - that's all I know."
-options="isTheHouseFree, introFinish"
+options="isTheHouseFree, introFinish,startTillTutorial"
 offsetX=848.0
 offsetY=-976.0
 
@@ -142,3 +142,24 @@ next="introJKJZScriptOut"
 offsetX=1296.0
 offsetY=-704.0
 script="intro_jkjz_finish"
+
+[startTillTutorial]
+
+offsetX=848.0
+offsetY=-1376.0
+optionText="How do I farm? (till tutorial)"
+script="start_till_tutorial"
+
+[tillTutorialBegin]
+
+offsetX=-80.0
+offsetY=-1472.0
+text="OK - you ready to learn up some farming? Let's start by [b]tilling soil[/b] -- this allows us to plant seeds! To get going, choose the [b]tiller[/b] below!"
+whom="JKJZ"
+next="hightlightTillerForPlayer"
+
+[hightlightTillerForPlayer]
+
+offsetX=400.0
+offsetY=-1376.0
+script="highlight_tiller"
