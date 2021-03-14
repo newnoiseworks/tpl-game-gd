@@ -43,3 +43,8 @@ func _has_highlighted(_slot: int):
 	TPLG.inventory.tiles[0].stop_pointing()
 
 	# TODO: Renter dialogue tree at appropriate point
+
+	# TODO: This should happen via the dialogue
+	get_parent().get_parent().get_parent().tile_highlighter.highlight(
+		Vector2(16, 9), Vector2(20, 13)
+	)
