@@ -1,0 +1,13 @@
+[playerHasSelectedTiller]
+
+offsetX=480.0
+offsetY=368.0
+text="Rad. Now, [b]till[/b] the selected area by clicking the \"use\" button - either the right button of your mouse, or the \"Q\" key on your keyboard."
+next="highlightTiles"
+whom="JKJZ"
+
+[highlightTiles]
+
+offsetX=976.0
+offsetY=432.0
+script="highlight_soil"

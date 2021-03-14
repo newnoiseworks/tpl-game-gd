@@ -1,13 +1,15 @@
 extends Node2D
 
 onready var jkjz = $JKJZ
-onready var player_entry = get_parent().get_parent().get_parent().get_node("PlayerEntry")
+onready var root_controller = get_parent().get_parent().get_parent()
+onready var player_entry = root_controller.get_node("PlayerEntry")
 onready var timer: Timer = $Timer
 onready var farm_grid = $FarmGrid
 
 
 func _ready():
 	TPLG.dialogue.add_dialogue_script("highlight_tiller", self)
+	TPLG.dialogue.add_dialogue_script("highlight_soil", self)
 
 	TPLG.current_farm_grids = [farm_grid]
 
@@ -21,6 +23,7 @@ func _ready():
 
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("highlight_tiller")
+	TPLG.dialogue.remove_dialogue_script("highlight_soil")
 
 
 func _deliver_intro_dialogue():
@@ -42,9 +45,8 @@ func _has_highlighted(_slot: int):
 	TPLG.inventory.tiles[0].disconnect("equip_item", self, "_has_highlighted")
 	TPLG.inventory.tiles[0].stop_pointing()
 
-	# TODO: Renter dialogue tree at appropriate point
+	TPLG.dialogue.start("JKJZ/TillTutorial", "playerHasSelectedTiller")
 
-	# TODO: This should happen via the dialogue
-	get_parent().get_parent().get_parent().tile_highlighter.highlight(
-		Vector2(16, 9), Vector2(20, 13)
-	)
+
+func highlight_soil():
+	root_controller.tile_highlighter.highlight(Vector2(16, 9), Vector2(20, 13))
