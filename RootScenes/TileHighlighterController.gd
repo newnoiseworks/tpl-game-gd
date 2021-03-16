@@ -14,4 +14,8 @@ func highlight(position: Vector2, end_position: Vector2):
 
 	for x in range(abs(end_position.x - position.x)):
 		for y in range(abs(end_position.y - position.y)):
-			set_cellv(Vector2(position.x + x, position.y + y), highlight_tile_id)
+			set_cellv(position + Vector2(x, y), highlight_tile_id)
+
+
+func unhighlight_tile(position: Vector2):
+	set_cellv(position, -1)

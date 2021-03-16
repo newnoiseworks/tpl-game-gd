@@ -32,21 +32,46 @@ func _deliver_intro_dialogue():
 
 
 func highlight_tiller():
-	if ! TPLG.inventory.tiles[0].is_connected("select_slot", self, "_has_highlighted"):
-		# determine which inventory slot has the tiller
-		# - as the user can't move items currently, it'll always be in the 0 slot for now
-		TPLG.inventory.tiles[0].point_at_tile()
-		TPLG.inventory.tiles[0].connect("equip_item", self, "_has_highlighted", [0])
-
-
-func _has_highlighted(_slot: int):
 	# determine which inventory slot has the tiller
 	# - as the user can't move items currently, it'll always be in the 0 slot for now
-	TPLG.inventory.tiles[0].disconnect("equip_item", self, "_has_highlighted")
-	TPLG.inventory.tiles[0].stop_pointing()
+	var tiller_idx = 0
+	var tiller = TPLG.inventory.tiles[tiller_idx]
+
+	if ! tiller.is_connected("select_slot", self, "_has_highlighted"):
+		tiller.point_at_tile()
+		tiller.connect("equip_item", self, "_has_highlighted", [tiller_idx])
+
+
+func _has_highlighted(slot: int):
+	var tiller = TPLG.inventory.tiles[slot]
+
+	tiller.stop_pointing()
+	tiller.disconnect("equip_item", self, "_has_highlighted")
 
 	TPLG.dialogue.start("JKJZ/TillTutorial", "playerHasSelectedTiller")
 
 
 func highlight_soil():
-	root_controller.tile_highlighter.highlight(Vector2(16, 9), Vector2(20, 13))
+	if ! MatchEvent.is_connected("farming", self, "_handle_farming_event"):
+		MatchEvent.connect("farming", self, "_handle_farming_event")
+
+		root_controller.tile_highlighter.highlight(
+			farm_grid.position / 16, farm_grid.position / 16 + Vector2(4, 4)
+		)
+
+
+func _handle_farming_event(msg, presence):
+	if msg == null:
+		return
+
+	if presence.user_id != Player.user_id:
+		return
+
+	var args = JSON.parse(msg).result
+
+	if int(args.type) == FarmEvent.TILL:
+		root_controller.tile_highlighter.unhighlight_tile(
+			farm_grid.position / 16 + Vector2(args.x, args.y)
+		)
+
+		# TODO: Track if all necessary tiles have been tilled. Need to construct an array of Vector2's probably (PoolVector2?)
