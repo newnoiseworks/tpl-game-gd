@@ -6,6 +6,9 @@ onready var player_entry = root_controller.get_node("PlayerEntry")
 onready var timer: Timer = $Timer
 onready var farm_grid = $FarmGrid
 
+var tiles_to_highlight: Array = []
+var tiles_to_highlight_size: Vector2 = Vector2(4, 4)
+
 
 func _ready():
 	TPLG.dialogue.add_dialogue_script("highlight_tiller", self)
@@ -19,6 +22,10 @@ func _ready():
 	timer.wait_time = 3
 	timer.connect("timeout", self, "_deliver_intro_dialogue")
 	timer.start()
+
+	for x in range(tiles_to_highlight_size.x):
+		for y in range(tiles_to_highlight_size.y):
+			tiles_to_highlight.append(Vector2(x, y))
 
 
 func _exit_tree():
@@ -56,7 +63,7 @@ func highlight_soil():
 		MatchEvent.connect("farming", self, "_handle_farming_event")
 
 		root_controller.tile_highlighter.highlight(
-			farm_grid.position / 16, farm_grid.position / 16 + Vector2(4, 4)
+			farm_grid.position / 16, farm_grid.position / 16 + tiles_to_highlight_size
 		)
 
 
@@ -70,8 +77,13 @@ func _handle_farming_event(msg, presence):
 	var args = JSON.parse(msg).result
 
 	if int(args.type) == FarmEvent.TILL:
-		root_controller.tile_highlighter.unhighlight_tile(
-			farm_grid.position / 16 + Vector2(args.x, args.y)
-		)
+		var tile_pos = Vector2(args.x, args.y)
 
-		# TODO: Track if all necessary tiles have been tilled. Need to construct an array of Vector2's probably (PoolVector2?)
+		root_controller.tile_highlighter.unhighlight_tile(farm_grid.position / 16 + tile_pos)
+
+		if tile_pos in tiles_to_highlight:
+			tiles_to_highlight.erase(tile_pos)
+
+		if tiles_to_highlight.size() == 0:
+			print("Jobs' done")
+			# TODO: "win" state of tutorial
