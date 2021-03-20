@@ -18,6 +18,12 @@ func _ready():
 
 	jkjz._move_event({"ping": "0", "x": player_entry.position.x + 16, "y": player_entry.position.y})
 
+	if (
+		!"tutorialFarmingTilling" in TPLG.ui.mission_list.get_current_mission_keys() && 
+		!"tutorialFarmingTilling" in TPLG.ui.mission_list.get_completed_mission_keys()
+	):
+		root_controller.start_mission("tutorialFarmingTilling")
+
 	timer.one_shot = true
 	timer.wait_time = 3
 	timer.connect("timeout", self, "_deliver_intro_dialogue")
@@ -26,7 +32,6 @@ func _ready():
 	for x in range(tiles_to_highlight_size.x):
 		for y in range(tiles_to_highlight_size.y):
 			tiles_to_highlight.append(Vector2(x, y))
-
 
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("highlight_tiller")
@@ -85,5 +90,8 @@ func _handle_farming_event(msg, presence):
 			tiles_to_highlight.erase(tile_pos)
 
 		if tiles_to_highlight.size() == 0:
-			print("Jobs' done")
-			# TODO: "win" state of tutorial
+			# TODO: Add some dialogue from JKJZ w/ options to move to next farming tutorial
+			print_debug("Jobs' done")
+
+			if "tutorialFarmingTilling" in TPLG.ui.mission_list.get_current_mission_keys():
+				root_controller.finish_mission("tutorialFarmingTilling")
