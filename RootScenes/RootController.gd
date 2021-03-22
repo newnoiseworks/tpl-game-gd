@@ -10,23 +10,63 @@ var zoom_offset: float = 3
 var mission_scenes = {}
 var mission_dialogue_options = {}
 
+var base_viewports_scene: PackedScene = ResourceLoader.load("res://RootScenes/BaseViewports/BaseViewports.tscn")
+
 onready var mission_launcher_node = find_node("MissionLauncher")
+
+func _enter_tree():
+	if get_parent() == get_tree().get_root():
+		for child in get_children():
+			child.free()
+
+		yield(SessionManager.signup("wow@wow.com", "wow", "password"), "completed")
+		yield(SessionManager.get_profile_data(), "completed")
+
+		var avatar_data 
+		for avatar in SessionManager.profile_data.avatars:
+			if avatar.key == "wow":
+				avatar_data = avatar
+				break
+
+		SessionManager.set_current_avatar(avatar_data)
+		yield(SessionManager.load_mission_data(), "completed")
+		get_parent().call_deferred("add_child", base_viewports_scene.instance())
+		TPLG.call_deferred("set_ui_scene")
+
+		yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
+
+		TPLG.base_change_scene(
+			filename,
+			{
+				"user_id_to_join": SessionManager.session.user_id,
+				"user_avatar_to_join": avatar_data.key,
+				"join_match_on_ready": true
+			}
+		)
+
+		queue_free()
 
 
 func _ready():
 	# add_child(debug_window_scene.instance())
+
+	if no_children(): return
+
 	window_size_setup()
 	mission_setup()
 	TPLG.current_root_scene = self
 	TPLG.dialogue.add_dialogue_script("finish_mission", self)
 	TPLG.dialogue.add_dialogue_script("start_mission", self)
 
-
 func _exit_tree():
+	if no_children(): return
+
 	TPLG.dialogue.remove_dialogue_script("finish_mission")
 	TPLG.dialogue.remove_dialogue_script("start_mission")
 	get_tree().root.disconnect("size_changed", self, "on_window_resize")
 
+func no_children():
+	return get_child_count() == 0
 
 # TODO: consider moving the mission stuff into an isolated node, perhaps the mission_launcher_node itself
 func mission_setup():

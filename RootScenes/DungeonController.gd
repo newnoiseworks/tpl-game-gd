@@ -7,14 +7,12 @@ var user_ids: Array = []
 var farmer_scene: PackedScene = ResourceLoader.load(
 	"res://Scenes/Character/Farmer/Farmer.tscn", "", true
 )
-var base_viewports_scene = preload("res://RootScenes/BaseViewports/BaseViewports.tscn")
 
 onready var player_entry_node: Node2D = find_node("PlayerEntry")
 
 
 func _ready():
-	if SessionManager.session == null:
-		call_deferred("_login_with_dev_creds")
+	if no_children(): 
 		return
 
 	call_deferred("add_child", MoveTarget)
@@ -36,22 +34,6 @@ func _exit_tree():
 	if MatchManager.game_match != null:
 		MatchManager.socket.disconnect("received_match_presence", self, "_on_match_presence")
 		MatchEvent.disconnect("match_join", self, "_handle_match_join_event")
-
-
-func _login_with_dev_creds():
-	yield(SessionManager.login("wow@wow.com", "password"), "completed")
-	SaveData.current_avatar_key = "Wowsers"
-
-	for avatar in SessionManager.profile_data.avatars:
-		if avatar.key == SaveData.current_avatar_key:
-			SessionManager.set_current_avatar(avatar)
-			Player.avatar_data = avatar
-
-	get_parent().add_child(base_viewports_scene.instance())
-	get_parent().remove_child(self)
-	yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
-	TPLG.set_ui_scene()
-	TPLG.call_deferred("base_change_scene", filename)
 
 
 func _join_dungeon():

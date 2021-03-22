@@ -15,6 +15,9 @@ func _init():
 
 
 func _ready():
+	if no_children(): 
+		return
+
 	if user_id_to_join == "":
 		user_id_to_join = TPLG.current_farm.user_id
 
@@ -41,6 +44,9 @@ func _ready():
 
 
 func _exit_tree():
+	if no_children():
+		return
+
 	RealmEvent.disconnect("change_dungeon", self, "change_dungeon_handler")
 	MatchEvent.disconnect("farm_permission_update", self, "farm_permissions_update_event_callback")
 	join_match_on_ready = false

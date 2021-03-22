@@ -94,7 +94,7 @@ func reload_missions():
 func _draw_missions():
 	var mission_data = SessionManager.mission_data
 
-	if mission_data == null && mission_data.missions == null:
+	if mission_data == null || mission_data.missions == null:
 		return
 
 	current_missions = []
