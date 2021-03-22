@@ -33,6 +33,8 @@ func _init():
 
 
 func _ready():
+	if no_children(): return
+
 	setup_teleporter()
 
 	RealmEvent.connect("realm_join", self, "realm_join_event_response")
@@ -49,6 +51,8 @@ func _ready():
 
 
 func _exit_tree():
+	if no_children(): return
+
 	RealmEvent.disconnect("realm_join", self, "realm_join_event_response")
 	RealmEvent.disconnect("change_dungeon", self, "change_dungeon_event_response")
 
@@ -90,7 +94,12 @@ func setup_teleporter():
 			town_teleporter.exit_enabled = false
 			player_entry_node = town_teleporter
 		_:  # default
-			var plot: int = RealmManager.plot_map[TPLG.current_farm.user_id]
+			var user_id = TPLG.current_farm.user_id
+
+			if user_id == "" || user_id == null: # presumably using the hot loading dev login
+				user_id = SessionManager.session.user_id
+
+			var plot: int = RealmManager.plot_map[user_id]
 			var farm_teleporter = find_node("FarmTeleporter%s" % [plot])
 			farm_teleporter.exit_enabled = false
 			player_entry_node = farm_teleporter

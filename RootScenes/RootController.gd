@@ -33,18 +33,23 @@ func _enter_tree():
 		get_parent().call_deferred("add_child", base_viewports_scene.instance())
 		TPLG.call_deferred("set_ui_scene")
 
+		RealmEvent.connect("realm_join", self, "_complete_dev_root_scene_load")
+
 		yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
 
-		TPLG.base_change_scene(
-			filename,
-			{
-				"user_id_to_join": SessionManager.session.user_id,
-				"user_avatar_to_join": avatar_data.key,
-				"join_match_on_ready": true
-			}
-		)
+func _complete_dev_root_scene_load(_msg: String, _presence):
+	RealmEvent.disconnect("realm_join", self, "_complete_dev_root_scene_load")
 
-		queue_free()
+	TPLG.base_change_scene(
+		filename,
+		{
+			"user_id_to_join": SessionManager.session.user_id,
+			"user_avatar_to_join": SessionManager.current_avatar.key,
+			"join_match_on_ready": true
+		}
+	)
+
+	queue_free()
 
 
 func _ready():
