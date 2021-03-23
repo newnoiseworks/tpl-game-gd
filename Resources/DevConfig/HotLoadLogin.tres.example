@@ -1,0 +1,6 @@
+[gd_resource type="Resource" format=2]
+
+[resource]
+email="wow@wow.com"
+password="password"
+avatar_key="wow"

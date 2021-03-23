@@ -20,3 +20,5 @@ Utils/InventoryItems.gd
 Utils/GameConfig.gd
 
 Utils/MissionList.gd
+
+Resources/DevConfig/HotLoadLogin.tres

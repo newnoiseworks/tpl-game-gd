@@ -19,12 +19,25 @@ func _enter_tree():
 		for child in get_children():
 			child.free()
 
-		yield(SessionManager.signup("wow@wow.com", "wow", "password"), "completed")
+		_hotload_scene()
+
+func _hotload_scene():
+		var hotload_config = ConfigFile.new()
+		hotload_config.load("res://Resources/DevConfig/HotLoadLogin.tres")
+
+		yield(
+			SessionManager.login(
+				hotload_config.get_value("resource", "email"),
+				hotload_config.get_value("resource", "password")
+			),
+			"completed"
+		)
+
 		yield(SessionManager.get_profile_data(), "completed")
 
 		var avatar_data 
 		for avatar in SessionManager.profile_data.avatars:
-			if avatar.key == "wow":
+			if avatar.key == hotload_config.get_value("resource", "avatar_key"):
 				avatar_data = avatar
 				break
 
