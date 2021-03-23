@@ -10,13 +10,16 @@ var zoom_offset: float = 3
 var mission_scenes = {}
 var mission_dialogue_options = {}
 
-var base_viewports_scene: PackedScene = ResourceLoader.load("res://RootScenes/BaseViewports/BaseViewports.tscn")
+var base_viewports_scene: PackedScene = ResourceLoader.load(
+	"res://RootScenes/BaseViewports/BaseViewports.tscn"
+)
 
 onready var mission_launcher_node = find_node("MissionLauncher")
 onready var player_entry_node: Node2D = find_node("PlayerEntry")
 onready var environment_items = find_node("EnvironmentItems")
 onready var ground: TileMap = find_node("Ground")
 onready var tile_highlighter = find_node("TileHighlighter")
+
 
 func _enter_tree():
 	if get_parent() == get_tree().get_root():
@@ -25,34 +28,35 @@ func _enter_tree():
 
 		_hotload_scene()
 
+
 func _hotload_scene():
-		var hotload_config = ConfigFile.new()
-		hotload_config.load("res://Resources/DevConfig/HotLoadLogin.tres")
+	var hotload_config = ConfigFile.new()
+	hotload_config.load("res://Resources/DevConfig/HotLoadLogin.tres")
 
-		yield(
-			SessionManager.login(
-				hotload_config.get_value("resource", "email"),
-				hotload_config.get_value("resource", "password")
-			),
-			"completed"
-		)
+	yield(
+		SessionManager.login(
+			hotload_config.get_value("resource", "email"),
+			hotload_config.get_value("resource", "password")
+		),
+		"completed"
+	)
 
-		yield(SessionManager.get_profile_data(), "completed")
+	yield(SessionManager.get_profile_data(), "completed")
 
-		var avatar_data 
-		for avatar in SessionManager.profile_data.avatars:
-			if avatar.key == hotload_config.get_value("resource", "avatar_key"):
-				avatar_data = avatar
-				break
+	var avatar_data
+	for avatar in SessionManager.profile_data.avatars:
+		if avatar.key == hotload_config.get_value("resource", "avatar_key"):
+			avatar_data = avatar
+			break
+	SessionManager.set_current_avatar(avatar_data)
+	yield(SessionManager.load_mission_data(), "completed")
+	get_parent().call_deferred("add_child", base_viewports_scene.instance())
+	TPLG.call_deferred("set_ui_scene")
 
-		SessionManager.set_current_avatar(avatar_data)
-		yield(SessionManager.load_mission_data(), "completed")
-		get_parent().call_deferred("add_child", base_viewports_scene.instance())
-		TPLG.call_deferred("set_ui_scene")
+	RealmEvent.connect("realm_join", self, "_complete_dev_root_scene_load")
 
-		RealmEvent.connect("realm_join", self, "_complete_dev_root_scene_load")
+	RealmManager.find_or_create_realm("town0-realm")
 
-		RealmManager.find_or_create_realm("town0-realm")
 
 func _complete_dev_root_scene_load(_msg: String, _presence):
 	RealmEvent.disconnect("realm_join", self, "_complete_dev_root_scene_load")
@@ -72,7 +76,8 @@ func _complete_dev_root_scene_load(_msg: String, _presence):
 func _ready():
 	# add_child(debug_window_scene.instance())
 
-	if no_children(): return
+	if no_children():
+		return
 
 	window_size_setup()
 	mission_setup()
@@ -86,7 +91,8 @@ func _ready():
 
 
 func _exit_tree():
-	if no_children(): return
+	if no_children():
+		return
 
 	TPLG.dialogue.remove_dialogue_script("finish_mission")
 	TPLG.dialogue.remove_dialogue_script("start_mission")
