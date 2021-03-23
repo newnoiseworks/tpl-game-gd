@@ -52,7 +52,7 @@ func _hotload_scene():
 
 		RealmEvent.connect("realm_join", self, "_complete_dev_root_scene_load")
 
-		yield(RealmManager.find_or_create_realm("town0-realm"), "completed")
+		RealmManager.find_or_create_realm("town0-realm")
 
 func _complete_dev_root_scene_load(_msg: String, _presence):
 	RealmEvent.disconnect("realm_join", self, "_complete_dev_root_scene_load")
