@@ -11,6 +11,8 @@ var tiles_to_highlight_size: Vector2 = Vector2(4, 4)
 
 
 func _ready():
+	farm_grid.setup_collider()
+
 	TPLG.dialogue.add_dialogue_script("highlight_tiller", self)
 	TPLG.dialogue.add_dialogue_script("highlight_soil", self)
 
@@ -19,8 +21,8 @@ func _ready():
 	jkjz._move_event({"ping": "0", "x": player_entry.position.x + 16, "y": player_entry.position.y})
 
 	if (
-		!"tutorialFarmingTilling" in TPLG.ui.mission_list.get_current_mission_keys() && 
-		!"tutorialFarmingTilling" in TPLG.ui.mission_list.get_completed_mission_keys()
+		! "tutorialFarmingTilling" in TPLG.ui.mission_list.get_current_mission_keys()
+		&& ! "tutorialFarmingTilling" in TPLG.ui.mission_list.get_completed_mission_keys()
 	):
 		root_controller.start_mission("tutorialFarmingTilling")
 
@@ -32,6 +34,7 @@ func _ready():
 	for x in range(tiles_to_highlight_size.x):
 		for y in range(tiles_to_highlight_size.y):
 			tiles_to_highlight.append(Vector2(x, y))
+
 
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("highlight_tiller")
