@@ -57,31 +57,29 @@ func _handle_match_join_event(data, _presence):
 
 		user_ids.append(user_id)
 
-		var starting_position: Vector2
+		_setup_networked_player_for_screen(user_id, args)
 
-		if user_id in args.positions.keys() && "x" in args.positions[user_id]:
-			starting_position = Vector2(
-				float(args.positions[user_id].x), float(args.positions[user_id].y)
-			)
-		else:
-			starting_position = player_entry_node.position
 
-		var movement_target: Vector2
+func _setup_networked_player_for_screen(user_id, args):
+	var starting_position: Vector2 = player_entry_node.position
 
-		if args.movementTargets.keys().has(user_id) && args.movementTargets[user_id].has("x"):
-			movement_target = Vector2(
-				args.movementTargets[user_id].x, args.movementTargets[user_id].y
-			)
-		else:
-			movement_target = starting_position
-
-		call_deferred(
-			"add_networked_player_to_scene",
-			user_id,
-			args.avatarMap[user_id],
-			starting_position,
-			movement_target
+	if user_id in args.positions.keys() && "x" in args.positions[user_id]:
+		starting_position = Vector2(
+			float(args.positions[user_id].x), float(args.positions[user_id].y)
 		)
+
+	var movement_target: Vector2 = starting_position
+
+	if args.movementTargets.keys().has(user_id) && args.movementTargets[user_id].has("x"):
+		movement_target = Vector2(args.movementTargets[user_id].x, args.movementTargets[user_id].y)
+
+	call_deferred(
+		"add_networked_player_to_scene",
+		user_id,
+		args.avatarMap[user_id],
+		starting_position,
+		movement_target
+	)
 
 
 func add_networked_player_to_scene(
