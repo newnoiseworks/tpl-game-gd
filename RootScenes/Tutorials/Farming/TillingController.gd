@@ -11,6 +11,8 @@ var tiles_to_highlight_size: Vector2 = Vector2(4, 4)
 
 
 func _ready():
+	_synthesize_inventory()
+
 	farm_grid.setup_collider()
 
 	TPLG.dialogue.add_dialogue_script("highlight_tiller", self)
@@ -39,6 +41,46 @@ func _ready():
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("highlight_tiller")
 	TPLG.dialogue.remove_dialogue_script("highlight_soil")
+
+
+func _synthesize_inventory():
+	TPLG.inventory.bag.synthesize_bag(
+		{
+			"bag":
+			[
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.TILLER),
+					"bagPosition": 0,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PAIL),
+					"bagPosition": 1,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PICKAXE),
+					"bagPosition": 2,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.SCYTHE),
+					"bagPosition": 3,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.AXE),
+					"bagPosition": 4,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.FISHPOLE),
+					"bagPosition": 5,
+					"quantity": 1
+				}
+			]
+		}
+	)
 
 
 func _deliver_intro_dialogue():

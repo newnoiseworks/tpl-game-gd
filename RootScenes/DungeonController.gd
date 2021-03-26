@@ -10,7 +10,7 @@ var farmer_scene: PackedScene = ResourceLoader.load(
 
 
 func _ready():
-	if no_children(): 
+	if no_children():
 		return
 
 	call_deferred("add_child", MoveTarget)

@@ -26,7 +26,9 @@ func _fade_game_viewport(out: bool = false, time: float = 0.33):
 	yield(tween, "tween_completed")
 
 
-func _change_scene(scene_path: String, args: Dictionary, reset_vp: bool = false):
+func _change_scene(
+	scene_path: String, args: Dictionary, reset_vp: bool = false, update_inventory: bool = true
+):
 	yield(_fade_game_viewport(true), "completed")
 
 	if Player.is_inside_tree():
@@ -35,7 +37,7 @@ func _change_scene(scene_path: String, args: Dictionary, reset_vp: bool = false)
 	if MoveTarget.is_inside_tree():
 		MoveTarget.get_parent().call_deferred("remove_child", MoveTarget)
 
-	if TPLG.inventory:
+	if TPLG.inventory && update_inventory:
 		TPLG.inventory.bag.reload_and_redraw_data()
 
 	for child in game_viewport.get_children():
