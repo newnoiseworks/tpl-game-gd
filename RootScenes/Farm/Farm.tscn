@@ -88,28 +88,28 @@ position = Vector2( 0.540594, -35.111 )
 position = Vector2( 173.392, -82.3142 )
 
 [node name="Tree" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 953.333, -162.347 )
+position = Vector2( 965.428, -85.7438 )
 
 [node name="Tree7" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 517.562, -213.159 )
+position = Vector2( 529.657, -136.556 )
 
 [node name="Tree2" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 581.177, -177.784 )
+position = Vector2( 593.272, -101.181 )
 
 [node name="Tree4" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 882.333, -210.774 )
+position = Vector2( 894.428, -134.171 )
 
 [node name="Tree5" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 447.264, -232.043 )
+position = Vector2( 461.375, -155.44 )
 
 [node name="Tree6" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 799.077, -184 )
+position = Vector2( 811.172, -107.397 )
 
 [node name="House" parent="EnvironmentItems" instance=ExtResource( 6 )]
 position = Vector2( 202.726, -130.778 )
 
 [node name="Tree3" parent="EnvironmentItems" instance=ExtResource( 5 )]
-position = Vector2( 673.856, -225.156 )
+position = Vector2( 685.951, -148.553 )
 
 [node name="Lamp3" parent="EnvironmentItems" instance=ExtResource( 7 )]
 position = Vector2( 368.397, -35.2446 )
