@@ -11,3 +11,26 @@ whom="JKJZ"
 offsetX=976.0
 offsetY=432.0
 script="highlight_soil"
+
+[fromWhenceYouCame]
+
+offsetX=976.0
+offsetY=704.0
+optionText="Go Back"
+script="return_to_game"
+
+[learnAboutSeeds]
+
+offsetX=976.0
+offsetY=848.0
+optionText="Learn about planting seeds"
+script="plant_seeds_tut"
+
+[playerHasTilledSoil]
+
+offsetX=464.0
+offsetY=704.0
+optionText="s"
+whom="JKJZ"
+text="Excellent! Now either go back or learn about [b]planting seeds[/b]"
+options="fromWhenceYouCame, learnAboutSeeds"

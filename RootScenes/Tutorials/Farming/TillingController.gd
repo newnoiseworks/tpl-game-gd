@@ -17,6 +17,8 @@ func _ready():
 
 	TPLG.dialogue.add_dialogue_script("highlight_tiller", self)
 	TPLG.dialogue.add_dialogue_script("highlight_soil", self)
+	TPLG.dialogue.add_dialogue_script("return_to_game", self)
+	TPLG.dialogue.add_dialogue_script("plant_seeds_tut", self)
 
 	TPLG.current_farm_grids = [farm_grid]
 
@@ -41,6 +43,8 @@ func _ready():
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("highlight_tiller")
 	TPLG.dialogue.remove_dialogue_script("highlight_soil")
+	TPLG.dialogue.remove_dialogue_script("return_to_game", self)
+	TPLG.dialogue.remove_dialogue_script("plant_seeds_tut", self)
 
 
 func _synthesize_inventory():
@@ -135,8 +139,15 @@ func _handle_farming_event(msg, presence):
 			tiles_to_highlight.erase(tile_pos)
 
 		if tiles_to_highlight.size() == 0:
-			# TODO: Add some dialogue from JKJZ w/ options to move to next farming tutorial
-			print_debug("Jobs' done")
-
 			if "tutorialFarmingTilling" in TPLG.ui.mission_list.get_current_mission_keys():
 				root_controller.finish_mission("tutorialFarmingTilling")
+
+			TPLG.dialogue.start("JKJZ/TillTutorial", "playerHasTilledSoil")
+
+
+func return_to_game():
+	print("Go back to the last scene, at the last position, somehow")
+
+
+func plant_seeds_tut():
+	print("Load up new scene")
