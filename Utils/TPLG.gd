@@ -80,10 +80,8 @@ func show_message(message: String):
 	emit_signal("ui_message_dialog", message)
 
 
-func base_change_scene(
-	scene_path: String, args: Dictionary = {}, reset_vp: bool = false, update_inventory = true
-):
-	emit_signal("base_change_scene", scene_path, args, reset_vp, update_inventory)
+func base_change_scene(scene_path: String, args: Dictionary = {}, reset_vp: bool = false):
+	emit_signal("base_change_scene", scene_path, args, reset_vp)
 
 	if current_root_scene != null:
 		TPLG.last_scene = current_root_scene.filename.replace("res://", "").replace(".tscn", "").replace(

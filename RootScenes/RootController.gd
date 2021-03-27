@@ -1,6 +1,7 @@
 extends Node2D
 
 export var scene_name: String
+export var reload_inventory: bool = true
 
 # var debug_window_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/DebugWindow.tscn")
 # var teleporter_scene: PackedScene = ResourceLoader.load("res://Scenes/MovementGrid/Teleporter.tscn")
@@ -88,6 +89,9 @@ func _ready():
 	if ! "dungeon" in self:
 		_add_player_to_scene()
 		add_child(MoveTarget)
+
+	if TPLG.inventory && reload_inventory:
+		TPLG.inventory.bag.reload_and_redraw_data()
 
 
 func _exit_tree():
