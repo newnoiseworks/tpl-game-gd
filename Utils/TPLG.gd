@@ -12,6 +12,8 @@ var current_farm = {"user_id": "", "user_avatar": ""}
 
 var last_scene = ""
 
+var last_position_in_last_scene: Vector2
+
 var inventory
 
 var store
@@ -87,3 +89,5 @@ func base_change_scene(scene_path: String, args: Dictionary = {}, reset_vp: bool
 		TPLG.last_scene = current_root_scene.filename.replace("res://", "").replace(".tscn", "").replace(
 			"RootScenes/", ""
 		)
+
+		TPLG.last_position_in_last_scene = Player.position

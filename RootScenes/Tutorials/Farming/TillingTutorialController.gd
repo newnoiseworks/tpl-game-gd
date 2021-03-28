@@ -151,8 +151,8 @@ func _handle_farming_event(msg, presence):
 
 
 func return_to_game():
-	print("Go back to the last scene, at the last position, somehow")
+	TPLG.base_change_scene("res://RootScenes/%s.tscn" % TPLG.last_scene)
 
 
 func plant_seeds_tut():
-	print("Load up new scene")
+	TPLG.base_change_scene("res://RootScenes/Tutorials/Farming/PlantingTutorial.tscn")
