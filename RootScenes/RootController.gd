@@ -80,6 +80,9 @@ func _ready():
 	if no_children():
 		return
 
+	if TPLG.inventory && reload_inventory:
+		TPLG.inventory.bag.reload_and_redraw_data()
+
 	window_size_setup()
 	mission_setup()
 	TPLG.current_root_scene = self
@@ -89,9 +92,6 @@ func _ready():
 	if ! "dungeon" in self:
 		_add_player_to_scene()
 		add_child(MoveTarget)
-
-	if TPLG.inventory && reload_inventory:
-		TPLG.inventory.bag.reload_and_redraw_data()
 
 
 func _exit_tree():

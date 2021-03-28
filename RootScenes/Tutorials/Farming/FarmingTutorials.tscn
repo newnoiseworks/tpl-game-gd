@@ -5,7 +5,8 @@
 [ext_resource path="res://Scenes/FarmGrid/FarmGrid.tscn" type="PackedScene" id=3]
 [ext_resource path="res://RootScenes/Tutorials/Farming/TillingController.gd" type="Script" id=4]
 
-[node name="FarmingTutorials" instance=ExtResource( 1 )]
+[node name="TillingTutorial" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
 reload_inventory = false
 
 [node name="Ground" parent="." index="0"]
@@ -14,28 +15,18 @@ tile_data = PoolIntArray( 0, 2795, 0, 1, 2801, 0, 2, 2801, 0, 3, 2801, 0, 4, 280
 [node name="PlayerEntry" parent="." index="1"]
 position = Vector2( 275.224, 96 )
 
-[node name="MissionLauncher" type="Node2D" parent="EnvironmentItems" index="0"]
-
-[node name="Tilling" type="Node2D" parent="EnvironmentItems/MissionLauncher" index="0"]
-script = ExtResource( 4 )
-
-[node name="JKJZ" parent="EnvironmentItems/MissionLauncher/Tilling" index="0" instance=ExtResource( 2 )]
+[node name="JKJZ" parent="EnvironmentItems" index="0" instance=ExtResource( 2 )]
 position = Vector2( 496, -64 )
 user_id = "JKJZ"
 character_base = "Characters/JKJZ/"
 dialogue_file = "JKJZ"
 dialogue_section = "tillTutorialBegin"
 
-[node name="Body" parent="EnvironmentItems/MissionLauncher/Tilling/JKJZ" index="1"]
-tile_data = PoolIntArray( -65536, 884, 0 )
-
-[node name="FarmGrid" parent="EnvironmentItems/MissionLauncher/Tilling" index="1" instance=ExtResource( 3 )]
+[node name="FarmGrid" parent="EnvironmentItems" index="1" instance=ExtResource( 3 )]
 position = Vector2( 256, 144 )
 tile_width = 4
 tile_height = 4
 collection_name = "Tutorial"
 is_local = true
 
-[node name="Timer" type="Timer" parent="EnvironmentItems/MissionLauncher/Tilling" index="2"]
-
-[editable path="EnvironmentItems/MissionLauncher/Tilling/JKJZ"]
+[node name="Timer" type="Timer" parent="EnvironmentItems" index="2"]

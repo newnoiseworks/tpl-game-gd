@@ -1,17 +1,17 @@
-extends Node2D
+extends "res://RootScenes/RootController.gd"
 
-onready var jkjz = $JKJZ
-onready var root_controller = get_parent().get_parent().get_parent()
-onready var player_entry = root_controller.get_node("PlayerEntry")
-onready var timer: Timer = $Timer
-onready var farm_grid = $FarmGrid
+onready var player_entry = find_node("PlayerEntry")
+onready var jkjz = find_node("JKJZ")
+onready var timer: Timer = find_node("Timer")
+onready var farm_grid = find_node("FarmGrid")
 
 var tiles_to_highlight: Array = []
 var tiles_to_highlight_size: Vector2 = Vector2(4, 4)
 
 
 func _ready():
-	_synthesize_inventory()
+	if no_children():
+		return
 
 	farm_grid.setup_collider()
 
@@ -28,7 +28,7 @@ func _ready():
 		! "tutorialFarmingTilling" in TPLG.ui.mission_list.get_current_mission_keys()
 		&& ! "tutorialFarmingTilling" in TPLG.ui.mission_list.get_completed_mission_keys()
 	):
-		root_controller.start_mission("tutorialFarmingTilling")
+		start_mission("tutorialFarmingTilling")
 
 	timer.one_shot = true
 	timer.wait_time = 3
@@ -39,12 +39,17 @@ func _ready():
 		for y in range(tiles_to_highlight_size.y):
 			tiles_to_highlight.append(Vector2(x, y))
 
+	_synthesize_inventory()
+
 
 func _exit_tree():
+	if no_children():
+		return
+
 	TPLG.dialogue.remove_dialogue_script("highlight_tiller")
 	TPLG.dialogue.remove_dialogue_script("highlight_soil")
-	TPLG.dialogue.remove_dialogue_script("return_to_game", self)
-	TPLG.dialogue.remove_dialogue_script("plant_seeds_tut", self)
+	TPLG.dialogue.remove_dialogue_script("return_to_game")
+	TPLG.dialogue.remove_dialogue_script("plant_seeds_tut")
 
 
 func _synthesize_inventory():
@@ -109,14 +114,14 @@ func _has_highlighted(slot: int):
 	tiller.stop_pointing()
 	tiller.disconnect("equip_item", self, "_has_highlighted")
 
-	TPLG.dialogue.start("JKJZ/TillTutorial", "playerHasSelectedTiller")
+	TPLG.dialogue.start("JKJZ/Tutorials/TillTutorial", "playerHasSelectedTiller")
 
 
 func highlight_soil():
 	if ! MatchEvent.is_connected("farming", self, "_handle_farming_event"):
 		MatchEvent.connect("farming", self, "_handle_farming_event")
 
-		root_controller.tile_highlighter.highlight(
+		tile_highlighter.highlight(
 			farm_grid.position / 16, farm_grid.position / 16 + tiles_to_highlight_size
 		)
 
@@ -133,16 +138,16 @@ func _handle_farming_event(msg, presence):
 	if int(args.type) == FarmEvent.TILL:
 		var tile_pos = Vector2(args.x, args.y)
 
-		root_controller.tile_highlighter.unhighlight_tile(farm_grid.position / 16 + tile_pos)
+		tile_highlighter.unhighlight_tile(farm_grid.position / 16 + tile_pos)
 
 		if tile_pos in tiles_to_highlight:
 			tiles_to_highlight.erase(tile_pos)
 
 		if tiles_to_highlight.size() == 0:
 			if "tutorialFarmingTilling" in TPLG.ui.mission_list.get_current_mission_keys():
-				root_controller.finish_mission("tutorialFarmingTilling")
+				finish_mission("tutorialFarmingTilling")
 
-			TPLG.dialogue.start("JKJZ/TillTutorial", "playerHasTilledSoil")
+			TPLG.dialogue.start("JKJZ/Tutorials/TillTutorial", "playerHasTilledSoil")
 
 
 func return_to_game():
