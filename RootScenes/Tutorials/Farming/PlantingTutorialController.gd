@@ -23,6 +23,8 @@ func _ready():
 	farm_grid.call_deferred("draw_things_from_data")
 	farm_grid.setup_collider()
 
+	TPLG.current_farm_grids = [farm_grid]
+
 
 func _synthesize_inventory():
 	TPLG.inventory.bag.synthesize_bag(
