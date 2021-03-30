@@ -10,6 +10,8 @@ func _ready():
 	if no_children():
 		return
 
+	_synthesize_inventory()
+
 	farm_grid.data = {
 		"forageItems": [],
 		"plants": [],
@@ -20,3 +22,48 @@ func _ready():
 
 	farm_grid.call_deferred("draw_things_from_data")
 	farm_grid.setup_collider()
+
+
+func _synthesize_inventory():
+	TPLG.inventory.bag.synthesize_bag(
+		{
+			"bag":
+			[
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.TILLER),
+					"bagPosition": 0,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PAIL),
+					"bagPosition": 1,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PICKAXE),
+					"bagPosition": 2,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.SCYTHE),
+					"bagPosition": 3,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.AXE),
+					"bagPosition": 4,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.FISHPOLE),
+					"bagPosition": 5,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.POTATO_SEEDS),
+					"bagPosition": 6,
+					"quantity": 4
+				}
+			]
+		}
+	)
