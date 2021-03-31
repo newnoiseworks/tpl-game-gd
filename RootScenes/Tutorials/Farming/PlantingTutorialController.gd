@@ -10,6 +10,8 @@ func _ready():
 	if no_children():
 		return
 
+	TPLG.dialogue.add_dialogue_script("highlight_seed_packs", self)
+
 	_synthesize_inventory()
 
 	farm_grid.data = {
@@ -24,6 +26,12 @@ func _ready():
 	farm_grid.setup_collider()
 
 	TPLG.current_farm_grids = [farm_grid]
+
+	TPLG.dialogue.start("JKJZ/Tutorials/SeedTutorial", "seedTutorialBegin")
+
+
+func _exit_tree():
+	TPLG.dialogue.remove_dialogue_script("highlight_seed_packs")
 
 
 func _synthesize_inventory():
@@ -69,3 +77,21 @@ func _synthesize_inventory():
 			]
 		}
 	)
+
+
+func highlight_seed_packs():
+	var seed_idx = 6
+	var seed_pack = TPLG.inventory.tiles[seed_idx]
+
+	if ! seed_pack.is_connected("equip_item", self, "_has_highlighted"):
+		seed_pack.point_at_tile()
+		seed_pack.connect("equip_item", self, "_has_highlighted", [seed_idx])
+
+
+func _has_highlighted(slot: int):
+	var seed_pack = TPLG.inventory.tiles[slot]
+
+	seed_pack.stop_pointing()
+	seed_pack.disconnect("equip_item", self, "_has_highlighted")
+
+	TPLG.dialogue.start("JKJZ/Tutorials/SeedTutorial", "playerHasSelectedSeeds")

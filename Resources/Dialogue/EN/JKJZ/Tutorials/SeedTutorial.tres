@@ -1,3 +1,28 @@
-[gd_resource type="Resource" format=2]
+[seedTutorialBegin]
 
-[resource]
+offsetX=-464.0
+offsetY=288.0
+text="Alright, let's learn about seeds. To make plants, you need [b]seed packs[/b] -- these can be purchaed from [b]ComputerHaus[/b] in town."
+whom="JKJZ"
+next="seedTutNext"
+
+[seedTutNext]
+
+offsetX=16.0
+offsetY=288.0
+text="For now, I've setup your inventory w/ four [b]potato seed packs[/b] -- select them!"
+next="showSeedPackArrow"
+whom="JKJZ"
+
+[showSeedPackArrow]
+
+offsetX=496.0
+offsetY=384.0
+script="highlight_seed_packs"
+
+[playerHasSelectedSeeds]
+
+offsetX=-464.0
+offsetY=624.0
+text="Nice; let's get to planting then"
+whom="JKJZ"

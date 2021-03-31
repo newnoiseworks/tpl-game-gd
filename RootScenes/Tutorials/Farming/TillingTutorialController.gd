@@ -98,8 +98,6 @@ func _deliver_intro_dialogue():
 
 
 func highlight_tiller():
-	# determine which inventory slot has the tiller
-	# - as the user can't move items currently, it'll always be in the 0 slot for now
 	var tiller_idx = 0
 	var tiller = TPLG.inventory.tiles[tiller_idx]
 
