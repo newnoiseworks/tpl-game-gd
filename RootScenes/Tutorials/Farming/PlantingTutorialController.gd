@@ -5,12 +5,16 @@ onready var jkjz = find_node("JKJZ")
 onready var timer: Timer = find_node("Timer")
 onready var farm_grid = find_node("FarmGrid")
 
+var tiles_to_highlight: Array = []
+var tiles_to_highlight_size: Vector2 = Vector2(1, 4)
+
 
 func _ready():
 	if no_children():
 		return
 
 	TPLG.dialogue.add_dialogue_script("highlight_seed_packs", self)
+	TPLG.dialogue.add_dialogue_script("highlight_soil", self)
 
 	_synthesize_inventory()
 
@@ -25,6 +29,10 @@ func _ready():
 	farm_grid.call_deferred("draw_things_from_data")
 	farm_grid.setup_collider()
 
+	for x in range(tiles_to_highlight_size.x):
+		for y in range(tiles_to_highlight_size.y):
+			tiles_to_highlight.append(Vector2(x, y))
+
 	TPLG.current_farm_grids = [farm_grid]
 
 	TPLG.dialogue.start("JKJZ/Tutorials/SeedTutorial", "seedTutorialBegin")
@@ -32,6 +40,7 @@ func _ready():
 
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("highlight_seed_packs")
+	TPLG.dialogue.remove_dialogue_script("highlight_soil")
 
 
 func _synthesize_inventory():
@@ -95,3 +104,36 @@ func _has_highlighted(slot: int):
 	seed_pack.disconnect("equip_item", self, "_has_highlighted")
 
 	TPLG.dialogue.start("JKJZ/Tutorials/SeedTutorial", "playerHasSelectedSeeds")
+
+
+func highlight_soil():
+	if ! MatchEvent.is_connected("farming", self, "_handle_farming_event"):
+		MatchEvent.connect("farming", self, "_handle_farming_event")
+
+		tile_highlighter.highlight(
+			farm_grid.position / 16, farm_grid.position / 16 + tiles_to_highlight_size
+		)
+
+
+func _handle_farming_event(msg, presence):
+	if msg == null:
+		return
+
+	if presence.user_id != Player.user_id:
+		return
+
+	var args = JSON.parse(msg).result
+
+	if int(args.type) == FarmEvent.PLANT:
+		var tile_pos = Vector2(args.x, args.y)
+
+		tile_highlighter.unhighlight_tile(farm_grid.position / 16 + tile_pos)
+
+		if tile_pos in tiles_to_highlight:
+			tiles_to_highlight.erase(tile_pos)
+
+		if tiles_to_highlight.size() == 0:
+			#if "tutorialFarmingTilling" in TPLG.ui.mission_list.get_current_mission_keys():
+			#	finish_mission("tutorialFarmingTilling")
+
+			TPLG.dialogue.start("JKJZ/Tutorials/TillTutorial", "playerHasTilledSoil")
