@@ -20,7 +20,7 @@ func _exit_tree():
 
 
 func start_till_tutorial():
-	TPLG.base_change_scene("res://RootScenes/Tutorials/Farming/TillingTutorial.tscn", {}, false)
+	TPLG.base_change_scene("res://RootScenes/Tutorials/Farming/TillingTutorial.tscn")
 
 
 func intro_jkjz_finish():

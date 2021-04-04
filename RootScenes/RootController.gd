@@ -2,6 +2,7 @@ extends Node2D
 
 export var scene_name: String
 export var reload_inventory: bool = true
+export var save_as_last_scene: bool = true
 
 # var debug_window_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/DebugWindow.tscn")
 # var teleporter_scene: PackedScene = ResourceLoader.load("res://Scenes/MovementGrid/Teleporter.tscn")

@@ -85,9 +85,13 @@ func show_message(message: String):
 func base_change_scene(scene_path: String, args: Dictionary = {}, reset_vp: bool = false):
 	emit_signal("base_change_scene", scene_path, args, reset_vp)
 
-	if current_root_scene != null:
-		TPLG.last_scene = current_root_scene.filename.replace("res://", "").replace(".tscn", "").replace(
+	if current_root_scene != null && current_root_scene.save_as_last_scene:
+		last_scene = current_root_scene.filename.replace("res://", "").replace(".tscn", "").replace(
 			"RootScenes/", ""
 		)
 
-		TPLG.last_position_in_last_scene = Player.position
+		last_position_in_last_scene = Player.position
+
+
+func goto_last_scene():
+	base_change_scene("res://RootScenes/%s.tscn" % last_scene)

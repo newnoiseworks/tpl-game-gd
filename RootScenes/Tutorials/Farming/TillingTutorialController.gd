@@ -4,8 +4,8 @@ onready var player_entry = find_node("PlayerEntry")
 onready var jkjz = find_node("JKJZ")
 onready var timer: Timer = find_node("Timer")
 onready var farm_grid = find_node("FarmGrid")
+onready var tiles_to_highlight: Array = []
 
-var tiles_to_highlight: Array = []
 var tiles_to_highlight_size: Vector2 = Vector2(4, 4)
 
 
@@ -146,10 +146,11 @@ func _handle_farming_event(msg, presence):
 				finish_mission("tutorialFarmingTilling")
 
 			TPLG.dialogue.start("JKJZ/Tutorials/TillTutorial", "playerHasTilledSoil")
+			MatchEvent.disconnect("farming", self, "_handle_farming_event")
 
 
 func return_to_game():
-	TPLG.base_change_scene("res://RootScenes/%s.tscn" % TPLG.last_scene)
+	TPLG.goto_last_scene()
 
 
 func plant_seeds_tut():

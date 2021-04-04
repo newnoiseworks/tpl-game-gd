@@ -4,8 +4,8 @@ onready var player_entry = find_node("PlayerEntry")
 onready var jkjz = find_node("JKJZ")
 onready var timer: Timer = find_node("Timer")
 onready var farm_grid = find_node("FarmGrid")
+onready var tiles_to_highlight: Array = []
 
-var tiles_to_highlight: Array = []
 var tiles_to_highlight_size: Vector2 = Vector2(1, 4)
 
 
@@ -15,8 +15,16 @@ func _ready():
 
 	TPLG.dialogue.add_dialogue_script("highlight_seed_packs", self)
 	TPLG.dialogue.add_dialogue_script("highlight_soil", self)
+	TPLG.dialogue.add_dialogue_script("return_to_game", self)
+	TPLG.dialogue.add_dialogue_script("watering_seeds_tut", self)
 
 	_synthesize_inventory()
+
+	if (
+		! "tutorialFarmingPlanting" in TPLG.ui.mission_list.get_current_mission_keys()
+		&& ! "tutorialFarmingPlanting" in TPLG.ui.mission_list.get_completed_mission_keys()
+	):
+		start_mission("tutorialFarmingPlanting")
 
 	farm_grid.data = {
 		"forageItems": [],
@@ -41,6 +49,8 @@ func _ready():
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("highlight_seed_packs")
 	TPLG.dialogue.remove_dialogue_script("highlight_soil")
+	TPLG.dialogue.remove_dialogue_script("return_to_game")
+	TPLG.dialogue.remove_dialogue_script("watering_seeds_tut")
 
 
 func _synthesize_inventory():
@@ -133,7 +143,16 @@ func _handle_farming_event(msg, presence):
 			tiles_to_highlight.erase(tile_pos)
 
 		if tiles_to_highlight.size() == 0:
-			#if "tutorialFarmingTilling" in TPLG.ui.mission_list.get_current_mission_keys():
-			#	finish_mission("tutorialFarmingTilling")
+			if "tutorialFarmingPlanting" in TPLG.ui.mission_list.get_current_mission_keys():
+				finish_mission("tutorialFarmingPlanting")
 
-			TPLG.dialogue.start("JKJZ/Tutorials/TillTutorial", "playerHasTilledSoil")
+			TPLG.dialogue.start("JKJZ/Tutorials/SeedTutorial", "playerHasPlantedSeeds")
+			MatchEvent.disconnect("farming", self, "_handle_farming_event")
+
+
+func return_to_game():
+	TPLG.goto_last_scene()
+
+
+func watering_seeds_tut():
+	TPLG.base_change_scene("res://RootScenes/Tutorials/Farming/WateringTutorial.tscn")

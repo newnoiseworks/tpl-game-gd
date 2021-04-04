@@ -33,3 +33,25 @@ next="highlight_soil"
 offsetX=352.0
 offsetY=912.0
 script="highlight_soil"
+
+[playerHasPlantedSeeds]
+
+offsetX=-480.0
+offsetY=1488.0
+text="Well done! Now go back or learn about [b]watering[/b] those seeds so you can get the best [b]yields[/b] at [b]harvest[/b]!"
+whom="JKJZ"
+options="returnToGame, wateringSeedsTut"
+
+[returnToGame]
+
+offsetX=320.0
+offsetY=1456.0
+script="return_to_game"
+optionText="Go back"
+
+[wateringSeedsTut]
+
+offsetX=320.0
+offsetY=1680.0
+script="watering_seeds_tut"
+optionText="Learn about watering plants"
