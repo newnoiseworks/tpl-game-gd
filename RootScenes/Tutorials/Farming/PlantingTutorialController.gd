@@ -1,30 +1,19 @@
-extends "res://RootScenes/RootController.gd"
-
-onready var player_entry = find_node("PlayerEntry")
-onready var jkjz = find_node("JKJZ")
-onready var timer: Timer = find_node("Timer")
-onready var farm_grid = find_node("FarmGrid")
-onready var tiles_to_highlight: Array = []
-
-var tiles_to_highlight_size: Vector2 = Vector2(1, 4)
+extends "res://RootScenes/Tutorials/Farming/FarmingTutorialController.gd"
 
 
-func _ready():
-	if no_children():
-		return
+func _init():
+	mission_key = "tutorialFarmingPlanting"
+	tiles_to_highlight_size = Vector2(1, 4)
+	item_idx = 6
+	dialogue_dict = "JKJZ/Tutorials/SeedTutorial"
+	has_highlighted_dialogue_idx = "playerHasSelectedSeeds"
+	has_completed_farm_task_idx = "playerHasPlantedSeeds"
+	next_tut_scene = "res://RootScenes/Tutorials/Farming/WateringTutorial.tscn"
+	farm_event_idx = FarmEvent.PLANT
 
-	TPLG.dialogue.add_dialogue_script("highlight_seed_packs", self)
-	TPLG.dialogue.add_dialogue_script("highlight_soil", self)
-	TPLG.dialogue.add_dialogue_script("return_to_game", self)
-	TPLG.dialogue.add_dialogue_script("watering_seeds_tut", self)
 
-	_synthesize_inventory()
-
-	if (
-		! "tutorialFarmingPlanting" in TPLG.ui.mission_list.get_current_mission_keys()
-		&& ! "tutorialFarmingPlanting" in TPLG.ui.mission_list.get_completed_mission_keys()
-	):
-		start_mission("tutorialFarmingPlanting")
+func _on_ready():
+	._on_ready()
 
 	farm_grid.data = {
 		"forageItems": [],
@@ -35,22 +24,8 @@ func _ready():
 	}
 
 	farm_grid.call_deferred("draw_things_from_data")
-	farm_grid.setup_collider()
-
-	for x in range(tiles_to_highlight_size.x):
-		for y in range(tiles_to_highlight_size.y):
-			tiles_to_highlight.append(Vector2(x, y))
-
-	TPLG.current_farm_grids = [farm_grid]
 
 	TPLG.dialogue.start("JKJZ/Tutorials/SeedTutorial", "seedTutorialBegin")
-
-
-func _exit_tree():
-	TPLG.dialogue.remove_dialogue_script("highlight_seed_packs")
-	TPLG.dialogue.remove_dialogue_script("highlight_soil")
-	TPLG.dialogue.remove_dialogue_script("return_to_game")
-	TPLG.dialogue.remove_dialogue_script("watering_seeds_tut")
 
 
 func _synthesize_inventory():
@@ -96,63 +71,3 @@ func _synthesize_inventory():
 			]
 		}
 	)
-
-
-func highlight_seed_packs():
-	var seed_idx = 6
-	var seed_pack = TPLG.inventory.tiles[seed_idx]
-
-	if ! seed_pack.is_connected("equip_item", self, "_has_highlighted"):
-		seed_pack.point_at_tile()
-		seed_pack.connect("equip_item", self, "_has_highlighted", [seed_idx])
-
-
-func _has_highlighted(slot: int):
-	var seed_pack = TPLG.inventory.tiles[slot]
-
-	seed_pack.stop_pointing()
-	seed_pack.disconnect("equip_item", self, "_has_highlighted")
-
-	TPLG.dialogue.start("JKJZ/Tutorials/SeedTutorial", "playerHasSelectedSeeds")
-
-
-func highlight_soil():
-	if ! MatchEvent.is_connected("farming", self, "_handle_farming_event"):
-		MatchEvent.connect("farming", self, "_handle_farming_event")
-
-		tile_highlighter.highlight(
-			farm_grid.position / 16, farm_grid.position / 16 + tiles_to_highlight_size
-		)
-
-
-func _handle_farming_event(msg, presence):
-	if msg == null:
-		return
-
-	if presence.user_id != Player.user_id:
-		return
-
-	var args = JSON.parse(msg).result
-
-	if int(args.type) == FarmEvent.PLANT:
-		var tile_pos = Vector2(args.x, args.y)
-
-		tile_highlighter.unhighlight_tile(farm_grid.position / 16 + tile_pos)
-
-		if tile_pos in tiles_to_highlight:
-			tiles_to_highlight.erase(tile_pos)
-
-		if tiles_to_highlight.size() == 0:
-			if "tutorialFarmingPlanting" in TPLG.ui.mission_list.get_current_mission_keys():
-				finish_mission("tutorialFarmingPlanting")
-
-			TPLG.dialogue.start("JKJZ/Tutorials/SeedTutorial", "playerHasPlantedSeeds")
-			MatchEvent.disconnect("farming", self, "_handle_farming_event")
-
-
-func return_to_game():
-	TPLG.goto_last_scene()
-
-
-func watering_seeds_tut():
-	TPLG.base_change_scene("res://RootScenes/Tutorials/Farming/WateringTutorial.tscn")

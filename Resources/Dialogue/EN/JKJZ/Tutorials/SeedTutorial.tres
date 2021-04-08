@@ -18,7 +18,7 @@ whom="JKJZ"
 
 offsetX=1152.0
 offsetY=448.0
-script="highlight_seed_packs"
+script="highlight_item"
 
 [playerHasSelectedSeeds]
 
@@ -53,5 +53,5 @@ optionText="Go back"
 
 offsetX=320.0
 offsetY=1680.0
-script="watering_seeds_tut"
+script="next_tut"
 optionText="Learn about watering plants"

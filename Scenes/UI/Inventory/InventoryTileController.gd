@@ -42,7 +42,6 @@ func _on_tween_completed(_a, _b):
 
 
 func stop_pointing():
-	print("stop_pointing() called")
 	stop_pointing_called = true
 	pointer_tween.stop_all()
 

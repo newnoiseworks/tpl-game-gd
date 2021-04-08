@@ -162,4 +162,4 @@ next="hightlightTillerForPlayer"
 
 offsetX=400.0
 offsetY=-1376.0
-script="highlight_tiller"
+script="highlight_item"

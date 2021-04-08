@@ -24,7 +24,7 @@ script="return_to_game"
 offsetX=976.0
 offsetY=848.0
 optionText="Learn about planting seeds"
-script="plant_seeds_tut"
+script="next_tut"
 
 [playerHasTilledSoil]
 
