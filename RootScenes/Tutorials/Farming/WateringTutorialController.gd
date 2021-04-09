@@ -15,6 +15,7 @@ func _init():
 func _on_ready():
 	._on_ready()
 
+	# TODO: Need to adjust createdAt timestamps to ensure the plants are never fully harvestable at tutorial time
 	farm_grid.data = {
 		"forageItems": [],
 		"plants":
