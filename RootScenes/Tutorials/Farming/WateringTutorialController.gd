@@ -15,35 +15,34 @@ func _init():
 func _on_ready():
 	._on_ready()
 
-	# TODO: Need to adjust createdAt timestamps to ensure the plants are never fully harvestable at tutorial time
 	farm_grid.data = {
 		"forageItems": [],
 		"plants":
 		[
 			{
-				"createdAt": "1617939205",
-				"plantType": "bb8e09a312941709ab85b7b147c74abc",
+				"createdAt": String(OS.get_unix_time()),
+				"plantType": InventoryItems.get_hash_from_int(InventoryItems.POTATO),
 				"waterHistory": [0, 0, 0, 0, 0, 0],
 				"x": "0",
 				"y": "0"
 			},
 			{
-				"createdAt": "1617939206",
-				"plantType": "bb8e09a312941709ab85b7b147c74abc",
+				"createdAt": String(OS.get_unix_time() - 1000),
+				"plantType": InventoryItems.get_hash_from_int(InventoryItems.POTATO),
 				"waterHistory": [0, 0, 0, 0, 0, 0],
 				"x": "0",
 				"y": "1"
 			},
 			{
-				"createdAt": "1617939206",
-				"plantType": "bb8e09a312941709ab85b7b147c74abc",
+				"createdAt": String(OS.get_unix_time() - 2000),
+				"plantType": InventoryItems.get_hash_from_int(InventoryItems.POTATO),
 				"waterHistory": [0, 0, 0, 0, 0, 0],
 				"x": "0",
 				"y": "2"
 			},
 			{
-				"createdAt": "1617939207",
-				"plantType": "bb8e09a312941709ab85b7b147c74abc",
+				"createdAt": String(OS.get_unix_time() - 2500),
+				"plantType": InventoryItems.get_hash_from_int(InventoryItems.POTATO),
 				"waterHistory": [0, 0, 0, 0, 0, 0],
 				"x": "0",
 				"y": "3"
@@ -57,43 +56,3 @@ func _on_ready():
 	farm_grid.call_deferred("draw_things_from_data")
 
 	TPLG.dialogue.start(dialogue_dict, "wateringTutorialBegin")
-
-
-func _synthesize_inventory():
-	TPLG.inventory.bag.synthesize_bag(
-		{
-			"bag":
-			[
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.TILLER),
-					"bagPosition": 0,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PAIL),
-					"bagPosition": 1,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PICKAXE),
-					"bagPosition": 2,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.SCYTHE),
-					"bagPosition": 3,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.AXE),
-					"bagPosition": 4,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.FISHPOLE),
-					"bagPosition": 5,
-					"quantity": 1
-				},
-			]
-		}
-	)

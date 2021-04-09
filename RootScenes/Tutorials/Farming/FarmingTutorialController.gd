@@ -17,6 +17,9 @@ var farm_event_idx: int
 
 
 func _ready():
+	if no_children():
+		return
+
 	_on_ready()
 
 
@@ -57,7 +60,43 @@ func _exit_tree():
 
 
 func _synthesize_inventory():
-	pass
+	TPLG.inventory.bag.synthesize_bag(
+		{
+			"bag":
+			[
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.TILLER),
+					"bagPosition": 0,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PAIL),
+					"bagPosition": 1,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PICKAXE),
+					"bagPosition": 2,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.SCYTHE),
+					"bagPosition": 3,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.AXE),
+					"bagPosition": 4,
+					"quantity": 1
+				},
+				{
+					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.FISHPOLE),
+					"bagPosition": 5,
+					"quantity": 1
+				},
+			]
+		}
+	)
 
 
 func highlight_item():

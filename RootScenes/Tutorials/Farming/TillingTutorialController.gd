@@ -23,46 +23,6 @@ func _on_ready():
 	timer.start()
 
 
-func _synthesize_inventory():
-	TPLG.inventory.bag.synthesize_bag(
-		{
-			"bag":
-			[
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.TILLER),
-					"bagPosition": 0,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PAIL),
-					"bagPosition": 1,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.PICKAXE),
-					"bagPosition": 2,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.SCYTHE),
-					"bagPosition": 3,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.AXE),
-					"bagPosition": 4,
-					"quantity": 1
-				},
-				{
-					"itemTypeId": InventoryItems.get_hash_from_int(InventoryItems.FISHPOLE),
-					"bagPosition": 5,
-					"quantity": 1
-				}
-			]
-		}
-	)
-
-
 func _deliver_intro_dialogue():
 	timer.disconnect("timeout", self, "_deliver_intro_dialogue")
 	TPLG.dialogue.start("JKJZ", "tillTutorialBegin")
