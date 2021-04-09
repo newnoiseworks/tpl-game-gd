@@ -37,7 +37,7 @@ whom="JKJZ"
 [returnToGame]
 
 offsetX=-16.0
-offsetY=880.0
+offsetY=1040.0
 script="return_to_game"
 optionText="Go back"
 
@@ -45,3 +45,5 @@ optionText="Go back"
 
 script="next_tut"
 optionText="Learn about harvesting"
+offsetX=-16.0
+offsetY=896.0

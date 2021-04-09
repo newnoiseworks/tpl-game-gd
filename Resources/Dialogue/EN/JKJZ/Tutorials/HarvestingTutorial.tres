@@ -1,0 +1,33 @@
+[harvestingTutorialBegin]
+
+offsetX=-560.0
+offsetY=208.0
+text="Alright - ready to reap what you sow? No? Typical! To [b]harvest[/b] plants, just click on them with your [b]left mouse button[/b] or hover over them and press the [b]e button![/b]"
+next="highlightSoil"
+whom="JKJZ"
+
+[highlightSoil]
+
+offsetX=-64.0
+offsetY=208.0
+script="highlight_soil"
+
+[playerHasHarvestedPlants]
+
+offsetX=-560.0
+offsetY=560.0
+text="Nice! You know the basic of farming. Move on to learn about [b]foraging[/b], or go back."
+options="goBack, nextTut"
+whom="JKJZ"
+
+[goBack]
+
+offsetX=-80.0
+offsetY=560.0
+optionText="Go back"
+script="return_to_game"
+
+[nextTut]
+
+optionText="Learn about foraging"
+script="next_tut"
