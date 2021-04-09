@@ -123,7 +123,6 @@ func reload_data_on_reset_event(_args, _presence):
 	print_debug("Unsetting farm grid")
 	unset_farm()
 	yield(load_data(), "completed")
-	call_deferred("draw_plants_from_data")
 
 
 func load_data():
@@ -145,6 +144,7 @@ func draw_things_from_data():
 	draw_ground_from_data()
 	draw_forage_items_from_data()
 	draw_crafted_items_from_data()
+	draw_plants_from_data()
 
 
 func draw_ground_from_data():

@@ -1,0 +1,27 @@
+[wateringTutorialBegin]
+
+offsetX=-528.0
+offsetY=160.0
+text="OK; so plants are like all of you organic things: they need [b]water![/b] Let's get started by selecting your [b]water pail[/b]."
+next="highlightItem"
+whom="JKJZ"
+
+[highlightItem]
+
+offsetX=32.0
+offsetY=208.0
+script="highlight_item"
+
+[playerHasSelectedPail]
+
+offsetX=-544.0
+offsetY=528.0
+whom="JKJZ"
+text="Cool! Now with the pail equipped, water the highlighted plants by pressing [b]q[/b] or right clicking on them."
+next="highlightSoil"
+
+[highlightSoil]
+
+offsetX=32.0
+offsetY=528.0
+script="highlight_soil"
