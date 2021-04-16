@@ -105,6 +105,9 @@ func _draw_missions():
 
 
 func _add_unfinished_mission(key):
+	if key == "":
+		return
+
 	var mission_details = MissionList.list[key]
 	mission_details.key = key
 	current_missions.append(mission_details)
