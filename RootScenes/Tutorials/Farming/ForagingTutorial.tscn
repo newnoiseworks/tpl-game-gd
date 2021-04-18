@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://RootScenes/Tutorials/Farming/FarmingTutorial.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/FarmGrid/FarmGrid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://RootScenes/Tutorials/Farming/ForagingTutorialController.gd" type="Script" id=3]
+
+[node name="ForagingTutorial" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+reload_inventory = true
+save_as_last_scene = true
+
+[node name="FarmGrid" parent="EnvironmentItems" index="1"]
+tile_width = 3
+tile_height = 5
+
+[node name="FarmGrid2" parent="EnvironmentItems" index="3" instance=ExtResource( 2 )]
+position = Vector2( 304, 144 )
+tile_width = 3
+tile_height = 5
+collection_name = "Tutorial2"
+is_local = true
+
+[node name="FarmGrid3" parent="EnvironmentItems" index="4" instance=ExtResource( 2 )]
+position = Vector2( 352, 144 )
+tile_width = 3
+tile_height = 5
+collection_name = "Tutorial3"
+is_local = true

@@ -14,6 +14,7 @@ var has_highlighted_dialogue_idx: String
 var has_completed_farm_task_idx: String
 var next_tut_scene: String
 var farm_event_idx: int
+var block_mission_finish: bool = false
 
 
 func _ready():
@@ -140,7 +141,10 @@ func _handle_farming_event(msg, presence):
 			tiles_to_highlight.erase(tile_pos)
 
 		if tiles_to_highlight.size() == 0:
-			if mission_key in TPLG.ui.mission_list.get_current_mission_keys():
+			if (
+				block_mission_finish == false
+				&& mission_key in TPLG.ui.mission_list.get_current_mission_keys()
+			):
 				finish_mission(mission_key)
 
 			TPLG.dialogue.start(dialogue_dict, has_completed_farm_task_idx)
