@@ -3,8 +3,6 @@ extends "res://RootScenes/Tutorials/Farming/FarmingTutorialController.gd"
 var farm_grid_2
 var farm_grid_3
 
-var tile_offset: Vector2 = Vector2(1, 1)
-
 
 func _init():
 	mission_key = "tutorialForaging"
@@ -13,6 +11,7 @@ func _init():
 	next_tut_scene = "res://RootScenes/Tutorials/Farming/HarvestingTutorial.tscn"
 	farm_event_idx = FarmEvent.FORAGE
 	block_mission_finish = true
+	tile_offset = Vector2(1, 1)
 
 
 func _on_ready():
@@ -175,7 +174,7 @@ func highlight_soil_with_stones():
 
 	for x in range(tiles_to_highlight_size.x):
 		for y in range(tiles_to_highlight_size.y):
-			tiles_to_highlight.append(tile_offset + Vector2(x, y))
+			tiles_to_highlight.append(current_farm_grid.position / 16 + tile_offset + Vector2(x, y))
 
 	has_completed_farm_task_idx = "pickaxeUsed"
 	highlight_soil()
@@ -191,11 +190,11 @@ func highlight_scythe():
 func highlight_soil_with_weeds():
 	tiles_to_highlight.clear()
 
-	tile_offset = farm_grid_2.position + Vector2(1, 1)
+	current_farm_grid = farm_grid_2
 
 	for x in range(tiles_to_highlight_size.x):
 		for y in range(tiles_to_highlight_size.y):
-			tiles_to_highlight.append(tile_offset + Vector2(x, y))
+			tiles_to_highlight.append(current_farm_grid.position / 16 + tile_offset + Vector2(x, y))
 
 	has_completed_farm_task_idx = "scytheUsed"
 	highlight_soil()
@@ -208,15 +207,18 @@ func highlight_axe():
 	highlight_item()
 
 
-func higlight_soil_with_trees():
+func highlight_soil_with_trees():
 	tiles_to_highlight.clear()
 
-	tile_offset = farm_grid_3.position + Vector2(1, 1)
+	current_farm_grid = farm_grid_3
 
-	for x in range(tiles_to_highlight_size.x):
-		for y in range(tiles_to_highlight_size.y):
-			tiles_to_highlight.append(tile_offset + Vector2(x, y))
+	var tree_position = current_farm_grid.position / 16 + Vector2(1, 2)
+
+	tiles_to_highlight.append(tree_position)
 
 	has_completed_farm_task_idx = "axeUsed"
 	block_mission_finish = false
-	highlight_soil()
+
+	if ! MatchEvent.is_connected("farming", self, "_handle_farming_event"):
+		MatchEvent.connect("farming", self, "_handle_farming_event")
+		tile_highlighter.highlight(tree_position, tree_position + Vector2(1, 1))

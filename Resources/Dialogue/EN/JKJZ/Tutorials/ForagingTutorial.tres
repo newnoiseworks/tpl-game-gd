@@ -82,6 +82,7 @@ offsetX=272.0
 offsetY=624.0
 text="Ok now go on and chop that tree!"
 next="highlightSoilWithTrees"
+whom="JKJZ"
 
 [highlightSoilWithTrees]
 
@@ -95,6 +96,7 @@ offsetX=-784.0
 offsetY=1088.0
 text="OK you know how to forage now - congrats!"
 next="returnToGame"
+whom="JKJZ"
 
 [returnToGame]
 

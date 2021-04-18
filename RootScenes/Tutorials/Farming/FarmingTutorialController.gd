@@ -15,6 +15,8 @@ var has_completed_farm_task_idx: String
 var next_tut_scene: String
 var farm_event_idx: int
 var block_mission_finish: bool = false
+var tile_offset: Vector2 = Vector2(0, 0)
+var current_farm_grid
 
 
 func _ready():
@@ -27,6 +29,8 @@ func _ready():
 func _on_ready():
 	if no_children():
 		return
+
+	current_farm_grid = farm_grid
 
 	farm_grid.setup_collider()
 
@@ -122,7 +126,8 @@ func highlight_soil():
 		MatchEvent.connect("farming", self, "_handle_farming_event")
 
 		tile_highlighter.highlight(
-			farm_grid.position / 16, farm_grid.position / 16 + tiles_to_highlight_size
+			tile_offset + current_farm_grid.position / 16,
+			tile_offset + current_farm_grid.position / 16 + tiles_to_highlight_size
 		)
 
 
@@ -133,9 +138,9 @@ func _handle_farming_event(msg, presence):
 	var args = JSON.parse(msg).result
 
 	if int(args.type) == farm_event_idx:
-		var tile_pos = Vector2(args.x, args.y)
+		var tile_pos = current_farm_grid.position / 16 + Vector2(args.x, args.y)
 
-		tile_highlighter.unhighlight_tile(farm_grid.position / 16 + tile_pos)
+		tile_highlighter.unhighlight_tile(tile_pos)
 
 		if tile_pos in tiles_to_highlight:
 			tiles_to_highlight.erase(tile_pos)
