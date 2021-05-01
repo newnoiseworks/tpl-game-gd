@@ -101,6 +101,7 @@ _global_script_class_icons={
 config/name="ThePromisedLand-GD"
 run/main_scene="res://RootScenes/BaseViewports/BaseViewports.tscn"
 boot_splash/fullsize=false
+boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.0862745, 0.627451, 0.952941, 1 )
 config/icon="res://icon.png"
 
@@ -286,7 +287,7 @@ debugger_agent/wait_timeout=10000
 quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=1
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.443137, 0.215686, 0.0156863, 1 )
+environment/default_clear_color=Color( 0.172549, 0, 0.45098, 1 )
 quality/reflections/atlas_subdiv=16
 quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

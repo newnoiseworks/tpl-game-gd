@@ -8,11 +8,9 @@ var farmer_scene: PackedScene = ResourceLoader.load(
 	"res://Scenes/Character/Farmer/Farmer.tscn", "", true
 )
 
-onready var player_entry_node: Node2D = find_node("PlayerEntry")
-
 
 func _ready():
-	if no_children(): 
+	if no_children():
 		return
 
 	call_deferred("add_child", MoveTarget)
@@ -34,21 +32,12 @@ func _exit_tree():
 	if MatchManager.game_match != null:
 		MatchManager.socket.disconnect("received_match_presence", self, "_on_match_presence")
 		MatchEvent.disconnect("match_join", self, "_handle_match_join_event")
+		MatchManager.game_match = null
 
 
 func _join_dungeon():
 	yield(MatchManager.find_or_create_match(dungeon, player_entry_node.position), "completed")
 	TPLG.ui.hide_loading_dialog()
-
-
-func _add_player_to_scene():
-	Player.position = player_entry_node.position
-	Player.name = SessionManager.session.user_id
-	Player.user_id = SessionManager.session.user_id
-	find_node("EnvironmentItems").call_deferred("add_child", Player)
-	Player.restrict_camera_to_tile_map(find_node("Ground"))
-	get_tree().root.emit_signal("size_changed")
-	Player.set_idle()
 
 
 func _on_match_presence(match_event: NakamaRTAPI.MatchPresenceEvent):
@@ -68,31 +57,29 @@ func _handle_match_join_event(data, _presence):
 
 		user_ids.append(user_id)
 
-		var starting_position: Vector2
+		_setup_networked_player_for_screen(user_id, args)
 
-		if user_id in args.positions.keys() && "x" in args.positions[user_id]:
-			starting_position = Vector2(
-				float(args.positions[user_id].x), float(args.positions[user_id].y)
-			)
-		else:
-			starting_position = player_entry_node.position
 
-		var movement_target: Vector2
+func _setup_networked_player_for_screen(user_id, args):
+	var starting_position: Vector2 = player_entry_node.position
 
-		if args.movementTargets.keys().has(user_id) && args.movementTargets[user_id].has("x"):
-			movement_target = Vector2(
-				args.movementTargets[user_id].x, args.movementTargets[user_id].y
-			)
-		else:
-			movement_target = starting_position
-
-		call_deferred(
-			"add_networked_player_to_scene",
-			user_id,
-			args.avatarMap[user_id],
-			starting_position,
-			movement_target
+	if user_id in args.positions.keys() && "x" in args.positions[user_id]:
+		starting_position = Vector2(
+			float(args.positions[user_id].x), float(args.positions[user_id].y)
 		)
+
+	var movement_target: Vector2 = starting_position
+
+	if args.movementTargets.keys().has(user_id) && args.movementTargets[user_id].has("x"):
+		movement_target = Vector2(args.movementTargets[user_id].x, args.movementTargets[user_id].y)
+
+	call_deferred(
+		"add_networked_player_to_scene",
+		user_id,
+		args.avatarMap[user_id],
+		starting_position,
+		movement_target
+	)
 
 
 func add_networked_player_to_scene(
@@ -119,4 +106,4 @@ func add_networked_player_to_scene(
 	player_node.movement_target = movement_target
 	player_node.server_derived_position = true
 
-	find_node("EnvironmentItems").add_child(player_node)
+	environment_items.add_child(player_node)

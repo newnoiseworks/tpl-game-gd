@@ -9,12 +9,18 @@ onready var teleporter: Node2D = get_parent().get_parent().get_parent().get_node
 
 func _ready():
 	TPLG.dialogue.add_dialogue_script("intro_jkjz_finish", self)
+	TPLG.dialogue.add_dialogue_script("start_till_tutorial", self)
 	jkjz_character.highlight()
 	teleporter.position += Vector2(-9999, 0)
 
 
 func _exit_tree():
 	TPLG.dialogue.remove_dialogue_script("intro_jkjz_finish")
+	TPLG.dialogue.remove_dialogue_script("start_till_tutorial")
+
+
+func start_till_tutorial():
+	TPLG.base_change_scene("res://RootScenes/Tutorials/Farming/TillingTutorial.tscn")
 
 
 func intro_jkjz_finish():

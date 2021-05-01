@@ -1,0 +1,57 @@
+[seedTutorialBegin]
+
+offsetX=-464.0
+offsetY=288.0
+text="Alright, let's learn about seeds. To make plants, you need [b]seed packs[/b] -- these can be purchased from [b]ComputerHaus[/b] in town."
+whom="JKJZ"
+next="seedTutNext"
+
+[seedTutNext]
+
+offsetX=352.0
+offsetY=288.0
+text="For now, I've setup your inventory w/ four [b]potato seed packs[/b] -- select them!"
+next="showSeedPackArrow"
+whom="JKJZ"
+
+[showSeedPackArrow]
+
+offsetX=1152.0
+offsetY=448.0
+script="highlight_item"
+
+[playerHasSelectedSeeds]
+
+offsetX=-464.0
+offsetY=880.0
+text="Nice; let's get to planting then! On the highlighted [b]tilled soil[/b], press [b]Q[/b], [b]right click[/b], or [b]two finger tap[/b] to plant the seed!"
+whom="JKJZ"
+next="highlight_soil"
+
+[highlight_soil]
+
+offsetX=352.0
+offsetY=912.0
+script="highlight_soil"
+
+[playerHasPlantedSeeds]
+
+offsetX=-480.0
+offsetY=1488.0
+text="Well done! Now go back or learn about [b]watering[/b] those seeds so you can get the best [b]yields[/b] at [b]harvest[/b]!"
+whom="JKJZ"
+options="returnToGame, wateringSeedsTut"
+
+[returnToGame]
+
+offsetX=320.0
+offsetY=1456.0
+script="return_to_game"
+optionText="Go back"
+
+[wateringSeedsTut]
+
+offsetX=320.0
+offsetY=1680.0
+script="next_tut"
+optionText="Learn about watering plants"

@@ -15,7 +15,7 @@ func _init():
 
 
 func _ready():
-	if no_children(): 
+	if no_children():
 		return
 
 	if user_id_to_join == "":
@@ -77,7 +77,6 @@ func load_farm():
 	for farm_grid in farm_grids:
 		yield(farm_grid.load_farm(user_id_to_join, user_avatar_to_join), "completed")
 		# farm_grid.farm_permissions = permissions_data
-		farm_grid.draw_plants_from_data()
 
 	if join_match_on_ready || are_other_people_on_farm():
 		# print("Joining a match for this farm...")

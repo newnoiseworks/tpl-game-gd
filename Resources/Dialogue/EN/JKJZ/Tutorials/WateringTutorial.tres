@@ -1,0 +1,49 @@
+[wateringTutorialBegin]
+
+offsetX=-528.0
+offsetY=160.0
+text="OK; so plants are like all of you organic things: they need [b]water![/b] Let's get started by selecting your [b]water pail[/b]."
+next="highlightItem"
+whom="JKJZ"
+
+[highlightItem]
+
+offsetX=32.0
+offsetY=208.0
+script="highlight_item"
+
+[playerHasSelectedPail]
+
+offsetX=-528.0
+offsetY=528.0
+whom="JKJZ"
+text="Cool! Now with the pail equipped, water the highlighted plants by pressing [b]q[/b] or right clicking on them."
+next="highlightSoil"
+
+[highlightSoil]
+
+offsetX=32.0
+offsetY=528.0
+script="highlight_soil"
+
+[playerHasWateredPlants]
+
+offsetX=-528.0
+offsetY=896.0
+text="Excellent! Now go back or learn about [b]harvesting[/b]!"
+options="returnToGame, nextTut"
+whom="JKJZ"
+
+[returnToGame]
+
+offsetX=-16.0
+offsetY=1040.0
+script="return_to_game"
+optionText="Go back"
+
+[nextTut]
+
+script="next_tut"
+optionText="Learn about harvesting"
+offsetX=-16.0
+offsetY=896.0

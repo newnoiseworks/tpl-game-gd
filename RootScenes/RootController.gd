@@ -1,6 +1,8 @@
 extends Node2D
 
 export var scene_name: String
+export var reload_inventory: bool = true
+export var save_as_last_scene: bool = true
 
 # var debug_window_scene: PackedScene = ResourceLoader.load("res://Scenes/UI/DebugWindow.tscn")
 # var teleporter_scene: PackedScene = ResourceLoader.load("res://Scenes/MovementGrid/Teleporter.tscn")
@@ -10,9 +12,16 @@ var zoom_offset: float = 3
 var mission_scenes = {}
 var mission_dialogue_options = {}
 
-var base_viewports_scene: PackedScene = ResourceLoader.load("res://RootScenes/BaseViewports/BaseViewports.tscn")
+var base_viewports_scene: PackedScene = ResourceLoader.load(
+	"res://RootScenes/BaseViewports/BaseViewports.tscn"
+)
 
 onready var mission_launcher_node = find_node("MissionLauncher")
+onready var player_entry_node: Node2D = find_node("PlayerEntry")
+onready var environment_items = find_node("EnvironmentItems")
+onready var ground: TileMap = find_node("Ground")
+onready var tile_highlighter = find_node("TileHighlighter")
+
 
 func _enter_tree():
 	if get_parent() == get_tree().get_root():
@@ -21,34 +30,35 @@ func _enter_tree():
 
 		_hotload_scene()
 
+
 func _hotload_scene():
-		var hotload_config = ConfigFile.new()
-		hotload_config.load("res://Resources/DevConfig/HotLoadLogin.tres")
+	var hotload_config = ConfigFile.new()
+	hotload_config.load("res://Resources/DevConfig/HotLoadLogin.tres")
 
-		yield(
-			SessionManager.login(
-				hotload_config.get_value("resource", "email"),
-				hotload_config.get_value("resource", "password")
-			),
-			"completed"
-		)
+	yield(
+		SessionManager.login(
+			hotload_config.get_value("resource", "email"),
+			hotload_config.get_value("resource", "password")
+		),
+		"completed"
+	)
 
-		yield(SessionManager.get_profile_data(), "completed")
+	yield(SessionManager.get_profile_data(), "completed")
 
-		var avatar_data 
-		for avatar in SessionManager.profile_data.avatars:
-			if avatar.key == hotload_config.get_value("resource", "avatar_key"):
-				avatar_data = avatar
-				break
+	var avatar_data
+	for avatar in SessionManager.profile_data.avatars:
+		if avatar.key == hotload_config.get_value("resource", "avatar_key"):
+			avatar_data = avatar
+			break
+	SessionManager.set_current_avatar(avatar_data)
+	yield(SessionManager.load_mission_data(), "completed")
+	get_parent().call_deferred("add_child", base_viewports_scene.instance())
+	TPLG.call_deferred("set_ui_scene")
 
-		SessionManager.set_current_avatar(avatar_data)
-		yield(SessionManager.load_mission_data(), "completed")
-		get_parent().call_deferred("add_child", base_viewports_scene.instance())
-		TPLG.call_deferred("set_ui_scene")
+	RealmEvent.connect("realm_join", self, "_complete_dev_root_scene_load")
 
-		RealmEvent.connect("realm_join", self, "_complete_dev_root_scene_load")
+	RealmManager.find_or_create_realm("town0-realm")
 
-		RealmManager.find_or_create_realm("town0-realm")
 
 func _complete_dev_root_scene_load(_msg: String, _presence):
 	RealmEvent.disconnect("realm_join", self, "_complete_dev_root_scene_load")
@@ -68,7 +78,11 @@ func _complete_dev_root_scene_load(_msg: String, _presence):
 func _ready():
 	# add_child(debug_window_scene.instance())
 
-	if no_children(): return
+	if no_children():
+		return
+
+	if TPLG.inventory && reload_inventory:
+		TPLG.inventory.bag.reload_and_redraw_data()
 
 	window_size_setup()
 	mission_setup()
@@ -76,15 +90,33 @@ func _ready():
 	TPLG.dialogue.add_dialogue_script("finish_mission", self)
 	TPLG.dialogue.add_dialogue_script("start_mission", self)
 
+	if ! "dungeon" in self:
+		_add_player_to_scene()
+		add_child(MoveTarget)
+
+
 func _exit_tree():
-	if no_children(): return
+	if no_children():
+		return
 
 	TPLG.dialogue.remove_dialogue_script("finish_mission")
 	TPLG.dialogue.remove_dialogue_script("start_mission")
 	get_tree().root.disconnect("size_changed", self, "on_window_resize")
 
+
 func no_children():
 	return get_child_count() == 0
+
+
+func _add_player_to_scene():
+	Player.position = player_entry_node.position
+	Player.name = SessionManager.session.user_id
+	Player.user_id = SessionManager.session.user_id
+	environment_items.call_deferred("add_child", Player)
+	Player.restrict_camera_to_tile_map(ground)
+	get_tree().root.emit_signal("size_changed")
+	Player.set_idle()
+
 
 # TODO: consider moving the mission stuff into an isolated node, perhaps the mission_launcher_node itself
 func mission_setup():

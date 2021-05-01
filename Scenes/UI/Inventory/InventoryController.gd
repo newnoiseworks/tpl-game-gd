@@ -100,7 +100,7 @@ func on_select_slot(slot: int):
 	if slot == current_equipped_slot:
 		var item = bag.get_item_action(slot)
 
-		if item.has_method("primary_inventory_action"):
+		if item && item.has_method("primary_inventory_action"):
 			item.primary_inventory_action()
 
 		return

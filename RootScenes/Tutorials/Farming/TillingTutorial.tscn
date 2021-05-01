@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://RootScenes/Tutorials/Farming/FarmingTutorial.tscn" type="PackedScene" id=1]
+[ext_resource path="res://RootScenes/Tutorials/Farming/TillingTutorialController.gd" type="Script" id=4]
+
+[node name="TillingTutorial" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="JKJZ" parent="EnvironmentItems" index="0"]
+position = Vector2( 436.986, 7.36031 )

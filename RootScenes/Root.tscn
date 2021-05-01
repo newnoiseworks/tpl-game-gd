@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://TileMaps/farmtiles.res" type="TileSet" id=1]
+[ext_resource path="res://RootScenes/RootController.gd" type="Script" id=2]
+[ext_resource path="res://RootScenes/TileHighlighterController.gd" type="Script" id=3]
+
+[node name="Root" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Ground" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="PlayerEntry" type="Node2D" parent="."]
+
+[node name="EnvironmentItems" type="YSort" parent="."]
+
+[node name="TileHighlighter" type="TileMap" parent="."]
+modulate = Color( 0, 0.905882, 1, 0.298039 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 3 )

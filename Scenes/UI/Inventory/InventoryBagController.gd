@@ -154,6 +154,11 @@ func load_data():
 	data = yield(SaveData.load("inventoryBag"), "completed")
 
 
+func synthesize_bag(_data):
+	data = _data
+	redraw_bag()
+
+
 func reload_and_redraw_data(_args = {}, _presence = {}):
 	yield(load_data(), "completed")
 	redraw_bag()
