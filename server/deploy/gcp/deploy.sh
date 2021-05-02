@@ -1,5 +1,7 @@
 #!/bin/bash
 
+gcloud compute ssh --project ${GCP_PROJECT} --zone ${GCP_ZONE} --command "truncate -s 0 /var/log/docker.log" nakama-instance
+
 # scp'ing the docker-compose file in case it's the first deploy and we don't have one, so the subsequent down command won't error out
 gcloud compute scp --project ${GCP_PROJECT} --zone ${GCP_ZONE} --force-key-file-overwrite ../../docker-compose.yml nakama-instance:
 
