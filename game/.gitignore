@@ -1,0 +1,24 @@
+godot.log
+debug.log
+
+# Godot-specific ignores
+.import/
+export.cfg
+
+# Viz studio garbage
+.vs/
+.vscode/
+
+dist
+
+.Nakama
+.cookie
+.DS_Store
+
+Utils/InventoryItems.gd
+
+Utils/GameConfig.gd
+
+Utils/MissionList.gd
+
+Resources/DevConfig/HotLoadLogin.tres
