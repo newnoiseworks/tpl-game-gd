@@ -1,23 +1,23 @@
 extends Node
 
 const list = {
-	{{- range $i, $mission := .Missions }}
-	"{{.Key}}": {
-    "title": "{{.Title}}",
-		{{- if .Prereqs }}
-		"prereqs": "{{.Prereqs}}",
+	{{- range $i, $mission := .missions }}
+	"{{.key}}": {
+    "title": "{{.title}}",
+		{{- if .prereqs }}
+		"prereqs": "{{.prereqs}}",
 		{{- end }}
-		{{- if .Reqs }}
+		{{- if .reqs }}
 		"reqs": {
-			{{- range $y, $req := .Reqs }}
-			"{{md5 .Key}}": {{.Quantity}},
+			{{- range $y, $req := .reqs }}
+			"{{md5 .key}}": {{.quantity}},
 			{{- end }}
 		},
 		{{- end }}
-		{{- if .Awards }}
+		{{- if .awards }}
 		"awards": {
-			{{- range $y, $award := .Awards }}
-			"{{md5 .Key}}": {{.Quantity}},
+			{{- range $y, $award := .awards }}
+			"{{md5 .key}}": {{.quantity}},
 			{{- end }}
 		}
 		{{- end }}

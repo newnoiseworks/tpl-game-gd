@@ -1,26 +1,26 @@
 local mission_list = {
-	{{- range $i, $mission := .Missions }}
-	{{.Key}} = {
-    title = "{{.Title}}",
-		{{- if .Prereqs }}
-		prereqs = "{{.Prereqs}}",
+	{{- range $i, $mission := .missions }}
+	{{.key}} = {
+    title = "{{.title}}",
+		{{- if .prereqs }}
+		prereqs = "{{.prereqs}}",
 		{{- end }}
-		{{- if .Reqs }}
+		{{- if .reqs }}
 		reqs = {
-			{{- range $y, $req := .Reqs }}
+			{{- range $y, $req := .reqs }}
 			{
-				key = "{{md5 .Key}}",
-				quantity = {{.Quantity}}
+				key = "{{md5 .key}}",
+				quantity = {{.quantity}}
 			},
 			{{- end }}
 		},
 		{{- end }}
-		{{- if .Awards }}
+		{{- if .awards }}
 		awards = {
-			{{- range $y, $award := .Awards }}
+			{{- range $y, $award := .awards }}
 			{
-				key = "{{md5 .Key}}",
-				quantity = {{.Quantity}}
+				key = "{{md5 .key}}",
+				quantity = {{.quantity}}
 			},
 			{{- end }}
 		}

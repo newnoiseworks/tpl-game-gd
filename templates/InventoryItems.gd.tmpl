@@ -1,40 +1,40 @@
 extends Node
 
 const plant_max_yields = {
-	{{- range .Items}}{{ if .MaxYield}}
-	"{{md5 .Key}}": {{.MaxYield}},
+	{{- range .items}}{{ if .maxYield}}
+	"{{md5 .key}}": {{.maxYield}},
 	{{- end}}{{end}}
 }
 
 const plant_growth_stages = {
-	{{- range .Items}}{{ if .GrowthStages}}
-	"{{md5 .Key}}": [
-		{{ range $i, $s := .GrowthStages}}{{$s}}, {{end}}
+	{{- range .items}}{{ if .growthStages}}
+	"{{md5 .key}}": [
+		{{ range $i, $s := .growthStages}}{{$s}}, {{end}}
 	],
 	{{- end}}{{end}}
 }
 
 const hash_to_id_map = {
-	{{- range $i, $item := .Items }}
-	"{{md5 .Key}}": {{$i}},
+	{{- range $i, $item := .items }}
+	"{{md5 .key}}": {{$i}},
 	{{- end }}
 }
 
 const id_to_hash_map = {
-	{{- range $i, $item := .Items }}
-	{{$i}}: "{{md5 .Key}}",
+	{{- range $i, $item := .items }}
+	{{$i}}: "{{md5 .key}}",
 	{{- end }}
 }
 
 enum {
-	{{- range $i, $item := .Items }}
-	{{upperSnake .Key}} = {{$i}},
+	{{- range $i, $item := .items }}
+	{{upperSnake .key}} = {{$i}},
 	{{- end }}
 }
 
 const name_to_enum_map = {
-	{{- range $i, $item := .Items }}
-	"{{.Key}}": {{$i}},
+	{{- range $i, $item := .items }}
+	"{{.key}}": {{$i}},
 	{{- end }}
 }
 

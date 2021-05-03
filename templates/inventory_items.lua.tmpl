@@ -3,46 +3,46 @@ local nk = require("nakama")
 local P = {}
 P.reverse = {}
 
-{{- range $i, $item := .Items }}
-P["{{md5 .Key}}"] = {
-  key = "{{.Key}}",
-  {{- if .GrowthStages }}
-  growthStages = { {{ range $i, $s := .GrowthStages }}{{$s}}, {{end}} },
+{{- range $i, $item := .items }}
+P["{{md5 .key}}"] = {
+  key = "{{.key}}",
+  {{- if .growth_stages }}
+  growthStages = { {{ range $i, $s := .growth_stages }}{{$s}}, {{end}} },
   {{- end }}
-  {{- if .MaxYield }}
-  maxYield = {{.MaxYield}},
+  {{- if .max_yield }}
+  maxYield = {{.max_yield}},
   {{- end }}
-  {{- if .Price }}
+  {{- if .price }}
   price = {
-    {{- range .Price }} {
-      item = "{{md5 .Item}}",
-      itemKey = "{{.Item}}",
-      quantity = {{.Quantity}}
+    {{- range .price }} {
+      item = "{{md5 .item}}",
+      itemKey = "{{.item}}",
+      quantity = {{.quantity}}
     },{{- end}}
   },
   {{- end }}
   {{- if .Sale }}
   sale = {
     {{- range .Sale }} {
-      item = "{{md5 .Item}}",
-      itemKey = "{{.Item}}",
-      quantity = {{.Quantity}}
+      item = "{{md5 .item}}",
+      itemKey = "{{.item}}",
+      quantity = {{.quantity}}
     },{{- end}}
   },
   {{- end }}
-  {{- if .ComboPrice }}
-  comboPrice = {{.ComboPrice}},
+  {{- if .combo_price }}
+  comboPrice = {{.combo_price}},
   {{- end }}
-  {{- if .PurchaseValidation }}
-  purchaseValidation = {{.PurchaseValidation}},
+  {{- if .purchase_validation }}
+  purchaseValidation = {{.purchase_validation}},
   {{- end }}
-  {{- if .FromSeeds }}
-  fromSeeds = "{{.FromSeeds}}",
+  {{- if .from_seeds }}
+  fromSeeds = "{{.from_seeds}}",
   {{- end }}
-  {{- if .ToPlant }}
-  to_plant = "{{.ToPlant}}",
+  {{- if .toPlant }}
+  to_plant = "{{.toPlant}}",
   {{- end }}
 }
-P.reverse["{{.Key}}"] = "{{md5 .Key}}"
+P.reverse["{{.key}}"] = "{{md5 .key}}"
 {{ end }}
 return P
