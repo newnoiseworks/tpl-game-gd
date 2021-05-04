@@ -1,0 +1,48 @@
+local nk = require("nakama")
+
+local P = {}
+P.reverse = {}
+
+{{- range $i, $item := .items }}
+P["{{md5 .key}}"] = {
+  key = "{{.key}}",
+  {{- if .growth_stages }}
+  growthStages = { {{ range $i, $s := .growth_stages }}{{$s}}, {{end}} },
+  {{- end }}
+  {{- if .max_yield }}
+  maxYield = {{.max_yield}},
+  {{- end }}
+  {{- if .price }}
+  price = {
+    {{- range .price }} {
+      item = "{{md5 .item}}",
+      itemKey = "{{.item}}",
+      quantity = {{.quantity}}
+    },{{- end}}
+  },
+  {{- end }}
+  {{- if .Sale }}
+  sale = {
+    {{- range .Sale }} {
+      item = "{{md5 .item}}",
+      itemKey = "{{.item}}",
+      quantity = {{.quantity}}
+    },{{- end}}
+  },
+  {{- end }}
+  {{- if .combo_price }}
+  comboPrice = {{.combo_price}},
+  {{- end }}
+  {{- if .purchase_validation }}
+  purchaseValidation = {{.purchase_validation}},
+  {{- end }}
+  {{- if .from_seeds }}
+  fromSeeds = "{{.from_seeds}}",
+  {{- end }}
+  {{- if .toPlant }}
+  to_plant = "{{.toPlant}}",
+  {{- end }}
+}
+P.reverse["{{.key}}"] = "{{md5 .key}}"
+{{ end }}
+return P

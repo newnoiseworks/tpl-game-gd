@@ -2,7 +2,7 @@ local nk = require("nakama")
 
 local function get_version(context, payload)
   return nk.json_encode({
-    ["game"] = "{{ .gameVersion }}",
+    ["game"] = "{{ .profile.game.version }}",
   })
 end
 
