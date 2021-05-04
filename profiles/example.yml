@@ -1,0 +1,17 @@
+nakama:
+  host: 127.0.0.1
+  port: 7350
+  secure: false
+
+game:
+  real_world_seconds_per_day: 12
+  version: 0.1.23
+
+# git:
+#   game: branchname 
+#   server: branchname
+
+# gcloud:
+#   project: projectname
+#   region: us-east1
+#   cloudZone: us-east1-b
