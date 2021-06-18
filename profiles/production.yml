@@ -1,20 +1,17 @@
-nakama:
-  host: 35.237.62.253
-  port: 7350
-  secure: false
+omgd:
+  deploy:
+    server:
+      gcloud:
+        project: the-promised-land-production
+        zone: us-east1-d
+        machine_type: e2-small
+    game:
+      itchio:
+        project: the-promised-land
+        user: newnoiseworks
 
-gcloud:
-  project: the-promised-land-production
-  instance: instance-1
-  cloudZone: us-east1-d
-
-firebase:
-  project: the-promised-land-production
-
+####
 game:
-  real_world_seconds_per_day: 6 * 60
+  real_world_seconds_per_day: 12 * 60
   version: 0.2.6
 
-git:
-  game: master
-  server: master

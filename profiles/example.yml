@@ -1,47 +1,26 @@
-main:
-  - name: infra
-    dir: server/infra
-    steps: 
-      - cmd: gg build-templates .
-      - cmd: ./infra_deploy_if_needed.sh
-        dir: gcp # infers ./server/infra/gcp based on top level dir
-  - name: setup-ip
-    steps:
-      - cmd: gg update-profile nakama.host $(./server/infra/get_ip.sh)
-  - name: game-client
-    dir: game
-    steps: 
-      - cmd: gg build-templates .
-      - cmd: ./build_clients.sh
-      - cmd: ./deploy_clients.sh
-  - name: nakama-server
-    dir: server
-    steps: 
-      - cmd: gg build-templates .
-      - cmd: ./build_server.sh
-      - cmd: ./deploy/gcp/deploy.sh
-
-
-tasks:
-  - name: destroy-infra
-    cmd: ./destroy_infra.sh
-    dir: server/infra
-
-
-
-## TPL stuff to remove?
-
-# gcloud:
-#   project: projectname
-#   region: us-east1
-#   cloudZone: us-east1-b
+#### the "omgd" block emcompasses all omgd related configs
 #
-
-nakama:
-  host: 127.0.0.1
-  port: 7350
-  secure: false
-
+# leave out what you don't need -- if you're running locally you likely won't need the entire block, see local.yml
+#
+omgd:
+  deploy:
+    server:
+      gcloud:
+        project: the-promised-land-production
+        zone: us-east1-d
+        machine_type: e2-small
+    game:
+      itchio:
+        project: the-promised-land
+        user: newnoiseworks
+#
+#
+#
+#
+#### use the "game" namespace for custom variables
+#
+#
 game:
-  real_world_seconds_per_day: 12 * 60
-  version: 0.1.23
+  version: 0.0.1
+  example_custom_var: "this would be exposed in templates as {{profile.game.example_custom_var}}"
+
