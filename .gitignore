@@ -1,8 +1,8 @@
 .tmp
 .omgdtmp
 
-profiles
 !profiles/example.yml
+profiles
 !profiles/local.yml
 
 .gg
