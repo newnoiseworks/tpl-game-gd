@@ -1,4 +1,4 @@
 game:
-  version: 0.1.23
+  version: local
   real_world_seconds_per_day: 12 * 60
 
