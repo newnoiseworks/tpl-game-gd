@@ -6,11 +6,11 @@ P.reverse = {}
 {{- range $i, $item := .items }}
 P["{{md5 .key}}"] = {
   key = "{{.key}}",
-  {{- if .growth_stages }}
-  growthStages = { {{ range $i, $s := .growth_stages }}{{$s}}, {{end}} },
+  {{- if .growthStages }}
+  growthStages = { {{ range $i, $s := .growthStages }}{{$s}}, {{end}} },
   {{- end }}
-  {{- if .max_yield }}
-  maxYield = {{.max_yield}},
+  {{- if .maxYield }}
+  maxYield = {{.maxYield}},
   {{- end }}
   {{- if .price }}
   price = {
