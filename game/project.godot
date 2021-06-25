@@ -286,9 +286,10 @@ debugger_agent/wait_timeout=10000
 
 quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=1
-quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.172549, 0, 0.45098, 1 )
+2d/snapping/use_gpu_pixel_snap=true
+environment/default_clear_color=Color( 0.443137, 0.215686, 0.0156863, 1 )
 quality/reflections/atlas_subdiv=16
 quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false
+quality/2d/use_pixel_snap=true
