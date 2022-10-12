@@ -14,7 +14,7 @@ variable "gcp_type" {
   type = string
 }
 
-resource "google_global_compute_address" "nakama_ip_address" {
+resource "google_compute_global_address" "nakama_ip_address" {
   name = "nakama-static-ip-address"
 }
 
@@ -66,7 +66,7 @@ resource "google_compute_instance" "nakama_instance" {
   network_interface {
     network = google_compute_network.vpc_network.self_link
     access_config {
-      nat_ip = "${google_global_compute_address.nakama_ip_address.address}"
+      nat_ip = "${google_compute_global_address.nakama_ip_address.address}"
     }
   }
 }
