@@ -7,6 +7,7 @@ omgd:
     server:
       gcloud:
         project: the-promised-land-production
+        region: us-east1
         zone: us-east1-d
         machine_type: e2-small
     game:
