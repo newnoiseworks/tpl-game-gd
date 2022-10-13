@@ -27,4 +27,4 @@ Clone this repo, ensure docker is running, then use the basic `omgd` commands to
 1. `$ omgd build-templates`
 1. `$ omgd server-start --tail` 
 1. Open the `game` folder in Godot
-1. Click play, the project should show a login screen, sign in and you should see the server you started in the above step(s) react to it
+1. Click play, the project should show a login screen, sign in and you should see the server you started in the above step(s) react to it in the log
