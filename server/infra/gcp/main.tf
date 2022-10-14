@@ -17,6 +17,10 @@ variable "gcp_type" {
 resource "google_compute_address" "nakama_ip_address" {
   name = "nakama-static-ip-address"
   region = var.gcp_region
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 output "server_ip" {
