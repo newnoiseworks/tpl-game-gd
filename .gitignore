@@ -1,10 +1,10 @@
 .tmp
 .omgdtmp
+.omgd
 
 profiles/*
 !profiles/example.yml
 !profiles/local.yml
+!profiles/profile.yml.omgdptpl
 
-.gg/*
-!.gg/profile.yml.omgdtpl
 
