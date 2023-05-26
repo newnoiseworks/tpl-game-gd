@@ -28,6 +28,9 @@ jobs:
     - name: 'test gcloud sdk'
       run: gcloud auth list
 
+    - name: 'test docker'
+      run: docker ps
+
     - name: 'Add OMGD binary'
       uses: supplypike/setup-bin@v3
       with:
@@ -41,15 +44,8 @@ jobs:
     - name: '$ omgd build-profiles'
       run: omgd build-profiles
 
-    - name: '$ omgd build-templates --profile=profiles/staging'
-      run: omgd build-templates --profile=profiles/staging
+    - name: '$ omgd infra deploy --profile=profiles/staging --verbose'
+      run: omgd infra deploy --profile=profiles/staging --verbose
 
-    - name: 'terraform checks'
-      working-directory: ./server/infra/gcp/
-      run: |
-        terraform init
-        bash tf_import.sh
-        terraform output -raw server_ip
-
-    # - name: '$ omgd infra game-deploy --profile=profiles/staging --verbose'
-    #   run: omgd infra game-deploy --profile=profiles/staging --verbose
+    - name: '$ omgd infra game-deploy --profile=profiles/staging --verbose'
+      run: omgd infra game-deploy --profile=profiles/staging --verbose
