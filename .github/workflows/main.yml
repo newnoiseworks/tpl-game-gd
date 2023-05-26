@@ -1,5 +1,6 @@
 name: main
 run-name: ${{ github.actor }} is building the app
+runs-on: ubuntu-latest
 on: [push]
 jobs:
   job_id:
