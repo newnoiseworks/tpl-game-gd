@@ -42,6 +42,7 @@ data "google_iam_policy" "omgd_project" {
 
     members = [
       "serviceAccount:omgd-${var.gcp_project}-sa@${var.gcp_project}.iam.gserviceaccount.com",
+      "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.omgd_wi_pool.name}/attribute.repository/newnoiseworks/tpl-game-gd"
     ]
   }
 }
