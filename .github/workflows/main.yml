@@ -43,8 +43,8 @@ jobs:
     - name: '$ omgd build-profiles'
       run: omgd build-profiles
 
-    - name: '$ omgd build-templates'
-      run: omgd build-templates
+    - name: '$ omgd build-templates --profile=profiles/staging'
+      run: omgd build-templates --profile=profiles/staging
 
     - name: 'terraform checks'
       working-directory: ./server/infra/gcp/
