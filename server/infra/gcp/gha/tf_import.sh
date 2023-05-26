@@ -1,16 +1,8 @@
 #!/bin/bash
 
-terraform state rm google_project.omgd_network_daemon
-terraform state rm google_iam_workload_identity_pool.omgd_wi_pool
-terraform state rm google_iam_workload_identity_pool_provider.omgd_wi_pool_provider
-terraform state rm google_service_account.sa
-terraform state rm google_service_account_iam_policy.omgd_network_daemon_iam
-
-terraform import google_project.omgd_network_daemon
-terraform import google_iam_workload_identity_pool.omgd_wi_pool
-terraform import google_iam_workload_identity_pool_provider.omgd_wi_pool_provider
-terraform import google_service_account.sa
-terraform import google_service_account_iam_policy.omgd_network_daemon_iam
+terraform import google_iam_workload_identity_pool.omgd_wi_pool projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip
+terraform import google_iam_workload_identity_pool_provider.omgd_wip_provider projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip/providers/tpl-redux-staging-gha-wipp
+terraform import google_service_account.sa projects/tpl-redux-staging/serviceAccounts/omgd-tpl-redux-staging-gcpsa@tpl-redux-staging.iam.gserviceaccount.com
 
 terraform refresh
 
