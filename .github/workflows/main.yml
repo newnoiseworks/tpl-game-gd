@@ -1,10 +1,9 @@
 name: main
 run-name: ${{ github.actor }} is building the app
-runs-on: ubuntu-latest
 on: [push]
 jobs:
   job_id:
-    # ...
+    runs-on: ubuntu-latest
 
     # Add "id-token" with the intended permissions.
     permissions:
