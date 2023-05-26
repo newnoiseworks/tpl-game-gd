@@ -57,9 +57,9 @@ output "wip" {
 }
 
 output "wipp" {
-  value = google_iam_workload_identity_pool_provider.omgd_wip_provider.id
+  value = google_iam_workload_identity_pool_provider.omgd_wip_provider.name
 }
 
 output "sa" {
-  value = google_service_account.sa.id
+  value = google_service_account.sa.email
 }
