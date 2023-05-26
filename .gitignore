@@ -6,5 +6,6 @@ profiles/*
 !profiles/example.yml
 !profiles/local.yml
 !profiles/profile.yml.omgdptpl
+!profiles/staging.yml
 
 

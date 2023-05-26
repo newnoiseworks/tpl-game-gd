@@ -28,6 +28,24 @@ jobs:
     - name: 'test gcloud sdk'
       run: gcloud auth list
 
+    - name: 'Add OMGD binary'
+      uses: supplypike/setup-bin@v3
+      with:
+        uri: 'https://github.com/newnoiseworks/omgd/releases/download/v0.0.28/omgd_0.0.28_Linux_x86_64.tar.gz'
+        name: 'omgd'
+        version: '0.0.28'
+
+    - name: 'Add Terraform binary'
+      uses: hashicorp/setup-terraform@v2
+
+    - name: '$ omgd build-profiles'
+      run: omgd build-profiles
+
+    - name: '$ omgd build-templates --profile=profiles/staging'
+      run: omgd build-templates --profile=profiles/staging
+
+    - name: '$ omgd infra game-deploy --profile=profiles/staging --verbose'
+      run: omgd infra game-deploy --profile=profiles/staging --verbose
 
     # projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip
     # projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip/providers/tpl-redux-staging-gha-wipp
