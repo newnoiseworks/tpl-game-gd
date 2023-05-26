@@ -46,13 +46,18 @@ jobs:
     - name: '$ omgd build-templates --profile=profiles/staging'
       run: omgd build-templates --profile=profiles/staging
 
-    - name: 'terraform checks'
-      working-directory: ./server/infra/gcp/
+    - name: '$ omgd build-clients'
       run: |
-        terraform init
-        bash tf_import.sh
-        terraform plan
-        terraform apply -auto-approve
+        omgd build-clients
+        ls game/dist
+
+    # - name: 'terraform checks'
+    #   working-directory: ./server/infra/gcp/
+    #   run: |
+    #     terraform init
+    #     bash tf_import.sh
+    #     terraform plan
+    #     terraform apply -auto-approve
 
     # - name: '$ omgd infra deploy --profile=profiles/staging --verbose'
     #   run: omgd infra deploy --profile=profiles/staging --verbose
