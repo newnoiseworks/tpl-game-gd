@@ -18,9 +18,8 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'projects/246294033107/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip/providers/tpl-redux-staging-gha-wipp'
-        service_account: 'omgd-tpl-redux-staging-gcpsa@tpl-redux-staging.iam.gserviceaccount.com'
-
+        workload_identity_provider: 'projects/246294033107/locations/global/workloadIdentityPools/tpl-redux-staging-ghac-wip/providers/tpl-redux-staging-ghac-wipp'
+        service_account: 'omgd-tpl-redux-staging-sa@tpl-redux-staging.iam.gserviceaccount.com'
 
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'

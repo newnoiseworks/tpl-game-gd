@@ -9,14 +9,14 @@ variable "gcp_project" {
 # WI pool
 resource "google_iam_workload_identity_pool" "omgd_wi_pool" {
   project                   = var.gcp_project
-  workload_identity_pool_id = "${var.gcp_project}-gha-wip"
+  workload_identity_pool_id = "${var.gcp_project}-ghac-wip"
 }
 
 # WI provider
 resource "google_iam_workload_identity_pool_provider" "omgd_wip_provider" {
   project                            = var.gcp_project
   workload_identity_pool_id          = google_iam_workload_identity_pool.omgd_wi_pool.workload_identity_pool_id
-  workload_identity_pool_provider_id = "${var.gcp_project}-gha-wipp"
+  workload_identity_pool_provider_id = "${var.gcp_project}-ghac-wipp"
 
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
@@ -31,9 +31,8 @@ resource "google_iam_workload_identity_pool_provider" "omgd_wip_provider" {
 
 # GCP service account
 resource "google_service_account" "sa" {
-  account_id   = "omgd-${var.gcp_project}-gcpsa"
-  display_name = "OMGD ${var.gcp_project} Service Account"
   project      = var.gcp_project
+  account_id   = "omgd-${var.gcp_project}-sa"
 }
 
 # IAM perms for service account; at least project creation & service enabling
@@ -42,7 +41,7 @@ data "google_iam_policy" "omgd_project" {
     role = "roles/iam.workloadIdentityUser"
 
     members = [
-      "serviceAccount:omgd-${var.gcp_project}-gcpsa@${var.gcp_project}.iam.gserviceaccount.com",
+      "serviceAccount:omgd-${var.gcp_project}-sa@${var.gcp_project}.iam.gserviceaccount.com",
     ]
   }
 }
