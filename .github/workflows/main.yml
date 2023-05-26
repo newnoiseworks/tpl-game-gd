@@ -25,8 +25,8 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
 
-    - name: 'get projects'
-      run: gcloud projects list
+    - name: 'test gcloud sdk'
+      run: gcloud auth list
 
 
     # projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip
