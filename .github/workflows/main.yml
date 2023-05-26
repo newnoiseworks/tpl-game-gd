@@ -1,0 +1,29 @@
+name: main
+run-name: ${{ github.actor }} is building the app
+on: [push]
+jobs:
+  job_id:
+    # ...
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    # actions/checkout MUST come before auth
+    - uses: 'actions/checkout@v3'
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: 'projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip/providers/tpl-redux-staging-gha-wipp'
+        service_account: 'omgd-tpl-redux-staging-gcpsa@tpl-redux-staging.iam.gserviceaccount.com'
+
+    - run: gcloud projects list
+
+
+    # projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip
+    # projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip/providers/tpl-redux-staging-gha-wipp
+    # projects/tpl-redux-staging/serviceAccounts/omgd-tpl-redux-staging-gcpsa@tpl-redux-staging.iam.gserviceaccount.com
