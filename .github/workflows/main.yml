@@ -44,9 +44,12 @@ jobs:
     - name: '$ omgd build-templates --profile=profiles/staging'
       run: omgd build-templates --profile=profiles/staging
 
-    - name: '$ omgd infra game-deploy --profile=profiles/staging --verbose'
-      run: omgd infra game-deploy --profile=profiles/staging --verbose
+    - name: 'terraform checks'
+      working-directory: ./server/infra/gcp/
+      run: |
+        terraform init
+        bash tf_import.sh
+        terraform output -raw server_ip
 
-    # projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip
-    # projects/tpl-redux-staging/locations/global/workloadIdentityPools/tpl-redux-staging-gha-wip/providers/tpl-redux-staging-gha-wipp
-    # projects/tpl-redux-staging/serviceAccounts/omgd-tpl-redux-staging-gcpsa@tpl-redux-staging.iam.gserviceaccount.com
+    # - name: '$ omgd infra game-deploy --profile=profiles/staging --verbose'
+    #   run: omgd infra game-deploy --profile=profiles/staging --verbose
