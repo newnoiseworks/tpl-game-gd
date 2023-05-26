@@ -25,12 +25,6 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
 
-    - name: 'test gcloud sdk'
-      run: gcloud auth list
-
-    - name: 'test docker'
-      run: docker ps
-
     - name: 'Add OMGD binary'
       uses: supplypike/setup-bin@v3
       with:
@@ -41,11 +35,28 @@ jobs:
     - name: 'Add Terraform binary'
       uses: hashicorp/setup-terraform@v2
 
+    - name: 'test gcloud sdk'
+      run: gcloud auth list
+
+    - name: 'test docker'
+      run: docker ps
+
     - name: '$ omgd build-profiles'
       run: omgd build-profiles
 
-    - name: '$ omgd infra deploy --profile=profiles/staging --verbose'
-      run: omgd infra deploy --profile=profiles/staging --verbose
+    - name: '$ omgd build-templates'
+      run: omgd build-templates
 
-    - name: '$ omgd infra game-deploy --profile=profiles/staging --verbose'
-      run: omgd infra game-deploy --profile=profiles/staging --verbose
+    - name: 'terraform checks'
+      working-directory: ./server/infra/gcp/
+      run: |
+        terraform init
+        bash tf_import.sh
+        terraform plan
+        terraform apply -auto-approve
+
+    # - name: '$ omgd infra deploy --profile=profiles/staging --verbose'
+    #   run: omgd infra deploy --profile=profiles/staging --verbose
+
+    # - name: '$ omgd infra game-deploy --profile=profiles/staging --verbose'
+    #   run: omgd infra game-deploy --profile=profiles/staging --verbose
