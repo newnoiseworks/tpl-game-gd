@@ -48,7 +48,8 @@ jobs:
 
     - name: '$ omgd build-clients'
       run: |
-        omgd build-clients
+        omgd build-templates --profile=profiles/local
+        omgd build-clients --profile=profiles/local
         ls game/dist
 
     # - name: 'terraform checks'
