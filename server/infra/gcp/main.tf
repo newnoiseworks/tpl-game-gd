@@ -60,7 +60,7 @@ resource "google_compute_instance" "nakama_instance" {
 
   boot_disk {
     initialize_params {
-      image = "cos-cloud/cos-89-lts"
+      image = "cos-cloud/cos-105-lts"
     }
   }
 
