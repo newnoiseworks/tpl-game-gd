@@ -6,7 +6,7 @@ variable "gcp_project" {
 # salt for updating below resources in real time as GCP caches many of them, particularly the WIPP
 variable "gcp_resource_version" {
   type = number
-	default = 4
+	default = 6
 }
 
 # output WI info as needed for GH stuff
@@ -51,18 +51,23 @@ data "google_iam_policy" "omgd_project" {
       "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.omgd_wi_pool.name}/attribute.repository/newnoiseworks/tpl-game-gd"
     ]
   }
-  binding {
-    role = "roles/iam.serviceAccountUser"
+  # binding {
+  #   role = "roles/iam.serviceAccountUser"
 
-    members = [
-      "serviceAccount:omgd-${var.gcp_project}-sa-${var.gcp_resource_version}@${var.gcp_project}.iam.gserviceaccount.com",
-      "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.omgd_wi_pool.name}/attribute.repository/newnoiseworks/tpl-game-gd"
-    ]
-  }
+  #   members = [
+  #     "serviceAccount:omgd-${var.gcp_project}-sa-${var.gcp_resource_version}@${var.gcp_project}.iam.gserviceaccount.com",
+  #     "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.omgd_wi_pool.name}/attribute.repository/newnoiseworks/tpl-game-gd"
+  #   ]
+  # }
 }
 
-resource "google_service_account_iam_policy" "omgd_project_iam" {
+resource "google_service_account_iam_policy" "omgd_sa_iam" {
   service_account_id = google_service_account.sa.name
+  policy_data        = data.google_iam_policy.omgd_project.policy_data
+}
+
+resource "google_project_iam_policy" "omgd_project_iam" {
+  project            = var.gcp_project
   policy_data        = data.google_iam_policy.omgd_project.policy_data
 }
 
