@@ -46,11 +46,11 @@ jobs:
     - name: '$ omgd build-templates --profile=profiles/staging'
       run: omgd build-templates --profile=profiles/staging
 
-    - name: '$ omgd build-clients'
-      run: |
-        omgd build-templates --profile=profiles/local
-        omgd build-clients --profile=profiles/local
-        ls game/dist
+    # - name: '$ omgd build-clients'
+    #   run: |
+    #     omgd build-templates --profile=profiles/local
+    #     omgd build-clients --profile=profiles/local
+    #     ls game/dist
 
     # - name: 'terraform checks'
     #   working-directory: ./server/infra/gcp/
@@ -63,5 +63,5 @@ jobs:
     # - name: '$ omgd infra deploy --profile=profiles/staging --verbose'
     #   run: omgd infra deploy --profile=profiles/staging --verbose
 
-    # - name: '$ omgd infra game-deploy --profile=profiles/staging --verbose'
-    #   run: omgd infra game-deploy --profile=profiles/staging --verbose
+    - name: '$ omgd infra game-deploy --profile=profiles/staging --verbose'
+      run: omgd infra game-deploy --profile=profiles/staging --verbose
