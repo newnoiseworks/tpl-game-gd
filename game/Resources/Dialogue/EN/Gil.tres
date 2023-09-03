@@ -1,13 +1,13 @@
 [hello]
 
-whom="Gil"
-text="Gil Bates' the name, taking other people's work and selling it under my name's my game."
+whom="Bobbi"
+text="Bobbi Goner' the name, taking other people's work and selling it under my name's my game."
 options="sucks"
 
 [sucks]
 
 optionText="Wow that kind of sucks"
-whom="Gil"
+whom="Bobbi"
 text="Well, not for me. And if I try really hard to forget other people exist, it's even better!"
 options="sick"
 offsetX=416.0
@@ -17,21 +17,21 @@ offsetY=0.0
 
 optionText="How does society not fall apart cause of you?"
 whom="Baph"
-text="It's cause I'm watching you Gil!"
+text="It's cause I'm watching you Bobbi!"
 next="cancel"
 offsetX=832.0
 offsetY=0.0
 
 [cancel]
 
-whom="Gil"
+whom="Bobbi"
 text="Oh no!! I'm being cancelled!"
 next="shutup"
 
 [shutup]
 
 whom="York"
-text="Shut up Gil, you're just getting yelled at, you're still here... and so are we!"
+text="Shut up Bobbi, you're just getting yelled at, you're still here... and so are we!"
 next="nods"
 offsetX=0.0
 offsetY=272.0
@@ -46,53 +46,53 @@ offsetY=272.0
 
 [sigh]
 
-whom="Gil"
+whom="Bobbi"
 text="Sigh... I'd get away with a whole lot more if it weren't for those meddling Carta Police and this ungrateful community..."
 offsetX=832.0
 offsetY=272.0
 
-[catchGilAFishEntry]
+[catchBobbiAFishEntry]
 
-whom="Gil"
+whom="Bobbi"
 optionText="So... you like fish?"
 text="Hell yeah I do! Can you get me one?"
 offsetX=0.0
 offsetY=-320.0
-next="catchGilAFishStartMissionScript"
+next="catchBobbiAFishStartMissionScript"
 
-[catchGilAFishExit]
+[catchBobbiAFishExit]
 
-whom="Gil"
-optionText="Hey Gil, here's that Fish"
+whom="Bobbi"
+optionText="Hey Bobbi, here's that Fish"
 text="Really?"
 offsetX=0.0
 offsetY=-592.0
-next="catchGilAFishFinishMissionScript"
+next="catchBobbiAFishFinishMissionScript"
 
-[catchGilAFishExitFailed]
+[catchBobbiAFishExitFailed]
 
-whom="Gil"
+whom="Bobbi"
 text="Hmm... maybe come back when you got that fish!"
 offsetX=896.0
 offsetY=-528.0
 
-[catchGilAFishExitFinished]
+[catchBobbiAFishExitFinished]
 
-whom="Gil"
-text="Hmm. So it does as told. Interesting, noted."
+whom="Bobbi"
+text="Hmm. So it does as it's told. Bobbi smells a mark, and Bobbi is a marksist!"
 offsetX=896.0
 offsetY=-736.0
 
-[catchGilAFishFinishMissionScript]
+[catchBobbiAFishFinishMissionScript]
 
 script="finish_mission"
 offsetX=448.0
 offsetY=-592.0
-scriptArgs="catchGilAFish,true,Gil,catchGilAFishExitFailed,catchGilAFishExitFinished"
+scriptArgs="catchBobbiAFish,true,Bobbi,catchBobbiAFishExitFailed,catchBobbiAFishExitFinished"
 
-[catchGilAFishStartMissionScript]
+[catchBobbiAFishStartMissionScript]
 
 script="start_mission"
-scriptArgs="catchGilAFish"
+scriptArgs="catchBobbiAFish"
 offsetX=448.0
 offsetY=-320.0
