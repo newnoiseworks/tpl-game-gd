@@ -1,4 +1,4 @@
-game:
-  version: local
-  real_world_seconds_per_day: 12 * 60
-
+omgd:
+  servers:
+    central:
+      host: 127.0.0.1
