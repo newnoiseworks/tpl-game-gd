@@ -1,8 +1,26 @@
 extends Node
 
-const real_world_seconds_per_day = {{.profile.game.real_world_seconds_per_day}}
-const nakama_host = "{{.profile.nakama.host}}"
-const nakama_key = "{{.profile.nakama.key}}"
-const nakama_port = {{.profile.nakama.port}}
-const nakama_secure = {{.profile.nakama.secure}}
+{{- if .profile.omgd.servers.central.host }}
+const nakama_host = "{{.profile.omgd.servers.central.host}}"
+{{- else }}
+const nakama_host = "127.0.0.1"
+{{- end }}
+{{- if .profile.omgd.nakama.key }}
+const nakama_key = "{{.profile.omgd.nakama.key}}"
+{{- else }}
+const nakama_key = "defaultkey"
+{{- end }}
+{{- if .profile.omgd.nakama.port }}
+const nakama_port = {{.profile.omgd.nakama.port}}
+{{- else }}
+const nakama_port = 7350
+{{- end }}
+{{- if .profile.omgd.nakama.secure }}
+const nakama_secure = {{.profile.omgd.nakama.secure}}
+{{- else }}
+const nakama_secure = false
+{{- end }}
+
 const version = "{{.profile.game.version}}"
+
+const real_world_seconds_per_day = {{.profile.game.real_world_seconds_per_day}}
