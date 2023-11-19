@@ -5,6 +5,10 @@ profiles/*
 !profiles/example.yml
 !profiles/local.yml
 
-.gg/*
-!.gg/profile.yml.omgdtpl
+profiles/*
+!profiles/example.yml
+!profiles/local.yml
+
+.omgd/*
+
 
