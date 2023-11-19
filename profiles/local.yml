@@ -1,4 +1,10 @@
 omgd:
+  game:
+    targets:
+    - build-mac
   servers:
     central:
       host: 127.0.0.1
+game:
+  version: 0.0.1
+  real_world_seconds_per_day: 2 * 60
